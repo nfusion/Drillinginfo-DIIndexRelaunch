@@ -6,4 +6,4 @@ npm-debug.log
 /docs/build
 .node_modules-tmp
 .bower_components-tmp
-/bower-components
+/bower_components
