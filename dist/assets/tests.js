@@ -13,7 +13,7 @@ define('diindex-ember-dev/tests/components/gas-production-widget.jshint', ['expo
   QUnit.module('JSHint - components/gas-production-widget.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/gas-production-widget.js should pass jshint.\ncomponents/gas-production-widget.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\ncomponents/gas-production-widget.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'components/gas-production-widget.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/components/oil-production-widget.jshint', ['exports'], function (exports) {
@@ -22,7 +22,7 @@ define('diindex-ember-dev/tests/components/oil-production-widget.jshint', ['expo
   QUnit.module('JSHint - components/oil-production-widget.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/oil-production-widget.js should pass jshint.\ncomponents/oil-production-widget.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\ncomponents/oil-production-widget.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'components/oil-production-widget.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/components/us-production-capacity-widget.jshint', ['exports'], function (exports) {
@@ -31,7 +31,7 @@ define('diindex-ember-dev/tests/components/us-production-capacity-widget.jshint'
   QUnit.module('JSHint - components/us-production-capacity-widget.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/us-production-capacity-widget.js should pass jshint.\ncomponents/us-production-capacity-widget.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\ncomponents/us-production-capacity-widget.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'components/us-production-capacity-widget.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/helpers/destroy-app', ['exports', 'ember'], function (exports, _ember) {
@@ -582,7 +582,7 @@ define('diindex-ember-dev/tests/resolver.jshint', ['exports'], function (exports
   QUnit.module('JSHint - resolver.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'resolver.js should pass jshint.\nresolver.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nresolver.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'resolver.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/router.jshint', ['exports'], function (exports) {
@@ -600,7 +600,7 @@ define('diindex-ember-dev/tests/routes/gas-prod.jshint', ['exports'], function (
   QUnit.module('JSHint - routes/gas-prod.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/gas-prod.js should pass jshint.\nroutes/gas-prod.js: line 2, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/gas-prod.js: line 4, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/gas-prod.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/oil-prod.jshint', ['exports'], function (exports) {
@@ -609,7 +609,7 @@ define('diindex-ember-dev/tests/routes/oil-prod.jshint', ['exports'], function (
   QUnit.module('JSHint - routes/oil-prod.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/oil-prod.js should pass jshint.\nroutes/oil-prod.js: line 2, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/oil-prod.js: line 4, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/oil-prod.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/rig-count.jshint', ['exports'], function (exports) {
@@ -618,7 +618,7 @@ define('diindex-ember-dev/tests/routes/rig-count.jshint', ['exports'], function 
   QUnit.module('JSHint - routes/rig-count.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/rig-count.js should pass jshint.\nroutes/rig-count.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/rig-count.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/rig-count.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/top-ops.jshint', ['exports'], function (exports) {
@@ -627,7 +627,7 @@ define('diindex-ember-dev/tests/routes/top-ops.jshint', ['exports'], function (e
   QUnit.module('JSHint - routes/top-ops.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/top-ops.js should pass jshint.\nroutes/top-ops.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/top-ops.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/top-ops.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/us-gas-prod-cap.jshint', ['exports'], function (exports) {
@@ -636,7 +636,7 @@ define('diindex-ember-dev/tests/routes/us-gas-prod-cap.jshint', ['exports'], fun
   QUnit.module('JSHint - routes/us-gas-prod-cap.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/us-gas-prod-cap.js should pass jshint.\nroutes/us-gas-prod-cap.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/us-gas-prod-cap.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/us-gas-prod-cap.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/us-oil-prod-cap.jshint', ['exports'], function (exports) {
@@ -645,7 +645,7 @@ define('diindex-ember-dev/tests/routes/us-oil-prod-cap.jshint', ['exports'], fun
   QUnit.module('JSHint - routes/us-oil-prod-cap.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/us-oil-prod-cap.js should pass jshint.\nroutes/us-oil-prod-cap.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/us-oil-prod-cap.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/us-oil-prod-cap.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/us-permits.jshint', ['exports'], function (exports) {
@@ -654,7 +654,7 @@ define('diindex-ember-dev/tests/routes/us-permits.jshint', ['exports'], function
   QUnit.module('JSHint - routes/us-permits.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/us-permits.js should pass jshint.\nroutes/us-permits.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/us-permits.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/us-permits.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/us-prod-cap-charts.jshint', ['exports'], function (exports) {
@@ -663,7 +663,7 @@ define('diindex-ember-dev/tests/routes/us-prod-cap-charts.jshint', ['exports'], 
   QUnit.module('JSHint - routes/us-prod-cap-charts.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/us-prod-cap-charts.js should pass jshint.\nroutes/us-prod-cap-charts.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/us-prod-cap-charts.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/us-prod-cap-charts.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/us-prod-cap.jshint', ['exports'], function (exports) {
@@ -672,7 +672,7 @@ define('diindex-ember-dev/tests/routes/us-prod-cap.jshint', ['exports'], functio
   QUnit.module('JSHint - routes/us-prod-cap.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/us-prod-cap.js should pass jshint.\nroutes/us-prod-cap.js: line 1, col 1, \'import\' is only available in ES6 (use \'esversion: 6\').\nroutes/us-prod-cap.js: line 3, col 1, \'export\' is only available in ES6 (use \'esversion: 6\').\n\n2 errors');
+    assert.ok(true, 'routes/us-prod-cap.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/test-helper', ['exports', 'diindex-ember-dev/tests/helpers/resolver', 'ember-qunit'], function (exports, _diindexEmberDevTestsHelpersResolver, _emberQunit) {
