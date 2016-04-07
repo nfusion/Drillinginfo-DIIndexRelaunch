@@ -323,12 +323,12 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
           "loc": {
             "source": null,
             "start": {
-              "line": 3,
-              "column": 3
+              "line": 13,
+              "column": 10
             },
             "end": {
-              "line": 3,
-              "column": 40
+              "line": 13,
+              "column": 47
             }
           },
           "moduleName": "diindex-ember-dev/templates/application.hbs"
@@ -359,12 +359,12 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
           "loc": {
             "source": null,
             "start": {
-              "line": 3,
-              "column": 55
+              "line": 14,
+              "column": 10
             },
             "end": {
-              "line": 3,
-              "column": 92
+              "line": 14,
+              "column": 47
             }
           },
           "moduleName": "diindex-ember-dev/templates/application.hbs"
@@ -395,12 +395,12 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
           "loc": {
             "source": null,
             "start": {
-              "line": 3,
-              "column": 107
+              "line": 15,
+              "column": 10
             },
             "end": {
-              "line": 3,
-              "column": 157
+              "line": 15,
+              "column": 60
             }
           },
           "moduleName": "diindex-ember-dev/templates/application.hbs"
@@ -427,7 +427,7 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
+          "problems": ["multiple-nodes"]
         },
         "revision": "Ember@2.4.4",
         "loc": {
@@ -437,7 +437,7 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 6,
+            "line": 25,
             "column": 0
           }
         },
@@ -449,48 +449,120 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h2");
-        dom.setAttribute(el1, "id", "title");
-        var el2 = dom.createTextNode("DI Index Data Test");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
         var el1 = dom.createElement("nav");
-        dom.setAttribute(el1, "style", "font-size:10px;");
-        var el2 = dom.createTextNode("\n	  ");
+        dom.setAttribute(el1, "class", "top-bar");
+        dom.setAttribute(el1, "data-topbar", "");
+        dom.setAttribute(el1, "role", "navigation");
+        var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
+        var el2 = dom.createElement("ul");
+        dom.setAttribute(el2, "class", "title-area");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("li");
+        dom.setAttribute(el3, "class", "name");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h1");
+        var el5 = dom.createElement("a");
+        dom.setAttribute(el5, "href", "#");
+        var el6 = dom.createTextNode("DI Index Test Suite");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n     ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment(" Remove the class \"menu-icon\" to get rid of menu icon. Take out \"Menu\" to just have icon alone ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("li");
+        dom.setAttribute(el3, "class", "toggle-topbar menu-icon");
+        var el4 = dom.createElement("a");
+        dom.setAttribute(el4, "href", "#");
+        var el5 = dom.createElement("span");
+        var el6 = dom.createTextNode("Menu");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode(" | ");
+        var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
+        var el2 = dom.createElement("section");
+        dom.setAttribute(el2, "class", "top-bar-section");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment(" Left Nav Section ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("ul");
+        dom.setAttribute(el3, "class", "right");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode(" | ");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "large-12 columns");
+        var el3 = dom.createTextNode("\n	");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [2]);
+        var element0 = dom.childAt(fragment, [0, 3, 3]);
         var morphs = new Array(4);
-        morphs[0] = dom.createMorphAt(element0, 1, 1);
-        morphs[1] = dom.createMorphAt(element0, 3, 3);
-        morphs[2] = dom.createMorphAt(element0, 5, 5);
-        morphs[3] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
+        morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 0, 0);
+        morphs[2] = dom.createMorphAt(dom.childAt(element0, [5]), 0, 0);
+        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
         return morphs;
       },
-      statements: [["block", "link-to", ["gas-prod"], [], 0, null, ["loc", [null, [3, 3], [3, 52]]]], ["block", "link-to", ["oil-prod"], [], 1, null, ["loc", [null, [3, 55], [3, 104]]]], ["block", "link-to", ["us-prod-cap"], [], 2, null, ["loc", [null, [3, 107], [3, 169]]]], ["content", "outlet", ["loc", [null, [5, 0], [5, 10]]]]],
+      statements: [["block", "link-to", ["gas-prod"], [], 0, null, ["loc", [null, [13, 10], [13, 59]]]], ["block", "link-to", ["oil-prod"], [], 1, null, ["loc", [null, [14, 10], [14, 59]]]], ["block", "link-to", ["us-prod-cap"], [], 2, null, ["loc", [null, [15, 10], [15, 72]]]], ["content", "outlet", ["loc", [null, [22, 1], [22, 11]]]]],
       locals: [],
       templates: [child0, child1, child2]
     };
