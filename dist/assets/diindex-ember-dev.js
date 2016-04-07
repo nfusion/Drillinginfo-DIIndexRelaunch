@@ -22,6 +22,7 @@ define('diindex-ember-dev/app', ['exports', 'ember', 'diindex-ember-dev/resolver
 
   exports['default'] = App;
 });
+/* jshint esversion: 6 */
 define('diindex-ember-dev/components/app-version', ['exports', 'ember-cli-app-version/components/app-version', 'diindex-ember-dev/config/environment'], function (exports, _emberCliAppVersionComponentsAppVersion, _diindexEmberDevConfigEnvironment) {
 
   var name = _diindexEmberDevConfigEnvironment['default'].APP.name;
@@ -34,6 +35,9 @@ define('diindex-ember-dev/components/app-version', ['exports', 'ember-cli-app-ve
 });
 define('diindex-ember-dev/components/gas-production-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
+});
+define('diindex-ember-dev/components/high-charts', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+  exports['default'] = _emberHighchartsComponentsHighCharts['default'];
 });
 define('diindex-ember-dev/components/oil-production-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
@@ -229,6 +233,7 @@ define('diindex-ember-dev/router', ['exports', 'ember', 'diindex-ember-dev/confi
 
   exports['default'] = Router;
 });
+/* jshint esversion: 6 */
 define("diindex-ember-dev/routes/gas-prod", ["exports", "ember"], function (exports, _ember) {
 	exports["default"] = _ember["default"].Route.extend({
 		model: function model() {
@@ -587,6 +592,52 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
       statements: [["block", "each", [["get", "months", ["loc", [null, [1, 8], [1, 14]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 9]]]]],
       locals: [],
       templates: [child0]
+    };
+  })());
+});
+define("diindex-ember-dev/templates/components/high-charts", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.4",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "diindex-ember-dev/templates/components/high-charts.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
+      locals: [],
+      templates: []
     };
   })());
 });
@@ -1297,7 +1348,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+f60f297d"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+4b998089"});
 }
 
 /* jshint ignore:end */

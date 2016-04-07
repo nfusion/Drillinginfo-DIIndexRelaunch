@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 import Ember from 'ember';
 import Resolver from './resolver';
 import loadInitializers from 'ember-load-initializers';
