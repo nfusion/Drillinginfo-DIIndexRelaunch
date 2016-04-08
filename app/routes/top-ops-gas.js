@@ -1,4 +1,3 @@
-/* globals $ */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -7,7 +6,10 @@ export default Ember.Route.extend({
 			"async": true,
 			"crossDomain": true,
 			"dataType": "jsonp",
-			"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php?url=http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json",
+			"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
+			"data": {
+				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_operator?%24format=json"
+			},
 			"method": "GET"
 		};
 

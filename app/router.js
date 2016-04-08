@@ -14,10 +14,10 @@ Router.map(function() {
   this.route('us-oil-prod-cap');
   this.route('us-prod-cap');
   this.route('us-prod-cap-charts');
-  this.route('oil-prod');
-  this.route('gas-prod', function(){
-    this.route('month/:monthindex');
-  });
+  this.route('top-ops-gas');
+  this.route('top-ops-oil');
+  this.route('top-counties-oil');
+  this.route('top-counties-gas');
 });
 
 export default Router;

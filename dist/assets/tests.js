@@ -594,24 +594,6 @@ define('diindex-ember-dev/tests/router.jshint', ['exports'], function (exports) 
     assert.ok(true, 'router.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/routes/gas-prod.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/gas-prod.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/gas-prod.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/oil-prod.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/oil-prod.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/oil-prod.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/routes/rig-count.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -619,6 +601,42 @@ define('diindex-ember-dev/tests/routes/rig-count.jshint', ['exports'], function 
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'routes/rig-count.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/routes/top-counties-gas.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/top-counties-gas.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/top-counties-gas.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/routes/top-counties-oil.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/top-counties-oil.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/top-counties-oil.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/routes/top-ops-gas.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/top-ops-gas.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/top-ops-gas.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/routes/top-ops-oil.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/top-ops-oil.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/top-ops-oil.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/routes/top-ops.jshint', ['exports'], function (exports) {
@@ -688,48 +706,6 @@ define('diindex-ember-dev/tests/test-helper.jshint', ['exports'], function (expo
     assert.ok(true, 'test-helper.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/unit/routes/gas-prod-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:gas-prod', 'Unit | Route | gas prod', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/gas-prod-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/gas-prod-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/gas-prod-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/oil-prod-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:oil-prod', 'Unit | Route | oil prod', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/oil-prod-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/oil-prod-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/oil-prod-test.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/unit/routes/rig-count-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleFor)('route:rig-count', 'Unit | Route | rig count', {
@@ -749,6 +725,90 @@ define('diindex-ember-dev/tests/unit/routes/rig-count-test.jshint', ['exports'],
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/rig-count-test.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-counties-gas-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:top-counties-gas', 'Unit | Route | top counties gas', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-counties-gas-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/top-counties-gas-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/top-counties-gas-test.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-counties-oil-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:top-counties-oil', 'Unit | Route | top counties oil', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-counties-oil-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/top-counties-oil-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/top-counties-oil-test.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-ops-gas-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:top-ops-gas', 'Unit | Route | top ops gas', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-ops-gas-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/top-ops-gas-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/top-ops-gas-test.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-ops-oil-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:top-ops-oil', 'Unit | Route | top ops oil', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('diindex-ember-dev/tests/unit/routes/top-ops-oil-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/top-ops-oil-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/top-ops-oil-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/unit/routes/top-ops-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

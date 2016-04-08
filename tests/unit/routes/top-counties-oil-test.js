@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:gas-prod', 'Unit | Route | gas prod', {
+moduleFor('route:top-counties-oil', 'Unit | Route | top counties oil', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
