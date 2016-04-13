@@ -4,27 +4,26 @@ export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
 	chartOptions: {
 		chart: {
-		    type: 'column'
+		    type: 'area'
 		},
 		plotOptions: {
-			column: {
-				showInLegend: false,
-		    	pointIntervalUnit: 'month'
-		    }
+			area: {
+				showInLegend: false
+			}
 		},
 		colors : ['#78BE20'],
 		title: {
-		    text: 'U.S. Production Capacity (MBOE/Day)'
+		    text: 'Rig Count (30 Days)'
 		},
 		xAxis: {
 			type: 'datetime',
 			title: {
-				text: 'Month'
+				text: 'Date'
 			}
 		},
 		yAxis: {
 		    title: {
-		        text: 'MMBOE/Day'
+		        text: 'Rig Count'
 		    }
 		}
 	},
