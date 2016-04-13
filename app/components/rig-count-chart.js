@@ -24,7 +24,8 @@ export default Highcharts.extend({
 		yAxis: {
 		    title: {
 		        text: 'Rig Count'
-		    }
+		    },
+		    min: 450
 		}
 	},
 	chartData: [],

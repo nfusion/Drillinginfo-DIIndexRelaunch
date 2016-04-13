@@ -41,7 +41,8 @@ export default Ember.Route.extend({
 					var series = [
 					    {
 					    	pointStart: Date.parse(ordered_data[0].rundatetime),
-					    	data: highchart_series
+					    	// return a max of seven months of data
+					    	data: highchart_series.slice(Math.max(highchart_series.length - 7, 0))
 					    }
 					];
 					return series;
@@ -64,7 +65,8 @@ export default Ember.Route.extend({
 					    {
 					    	pointStart: Date.parse(ordered_data[0].rig_date),
 					    	pointInterval: 24 * 3600 * 1000, // one day
-					    	data: highchart_series
+					    	// return a max of thirty days of data
+					    	data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
 					    }
 					];
 					return series;

@@ -67,7 +67,8 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 			yAxis: {
 				title: {
 					text: 'Rig Count'
-				}
+				},
+				min: 450
 			}
 		},
 		chartData: [],
@@ -521,7 +522,8 @@ define("diindex-ember-dev/routes/us-prod-cap-charts", ["exports", "ember"], func
 
 					var series = [{
 						pointStart: Date.parse(ordered_data[0].rundatetime),
-						data: highchart_series
+						// return a max of seven months of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 7, 0))
 					}];
 					return series;
 				}),
@@ -539,7 +541,8 @@ define("diindex-ember-dev/routes/us-prod-cap-charts", ["exports", "ember"], func
 					var series = [{
 						pointStart: Date.parse(ordered_data[0].rig_date),
 						pointInterval: 24 * 3600 * 1000, // one day
-						data: highchart_series
+						// return a max of thirty days of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
 					}];
 					return series;
 				})
