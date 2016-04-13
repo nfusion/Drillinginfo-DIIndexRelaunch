@@ -52,7 +52,6 @@ export default Ember.Route.extend({
 			rigCount: $.ajax(rig_settings).then(
 
 				function(data){
-					console.log(data);
 					var highchart_series = [];
 					var ordered_data = data.contents.elements.reverse();
 

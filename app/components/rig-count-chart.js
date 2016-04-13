@@ -8,7 +8,17 @@ export default Highcharts.extend({
 		},
 		plotOptions: {
 			area: {
-				showInLegend: false
+				showInLegend: false,
+				marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
 			}
 		},
 		colors : ['#78BE20'],

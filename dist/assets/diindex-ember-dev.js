@@ -51,7 +51,17 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 			},
 			plotOptions: {
 				area: {
-					showInLegend: false
+					showInLegend: false,
+					marker: {
+						enabled: false,
+						symbol: 'circle',
+						radius: 2,
+						states: {
+							hover: {
+								enabled: true
+							}
+						}
+					}
 				}
 			},
 			colors: ['#78BE20'],
@@ -529,7 +539,6 @@ define("diindex-ember-dev/routes/us-prod-cap-charts", ["exports", "ember"], func
 				}),
 
 				rigCount: $.ajax(rig_settings).then(function (data) {
-					console.log(data);
 					var highchart_series = [];
 					var ordered_data = data.contents.elements.reverse();
 
