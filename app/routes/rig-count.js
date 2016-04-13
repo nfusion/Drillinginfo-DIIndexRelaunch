@@ -13,6 +13,8 @@ export default Ember.Route.extend({
 			"method": "GET"
 		};
 
-		return $.ajax(settings).then(function(data){return data.contents.elements;});
+		return $.ajax(settings).then(function(data){
+			return data.contents.elements.slice(Math.max(data.contents.elements.length - 30, 0));
+		});
 	}
 });

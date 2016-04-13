@@ -14,12 +14,7 @@ export default Ember.Route.extend({
 		};
 
 		return $.ajax(settings).then(function(data){
-			var highchart_data = [];
-			$.each(data.contents.elements, function(){
-				highchart_data.push(this.newboeproduction_mboeperday);
-			});
-			console.log(highchart_data);
-			return data.contents.elements;
+			return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
 		});
 	}
 });

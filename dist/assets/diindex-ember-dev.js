@@ -343,7 +343,7 @@ define("diindex-ember-dev/routes/rig-count", ["exports", "ember"], function (exp
 			};
 
 			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
+				return data.contents.elements.slice(Math.max(data.contents.elements.length - 30, 0));
 			});
 		}
 	});
@@ -446,7 +446,7 @@ define("diindex-ember-dev/routes/us-gas-prod-cap", ["exports", "ember"], functio
 			};
 
 			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
+				return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
 			});
 		}
 	});
@@ -467,7 +467,7 @@ define("diindex-ember-dev/routes/us-oil-prod-cap", ["exports", "ember"], functio
 			};
 
 			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
+				return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
 			});
 		}
 	});
@@ -574,12 +574,7 @@ define("diindex-ember-dev/routes/us-prod-cap", ["exports", "ember"], function (e
 			};
 
 			return $.ajax(settings).then(function (data) {
-				var highchart_data = [];
-				$.each(data.contents.elements, function () {
-					highchart_data.push(this.newboeproduction_mboeperday);
-				});
-				console.log(highchart_data);
-				return data.contents.elements;
+				return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
 			});
 		}
 	});
