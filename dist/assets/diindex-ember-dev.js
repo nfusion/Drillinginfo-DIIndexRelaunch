@@ -2061,6 +2061,42 @@ define("diindex-ember-dev/templates/us-prod-cap-charts", ["exports"], function (
 });
 define("diindex-ember-dev/templates/us-prod-cap", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.4",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 5,
+              "column": 3
+            },
+            "end": {
+              "line": 5,
+              "column": 46
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/us-prod-cap.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("See Charts");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
@@ -2075,8 +2111,8 @@ define("diindex-ember-dev/templates/us-prod-cap", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 4,
-            "column": 5
+            "line": 5,
+            "column": 62
           }
         },
         "moduleName": "diindex-ember-dev/templates/us-prod-cap.hbs"
@@ -2101,16 +2137,23 @@ define("diindex-ember-dev/templates/us-prod-cap", ["exports"], function (exports
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("p");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
+        var morphs = new Array(2);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [4]), 0, 0);
         return morphs;
       },
-      statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model", ["loc", [null, [3, 39], [3, 44]]]]], [], []]], ["loc", [null, [3, 0], [3, 46]]]]],
+      statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model", ["loc", [null, [3, 39], [3, 44]]]]], [], []]], ["loc", [null, [3, 0], [3, 46]]]], ["block", "link-to", ["us-prod-cap-charts"], [], 0, null, ["loc", [null, [5, 3], [5, 58]]]]],
       locals: [],
-      templates: []
+      templates: [child0]
     };
   })());
 });
