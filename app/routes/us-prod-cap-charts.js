@@ -13,6 +13,22 @@ export default Ember.Route.extend({
 			"method": "GET"
 		};
 
-		return $.ajax(settings).then(function(data){return data.contents.elements;});
-	}
+		return $.ajax(settings).then(function(data){
+			console.log(data.contents.elements[0].rundatetime);
+			var highchart_data = [];
+			var tmp = [];
+			$.each(data.contents.elements, function(){
+				highchart_data.push(this.newboeproduction_mboeperday);
+			});
+
+			var obj = [
+			    {
+			    	pointStart: Date.parse(data.contents.elements[0].rundatetime),
+			    	data: highchart_data
+			    }
+			];
+			return obj;
+			//return data.contents.elements;
+		});
+	},
 });

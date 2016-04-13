@@ -57,6 +57,39 @@ define('diindex-ember-dev/components/top-operators-oil-widget', ['exports', 'emb
 define('diindex-ember-dev/components/us-permit-count-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
+		chartMode: '', // empty, 'StockChart', or 'Map'
+		chartOptions: {
+			chart: {
+				type: 'column'
+			},
+			plotOptions: {
+				column: {
+					showInLegend: false,
+					pointIntervalUnit: 'month'
+				}
+			},
+			colors: ['#78BE20'],
+			title: {
+				text: 'U.S. Production Capacity (MBOE/Day)'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Month'
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'MMBOE/Day'
+				}
+			}
+		},
+		chartData: [],
+		theme: {}
+	});
+});
 define('diindex-ember-dev/components/us-production-capacity-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
@@ -432,7 +465,19 @@ define("diindex-ember-dev/routes/us-prod-cap-charts", ["exports", "ember"], func
 			};
 
 			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
+				console.log(data.contents.elements[0].rundatetime);
+				var highchart_data = [];
+				var tmp = [];
+				$.each(data.contents.elements, function () {
+					highchart_data.push(this.newboeproduction_mboeperday);
+				});
+
+				var obj = [{
+					pointStart: Date.parse(data.contents.elements[0].rundatetime),
+					data: highchart_data
+				}];
+				return obj;
+				//return data.contents.elements;
 			});
 		}
 	});
@@ -452,6 +497,11 @@ define("diindex-ember-dev/routes/us-prod-cap", ["exports", "ember"], function (e
 			};
 
 			return $.ajax(settings).then(function (data) {
+				var highchart_data = [];
+				$.each(data.contents.elements, function () {
+					highchart_data.push(this.newboeproduction_mboeperday);
+				});
+				console.log(highchart_data);
 				return data.contents.elements;
 			});
 		}
@@ -1194,6 +1244,52 @@ define("diindex-ember-dev/templates/components/us-permit-count-widget", ["export
     };
   })());
 });
+define("diindex-ember-dev/templates/components/us-prod-cap-chart", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.4",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "diindex-ember-dev/templates/components/us-prod-cap-chart.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("diindex-ember-dev/templates/components/us-production-capacity-widget", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -1804,7 +1900,7 @@ define("diindex-ember-dev/templates/us-prod-cap-charts", ["exports"], function (
             "column": 0
           },
           "end": {
-            "line": 3,
+            "line": 5,
             "column": 0
           }
         },
@@ -1826,14 +1922,19 @@ define("diindex-ember-dev/templates/us-prod-cap-charts", ["exports"], function (
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
+        var morphs = new Array(2);
         morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[1] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]]],
+      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model", ["loc", [null, [3, 28], [3, 33]]]]], [], []]], ["loc", [null, [3, 0], [3, 35]]]]],
       locals: [],
       templates: []
     };
@@ -1926,7 +2027,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+39b0e077"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+79a1abe8"});
 }
 
 /* jshint ignore:end */
