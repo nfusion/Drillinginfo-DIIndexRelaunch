@@ -1,4 +1,4 @@
 ## Customize dependencies
 dependencies:
   post: 
-	  - bower install
+    - bower install
