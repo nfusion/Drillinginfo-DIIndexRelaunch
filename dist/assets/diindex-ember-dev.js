@@ -139,6 +139,15 @@ define('diindex-ember-dev/components/us-production-capacity-widget', ['exports',
 define('diindex-ember-dev/components/us-rig-count-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/helpers/delta-direction', ['exports', 'ember'], function (exports, _ember) {
+  exports.deltaDirection = deltaDirection;
+
+  function deltaDirection(params /*, hash*/) {
+    return params;
+  }
+
+  exports['default'] = _ember['default'].Helper.helper(deltaDirection);
+});
 define('diindex-ember-dev/helpers/pluralize', ['exports', 'ember-inflector/lib/helpers/pluralize'], function (exports, _emberInflectorLibHelpersPluralize) {
   exports['default'] = _emberInflectorLibHelpersPluralize['default'];
 });

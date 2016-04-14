@@ -106,6 +106,15 @@ define('diindex-ember-dev/tests/components/us-rig-count-widget.jshint', ['export
     assert.ok(true, 'components/us-rig-count-widget.js should pass jshint.');
   });
 });
+define('diindex-ember-dev/tests/helpers/delta-direction.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - helpers/delta-direction.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'helpers/delta-direction.js should pass jshint.');
+  });
+});
 define('diindex-ember-dev/tests/helpers/destroy-app', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = destroyApp;
 
@@ -1968,6 +1977,25 @@ define('diindex-ember-dev/tests/test-helper.jshint', ['exports'], function (expo
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'test-helper.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/unit/helpers/delta-direction-test', ['exports', 'diindex-ember-dev/helpers/delta-direction', 'qunit'], function (exports, _diindexEmberDevHelpersDeltaDirection, _qunit) {
+
+  (0, _qunit.module)('Unit | Helper | delta direction');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    var result = (0, _diindexEmberDevHelpersDeltaDirection.deltaDirection)([42]);
+    assert.ok(result);
+  });
+});
+define('diindex-ember-dev/tests/unit/helpers/delta-direction-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/helpers/delta-direction-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/helpers/delta-direction-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/unit/routes/rig-count-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
