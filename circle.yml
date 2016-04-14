@@ -7,3 +7,4 @@ machine:
 dependencies:
   post: 
     - bower install
+    - npm rebuild node-sass
