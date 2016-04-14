@@ -1,3 +1,9 @@
+{{#unless months}}
+	<p>Data not available.</p>
+{{/unless}}
+
+{{#if months}}
 {{#each months as |month|}}
 	<li>MBOE Per Day: {{month.newboeproduction_mboeperday}}, {{month.pctchgboe}}%</li>
 {{/each}}
+{{/if}}

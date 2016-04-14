@@ -1,24 +1,20 @@
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import {
+  moduleForComponent,
+  test
+} from 'ember-qunit';
 
 moduleForComponent('rig-count-chart', 'Integration | Component | rig count chart', {
-  integration: true
+  needs: [ 'component:high-charts' ]
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  assert.expect(2);
 
-  this.render(hbs`{{rig-count-chart}}`);
+  // creates the component instance
+  let component = this.subject();
+  assert.equal(component._state, 'preRender');
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#rig-count-chart}}
-      template block text
-    {{/rig-count-chart}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  // appends the component to the page
+  this.render(assert);
+  assert.equal(component._state, 'inDOM');
 });

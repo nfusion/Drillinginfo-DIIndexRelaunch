@@ -1,3 +1,11 @@
+{{#unless months}}
+	<p>Data not available.</p>
+{{/unless}}
+
+{{#if months}}
+<ul>
 {{#each months as |month|}}
 	<li>BCF Per Day: {{month.newgasproduction_bcfperday}}, {{month.pctchggas}}%</li>
 {{/each}}
+</ul>
+{{/if}}

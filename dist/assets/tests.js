@@ -263,9 +263,10 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
+    assert.equal(this.$().text().trim(), 'Data not available.');
 
     // Template block usage:
+
     this.render(Ember.HTMLBars.template((function () {
       var child0 = (function () {
         return {
@@ -347,7 +348,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
       };
     })()));
 
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$().text().trim(), 'Data not available.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/gas-production-widget-test.jshint', ['exports'], function (exports) {
@@ -412,9 +413,10 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
+    assert.equal(this.$().text().trim(), 'Data not available.');
 
     // Template block usage:
+
     this.render(Ember.HTMLBars.template((function () {
       var child0 = (function () {
         return {
@@ -496,7 +498,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
       };
     })()));
 
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$().text().trim(), 'Data not available.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/oil-production-widget-test.jshint', ['exports'], function (exports) {
@@ -511,141 +513,19 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
 define('diindex-ember-dev/tests/integration/components/rig-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('rig-count-chart', 'Integration | Component | rig count chart', {
-    integration: true
+    needs: ['component:high-charts']
   });
 
   (0, _emberQunit.test)('it renders', function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
+    assert.expect(2);
 
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 19
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'rig-count-chart', ['loc', [null, [1, 0], [1, 19]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
+    // creates the component instance
+    var component = this.subject();
+    assert.equal(component._state, 'preRender');
 
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'rig-count-chart', [], [], 0, null, ['loc', [null, [2, 4], [4, 24]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    // appends the component to the page
+    this.render(assert);
+    assert.equal(component._state, 'inDOM');
   });
 });
 define('diindex-ember-dev/tests/integration/components/rig-count-chart-test.jshint', ['exports'], function (exports) {
@@ -1405,141 +1285,19 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
 define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('us-prod-cap-chart', 'Integration | Component | us prod cap chart', {
-    integration: true
+    needs: ['component:high-charts']
   });
 
   (0, _emberQunit.test)('it renders', function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
+    assert.expect(2);
 
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 21
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'us-prod-cap-chart', ['loc', [null, [1, 0], [1, 21]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
+    // creates the component instance
+    var component = this.subject();
+    assert.equal(component._state, 'preRender');
 
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'us-prod-cap-chart', [], [], 0, null, ['loc', [null, [2, 4], [4, 26]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    // appends the component to the page
+    this.render(assert);
+    assert.equal(component._state, 'inDOM');
   });
 });
 define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test.jshint', ['exports'], function (exports) {
@@ -1604,7 +1362,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
+    assert.equal(this.$().text().trim(), 'Data not available.');
 
     // Template block usage:
     this.render(Ember.HTMLBars.template((function () {
@@ -1688,7 +1446,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
       };
     })()));
 
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$().text().trim(), 'Data not available.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/us-production-capacity-widget-test.jshint', ['exports'], function (exports) {
@@ -2227,33 +1985,6 @@ define('diindex-ember-dev/tests/unit/routes/us-prod-cap-test.jshint', ['exports'
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/us-prod-cap-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/units/charts/us-prod-cap-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('us-prod-cap-chart', 'usProdCapChart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/units/charts/us-prod-cap-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - units/charts/us-prod-cap-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'units/charts/us-prod-cap-chart-test.js should pass jshint.');
   });
 });
 /* jshint ignore:start */

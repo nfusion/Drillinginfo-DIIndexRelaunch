@@ -11,14 +11,15 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{gas-production-widget}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'Data not available.');
 
   // Template block usage:
+  
   this.render(hbs`
     {{#gas-production-widget}}
       template block text
     {{/gas-production-widget}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'Data not available.');
 });
