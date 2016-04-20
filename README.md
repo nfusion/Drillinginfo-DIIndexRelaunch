@@ -1,4 +1,4 @@
-# Diindex-ember-dev
+# Diindex-ember-dev [![Circle CI](https://circleci.com/gh/nfusion/Drillinginfo-DIIndexRelaunch.svg?style=svg&circle-token=594e276bb30382a5c658052de8a347910cb4a613)](https://circleci.com/gh/nfusion/Drillinginfo-DIIndexRelaunch)
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
