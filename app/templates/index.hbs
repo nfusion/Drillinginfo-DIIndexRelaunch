@@ -1,0 +1,25 @@
+
+<div class="row">
+	<div class="large-6 columns">
+		<h3>Rig Count</h3>
+		{{rig-count-chart content=model.rigCount}}
+	</div>
+	<div class="large-6 columns">
+		<h3>Permits Chart</h3>
+		<p>[new chart]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns panel">
+		<div class="large-6 columns">
+			<h3>U.S. Production Capacity</h3>
+			{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
+			{{us-prod-cap-chart content=model.prodCapacity.usProdCapMboeChart}}
+		</div>
+		<div class="large-6 columns">
+			{{oil-production-widget months=model.prodCapacity.usProdCap}}
+			{{gas-production-widget months=model.prodCapacity.usProdCap}}
+			<p>[new chart]</p>
+		</div>
+	</div>
+</div>

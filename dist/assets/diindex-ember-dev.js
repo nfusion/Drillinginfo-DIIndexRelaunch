@@ -337,6 +337,181 @@ define('diindex-ember-dev/router', ['exports', 'ember', 'diindex-ember-dev/confi
   exports['default'] = Router;
 });
 /* jshint esversion: 6 */
+define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports, _ember) {
+	exports["default"] = _ember["default"].Route.extend({
+		model: function model() {
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"dataType": "jsonp",
+				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
+				"method": "GET"
+			};
+
+			var capacity_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
+				}
+			};
+
+			var rig_count_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+				}
+			};
+
+			var tc_gas_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
+				}
+			};
+
+			var tc_oil_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
+				}
+			};
+
+			var to_gas_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_operator$format=json"
+				}
+			};
+
+			var to_oil_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
+				}
+			};
+
+			var permit_count_settings = {
+				"async": settings.async,
+				"crossDomain": settings.crossDomain,
+				"dataType": "jsonp",
+				"url": settings.url,
+				"method": settings.method,
+				"data": {
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
+				}
+			};
+
+			return new _ember["default"].RSVP.hash({
+
+				prodCapacity: $.ajax(capacity_settings).then(
+
+				/** 
+     * We will want to return another hash here to cover the following:
+     *  - US Gas Production Capacity (tile)
+     *  - US Oil Production Capacity (tile)
+     *  - US MBOE Production Capacity (tile)
+     *  - MBOE (chart)
+     */
+
+				function (data) {
+					if (data.status.http_code !== 200) return;
+
+					var prodCapData = {
+						usProdCap: data.contents.elements.slice(Math.max(data.contents.elements.length - 2, 0))
+					};
+
+					// chart logic
+					var highchart_series = [],
+					    ordered_data = data.contents.elements.reverse();
+
+					$.each(ordered_data, function () {
+						highchart_series.push(this.newboeproduction_mboeperday);
+					});
+
+					highchart_series = highchart_series.reverse();
+
+					var series = [{
+						pointStart: Date.parse(ordered_data[0].rundatetime),
+						// return a max of seven months of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 7, 0))
+					}];
+
+					prodCapData.usProdCapMboeChart = series;
+
+					console.log(prodCapData);
+					return prodCapData;
+				}),
+
+				rigCount: $.ajax(rig_count_settings).then(
+				// needs to return tile and chart
+				function (data) {
+
+					if (data.status.http_code !== 200) return;
+
+					var highchart_series = [];
+					var ordered_data = data.contents.elements.reverse();
+
+					$.each(ordered_data, function () {
+						highchart_series.push(this.rig_count);
+					});
+					highchart_series = highchart_series.reverse();
+
+					var series = [{
+						pointStart: Date.parse(ordered_data[0].rig_date),
+						pointInterval: 24 * 3600 * 1000, // one day
+						// return a max of thirty days of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+					}];
+					return series;
+				}),
+
+				topCountiesGas: $.ajax(tc_gas_settings).then(function (data) {
+					return data.contents.elements;
+				}),
+
+				topCountiesOil: $.ajax(tc_oil_settings).then(function (data) {
+					return data.contents.elements;
+				}),
+
+				topOperatorsGas: $.ajax(to_gas_settings).then(function (data) {
+					return data.contents.elements;
+				}),
+
+				topOperatorsOil: $.ajax(to_oil_settings).then(function (data) {
+					return data.contents.elements;
+				}),
+
+				permitCount: $.ajax(permit_count_settings).then(function (data) {
+					return data.contents.elements;
+				})
+			});
+		}
+	});
+});
 define("diindex-ember-dev/routes/rig-count", ["exports", "ember"], function (exports, _ember) {
 	exports["default"] = _ember["default"].Route.extend({
 		model: function model() {
@@ -1871,6 +2046,153 @@ define("diindex-ember-dev/templates/components/us-rig-count-widget", ["exports"]
     };
   })());
 });
+define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["multiple-nodes"]
+        },
+        "revision": "Ember@2.4.4",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 25,
+            "column": 6
+          }
+        },
+        "moduleName": "diindex-ember-dev/templates/index.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "large-6 columns");
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Rig Count");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n	");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "large-6 columns");
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Permits Chart");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("p");
+        var el4 = dom.createTextNode("[new chart]");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n	");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "large-12 columns panel");
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "large-6 columns");
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h3");
+        var el5 = dom.createTextNode("U.S. Production Capacity");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n		");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "large-6 columns");
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("p");
+        var el5 = dom.createTextNode("[new chart]");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n		");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n	");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [3, 1]);
+        var element1 = dom.childAt(element0, [1]);
+        var element2 = dom.childAt(element0, [3]);
+        var morphs = new Array(5);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 1]), 3, 3);
+        morphs[1] = dom.createMorphAt(element1, 3, 3);
+        morphs[2] = dom.createMorphAt(element1, 5, 5);
+        morphs[3] = dom.createMorphAt(element2, 1, 1);
+        morphs[4] = dom.createMorphAt(element2, 3, 3);
+        return morphs;
+      },
+      statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]], ["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [16, 42], [16, 70]]]]], [], []]], ["loc", [null, [16, 3], [16, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [17, 31], [17, 68]]]]], [], []]], ["loc", [null, [17, 3], [17, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [20, 34], [20, 62]]]]], [], []]], ["loc", [null, [20, 3], [20, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [21, 34], [21, 62]]]]], [], []]], ["loc", [null, [21, 3], [21, 64]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("diindex-ember-dev/templates/rig-count", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -2494,7 +2816,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+36248dba"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+e4e7bbd9"});
 }
 
 /* jshint ignore:end */
