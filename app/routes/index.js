@@ -108,27 +108,50 @@ export default Ember.Route.extend({
 					};
 
 
-					// chart logic
+					
 					var highchart_series = [],
+						oil_series = [],
+						gas_series = [],
+						// most recent month of data should be the last data point
 						ordered_data = data.contents.elements.reverse();
+						// return a max of six months of data
+						ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
 
 					$.each(ordered_data, function(){
 						highchart_series.push(this.newboeproduction_mboeperday);
+						oil_series.push(this.newoilproduction_mbblperday);
+						gas_series.push(this.newgasproduction_bcfperday);
 					});
 
-					highchart_series = highchart_series.reverse();
-
-					var series = [
+					// chart series - total energy production
+					var series_mboe = [
 					    {
-					    	pointStart: Date.parse(ordered_data[0].rundatetime),
-					    	// return a max of seven months of data
-					    	data: highchart_series.slice(Math.max(highchart_series.length - 7, 0))
+							pointStart: Date.parse(ordered_data[0].rundatetime),
+					    	data: highchart_series
 					    }
 					];
 
-					prodCapData.usProdCapMboeChart = series;
+					prodCapData.usProdCapMboeChart = series_mboe;
 
 
+					// chart series - oil vs gas production
+					var series_oil_v_gas = [
+						{
+							name: 'Oil',
+							pointStart: Date.parse(ordered_data[0].rundatetime),
+							data: oil_series,
+							yAxis: 0,
+
+						},
+						{
+							name: 'Gas',
+							pointStart: Date.parse(ordered_data[0].rundatetime),
+							data: gas_series,
+							yAxis: 1
+						}
+					];
+
+					prodCapData.prodOilVsGas = series_oil_v_gas;
 
 					console.log(prodCapData);
 					return prodCapData;

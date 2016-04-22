@@ -4,16 +4,16 @@ export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
 	chartOptions: {
 		chart: {
-		    type: 'column'
+		    type: 'line'
 		},
 		plotOptions: {
-			column: {
-				showInLegend: false,
+			line: {
+				//showInLegend: false,
 		    	pointIntervalUnit: 'month'
 		    }
 		},
 		title: {
-		    text: 'U.S. Production Capacity (MBOE/Day)'
+		    text: 'U.S. Production Capacity - Oil vs. Gas'
 		},
 		xAxis: {
 			type: 'datetime',
@@ -21,15 +21,25 @@ export default Highcharts.extend({
 				text: 'Month'
 			}
 		},
-		yAxis: {
-		    title: {
-		        text: 'MMBOE/Day'
+		yAxis: [
+			// oil
+			{
+			    title: {
+			        text: 'MBBL/Day'
+			    }
 		    },
-		    min: 400
-		}
+		    //gas
+		    {
+			    title: {
+			        text: 'BCF/Day'
+			    },
+			    opposite: true
+		    },
+
+		]
 	},
 	chartData: [],
 	theme: {
-		colors : ['#78BE20']
+		colors : ['#78BE20', 'blue']
 	}
 });

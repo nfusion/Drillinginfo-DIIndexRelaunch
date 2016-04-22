@@ -21,7 +21,6 @@ export default Highcharts.extend({
                 }
 			}
 		},
-		colors : ['#78BE20'],
 		title: {
 		    text: 'Rig Count (30 Days)'
 		},
@@ -35,9 +34,11 @@ export default Highcharts.extend({
 		    title: {
 		        text: 'Rig Count'
 		    },
-		    min: 450
+		    min: 440
 		}
 	},
 	chartData: [],
-	theme: {}
+	theme: {
+		colors : ['#78BE20']
+	}
 });

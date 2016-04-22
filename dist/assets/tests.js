@@ -79,6 +79,15 @@ define('diindex-ember-dev/tests/components/us-permit-count-widget.jshint', ['exp
     assert.ok(true, 'components/us-permit-count-widget.js should pass jshint.');
   });
 });
+define('diindex-ember-dev/tests/components/us-prod-by-type-chart.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - components/us-prod-by-type-chart.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'components/us-prod-by-type-chart.js should pass jshint.');
+  });
+});
 define('diindex-ember-dev/tests/components/us-prod-cap-chart.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -1280,6 +1289,33 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/us-permit-count-widget-test.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/integration/components/us-prod-by-type-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('us-prod-by-type-chart', 'usProdByTypeChart', {
+    needs: ['component:high-charts']
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    assert.expect(2);
+
+    // creates the component instance
+    var component = this.subject();
+    assert.equal(component._state, 'preRender');
+
+    // appends the component to the page
+    this.render(assert);
+    assert.equal(component._state, 'inDOM');
+  });
+});
+define('diindex-ember-dev/tests/integration/components/us-prod-by-type-chart-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/us-prod-by-type-chart-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/us-prod-by-type-chart-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

@@ -64,7 +64,6 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 					}
 				}
 			},
-			colors: ['#78BE20'],
 			title: {
 				text: 'Rig Count (30 Days)'
 			},
@@ -78,11 +77,13 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 				title: {
 					text: 'Rig Count'
 				},
-				min: 450
+				min: 440
 			}
 		},
 		chartData: [],
-		theme: {}
+		theme: {
+			colors: ['#78BE20']
+		}
 	});
 });
 define('diindex-ember-dev/components/top-counties-gas-widget', ['exports', 'ember'], function (exports, _ember) {
@@ -100,6 +101,49 @@ define('diindex-ember-dev/components/top-operators-oil-widget', ['exports', 'emb
 define('diindex-ember-dev/components/us-permit-count-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/components/us-prod-by-type-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
+		chartMode: '', // empty, 'StockChart', or 'Map'
+		chartOptions: {
+			chart: {
+				type: 'line'
+			},
+			plotOptions: {
+				line: {
+					//showInLegend: false,
+					pointIntervalUnit: 'month'
+				}
+			},
+			title: {
+				text: 'U.S. Production Capacity - Oil vs. Gas'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Month'
+				}
+			},
+			yAxis: [
+			// oil
+			{
+				title: {
+					text: 'MBBL/Day'
+				}
+			},
+			//gas
+			{
+				title: {
+					text: 'BCF/Day'
+				},
+				opposite: true
+			}]
+		},
+		chartData: [],
+		theme: {
+			colors: ['#78BE20', 'blue']
+		}
+	});
+});
 define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
@@ -113,7 +157,6 @@ define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-high
 					pointIntervalUnit: 'month'
 				}
 			},
-			colors: ['#78BE20'],
 			title: {
 				text: 'U.S. Production Capacity (MBOE/Day)'
 			},
@@ -126,11 +169,14 @@ define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-high
 			yAxis: {
 				title: {
 					text: 'MMBOE/Day'
-				}
+				},
+				min: 400
 			}
 		},
 		chartData: [],
-		theme: {}
+		theme: {
+			colors: ['#78BE20']
+		}
 	});
 });
 define('diindex-ember-dev/components/us-production-capacity-widget', ['exports', 'ember'], function (exports, _ember) {
@@ -449,23 +495,44 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 						usProdCap: data.contents.elements.slice(0, 1)
 					};
 
-					// chart logic
 					var highchart_series = [],
-					    ordered_data = data.contents.elements.reverse();
+					    oil_series = [],
+					    gas_series = [],
+					   
+					// most recent month of data should be the last data point
+					ordered_data = data.contents.elements.reverse();
+					// return a max of six months of data
+					ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
 
 					$.each(ordered_data, function () {
 						highchart_series.push(this.newboeproduction_mboeperday);
+						oil_series.push(this.newoilproduction_mbblperday);
+						gas_series.push(this.newgasproduction_bcfperday);
 					});
 
-					highchart_series = highchart_series.reverse();
-
-					var series = [{
+					// chart series - total energy production
+					var series_mboe = [{
 						pointStart: Date.parse(ordered_data[0].rundatetime),
-						// return a max of seven months of data
-						data: highchart_series.slice(Math.max(highchart_series.length - 7, 0))
+						data: highchart_series
 					}];
 
-					prodCapData.usProdCapMboeChart = series;
+					prodCapData.usProdCapMboeChart = series_mboe;
+
+					// chart series - oil vs gas production
+					var series_oil_v_gas = [{
+						name: 'Oil',
+						pointStart: Date.parse(ordered_data[0].rundatetime),
+						data: oil_series,
+						yAxis: 0
+
+					}, {
+						name: 'Gas',
+						pointStart: Date.parse(ordered_data[0].rundatetime),
+						data: gas_series,
+						yAxis: 1
+					}];
+
+					prodCapData.prodOilVsGas = series_oil_v_gas;
 
 					console.log(prodCapData);
 					return prodCapData;
@@ -1769,6 +1836,52 @@ define("diindex-ember-dev/templates/components/us-permit-count-widget", ["export
     };
   })());
 });
+define("diindex-ember-dev/templates/components/us-prod-by-type-chart", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.4",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "diindex-ember-dev/templates/components/us-prod-by-type-chart.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("diindex-ember-dev/templates/components/us-prod-cap-chart", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     return {
@@ -2173,9 +2286,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
-        var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("[new chart]");
-        dom.appendChild(el4, el5);
+        var el4 = dom.createComment("");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n		");
         dom.appendChild(el3, el4);
@@ -2192,15 +2303,16 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         var element0 = dom.childAt(fragment, [3, 1]);
         var element1 = dom.childAt(element0, [1]);
         var element2 = dom.childAt(element0, [3]);
-        var morphs = new Array(5);
+        var morphs = new Array(6);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 1]), 3, 3);
         morphs[1] = dom.createMorphAt(element1, 3, 3);
         morphs[2] = dom.createMorphAt(element1, 5, 5);
         morphs[3] = dom.createMorphAt(element2, 3, 3);
         morphs[4] = dom.createMorphAt(element2, 7, 7);
+        morphs[5] = dom.createMorphAt(element2, 9, 9);
         return morphs;
       },
-      statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]], ["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [16, 42], [16, 70]]]]], [], []]], ["loc", [null, [16, 3], [16, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [17, 31], [17, 68]]]]], [], []]], ["loc", [null, [17, 3], [17, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [21, 34], [21, 62]]]]], [], []]], ["loc", [null, [21, 3], [21, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [23, 34], [23, 62]]]]], [], []]], ["loc", [null, [23, 3], [23, 64]]]]],
+      statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]], ["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [16, 42], [16, 70]]]]], [], []]], ["loc", [null, [16, 3], [16, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [17, 31], [17, 68]]]]], [], []]], ["loc", [null, [17, 3], [17, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [21, 34], [21, 62]]]]], [], []]], ["loc", [null, [21, 3], [21, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [23, 34], [23, 62]]]]], [], []]], ["loc", [null, [23, 3], [23, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [24, 35], [24, 66]]]]], [], []]], ["loc", [null, [24, 3], [24, 68]]]]],
       locals: [],
       templates: []
     };
@@ -2829,7 +2941,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+18930d51"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+eb345ba5"});
 }
 
 /* jshint ignore:end */
