@@ -168,7 +168,7 @@ define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-high
 			},
 			yAxis: {
 				title: {
-					text: 'MMBOE/Day'
+					text: 'MBOE/Day'
 				},
 				min: 400
 			}
@@ -486,6 +486,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
      *  - US Oil Production Capacity (tile)
      *  - US MBOE Production Capacity (tile)
      *  - MBOE (chart)
+     *  - Gas vs Oil Production Capacity (chart)
      */
 
 				function (data) {

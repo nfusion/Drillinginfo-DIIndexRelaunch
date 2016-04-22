@@ -98,6 +98,7 @@ export default Ember.Route.extend({
 				 *  - US Oil Production Capacity (tile)
 				 *  - US MBOE Production Capacity (tile)
 				 *  - MBOE (chart)
+				 *  - Gas vs Oil Production Capacity (chart)
 				 */	
 
 				function(data){

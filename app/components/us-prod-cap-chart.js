@@ -23,7 +23,7 @@ export default Highcharts.extend({
 		},
 		yAxis: {
 		    title: {
-		        text: 'MMBOE/Day'
+		        text: 'MBOE/Day'
 		    },
 		    min: 400
 		}
