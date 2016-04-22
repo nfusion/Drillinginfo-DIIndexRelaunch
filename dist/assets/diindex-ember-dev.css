@@ -6387,4 +6387,10 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
+.inc {
+  color: green; }
+
+.dec {
+  color: red; }
+
 /*# sourceMappingURL=diindex-ember-dev.css.map */

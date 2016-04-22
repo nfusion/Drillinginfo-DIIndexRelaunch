@@ -140,13 +140,18 @@ define('diindex-ember-dev/components/us-rig-count-widget', ['exports', 'ember'],
   exports['default'] = _ember['default'].Component.extend({});
 });
 define('diindex-ember-dev/helpers/delta-direction', ['exports', 'ember'], function (exports, _ember) {
-  exports.deltaDirection = deltaDirection;
+	exports.deltaDirection = deltaDirection;
 
-  function deltaDirection(params /*, hash*/) {
-    return params;
-  }
+	function deltaDirection(params /*, hash*/) {
+		var output = '';
+		if (params > 0) {
+			return '<span class="inc">' + params + '%</span>';
+		}
 
-  exports['default'] = _ember['default'].Helper.helper(deltaDirection);
+		return '<span class="dec">' + params + '%</span>';
+	}
+
+	exports['default'] = _ember['default'].Helper.helper(deltaDirection);
 });
 define('diindex-ember-dev/helpers/pluralize', ['exports', 'ember-inflector/lib/helpers/pluralize'], function (exports, _emberInflectorLibHelpersPluralize) {
   exports['default'] = _emberInflectorLibHelpersPluralize['default'];
@@ -441,7 +446,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					if (data.status.http_code !== 200) return;
 
 					var prodCapData = {
-						usProdCap: data.contents.elements.slice(Math.max(data.contents.elements.length - 2, 0))
+						usProdCap: data.contents.elements.slice(0, 1)
 					};
 
 					// chart logic
@@ -1146,8 +1151,6 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
             dom.appendChild(el1, el2);
             var el2 = dom.createComment("");
             dom.appendChild(el1, el2);
-            var el2 = dom.createTextNode("%");
-            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
@@ -1157,10 +1160,10 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
             var element0 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
             morphs[0] = dom.createMorphAt(element0, 1, 1);
-            morphs[1] = dom.createMorphAt(element0, 3, 3);
+            morphs[1] = dom.createUnsafeMorphAt(element0, 3, 3);
             return morphs;
           },
-          statements: [["content", "month.newgasproduction_bcfperday", ["loc", [null, [8, 18], [8, 54]]]], ["content", "month.pctchggas", ["loc", [null, [8, 56], [8, 75]]]]],
+          statements: [["content", "month.newgasproduction_bcfperday", ["loc", [null, [8, 18], [8, 54]]]], ["inline", "delta-direction", [["get", "month.pctchggas", ["loc", [null, [8, 75], [8, 90]]]]], [], ["loc", [null, [8, 56], [8, 93]]]]],
           locals: ["month"],
           templates: []
         };
@@ -1382,8 +1385,6 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
             dom.appendChild(el1, el2);
             var el2 = dom.createComment("");
             dom.appendChild(el1, el2);
-            var el2 = dom.createTextNode("%");
-            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
@@ -1393,10 +1394,10 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
             var element0 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
             morphs[0] = dom.createMorphAt(element0, 1, 1);
-            morphs[1] = dom.createMorphAt(element0, 3, 3);
+            morphs[1] = dom.createUnsafeMorphAt(element0, 3, 3);
             return morphs;
           },
-          statements: [["content", "month.newoilproduction_mbblperday", ["loc", [null, [8, 19], [8, 56]]]], ["content", "month.pctchgoil", ["loc", [null, [8, 58], [8, 77]]]]],
+          statements: [["content", "month.newoilproduction_mbblperday", ["loc", [null, [8, 19], [8, 56]]]], ["inline", "delta-direction", [["get", "month.pctchgoil", ["loc", [null, [8, 77], [8, 92]]]]], [], ["loc", [null, [8, 58], [8, 95]]]]],
           locals: ["month"],
           templates: []
         };
@@ -1871,7 +1872,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
                 "column": 0
               },
               "end": {
-                "line": 8,
+                "line": 10,
                 "column": 0
               }
             },
@@ -1894,7 +1895,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             dom.appendChild(el1, el2);
             var el2 = dom.createComment("");
             dom.appendChild(el1, el2);
-            var el2 = dom.createTextNode("%");
+            var el2 = dom.createTextNode("\n\n	");
             dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
@@ -1905,10 +1906,10 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             var element0 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
             morphs[0] = dom.createMorphAt(element0, 1, 1);
-            morphs[1] = dom.createMorphAt(element0, 3, 3);
+            morphs[1] = dom.createUnsafeMorphAt(element0, 3, 3);
             return morphs;
           },
-          statements: [["content", "month.newboeproduction_mboeperday", ["loc", [null, [7, 19], [7, 56]]]], ["content", "month.pctchgboe", ["loc", [null, [7, 58], [7, 77]]]]],
+          statements: [["content", "month.newboeproduction_mboeperday", ["loc", [null, [7, 19], [7, 56]]]], ["inline", "delta-direction", [["get", "month.pctchgboe", ["loc", [null, [7, 77], [7, 92]]]]], [], ["loc", [null, [7, 58], [7, 95]]]]],
           locals: ["month"],
           templates: []
         };
@@ -1924,7 +1925,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
               "column": 0
             },
             "end": {
-              "line": 9,
+              "line": 11,
               "column": 0
             }
           },
@@ -1947,7 +1948,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [["block", "each", [["get", "months", ["loc", [null, [6, 8], [6, 14]]]]], [], 0, null, ["loc", [null, [6, 0], [8, 9]]]]],
+        statements: [["block", "each", [["get", "months", ["loc", [null, [6, 8], [6, 14]]]]], [], 0, null, ["loc", [null, [6, 0], [10, 9]]]]],
         locals: [],
         templates: [child0]
       };
@@ -1966,7 +1967,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             "column": 0
           },
           "end": {
-            "line": 9,
+            "line": 11,
             "column": 7
           }
         },
@@ -1994,7 +1995,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "unless", [["get", "months", ["loc", [null, [1, 10], [1, 16]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 11]]]], ["block", "if", [["get", "months", ["loc", [null, [5, 6], [5, 12]]]]], [], 1, null, ["loc", [null, [5, 0], [9, 7]]]]],
+      statements: [["block", "unless", [["get", "months", ["loc", [null, [1, 10], [1, 16]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 11]]]], ["block", "if", [["get", "months", ["loc", [null, [5, 6], [5, 12]]]]], [], 1, null, ["loc", [null, [5, 0], [11, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -2062,7 +2063,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 25,
+            "line": 27,
             "column": 6
           }
         },
@@ -2152,7 +2153,19 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.setAttribute(el3, "class", "large-6 columns");
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h3");
+        var el5 = dom.createTextNode("U.S. Oil Production Capacity");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
         var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h3");
+        var el5 = dom.createTextNode("U.S. Gas Production Capacity");
+        dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
@@ -2183,11 +2196,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 1]), 3, 3);
         morphs[1] = dom.createMorphAt(element1, 3, 3);
         morphs[2] = dom.createMorphAt(element1, 5, 5);
-        morphs[3] = dom.createMorphAt(element2, 1, 1);
-        morphs[4] = dom.createMorphAt(element2, 3, 3);
+        morphs[3] = dom.createMorphAt(element2, 3, 3);
+        morphs[4] = dom.createMorphAt(element2, 7, 7);
         return morphs;
       },
-      statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]], ["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [16, 42], [16, 70]]]]], [], []]], ["loc", [null, [16, 3], [16, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [17, 31], [17, 68]]]]], [], []]], ["loc", [null, [17, 3], [17, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [20, 34], [20, 62]]]]], [], []]], ["loc", [null, [20, 3], [20, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [21, 34], [21, 62]]]]], [], []]], ["loc", [null, [21, 3], [21, 64]]]]],
+      statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]], ["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [16, 42], [16, 70]]]]], [], []]], ["loc", [null, [16, 3], [16, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [17, 31], [17, 68]]]]], [], []]], ["loc", [null, [17, 3], [17, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [21, 34], [21, 62]]]]], [], []]], ["loc", [null, [21, 3], [21, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [23, 34], [23, 62]]]]], [], []]], ["loc", [null, [23, 3], [23, 64]]]]],
       locals: [],
       templates: []
     };
@@ -2816,7 +2829,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+e4e7bbd9"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+18930d51"});
 }
 
 /* jshint ignore:end */

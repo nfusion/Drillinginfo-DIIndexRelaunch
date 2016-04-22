@@ -5,7 +5,7 @@
 {{#if months}}
 <ul>
 {{#each months as |month|}}
-	<li>BCF Per Day: {{month.newgasproduction_bcfperday}}, {{month.pctchggas}}%</li>
+	<li>BCF Per Day: {{month.newgasproduction_bcfperday}}, {{{delta-direction month.pctchggas}}}</li>
 {{/each}}
 </ul>
 {{/if}}

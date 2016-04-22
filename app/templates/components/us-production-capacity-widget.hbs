@@ -4,6 +4,8 @@
 
 {{#if months}}
 {{#each months as |month|}}
-	<li>MBOE Per Day: {{month.newboeproduction_mboeperday}}, {{month.pctchgboe}}%</li>
+	<li>MBOE Per Day: {{month.newboeproduction_mboeperday}}, {{{delta-direction month.pctchgboe}}}
+
+	</li>
 {{/each}}
 {{/if}}

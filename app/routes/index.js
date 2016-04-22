@@ -104,7 +104,7 @@ export default Ember.Route.extend({
 					if (data.status.http_code !== 200) return;
 
 					var prodCapData = {
-						usProdCap : data.contents.elements.slice(Math.max(data.contents.elements.length - 2, 0))
+						usProdCap : data.contents.elements.slice(0,1)
 					};
 
 
