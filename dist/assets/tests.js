@@ -1782,6 +1782,15 @@ define('diindex-ember-dev/tests/test-helper.jshint', ['exports'], function (expo
     assert.ok(true, 'test-helper.js should pass jshint.');
   });
 });
+define('diindex-ember-dev/tests/themes/drillinginfo.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - themes/drillinginfo.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'themes/drillinginfo.js should pass jshint.');
+  });
+});
 define('diindex-ember-dev/tests/unit/helpers/delta-direction-test', ['exports', 'diindex-ember-dev/helpers/delta-direction', 'qunit'], function (exports, _diindexEmberDevHelpersDeltaDirection, _qunit) {
 
   (0, _qunit.module)('Unit | Helper | delta direction');

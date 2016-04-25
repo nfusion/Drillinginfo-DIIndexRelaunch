@@ -1,4 +1,5 @@
 import Highcharts from 'ember-highcharts/components/high-charts';
+import defaultTheme from '../themes/drillinginfo';
 
 export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
@@ -39,7 +40,5 @@ export default Highcharts.extend({
 		]
 	},
 	chartData: [],
-	theme: {
-		colors : ['#78BE20', 'blue']
-	}
+	theme: defaultTheme
 });
