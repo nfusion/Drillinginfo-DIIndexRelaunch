@@ -38,22 +38,25 @@
 		<p>Production Capacity data is not available at this time.</p>
 		{{/if}}
 	</div>
+</div><!-- end .row -->
 
+<div class="row">
 	<div class="large-12 columns panel">
 		<h2>Top Ten</h2>
-		{{#if model.prodCapacity}}
+		{{#if model.topCountiesGas}}
 		<div class="large-6 columns">
-
-			<h3>U.S. Production Capacity</h3>
-			{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
-			{{us-prod-cap-chart content=model.prodCapacity.usProdCapMboeChart}}
+			<h3>New Production by <strong>Operators</strong></h3>
+			<h4>Gas</h4>
+			{{top-ten obj=model.topOperatorsGas}}
+			<h4>Oil</h4>
+			{{top-ten obj=model.topOperatorsOil}}
 		</div>
 		<div class="large-6 columns">
-			<h3>U.S. Oil Production Capacity</h3>
-			{{oil-production-widget months=model.prodCapacity.usProdCap}}
-			<h3>U.S. Gas Production Capacity</h3>
-			{{gas-production-widget months=model.prodCapacity.usProdCap}}
-			{{us-prod-by-type-chart content=model.prodCapacity.prodOilVsGas}}
+			<h3>New Production by <strong>Counties</strong></h3>
+			<h4>Gas</h4>
+			{{top-ten obj=model.topCountiesGas}}
+			<h4>Oil</h4>
+			{{top-ten obj=model.topCountiesOil}}
 		</div>
 		{{else}}
 		<p>Production Capacity data is not available at this time.</p>

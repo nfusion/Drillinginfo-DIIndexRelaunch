@@ -117,16 +117,7 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 		theme: _diindexEmberDevThemesDrillinginfo['default']
 	});
 });
-define('diindex-ember-dev/components/top-counties-gas-widget', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Component.extend({});
-});
-define('diindex-ember-dev/components/top-counties-oil-widget', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Component.extend({});
-});
-define('diindex-ember-dev/components/top-operators-gas-widget', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Component.extend({});
-});
-define('diindex-ember-dev/components/top-operators-oil-widget', ['exports', 'ember'], function (exports, _ember) {
+define('diindex-ember-dev/components/top-ten', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
 define('diindex-ember-dev/components/us-permit-count-widget', ['exports', 'ember'], function (exports, _ember) {
@@ -590,19 +581,55 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				}),
 
 				topCountiesGas: $.ajax(tc_gas_settings).then(function (data) {
-					return data.contents.elements;
+					var topten = {
+						labels: ['', 'County', 'State', 'Prev.', 'MMCF/Day'],
+						data: []
+					};
+
+					$.each(data.contents.elements, function () {
+						topten.data.push([this.rank, this.county.slice(0, this.county.length - 4).trim(), this.county.slice(-4).replace(/[()]/g, ''), this.prevrank || '--', this.gasproduction_mmcfperday]);
+					});
+
+					return topten;
 				}),
 
 				topCountiesOil: $.ajax(tc_oil_settings).then(function (data) {
-					return data.contents.elements;
+					var topten = {
+						labels: ['', 'County', 'State', 'Prev.', 'MBBL/Day'],
+						data: []
+					};
+
+					$.each(data.contents.elements, function () {
+						topten.data.push([this.rank, this.county.slice(0, this.county.length - 4).trim(), this.county.slice(-4).replace(/[()]/g, ''), this.prevrank, this.oilproduction_mbblperday]);
+					});
+
+					return topten;
 				}),
 
 				topOperatorsGas: $.ajax(to_gas_settings).then(function (data) {
-					return data.contents.elements;
+					var topten = {
+						labels: ['', 'Operator', 'Prev.', 'MMCF/Day'],
+						data: []
+					};
+
+					$.each(data.contents.elements, function () {
+						topten.data.push([this.rank, this.operator, this.prevrank, this.gasproduction_mmcfperday]);
+					});
+
+					return topten;
 				}),
 
 				topOperatorsOil: $.ajax(to_oil_settings).then(function (data) {
-					return data.contents.elements;
+					var topten = {
+						labels: ['', 'Operator', 'Prev.', 'MBBL/Day'],
+						data: []
+					};
+
+					$.each(data.contents.elements, function () {
+						topten.data.push([this.rank, this.operator, this.prevrank, this.oilproduction_mbblperday]);
+					});
+
+					return topten;
 				}),
 
 				permitCount: $.ajax(permit_count_settings).then(
@@ -1578,8 +1605,240 @@ define("diindex-ember-dev/templates/components/rig-count-chart", ["exports"], fu
     };
   })());
 });
-define("diindex-ember-dev/templates/components/top-counties-gas-widget", ["exports"], function (exports) {
+define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 4,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("th");
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+            return morphs;
+          },
+          statements: [["content", "label", ["loc", [null, [5, 6], [5, 15]]]]],
+          locals: ["label"],
+          templates: []
+        };
+      })();
+      var child1 = (function () {
+        var child0 = (function () {
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.4",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 10,
+                  "column": 1
+                },
+                "end": {
+                  "line": 12,
+                  "column": 1
+                }
+              },
+              "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+            },
+            isEmpty: false,
+            arity: 1,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("	");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("td");
+              var el2 = dom.createComment("");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(1);
+              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+              return morphs;
+            },
+            statements: [["content", "el", ["loc", [null, [11, 5], [11, 11]]]]],
+            locals: ["el"],
+            templates: []
+          };
+        })();
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 8,
+                "column": 0
+              },
+              "end": {
+                "line": 14,
+                "column": 0
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+          },
+          isEmpty: false,
+          arity: 1,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("	");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("tr");
+            var el2 = dom.createTextNode("\n");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("	");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+            return morphs;
+          },
+          statements: [["block", "each", [["get", "item", ["loc", [null, [10, 9], [10, 13]]]]], [], 0, null, ["loc", [null, [10, 1], [12, 10]]]]],
+          locals: ["item"],
+          templates: [child0]
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.4",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 16,
+              "column": 0
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createElement("table");
+          var el2 = dom.createTextNode("\n	");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("tr");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("	");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [0]);
+          var morphs = new Array(2);
+          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 1, 1);
+          morphs[1] = dom.createMorphAt(element0, 3, 3);
+          return morphs;
+        },
+        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [4, 9], [4, 19]]]]], [], 0, null, ["loc", [null, [4, 1], [6, 10]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [8, 8], [8, 16]]]]], [], 1, null, ["loc", [null, [8, 0], [14, 9]]]]],
+        locals: [],
+        templates: [child0, child1]
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.4",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 16,
+              "column": 0
+            },
+            "end": {
+              "line": 18,
+              "column": 0
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createElement("p");
+          var el2 = dom.createTextNode("Data not available.");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
@@ -1594,11 +1853,11 @@ define("diindex-ember-dev/templates/components/top-counties-gas-widget", ["expor
             "column": 0
           },
           "end": {
-            "line": 2,
-            "column": 0
+            "line": 18,
+            "column": 7
           }
         },
-        "moduleName": "diindex-ember-dev/templates/components/top-counties-gas-widget.hbs"
+        "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
       },
       isEmpty: false,
       arity: 0,
@@ -1608,157 +1867,18 @@ define("diindex-ember-dev/templates/components/top-counties-gas-widget", ["expor
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
         morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
         dom.insertBoundary(fragment, 0);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
+      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [18, 7]]]]],
       locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/components/top-counties-oil-widget", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.4",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/top-counties-oil-widget.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/components/top-operators-gas-widget", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.4",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/top-operators-gas-widget.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/components/top-operators-oil-widget", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.4",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/top-operators-oil-widget.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
+      templates: [child0, child1]
     };
   })());
 });
@@ -1903,48 +2023,6 @@ define("diindex-ember-dev/templates/components/us-prod-cap-chart", ["exports"], 
 define("diindex-ember-dev/templates/components/us-production-capacity-widget", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.4",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 1,
-              "column": 0
-            },
-            "end": {
-              "line": 3,
-              "column": 0
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/components/us-production-capacity-widget.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("	");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("p");
-          var el2 = dom.createTextNode("Data not available.");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
-        },
-        statements: [],
-        locals: [],
-        templates: []
-      };
-    })();
-    var child1 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -1953,11 +2031,11 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             "loc": {
               "source": null,
               "start": {
-                "line": 6,
+                "line": 3,
                 "column": 0
               },
               "end": {
-                "line": 10,
+                "line": 5,
                 "column": 0
               }
             },
@@ -1980,8 +2058,6 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             dom.appendChild(el1, el2);
             var el2 = dom.createComment("");
             dom.appendChild(el1, el2);
-            var el2 = dom.createTextNode("\n\n	");
-            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
@@ -1994,7 +2070,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             morphs[1] = dom.createUnsafeMorphAt(element0, 3, 3);
             return morphs;
           },
-          statements: [["content", "month.newboeproduction_mboeperday", ["loc", [null, [7, 19], [7, 56]]]], ["inline", "delta-direction", [["get", "month.pctchgboe", ["loc", [null, [7, 77], [7, 92]]]]], [], ["loc", [null, [7, 58], [7, 95]]]]],
+          statements: [["content", "month.newboeproduction_mboeperday", ["loc", [null, [4, 19], [4, 56]]]], ["inline", "delta-direction", [["get", "month.pctchgboe", ["loc", [null, [4, 77], [4, 92]]]]], [], ["loc", [null, [4, 58], [4, 95]]]]],
           locals: ["month"],
           templates: []
         };
@@ -2006,11 +2082,11 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
           "loc": {
             "source": null,
             "start": {
-              "line": 5,
+              "line": 1,
               "column": 0
             },
             "end": {
-              "line": 11,
+              "line": 7,
               "column": 0
             }
           },
@@ -2022,27 +2098,71 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment("");
+          var el1 = dom.createElement("ul");
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 1, 1);
           return morphs;
         },
-        statements: [["block", "each", [["get", "months", ["loc", [null, [6, 8], [6, 14]]]]], [], 0, null, ["loc", [null, [6, 0], [10, 9]]]]],
+        statements: [["block", "each", [["get", "months", ["loc", [null, [3, 8], [3, 14]]]]], [], 0, null, ["loc", [null, [3, 0], [5, 9]]]]],
         locals: [],
         templates: [child0]
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.4",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 0
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/components/us-production-capacity-widget.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createElement("p");
+          var el2 = dom.createTextNode("Data not available.");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
       };
     })();
     return {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["wrong-type", "multiple-nodes"]
+          "problems": ["wrong-type"]
         },
         "revision": "Ember@2.4.4",
         "loc": {
@@ -2052,7 +2172,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
             "column": 0
           },
           "end": {
-            "line": 11,
+            "line": 9,
             "column": 7
           }
         },
@@ -2066,21 +2186,16 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
+        var morphs = new Array(1);
         morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         dom.insertBoundary(fragment, 0);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "unless", [["get", "months", ["loc", [null, [1, 10], [1, 16]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 11]]]], ["block", "if", [["get", "months", ["loc", [null, [5, 6], [5, 12]]]]], [], 1, null, ["loc", [null, [5, 0], [11, 7]]]]],
+      statements: [["block", "if", [["get", "months", ["loc", [null, [1, 6], [1, 12]]]]], [], 0, 1, ["loc", [null, [1, 0], [9, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -2448,11 +2563,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 44,
+              "line": 46,
               "column": 2
             },
             "end": {
-              "line": 58,
+              "line": 61,
               "column": 2
             }
           },
@@ -2468,15 +2583,31 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
           dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n\n			");
+          var el2 = dom.createTextNode("\n			");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("U.S. Production Capacity");
+          var el3 = dom.createTextNode("New Production by ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("strong");
+          var el4 = dom.createTextNode("Operators");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n			");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("h4");
+          var el3 = dom.createTextNode("Gas");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n			");
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n			");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("h4");
+          var el3 = dom.createTextNode("Oil");
+          dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n			");
           dom.appendChild(el1, el2);
@@ -2492,7 +2623,17 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           var el2 = dom.createTextNode("\n			");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("U.S. Oil Production Capacity");
+          var el3 = dom.createTextNode("New Production by ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("strong");
+          var el4 = dom.createTextNode("Counties");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n			");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("h4");
+          var el3 = dom.createTextNode("Gas");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n			");
@@ -2501,13 +2642,9 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n			");
           dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("U.S. Gas Production Capacity");
+          var el2 = dom.createElement("h4");
+          var el3 = dom.createTextNode("Oil");
           dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n			");
           dom.appendChild(el1, el2);
@@ -2523,15 +2660,14 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element0 = dom.childAt(fragment, [1]);
           var element1 = dom.childAt(fragment, [3]);
-          var morphs = new Array(5);
-          morphs[0] = dom.createMorphAt(element0, 3, 3);
-          morphs[1] = dom.createMorphAt(element0, 5, 5);
-          morphs[2] = dom.createMorphAt(element1, 3, 3);
-          morphs[3] = dom.createMorphAt(element1, 7, 7);
-          morphs[4] = dom.createMorphAt(element1, 9, 9);
+          var morphs = new Array(4);
+          morphs[0] = dom.createMorphAt(element0, 5, 5);
+          morphs[1] = dom.createMorphAt(element0, 9, 9);
+          morphs[2] = dom.createMorphAt(element1, 5, 5);
+          morphs[3] = dom.createMorphAt(element1, 9, 9);
           return morphs;
         },
-        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [48, 42], [48, 70]]]]], [], []]], ["loc", [null, [48, 3], [48, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [49, 31], [49, 68]]]]], [], []]], ["loc", [null, [49, 3], [49, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [53, 34], [53, 62]]]]], [], []]], ["loc", [null, [53, 3], [53, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [55, 34], [55, 62]]]]], [], []]], ["loc", [null, [55, 3], [55, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [56, 35], [56, 66]]]]], [], []]], ["loc", [null, [56, 3], [56, 68]]]]],
+        statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [50, 17], [50, 38]]]]], [], []]], ["loc", [null, [50, 3], [50, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [52, 17], [52, 38]]]]], [], []]], ["loc", [null, [52, 3], [52, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [57, 17], [57, 37]]]]], [], []]], ["loc", [null, [57, 3], [57, 39]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [59, 17], [59, 37]]]]], [], []]], ["loc", [null, [59, 3], [59, 39]]]]],
         locals: [],
         templates: []
       };
@@ -2544,11 +2680,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 58,
+              "line": 61,
               "column": 2
             },
             "end": {
-              "line": 60,
+              "line": 63,
               "column": 2
             }
           },
@@ -2592,7 +2728,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 62,
+            "line": 65,
             "column": 23
           }
         },
@@ -2666,7 +2802,16 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         var el3 = dom.createTextNode("	");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n	");
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment(" end .row ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2, "class", "large-12 columns panel");
@@ -2692,15 +2837,14 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element4 = dom.childAt(fragment, [0]);
-        var element5 = dom.childAt(fragment, [3]);
         var morphs = new Array(4);
         morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 3, 3);
         morphs[1] = dom.createMorphAt(dom.childAt(element4, [3]), 3, 3);
-        morphs[2] = dom.createMorphAt(dom.childAt(element5, [1]), 3, 3);
-        morphs[3] = dom.createMorphAt(dom.childAt(element5, [3]), 3, 3);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [3, 1]), 3, 3);
+        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [6, 1]), 3, 3);
         return morphs;
       },
-      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [23, 8], [23, 26]]]]], [], 4, 5, ["loc", [null, [23, 2], [39, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [44, 8], [44, 26]]]]], [], 6, 7, ["loc", [null, [44, 2], [60, 9]]]]],
+      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [23, 8], [23, 26]]]]], [], 4, 5, ["loc", [null, [23, 2], [39, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [46, 8], [46, 28]]]]], [], 6, 7, ["loc", [null, [46, 2], [63, 9]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7]
     };

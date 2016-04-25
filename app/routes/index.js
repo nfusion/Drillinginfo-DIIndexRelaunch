@@ -185,25 +185,113 @@ export default Ember.Route.extend({
 
 			topCountiesGas: $.ajax(tc_gas_settings).then(
 				function(data){
-					return data.contents.elements;
+					var topten = {
+						labels: [
+							'',
+							'County',
+							'State',
+							'Prev.',
+							'MMCF/Day'
+						],
+						data : []
+					};
+					
+					$.each(data.contents.elements, function(){
+						topten.data.push([
+							this.rank,
+							this.county.slice(0, this.county.length-4).trim(),
+							this.county.slice(-4).replace(/[()]/g, ''),
+							this.prevrank || '--',
+							this.gasproduction_mmcfperday
+						]);
+					});
+
+
+					return topten;
+
 				}
 			),
 
 			topCountiesOil : $.ajax(tc_oil_settings).then(
 				function(data){
-					return data.contents.elements;
+					var topten = {
+						labels: [
+							'',
+							'County',
+							'State',
+							'Prev.',
+							'MBBL/Day'
+						],
+						data : []
+					};
+					
+					$.each(data.contents.elements, function(){
+						topten.data.push([
+							this.rank,
+							this.county.slice(0, this.county.length-4).trim(),
+							this.county.slice(-4).replace(/[()]/g, ''),
+							this.prevrank,
+							this.oilproduction_mbblperday
+						]);
+					});
+
+
+					return topten;
+
 				}
 			),
 
 			topOperatorsGas: $.ajax(to_gas_settings).then(
 				function(data){
-					return data.contents.elements;
+					var topten = {
+						labels: [
+							'',
+							'Operator',
+							'Prev.',
+							'MMCF/Day'
+						],
+						data : []
+					};
+					
+					$.each(data.contents.elements, function(){
+						topten.data.push([
+							this.rank,
+							this.operator,
+							this.prevrank,
+							this.gasproduction_mmcfperday
+						]);
+					});
+
+
+					return topten;
+
 				}
 			),
 			
 			topOperatorsOil : $.ajax(to_oil_settings).then(
 				function(data){
-					return data.contents.elements;
+					var topten = {
+						labels: [
+							'',
+							'Operator',
+							'Prev.',
+							'MBBL/Day'
+						],
+						data : []
+					};
+					
+					$.each(data.contents.elements, function(){
+						topten.data.push([
+							this.rank,
+							this.operator,
+							this.prevrank,
+							this.oilproduction_mbblperday
+						]);
+					});
+
+
+					return topten;
+
 				}
 			), 
 

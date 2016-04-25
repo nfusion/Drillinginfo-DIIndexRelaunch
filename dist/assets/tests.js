@@ -43,40 +43,13 @@ define('diindex-ember-dev/tests/components/rig-count-chart.jshint', ['exports'],
     assert.ok(true, 'components/rig-count-chart.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/components/top-counties-gas-widget.jshint', ['exports'], function (exports) {
+define('diindex-ember-dev/tests/components/top-ten.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - components/top-counties-gas-widget.js');
+  QUnit.module('JSHint - components/top-ten.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/top-counties-gas-widget.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/components/top-counties-oil-widget.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/top-counties-oil-widget.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/top-counties-oil-widget.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/components/top-operators-gas-widget.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/top-operators-gas-widget.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/top-operators-gas-widget.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/components/top-operators-oil-widget.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/top-operators-oil-widget.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/top-operators-oil-widget.js should pass jshint.');
+    assert.ok(true, 'components/top-ten.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/components/us-permit-count-widget.jshint', ['exports'], function (exports) {
@@ -582,9 +555,9 @@ define('diindex-ember-dev/tests/integration/components/rig-count-chart-test.jshi
     assert.ok(true, 'integration/components/rig-count-chart-test.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/integration/components/top-counties-gas-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleForComponent)('top-counties-gas-widget', 'Integration | Component | top counties gas widget', {
+  (0, _emberQunit.moduleForComponent)('top-ten', 'Integration | Component | top ten', {
     integration: true
   });
 
@@ -608,7 +581,7 @@ define('diindex-ember-dev/tests/integration/components/top-counties-gas-widget-t
             },
             'end': {
               'line': 1,
-              'column': 27
+              'column': 11
             }
           }
         },
@@ -629,7 +602,7 @@ define('diindex-ember-dev/tests/integration/components/top-counties-gas-widget-t
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'top-counties-gas-widget', ['loc', [null, [1, 0], [1, 27]]]]],
+        statements: [['content', 'top-ten', ['loc', [null, [1, 0], [1, 11]]]]],
         locals: [],
         templates: []
       };
@@ -713,7 +686,7 @@ define('diindex-ember-dev/tests/integration/components/top-counties-gas-widget-t
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [['block', 'top-counties-gas-widget', [], [], 0, null, ['loc', [null, [2, 4], [4, 32]]]]],
+        statements: [['block', 'top-ten', [], [], 0, null, ['loc', [null, [2, 4], [4, 16]]]]],
         locals: [],
         templates: [child0]
       };
@@ -722,460 +695,13 @@ define('diindex-ember-dev/tests/integration/components/top-counties-gas-widget-t
     assert.equal(this.$().text().trim(), 'template block text');
   });
 });
-define('diindex-ember-dev/tests/integration/components/top-counties-gas-widget-test.jshint', ['exports'], function (exports) {
+define('diindex-ember-dev/tests/integration/components/top-ten-test.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - integration/components/top-counties-gas-widget-test.js');
+  QUnit.module('JSHint - integration/components/top-ten-test.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/top-counties-gas-widget-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/top-counties-oil-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('top-counties-oil-widget', 'Integration | Component | top counties oil widget', {
-    integration: true
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 27
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'top-counties-oil-widget', ['loc', [null, [1, 0], [1, 27]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'top-counties-oil-widget', [], [], 0, null, ['loc', [null, [2, 4], [4, 32]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/top-counties-oil-widget-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/top-counties-oil-widget-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/top-counties-oil-widget-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/top-operators-gas-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('top-operators-gas-widget', 'Integration | Component | top operators gas widget', {
-    integration: true
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 28
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'top-operators-gas-widget', ['loc', [null, [1, 0], [1, 28]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'top-operators-gas-widget', [], [], 0, null, ['loc', [null, [2, 4], [4, 33]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/top-operators-gas-widget-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/top-operators-gas-widget-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/top-operators-gas-widget-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/top-operators-oil-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('top-operators-oil-widget', 'Integration | Component | top operators oil widget', {
-    integration: true
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 28
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'top-operators-oil-widget', ['loc', [null, [1, 0], [1, 28]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.4.4',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'top-operators-oil-widget', [], [], 0, null, ['loc', [null, [2, 4], [4, 33]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/top-operators-oil-widget-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/top-operators-oil-widget-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/top-operators-oil-widget-test.js should pass jshint.');
+    assert.ok(true, 'integration/components/top-ten-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

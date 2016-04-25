@@ -1,11 +1,9 @@
-{{#unless months}}
-	<p>Data not available.</p>
-{{/unless}}
-
 {{#if months}}
+<ul>
 {{#each months as |month|}}
-	<li>MBOE Per Day: {{month.newboeproduction_mboeperday}}, {{{delta-direction month.pctchgboe}}}
-
-	</li>
+	<li>MBOE Per Day: {{month.newboeproduction_mboeperday}}, {{{delta-direction month.pctchgboe}}}</li>
 {{/each}}
+</ul>
+{{else}}
+<p>Data not available.</p>
 {{/if}}
