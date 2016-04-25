@@ -25,6 +25,15 @@ define('diindex-ember-dev/tests/components/oil-production-widget.jshint', ['expo
     assert.ok(true, 'components/oil-production-widget.js should pass jshint.');
   });
 });
+define('diindex-ember-dev/tests/components/permit-count-chart.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - components/permit-count-chart.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'components/permit-count-chart.js should pass jshint.');
+  });
+});
 define('diindex-ember-dev/tests/components/rig-count-chart.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -517,6 +526,33 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/oil-production-widget-test.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/integration/components/permit-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('permit-count-chart', 'permitCountChart', {
+    needs: ['component:high-charts']
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    assert.expect(2);
+
+    // creates the component instance
+    var component = this.subject();
+    assert.equal(component._state, 'preRender');
+
+    // appends the component to the page
+    this.render(assert);
+    assert.equal(component._state, 'inDOM');
+  });
+});
+define('diindex-ember-dev/tests/integration/components/permit-count-chart-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/permit-count-chart-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/permit-count-chart-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/rig-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

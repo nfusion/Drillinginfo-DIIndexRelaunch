@@ -42,6 +42,14 @@ define('diindex-ember-dev/components/high-charts', ['exports', 'ember-highcharts
 define('diindex-ember-dev/components/oil-production-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/components/permit-count-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+  exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
+    // chartMode: '', // empty, 'StockChart', or 'Map'
+    // chartOptions: {},
+    // chartData: [],
+    // theme: {}
+  });
+});
 define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
@@ -1572,6 +1580,52 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
       statements: [["block", "unless", [["get", "months", ["loc", [null, [1, 10], [1, 16]]]]], [], 0, null, ["loc", [null, [1, 0], [3, 11]]]], ["block", "if", [["get", "months", ["loc", [null, [5, 6], [5, 12]]]]], [], 1, null, ["loc", [null, [5, 0], [11, 7]]]]],
       locals: [],
       templates: [child0, child1]
+    };
+  })());
+});
+define("diindex-ember-dev/templates/components/permit-count-chart", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.4.4",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "diindex-ember-dev/templates/components/permit-count-chart.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
+      locals: [],
+      templates: []
     };
   })());
 });
