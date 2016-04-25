@@ -9,7 +9,7 @@ export default Highcharts.extend({
 		},
 		plotOptions: {
 			area: {
-				showInLegend: true,
+				showInLegend: false,
 				marker: {
                     enabled: false,
                     symbol: 'circle',

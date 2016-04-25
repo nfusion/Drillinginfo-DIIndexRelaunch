@@ -141,8 +141,7 @@ export default Ember.Route.extend({
 							name: 'Oil',
 							pointStart: Date.parse(ordered_data[0].rundatetime),
 							data: oil_series,
-							yAxis: 0,
-
+							yAxis: 0
 						},
 						{
 							name: 'Gas',
