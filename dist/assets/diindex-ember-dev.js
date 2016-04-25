@@ -42,15 +42,40 @@ define('diindex-ember-dev/components/high-charts', ['exports', 'ember-highcharts
 define('diindex-ember-dev/components/oil-production-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
-define('diindex-ember-dev/components/permit-count-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
-  exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
-    // chartMode: '', // empty, 'StockChart', or 'Map'
-    // chartOptions: {},
-    // chartData: [],
-    // theme: {}
-  });
+define('diindex-ember-dev/components/permit-count-chart', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
+	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
+		chartMode: '', // empty, 'StockChart', or 'Map'
+		chartOptions: {
+			chart: {
+				type: 'line'
+			},
+			plotOptions: {
+				line: {
+					//showInLegend: false,
+					pointIntervalUnit: 'month'
+				}
+			},
+			title: {
+				text: 'Permit Count (30 days)'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date'
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Rig Count'
+				},
+				min: 440
+			}
+		},
+		chartData: [],
+		theme: _diindexEmberDevThemesDrillinginfo['default']
+	});
 });
-define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
 		chartOptions: {
@@ -59,11 +84,11 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 			},
 			plotOptions: {
 				area: {
-					showInLegend: false,
+					showInLegend: true,
 					marker: {
 						enabled: false,
 						symbol: 'circle',
-						radius: 2,
+						radius: 3,
 						states: {
 							hover: {
 								enabled: true
@@ -89,9 +114,7 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 			}
 		},
 		chartData: [],
-		theme: {
-			colors: ['#78BE20']
-		}
+		theme: _diindexEmberDevThemesDrillinginfo['default']
 	});
 });
 define('diindex-ember-dev/components/top-counties-gas-widget', ['exports', 'ember'], function (exports, _ember) {
@@ -482,7 +505,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				}
 			};
 
-			return new _ember["default"].RSVP.hash({
+			var data = new _ember["default"].RSVP.hash({
 
 				prodCapacity: $.ajax(capacity_settings).then(
 
@@ -541,7 +564,6 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					prodCapData.prodOilVsGas = series_oil_v_gas;
 
-					console.log(prodCapData);
 					return prodCapData;
 				}),
 
@@ -584,10 +606,36 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					return data.contents.elements;
 				}),
 
-				permitCount: $.ajax(permit_count_settings).then(function (data) {
-					return data.contents.elements;
+				permitCount: $.ajax(permit_count_settings).then(
+				// needs to return tile and chart
+				function (data) {
+					if (data.status.http_code !== 200) return;
+
+					var permitData = {};
+
+					var highchart_series = [];
+					var ordered_data = data.contents.elements.reverse();
+
+					$.each(ordered_data, function () {
+						highchart_series.push(this.rig_count);
+					});
+					highchart_series = highchart_series.reverse();
+
+					var series = [{
+						pointStart: Date.parse(ordered_data[0].rig_date),
+						pointInterval: 24 * 3600 * 1000, // one day
+						// return a max of thirty days of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+					}];
+
+					permitData.chart = series;
+					return permitData;
 				})
 			});
+
+			console.log(data);
+
+			return data;
 		}
 	});
 });
@@ -2231,11 +2279,458 @@ define("diindex-ember-dev/templates/components/us-rig-count-widget", ["exports"]
 });
 define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 5,
+                "column": 2
+              },
+              "end": {
+                "line": 7,
+                "column": 2
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [6, 28], [6, 42]]]]], [], []]], ["loc", [null, [6, 2], [6, 44]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child1 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "line": 9,
+                "column": 2
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("p");
+            var el2 = dom.createTextNode("Data is not available at this time.");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child2 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 13,
+                "column": 2
+              },
+              "end": {
+                "line": 15,
+                "column": 2
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            return morphs;
+          },
+          statements: [["inline", "permit-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [14, 31], [14, 54]]]]], [], []]], ["loc", [null, [14, 2], [14, 56]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child3 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 15,
+                "column": 2
+              },
+              "end": {
+                "line": 17,
+                "column": 2
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("p");
+            var el2 = dom.createTextNode("Data is not available at this time.");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child4 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 22,
+                "column": 2
+              },
+              "end": {
+                "line": 36,
+                "column": 2
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("U.S. Production Capacity");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n		");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("U.S. Oil Production Capacity");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("U.S. Gas Production Capacity");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n		");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var element0 = dom.childAt(fragment, [1]);
+            var element1 = dom.childAt(fragment, [3]);
+            var morphs = new Array(5);
+            morphs[0] = dom.createMorphAt(element0, 3, 3);
+            morphs[1] = dom.createMorphAt(element0, 5, 5);
+            morphs[2] = dom.createMorphAt(element1, 3, 3);
+            morphs[3] = dom.createMorphAt(element1, 7, 7);
+            morphs[4] = dom.createMorphAt(element1, 9, 9);
+            return morphs;
+          },
+          statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [26, 42], [26, 70]]]]], [], []]], ["loc", [null, [26, 3], [26, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [27, 31], [27, 68]]]]], [], []]], ["loc", [null, [27, 3], [27, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [31, 34], [31, 62]]]]], [], []]], ["loc", [null, [31, 3], [31, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [33, 34], [33, 62]]]]], [], []]], ["loc", [null, [33, 3], [33, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [34, 35], [34, 66]]]]], [], []]], ["loc", [null, [34, 3], [34, 68]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child5 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.4",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 36,
+                "column": 2
+              },
+              "end": {
+                "line": 38,
+                "column": 2
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("p");
+            var el2 = dom.createTextNode("Production Capacity data is not available at this time.");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+      return {
+        meta: {
+          "fragmentReason": {
+            "name": "missing-wrapper",
+            "problems": ["multiple-nodes"]
+          },
+          "revision": "Ember@2.4.4",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 42,
+              "column": 0
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/index.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n	");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "large-6 columns");
+          var el3 = dom.createTextNode("\n		");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("h3");
+          var el4 = dom.createTextNode("Rig Count");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("	");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n	");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "large-6 columns");
+          var el3 = dom.createTextNode("\n		");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("h3");
+          var el4 = dom.createTextNode("Permit Count");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("	");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "row");
+          var el2 = dom.createTextNode("\n	");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "large-12 columns panel");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("	");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element2 = dom.childAt(fragment, [0]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element2, [1]), 3, 3);
+          morphs[1] = dom.createMorphAt(dom.childAt(element2, [3]), 3, 3);
+          morphs[2] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
+          return morphs;
+        },
+        statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [5, 8], [5, 22]]]]], [], 0, 1, ["loc", [null, [5, 2], [9, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [13, 8], [13, 31]]]]], [], 2, 3, ["loc", [null, [13, 2], [17, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [22, 8], [22, 26]]]]], [], 4, 5, ["loc", [null, [22, 2], [38, 9]]]]],
+        locals: [],
+        templates: [child0, child1, child2, child3, child4, child5]
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.4",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 42,
+              "column": 0
+            },
+            "end": {
+              "line": 44,
+              "column": 0
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/index.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createElement("p");
+          var el2 = dom.createTextNode("The API is not available.");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type"]
         },
         "revision": "Ember@2.4.4",
         "loc": {
@@ -2245,8 +2740,8 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 27,
-            "column": 6
+            "line": 44,
+            "column": 7
           }
         },
         "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2257,133 +2752,20 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-6 columns");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h3");
-        var el4 = dom.createTextNode("Rig Count");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-6 columns");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h3");
-        var el4 = dom.createTextNode("Permits Chart");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("p");
-        var el4 = dom.createTextNode("[new chart]");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-12 columns panel");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("div");
-        dom.setAttribute(el3, "class", "large-6 columns");
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("h3");
-        var el5 = dom.createTextNode("U.S. Production Capacity");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n		");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("div");
-        dom.setAttribute(el3, "class", "large-6 columns");
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("h3");
-        var el5 = dom.createTextNode("U.S. Oil Production Capacity");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("h3");
-        var el5 = dom.createTextNode("U.S. Gas Production Capacity");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n		");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [3, 1]);
-        var element1 = dom.childAt(element0, [1]);
-        var element2 = dom.childAt(element0, [3]);
-        var morphs = new Array(6);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 1]), 3, 3);
-        morphs[1] = dom.createMorphAt(element1, 3, 3);
-        morphs[2] = dom.createMorphAt(element1, 5, 5);
-        morphs[3] = dom.createMorphAt(element2, 3, 3);
-        morphs[4] = dom.createMorphAt(element2, 7, 7);
-        morphs[5] = dom.createMorphAt(element2, 9, 9);
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]], ["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [16, 42], [16, 70]]]]], [], []]], ["loc", [null, [16, 3], [16, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [17, 31], [17, 68]]]]], [], []]], ["loc", [null, [17, 3], [17, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [21, 34], [21, 62]]]]], [], []]], ["loc", [null, [21, 3], [21, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [23, 34], [23, 62]]]]], [], []]], ["loc", [null, [23, 3], [23, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [24, 35], [24, 66]]]]], [], []]], ["loc", [null, [24, 3], [24, 68]]]]],
+      statements: [["block", "if", [["get", "model", ["loc", [null, [1, 6], [1, 11]]]]], [], 0, 1, ["loc", [null, [1, 0], [44, 7]]]]],
       locals: [],
-      templates: []
+      templates: [child0, child1]
     };
   })());
 });
@@ -3073,6 +3455,19 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 			},
 			errorbar: {
 				color: 'white'
+			},
+			area: {
+				showInLegend: false,
+				marker: {
+					enabled: false,
+					symbol: 'circle',
+					radius: 2,
+					states: {
+						hover: {
+							enabled: true
+						}
+					}
+				}
 			}
 		},
 		legend: {

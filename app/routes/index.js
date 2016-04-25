@@ -88,7 +88,7 @@ export default Ember.Route.extend({
 		};
 		
 
-		return new Ember.RSVP.hash({
+		var data = new Ember.RSVP.hash({
 
 			prodCapacity: $.ajax(capacity_settings).then(
 
@@ -154,7 +154,6 @@ export default Ember.Route.extend({
 
 					prodCapData.prodOilVsGas = series_oil_v_gas;
 
-					console.log(prodCapData);
 					return prodCapData;
 				}
 			),
@@ -210,10 +209,37 @@ export default Ember.Route.extend({
 			), 
 
 			permitCount : $.ajax(permit_count_settings).then(
+				// needs to return tile and chart
 				function(data){
-					return data.contents.elements;
+					if (data.status.http_code !== 200) return;
+
+					var permitData = {};
+
+					var highchart_series = [];
+					var ordered_data = data.contents.elements.reverse();
+
+					$.each(ordered_data, function(){
+						highchart_series.push(this.rig_count);
+					});
+					highchart_series = highchart_series.reverse();
+
+					var series = [
+					    {
+					    	pointStart: Date.parse(ordered_data[0].rig_date),
+					    	pointInterval: 24 * 3600 * 1000, // one day
+					    	// return a max of thirty days of data
+					    	data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+					    }
+					];
+
+					permitData.chart = series;
+					return permitData;
 				}
 			)
 		});
+
+		console.log(data);
+
+		return data;
 	}
 });

@@ -1,4 +1,5 @@
 import Highcharts from 'ember-highcharts/components/high-charts';
+import defaultTheme from '../themes/drillinginfo';
 
 export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
@@ -8,11 +9,11 @@ export default Highcharts.extend({
 		},
 		plotOptions: {
 			area: {
-				showInLegend: false,
+				showInLegend: true,
 				marker: {
                     enabled: false,
                     symbol: 'circle',
-                    radius: 2,
+                    radius: 3,
                     states: {
                         hover: {
                             enabled: true
@@ -38,7 +39,5 @@ export default Highcharts.extend({
 		}
 	},
 	chartData: [],
-	theme: {
-		colors : ['#78BE20']
-	}
+	theme: defaultTheme
 });

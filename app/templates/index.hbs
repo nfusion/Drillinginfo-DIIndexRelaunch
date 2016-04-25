@@ -1,17 +1,27 @@
-
+{{#if model}}
 <div class="row">
 	<div class="large-6 columns">
 		<h3>Rig Count</h3>
+		{{#if model.rigCount}}
 		{{rig-count-chart content=model.rigCount}}
+		{{else}}
+		<p>Data is not available at this time.</p>
+		{{/if}}
 	</div>
 	<div class="large-6 columns">
-		<h3>Permits Chart</h3>
-		<p>[new chart]</p>
+		<h3>Permit Count</h3>
+		{{#if model.permitCount.chart}}
+		{{permit-count-chart content=model.permitCount.chart}}
+		{{else}}
+		<p>Data is not available at this time.</p>
+		{{/if}}
 	</div>
 </div>
 <div class="row">
 	<div class="large-12 columns panel">
+		{{#if model.prodCapacity}}
 		<div class="large-6 columns">
+
 			<h3>U.S. Production Capacity</h3>
 			{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
 			{{us-prod-cap-chart content=model.prodCapacity.usProdCapMboeChart}}
@@ -23,5 +33,12 @@
 			{{gas-production-widget months=model.prodCapacity.usProdCap}}
 			{{us-prod-by-type-chart content=model.prodCapacity.prodOilVsGas}}
 		</div>
+		{{else}}
+		<p>Production Capacity data is not available at this time.</p>
+		{{/if}}
 	</div>
 </div>
+
+{{else}}
+<p>The API is not available.</p>
+{{/if}}
