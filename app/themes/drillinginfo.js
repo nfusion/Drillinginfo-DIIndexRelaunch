@@ -102,7 +102,6 @@ export default Highcharts.extend ({
 				color: '#ffffff'
 			}
 		},
-<<<<<<< Updated upstream
 		boxplot: {
 			fillColor: '#505053'
 		},
@@ -123,16 +122,15 @@ export default Highcharts.extend ({
                         enabled: true
                     }
                 }
-            }
-=======
-		line: {
-			lineWidth: 8,
-			marker: {
-				lineWidth: 5,
-				lineColor: '#fff',
-				fillColor: '#1d54a0'
+            },
+			line: {
+				lineWidth: 8,
+				marker: {
+					lineWidth: 5,
+					lineColor: '#fff',
+					fillColor: '#1d54a0'
+				}
 			}
->>>>>>> Stashed changes
 		}
 	},
 	legend: {
