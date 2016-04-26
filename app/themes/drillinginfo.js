@@ -66,7 +66,6 @@ export default Highcharts.extend ({
 		visible: false,
 		gridLineColor: '#fff',
 		gridLineWidth: 5,
-		lineColor: '#ffffff',
 		labels: {
 			style: {
 				color: 'red'

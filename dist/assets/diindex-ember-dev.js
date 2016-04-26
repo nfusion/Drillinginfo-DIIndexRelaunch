@@ -128,12 +128,17 @@ define('diindex-ember-dev/components/us-prod-by-type-chart', ['exports', 'ember-
 		chartMode: '', // empty, 'StockChart', or 'Map'
 		chartOptions: {
 			chart: {
+				backgroundColor: {
+					linearGradient: [50, 500, 0, 0],
+					stops: [[0, 'rgb(255, 255, 255)'], [1, 'rgb(29, 84, 160)']]
+				},
 				type: 'line'
 			},
 			plotOptions: {
 				line: {
-					//showInLegend: false,
+					showInLegend: false,
 					pointIntervalUnit: 'month'
+
 				}
 			},
 			title: {
@@ -3532,77 +3537,91 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 	}, null, document.getElementsByTagName('head')[0]);
 
 	exports['default'] = Highcharts.extend({
-		colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+		colors: ["#78be20", "#1d54a0", "#585b5d"],
 		chart: {
 			backgroundColor: {
 				linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-				stops: [[0, '#2a2a2b'], [1, '#3e3e40']]
+				stops: [[0, '#FFFFFF'], [1, '#ffffff']]
 			},
 			style: {
-				fontFamily: "'Unica One', sans-serif"
+				fontFamily: "'Unica One', sans-serif",
+				color: '#ffffff'
 			},
-			plotBorderColor: '#606063'
+			plotBorderColor: '#333333'
 		},
 		title: {
 			style: {
-				color: '#E0E0E3',
+				color: '#FFFFFF',
 				textTransform: 'uppercase',
 				fontSize: '20px'
 			}
 		},
 		subtitle: {
 			style: {
-				color: '#E0E0E3',
+				color: '#000000',
 				textTransform: 'uppercase'
 			}
 		},
 		xAxis: {
-			gridLineColor: '#707073',
+			visible: false,
+			gridLineColor: '#fff',
+			gridLineWidth: 1,
 			labels: {
 				style: {
-					color: '#E0E0E3'
+					color: '#333'
 				}
 			},
-			lineColor: '#707073',
-			minorGridLineColor: '#505053',
-			tickColor: '#707073',
+			lineColor: 'transparent',
+			lineWidth: 0,
+			minorGridLineColor: '#000000',
+			minorGridLineWidth: 0,
+			minorTickLength: 0,
+			tickLength: 0,
+			tickWidth: 0,
 			title: {
 				style: {
-					color: '#A0A0A3'
+					color: '#ffffff'
 
 				}
 			}
 		},
 		yAxis: {
-			gridLineColor: '#707073',
+			visible: false,
+			gridLineColor: '#fff',
+			gridLineWidth: 5,
 			labels: {
 				style: {
-					color: '#E0E0E3'
+					color: 'red'
 				}
 			},
-			lineColor: '#707073',
-			minorGridLineColor: '#505053',
-			tickColor: '#707073',
-			tickWidth: 1,
+			lineColor: 'transparent',
+			lineWidth: 0,
+			minorGridLineColor: '#000000',
+			minorGridLineWidth: 0,
+			minorTickLength: 0,
+			tickLength: 0,
+			tickWidth: 0,
 			title: {
 				style: {
-					color: '#A0A0A3'
+					color: '#ffffff'
+
 				}
 			}
 		},
 		tooltip: {
-			backgroundColor: 'rgba(0, 0, 0, 0.85)',
+			backgroundColor: 'rgba(120, 190, 32, 0.85)',
 			style: {
-				color: '#F0F0F0'
+				color: '#FFF',
+				fontSize: '18px',
+				padding: '10px',
+				paddingTop: '0px'
 			}
 		},
 		plotOptions: {
-			series: {
+			column: {
+				borderWidth: 0,
 				dataLabels: {
-					color: '#B0B0B3'
-				},
-				marker: {
-					lineColor: '#333'
+					color: '#ffffff'
 				}
 			},
 			boxplot: {
@@ -3625,15 +3644,23 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 							enabled: true
 						}
 					}
+				},
+				line: {
+					lineWidth: 8,
+					marker: {
+						lineWidth: 5,
+						lineColor: '#fff',
+						fillColor: '#1d54a0'
+					}
 				}
 			}
 		},
 		legend: {
 			itemStyle: {
-				color: '#E0E0E3'
+				color: '#333'
 			},
 			itemHoverStyle: {
-				color: '#FFF'
+				color: 'red'
 			},
 			itemHiddenStyle: {
 				color: '#606063'
@@ -3646,7 +3673,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 		},
 		labels: {
 			style: {
-				color: '#707073'
+				color: '#ffffff'
 			}
 		},
 
@@ -3771,7 +3798,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+990afc02"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+308ef2f9"});
 }
 
 /* jshint ignore:end */
