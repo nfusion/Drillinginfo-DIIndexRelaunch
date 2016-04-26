@@ -1746,7 +1746,9 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
       })();
       return {
         meta: {
-          "fragmentReason": false,
+          "fragmentReason": {
+            "name": "triple-curlies"
+          },
           "revision": "Ember@2.4.4",
           "loc": {
             "source": null,
@@ -1768,6 +1770,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createElement("table");
+          dom.setAttribute(el1, "width", "100%");
           var el2 = dom.createTextNode("\n	");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("tr");
@@ -2425,11 +2428,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 23,
+              "line": 24,
               "column": 2
             },
             "end": {
-              "line": 37,
+              "line": 38,
               "column": 2
             }
           },
@@ -2508,7 +2511,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[4] = dom.createMorphAt(element3, 9, 9);
           return morphs;
         },
-        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [27, 42], [27, 70]]]]], [], []]], ["loc", [null, [27, 3], [27, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [28, 31], [28, 68]]]]], [], []]], ["loc", [null, [28, 3], [28, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [32, 34], [32, 62]]]]], [], []]], ["loc", [null, [32, 3], [32, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [34, 34], [34, 62]]]]], [], []]], ["loc", [null, [34, 3], [34, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [35, 35], [35, 66]]]]], [], []]], ["loc", [null, [35, 3], [35, 68]]]]],
+        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [28, 42], [28, 70]]]]], [], []]], ["loc", [null, [28, 3], [28, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [29, 31], [29, 68]]]]], [], []]], ["loc", [null, [29, 3], [29, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [33, 34], [33, 62]]]]], [], []]], ["loc", [null, [33, 3], [33, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [35, 34], [35, 62]]]]], [], []]], ["loc", [null, [35, 3], [35, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [36, 35], [36, 66]]]]], [], []]], ["loc", [null, [36, 3], [36, 68]]]]],
         locals: [],
         templates: []
       };
@@ -2521,11 +2524,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 37,
+              "line": 38,
               "column": 2
             },
             "end": {
-              "line": 39,
+              "line": 40,
               "column": 2
             }
           },
@@ -2563,11 +2566,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 46,
+              "line": 48,
               "column": 2
             },
             "end": {
-              "line": 61,
+              "line": 63,
               "column": 2
             }
           },
@@ -2667,7 +2670,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[3] = dom.createMorphAt(element1, 9, 9);
           return morphs;
         },
-        statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [50, 17], [50, 38]]]]], [], []]], ["loc", [null, [50, 3], [50, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [52, 17], [52, 38]]]]], [], []]], ["loc", [null, [52, 3], [52, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [57, 17], [57, 37]]]]], [], []]], ["loc", [null, [57, 3], [57, 39]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [59, 17], [59, 37]]]]], [], []]], ["loc", [null, [59, 3], [59, 39]]]]],
+        statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [52, 17], [52, 38]]]]], [], []]], ["loc", [null, [52, 3], [52, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [54, 17], [54, 38]]]]], [], []]], ["loc", [null, [54, 3], [54, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [59, 17], [59, 37]]]]], [], []]], ["loc", [null, [59, 3], [59, 39]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [61, 17], [61, 37]]]]], [], []]], ["loc", [null, [61, 3], [61, 39]]]]],
         locals: [],
         templates: []
       };
@@ -2680,11 +2683,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 61,
+              "line": 63,
               "column": 2
             },
             "end": {
-              "line": 63,
+              "line": 65,
               "column": 2
             }
           },
@@ -2728,8 +2731,8 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 65,
-            "column": 23
+            "line": 88,
+            "column": 6
           }
         },
         "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2783,6 +2786,10 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
+        var el1 = dom.createComment(" First Tab - Production Capacity ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "row");
         var el2 = dom.createTextNode("\n	");
@@ -2809,6 +2816,10 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
+        var el1 = dom.createComment(" Second Tab - Top Ten Lists ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "row");
         var el2 = dom.createTextNode("\n	");
@@ -2833,6 +2844,72 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createComment(" end .row ");
         dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment(" Third Tab - Maps ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment(" \n	So I have a couple of ideas on implementation for this. But this is the best one.\n	We will use Wordpress' REST API to pull custom image fields from a node where \n	they select two images from the media library, one for wells and one for rigs.\n	That way we don't have to rebuild the app or overwrite any imagery; we just pull\n	the data real-time same as we are doing everything else.\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "large-12 columns panel");
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h2");
+        var el4 = dom.createTextNode("Maps");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "large-6 columns");
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h3");
+        var el5 = dom.createTextNode("New Wells");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("img");
+        dom.setAttribute(el4, "src", "http://diindex.drillinginfo.com/wp-content/uploads/2016/04/Marchnewwells.png");
+        dom.setAttribute(el4, "alt", "New Wells Map: March 2016");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n		");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "large-6 columns");
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h3");
+        var el5 = dom.createTextNode("Rig Movement");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("img");
+        dom.setAttribute(el4, "src", "http://diindex.drillinginfo.com/wp-content/uploads/2016/04/marchrigmovement.png");
+        dom.setAttribute(el4, "alt", "Rig Movement Map: March 2016");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n		");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n	");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
@@ -2840,11 +2917,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         var morphs = new Array(4);
         morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 3, 3);
         morphs[1] = dom.createMorphAt(dom.childAt(element4, [3]), 3, 3);
-        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [3, 1]), 3, 3);
-        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [6, 1]), 3, 3);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [5, 1]), 3, 3);
+        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [10, 1]), 3, 3);
         return morphs;
       },
-      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [23, 8], [23, 26]]]]], [], 4, 5, ["loc", [null, [23, 2], [39, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [46, 8], [46, 28]]]]], [], 6, 7, ["loc", [null, [46, 2], [63, 9]]]]],
+      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [24, 8], [24, 26]]]]], [], 4, 5, ["loc", [null, [24, 2], [40, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [48, 8], [48, 28]]]]], [], 6, 7, ["loc", [null, [48, 2], [65, 9]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7]
     };
@@ -3694,7 +3771,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+c4b74051"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+990afc02"});
 }
 
 /* jshint ignore:end */
