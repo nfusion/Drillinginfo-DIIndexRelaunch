@@ -608,7 +608,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
+    assert.equal(this.$().text().trim(), 'Data not available.');
 
     // Template block usage:
     this.render(Ember.HTMLBars.template((function () {
@@ -692,7 +692,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
       };
     })()));
 
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$().text().trim(), 'Data not available.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/top-ten-test.jshint', ['exports'], function (exports) {

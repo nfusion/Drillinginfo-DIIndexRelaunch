@@ -2850,7 +2850,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" \n	So I have a couple of ideas on implementation for this. But this is the best one.\n	We will use Wordpress' REST API to pull custom image fields from a node where \n	they select two images from the media library, one for wells and one for rigs.\n	That way we don't have to rebuild the app or overwrite any imagery; we just pull\n	the data real-time same as we are doing everything else.\n");
+        var el1 = dom.createComment(" \n	So I have a couple of ideas on implementation for this. But this is the best one.\n	We will use Wordpress' REST API to pull custom image fields from a node where \n	they select two images and two PDFs from the media library, one of each for wells and rigs.\n	That way we don't have to rebuild the app or overwrite any imagery; we just pull\n	the data real-time same as we are doing everything else.\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
