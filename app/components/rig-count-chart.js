@@ -20,7 +20,15 @@ export default Highcharts.extend({
                         }
                     }
                 }
-			}
+			},
+			line: {
+				lineWidth: 10,
+				marker: {
+					lineWidth: 6,
+					lineColor: '#fff',
+					fillColor: '#1d54a0'
+				}
+			},
 		},
 		title: {
 		    text: 'Rig Count (30 Days)'

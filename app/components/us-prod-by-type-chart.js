@@ -5,13 +5,7 @@ export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
 	chartOptions: {
 		chart: {
-		    backgroundColor: {
-                linearGradient: [50, 500, 0, 0],
-                stops: [
-                    [0, 'rgb(255, 255, 255)'],
-                    [1, 'rgb(29, 84, 160)']
-                ]
-            },
+		    backgroundColor: '#e9e7e4',
             type: 'line',
 		},
 		plotOptions: {
@@ -22,7 +16,10 @@ export default Highcharts.extend({
 		    },
 		},
 		title: {
-		    text: 'U.S. Production Capacity - Oil vs. Gas'
+		    text: 'U.S. Production Capacity - Oil vs. Gas',
+		    style:{
+		    	"fontSize": "18px"
+		    }
 		},
 		xAxis: {
 			type: 'datetime',

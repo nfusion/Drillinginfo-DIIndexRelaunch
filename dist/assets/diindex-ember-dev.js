@@ -95,6 +95,14 @@ define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highch
 							}
 						}
 					}
+				},
+				line: {
+					lineWidth: 10,
+					marker: {
+						lineWidth: 6,
+						lineColor: '#fff',
+						fillColor: '#1d54a0'
+					}
 				}
 			},
 			title: {
@@ -128,16 +136,21 @@ define('diindex-ember-dev/components/us-prod-by-type-chart', ['exports', 'ember-
 		chartMode: '', // empty, 'StockChart', or 'Map'
 		chartOptions: {
 			chart: {
+				backgroundColor: '#e9e7e4',
 				type: 'line'
 			},
 			plotOptions: {
 				line: {
-					//showInLegend: false,
+					showInLegend: false,
 					pointIntervalUnit: 'month'
+
 				}
 			},
 			title: {
-				text: 'U.S. Production Capacity - Oil vs. Gas'
+				text: 'U.S. Production Capacity - Oil vs. Gas',
+				style: {
+					"fontSize": "18px"
+				}
 			},
 			xAxis: {
 				type: 'datetime',
@@ -164,7 +177,7 @@ define('diindex-ember-dev/components/us-prod-by-type-chart', ['exports', 'ember-
 		theme: _diindexEmberDevThemesDrillinginfo['default']
 	});
 });
-define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
 		chartOptions: {
@@ -194,9 +207,7 @@ define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-high
 			}
 		},
 		chartData: [],
-		theme: {
-			colors: ['#78BE20']
-		}
+		theme: _diindexEmberDevThemesDrillinginfo['default']
 	});
 });
 define('diindex-ember-dev/components/us-production-capacity-widget', ['exports', 'ember'], function (exports, _ember) {
@@ -931,7 +942,7 @@ define("diindex-ember-dev/templates/application-error", ["exports"], function (e
         "fragmentReason": {
           "name": "triple-curlies"
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -988,7 +999,7 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
           "name": "missing-wrapper",
           "problems": ["multiple-nodes"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1097,7 +1108,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1140,7 +1151,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1191,7 +1202,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1237,7 +1248,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
           "name": "missing-wrapper",
           "problems": ["wrong-type", "multiple-nodes"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1287,7 +1298,7 @@ define("diindex-ember-dev/templates/components/high-charts", ["exports"], functi
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1331,7 +1342,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1374,7 +1385,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1425,7 +1436,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1471,7 +1482,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
           "name": "missing-wrapper",
           "problems": ["wrong-type", "multiple-nodes"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1521,7 +1532,7 @@ define("diindex-ember-dev/templates/components/permit-count-chart", ["exports"],
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1567,7 +1578,7 @@ define("diindex-ember-dev/templates/components/rig-count-chart", ["exports"], fu
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1612,7 +1623,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1657,7 +1668,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           return {
             meta: {
               "fragmentReason": false,
-              "revision": "Ember@2.4.4",
+              "revision": "Ember@2.4.5",
               "loc": {
                 "source": null,
                 "start": {
@@ -1700,7 +1711,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1749,7 +1760,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "fragmentReason": {
             "name": "triple-curlies"
           },
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1806,7 +1817,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1848,7 +1859,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1893,7 +1904,7 @@ define("diindex-ember-dev/templates/components/us-permit-count-widget", ["export
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1939,7 +1950,7 @@ define("diindex-ember-dev/templates/components/us-prod-by-type-chart", ["exports
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1985,7 +1996,7 @@ define("diindex-ember-dev/templates/components/us-prod-cap-chart", ["exports"], 
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2030,7 +2041,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -2081,7 +2092,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2125,7 +2136,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2167,7 +2178,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2212,7 +2223,7 @@ define("diindex-ember-dev/templates/components/us-rig-count-widget", ["exports"]
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2256,7 +2267,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2298,7 +2309,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2340,7 +2351,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2382,7 +2393,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2424,7 +2435,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2520,7 +2531,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2562,7 +2573,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2679,7 +2690,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2723,7 +2734,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2935,7 +2946,7 @@ define("diindex-ember-dev/templates/rig-count", ["exports"], function (exports) 
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2986,7 +2997,7 @@ define("diindex-ember-dev/templates/top-counties-gas", ["exports"], function (ex
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3032,7 +3043,7 @@ define("diindex-ember-dev/templates/top-counties-oil", ["exports"], function (ex
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3078,7 +3089,7 @@ define("diindex-ember-dev/templates/top-ops-gas", ["exports"], function (exports
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3124,7 +3135,7 @@ define("diindex-ember-dev/templates/top-ops-oil", ["exports"], function (exports
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3170,7 +3181,7 @@ define("diindex-ember-dev/templates/top-ops", ["exports"], function (exports) {
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3221,7 +3232,7 @@ define("diindex-ember-dev/templates/us-gas-prod-cap", ["exports"], function (exp
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3272,7 +3283,7 @@ define("diindex-ember-dev/templates/us-oil-prod-cap", ["exports"], function (exp
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3322,7 +3333,7 @@ define("diindex-ember-dev/templates/us-permits", ["exports"], function (exports)
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3373,7 +3384,7 @@ define("diindex-ember-dev/templates/us-prod-cap-charts", ["exports"], function (
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3432,7 +3443,7 @@ define("diindex-ember-dev/templates/us-prod-cap", ["exports"], function (exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -3470,7 +3481,7 @@ define("diindex-ember-dev/templates/us-prod-cap", ["exports"], function (exports
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -3526,83 +3537,94 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 
 	// Load the fonts
 	Highcharts.createElement('link', {
-		href: 'https://fonts.googleapis.com/css?family=Unica+One',
+		href: 'https:https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300',
 		rel: 'stylesheet',
 		type: 'text/css'
 	}, null, document.getElementsByTagName('head')[0]);
 
 	exports['default'] = Highcharts.extend({
-		colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+		colors: ["#78be20", "#1d54a0", "#585b5d"],
 		chart: {
-			backgroundColor: {
-				linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-				stops: [[0, '#2a2a2b'], [1, '#3e3e40']]
-			},
+			backgroundColor: '#fff',
 			style: {
-				fontFamily: "'Unica One', sans-serif"
+				fontFamily: '"Open Sans Condensed", sans-serif;',
+				color: '#ffffff'
 			},
-			plotBorderColor: '#606063'
+			plotBorderColor: '#333333'
 		},
 		title: {
 			style: {
-				color: '#E0E0E3',
+				color: '#585b5d',
 				textTransform: 'uppercase',
 				fontSize: '20px'
 			}
 		},
 		subtitle: {
 			style: {
-				color: '#E0E0E3',
+				color: '#000000',
 				textTransform: 'uppercase'
 			}
 		},
 		xAxis: {
-			gridLineColor: '#707073',
+			visible: true,
+			gridLineColor: '#fff',
+			gridLineWidth: 1,
 			labels: {
 				style: {
-					color: '#E0E0E3'
+					color: '#333'
 				}
 			},
-			lineColor: '#707073',
-			minorGridLineColor: '#505053',
-			tickColor: '#707073',
+			lineColor: '#333',
+			lineWidth: 1,
+			minorGridLineColor: '#333',
+			minorGridLineWidth: 1,
+			minorTickLength: 0,
+			tickLength: 0,
+			tickWidth: 0,
 			title: {
 				style: {
-					color: '#A0A0A3'
+					color: '#333'
 
 				}
 			}
 		},
 		yAxis: {
-			gridLineColor: '#707073',
+			visible: true,
+			gridLineColor: '#e9e7e4',
+			gridLineWidth: 1,
 			labels: {
 				style: {
-					color: '#E0E0E3'
+					color: '#333'
 				}
 			},
-			lineColor: '#707073',
-			minorGridLineColor: '#505053',
-			tickColor: '#707073',
-			tickWidth: 1,
+			lineColor: '#333',
+			lineWidth: 0,
+			minorGridLineColor: '#000000',
+			minorGridLineWidth: 1,
+			minorTickLength: 0,
+			tickLength: 0,
+			tickWidth: 0,
 			title: {
 				style: {
-					color: '#A0A0A3'
+					color: '#333'
+
 				}
 			}
 		},
 		tooltip: {
-			backgroundColor: 'rgba(0, 0, 0, 0.85)',
+			pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+			backgroundColor: '#585b5d',
 			style: {
-				color: '#F0F0F0'
+				color: '#FFF',
+				fontSize: '15px',
+				padding: '8px'
 			}
 		},
 		plotOptions: {
-			series: {
+			column: {
+				borderWidth: 0,
 				dataLabels: {
-					color: '#B0B0B3'
-				},
-				marker: {
-					lineColor: '#333'
+					color: '#ffffff'
 				}
 			},
 			boxplot: {
@@ -3618,6 +3640,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 				showInLegend: false,
 				marker: {
 					enabled: false,
+					fillColor: '#585b5d',
 					symbol: 'circle',
 					radius: 2,
 					states: {
@@ -3626,14 +3649,24 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 						}
 					}
 				}
+			},
+			line: {
+				lineWidth: 2,
+				marker: {
+					lineWidth: 2,
+					lineColor: '#fff',
+					fillColor: '#585b5d',
+					symbol: 'circle',
+					radius: 8
+				}
 			}
 		},
 		legend: {
 			itemStyle: {
-				color: '#E0E0E3'
+				color: '#333'
 			},
 			itemHoverStyle: {
-				color: '#FFF'
+				color: 'red'
 			},
 			itemHiddenStyle: {
 				color: '#606063'
@@ -3646,7 +3679,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 		},
 		labels: {
 			style: {
-				color: '#707073'
+				color: '#ffffff'
 			}
 		},
 
@@ -3771,7 +3804,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+990afc02"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+308ef2f9"});
 }
 
 /* jshint ignore:end */
