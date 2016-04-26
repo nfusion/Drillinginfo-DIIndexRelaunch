@@ -5,13 +5,21 @@ export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
 	chartOptions: {
 		chart: {
-		    type: 'line'
+		    backgroundColor: {
+                linearGradient: [50, 500, 0, 0],
+                stops: [
+                    [0, 'rgb(255, 255, 255)'],
+                    [1, 'rgb(29, 84, 160)']
+                ]
+            },
+            type: 'line',
 		},
 		plotOptions: {
 			line: {
-				//showInLegend: false,
-		    	pointIntervalUnit: 'month'
-		    }
+				showInLegend: false,
+		    	pointIntervalUnit: 'month',
+
+		    },
 		},
 		title: {
 		    text: 'U.S. Production Capacity - Oil vs. Gas'
@@ -36,7 +44,6 @@ export default Highcharts.extend({
 			    },
 			    opposite: true
 		    },
-
 		]
 	},
 	chartData: [],

@@ -11,83 +11,98 @@ Highcharts.createElement('link', {
 }, null, document.getElementsByTagName('head')[0]);
 
 export default Highcharts.extend ({
-	colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-		"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: {
 			linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
 			stops: [
-				[0, '#2a2a2b'],
-				[1, '#3e3e40']
+				[0, '#FFFFFF'],
+				[1, '#ffffff']
 			]
 		},
 		style: {
-			fontFamily: "'Unica One', sans-serif"
+			fontFamily: "'Unica One', sans-serif",
+			color: '#ffffff'
 		},
-		plotBorderColor: '#606063'
+		plotBorderColor: '#333333'
 	},
 	title: {
 		style: {
-			color: '#E0E0E3',
+			color: '#FFFFFF',
 			textTransform: 'uppercase',
 			fontSize: '20px'
 		}
 	},
 	subtitle: {
 		style: {
-			color: '#E0E0E3',
+			color: '#000000',
 			textTransform: 'uppercase'
 		}
 	},
 	xAxis: {
-		gridLineColor: '#707073',
+		visible: false,
+		gridLineColor: '#fff',
+		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#E0E0E3'
+				color: '#333'
 			}
 		},
-		lineColor: '#707073',
-		minorGridLineColor: '#505053',
-		tickColor: '#707073',
+		lineColor: 'transparent',
+		lineWidth: 0,
+		minorGridLineColor: '#000000',
+		minorGridLineWidth: 0,
+		minorTickLength: 0,
+		tickLength: 0,
+		tickWidth: 0,
 		title: {
 			style: {
-				color: '#A0A0A3'
+				color: '#ffffff'
 
 			}
 		}
 	},
 	yAxis: {
-		gridLineColor: '#707073',
+		visible: false,
+		gridLineColor: '#fff',
+		gridLineWidth: 5,
+		lineColor: '#ffffff',
 		labels: {
 			style: {
-				color: '#E0E0E3'
+				color: 'red'
 			}
 		},
-		lineColor: '#707073',
-		minorGridLineColor: '#505053',
-		tickColor: '#707073',
-		tickWidth: 1,
+		lineColor: 'transparent',
+		lineWidth: 0,
+		minorGridLineColor: '#000000',
+		minorGridLineWidth: 0,
+		minorTickLength: 0,
+		tickLength: 0,
+		tickWidth: 0,
 		title: {
 			style: {
-				color: '#A0A0A3'
+				color: '#ffffff'
+
 			}
 		}
 	},
 	tooltip: {
-		backgroundColor: 'rgba(0, 0, 0, 0.85)',
+		backgroundColor: 'rgba(120, 190, 32, 0.85)',
 		style: {
-			color: '#F0F0F0'
+			color: '#FFF',
+			fontSize: '18px',
+			padding: '10px',
+			paddingTop: '0px'
 		}
 	},
 	plotOptions: {
-		series: {
+		column: {
+			borderWidth: 0,
 			dataLabels: {
-				color: '#B0B0B3'
-			},
-			marker: {
-				lineColor: '#333'
+				color: '#ffffff'
 			}
 		},
+<<<<<<< Updated upstream
 		boxplot: {
 			fillColor: '#505053'
 		},
@@ -109,14 +124,23 @@ export default Highcharts.extend ({
                     }
                 }
             }
+=======
+		line: {
+			lineWidth: 8,
+			marker: {
+				lineWidth: 5,
+				lineColor: '#fff',
+				fillColor: '#1d54a0'
+			}
+>>>>>>> Stashed changes
 		}
 	},
 	legend: {
 		itemStyle: {
-			color: '#E0E0E3'
+			color: '#333'
 		},
 		itemHoverStyle: {
-			color: '#FFF'
+			color: 'red'
 		},
 		itemHiddenStyle: {
 			color: '#606063'
@@ -129,7 +153,7 @@ export default Highcharts.extend ({
 	},
 	labels: {
 		style: {
-			color: '#707073'
+			color: '#ffffff'
 		}
 	},
 
