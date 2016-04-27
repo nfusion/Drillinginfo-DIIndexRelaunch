@@ -3857,22 +3857,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  var prefix = 'diindex-ember-dev';
-/* jshint ignore:start */
-
-try {
-  var metaName = prefix + '/config/environment';
-  var rawConfig = Ember['default'].$('meta[name="' + metaName + '"]').attr('content');
-  var config = JSON.parse(unescape(rawConfig));
-
-  return { 'default': config };
-}
-catch(err) {
-  throw new Error('Could not read config from meta tag with name "' + metaName + '".');
-}
-
-/* jshint ignore:end */
-
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+5507cfa9"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -3880,7 +3865,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+4eb893ca"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+5507cfa9"});
 }
 
 /* jshint ignore:end */
