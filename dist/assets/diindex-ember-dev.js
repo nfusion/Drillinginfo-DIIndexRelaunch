@@ -169,7 +169,7 @@ define('diindex-ember-dev/components/us-prod-by-type-chart', ['exports', 'ember-
 		theme: _diindexEmberDevThemesDrillinginfo['default']
 	});
 });
-define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-highcharts/components/high-charts'], function (exports, _emberHighchartsComponentsHighCharts) {
+define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
 		chartOptions: {
@@ -199,9 +199,7 @@ define('diindex-ember-dev/components/us-prod-cap-chart', ['exports', 'ember-high
 			}
 		},
 		chartData: [],
-		theme: {
-			colors: ['#78BE20']
-		}
+		theme: _diindexEmberDevThemesDrillinginfo['default']
 	});
 });
 define('diindex-ember-dev/components/us-production-capacity-widget', ['exports', 'ember'], function (exports, _ember) {
@@ -538,6 +536,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					// chart series - total energy production
 					var series_mboe = [{
+						name: 'MBOE',
 						pointStart: Date.parse(ordered_data[0].rundatetime),
 						data: highchart_series
 					}];
@@ -577,6 +576,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					highchart_series = highchart_series.reverse();
 
 					var series = [{
+						name: 'Rig Count',
 						pointStart: Date.parse(ordered_data[0].rig_date),
 						pointInterval: 24 * 3600 * 1000, // one day
 						// return a max of thirty days of data
@@ -1659,6 +1659,92 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
       })();
       var child1 = (function () {
         var child0 = (function () {
+          var child0 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.4",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 11,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 1
+                  }
+                },
+                "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("	");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createElement("td");
+                var el2 = dom.createComment("");
+                dom.appendChild(el1, el2);
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+                return morphs;
+              },
+              statements: [["content", "el", ["loc", [null, [12, 5], [12, 11]]]]],
+              locals: [],
+              templates: []
+            };
+          })();
+          var child1 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.4",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 13,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 1
+                  }
+                },
+                "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("	");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createElement("td");
+                var el2 = dom.createTextNode("--");
+                dom.appendChild(el1, el2);
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes() {
+                return [];
+              },
+              statements: [],
+              locals: [],
+              templates: []
+            };
+          })();
           return {
             meta: {
               "fragmentReason": false,
@@ -1670,7 +1756,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                   "column": 1
                 },
                 "end": {
-                  "line": 12,
+                  "line": 16,
                   "column": 1
                 }
               },
@@ -1682,24 +1768,20 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             hasRendered: false,
             buildFragment: function buildFragment(dom) {
               var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("	");
-              dom.appendChild(el0, el1);
-              var el1 = dom.createElement("td");
-              var el2 = dom.createComment("");
-              dom.appendChild(el1, el2);
-              dom.appendChild(el0, el1);
-              var el1 = dom.createTextNode("\n");
+              var el1 = dom.createComment("");
               dom.appendChild(el0, el1);
               return el0;
             },
             buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
               var morphs = new Array(1);
-              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+              morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+              dom.insertBoundary(fragment, 0);
+              dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["content", "el", ["loc", [null, [11, 5], [11, 11]]]]],
+            statements: [["block", "if", [["get", "el", ["loc", [null, [11, 7], [11, 9]]]]], [], 0, 1, ["loc", [null, [11, 1], [15, 8]]]]],
             locals: ["el"],
-            templates: []
+            templates: [child0, child1]
           };
         })();
         return {
@@ -1713,7 +1795,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                 "column": 0
               },
               "end": {
-                "line": 14,
+                "line": 18,
                 "column": 0
               }
             },
@@ -1744,7 +1826,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
             return morphs;
           },
-          statements: [["block", "each", [["get", "item", ["loc", [null, [10, 9], [10, 13]]]]], [], 0, null, ["loc", [null, [10, 1], [12, 10]]]]],
+          statements: [["block", "each", [["get", "item", ["loc", [null, [10, 9], [10, 13]]]]], [], 0, null, ["loc", [null, [10, 1], [16, 10]]]]],
           locals: ["item"],
           templates: [child0]
         };
@@ -1762,7 +1844,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
               "column": 0
             },
             "end": {
-              "line": 16,
+              "line": 20,
               "column": 0
             }
           },
@@ -1802,7 +1884,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           morphs[1] = dom.createMorphAt(element0, 3, 3);
           return morphs;
         },
-        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [4, 9], [4, 19]]]]], [], 0, null, ["loc", [null, [4, 1], [6, 10]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [8, 8], [8, 16]]]]], [], 1, null, ["loc", [null, [8, 0], [14, 9]]]]],
+        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [4, 9], [4, 19]]]]], [], 0, null, ["loc", [null, [4, 1], [6, 10]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [8, 8], [8, 16]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 9]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -1815,11 +1897,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 16,
+              "line": 20,
               "column": 0
             },
             "end": {
-              "line": 18,
+              "line": 22,
               "column": 0
             }
           },
@@ -1861,7 +1943,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             "column": 0
           },
           "end": {
-            "line": 18,
+            "line": 22,
             "column": 7
           }
         },
@@ -1884,7 +1966,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [18, 7]]]]],
+      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [22, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -3798,7 +3880,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+308ef2f9"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+4eb893ca"});
 }
 
 /* jshint ignore:end */

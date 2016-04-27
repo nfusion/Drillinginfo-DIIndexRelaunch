@@ -127,6 +127,7 @@ export default Ember.Route.extend({
 					// chart series - total energy production
 					var series_mboe = [
 					    {
+					    	name: 'MBOE',
 							pointStart: Date.parse(ordered_data[0].rundatetime),
 					    	data: highchart_series
 					    }
@@ -173,6 +174,7 @@ export default Ember.Route.extend({
 
 					var series = [
 					    {
+					    	name: 'Rig Count',
 					    	pointStart: Date.parse(ordered_data[0].rig_date),
 					    	pointInterval: 24 * 3600 * 1000, // one day
 					    	// return a max of thirty days of data
