@@ -42,39 +42,6 @@ define('diindex-ember-dev/components/high-charts', ['exports', 'ember-highcharts
 define('diindex-ember-dev/components/oil-production-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
-define('diindex-ember-dev/components/permit-count-chart', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
-	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
-		chartMode: '', // empty, 'StockChart', or 'Map'
-		chartOptions: {
-			chart: {
-				type: 'line'
-			},
-			plotOptions: {
-				line: {
-					//showInLegend: false,
-					pointIntervalUnit: 'month'
-				}
-			},
-			title: {
-				text: 'Permit Count (30 days)'
-			},
-			xAxis: {
-				type: 'datetime',
-				title: {
-					text: 'Date'
-				}
-			},
-			yAxis: {
-				title: {
-					text: 'Rig Count'
-				},
-				min: 440
-			}
-		},
-		chartData: [],
-		theme: _diindexEmberDevThemesDrillinginfo['default']
-	});
-});
 define('diindex-ember-dev/components/rig-count-chart-other', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
@@ -269,6 +236,145 @@ define('diindex-ember-dev/components/us-production-capacity-widget', ['exports',
 define('diindex-ember-dev/components/us-rig-count-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _ember, _diindexEmberDevThemesDrillinginfo) {
+	exports['default'] = _ember['default'].Controller.extend({
+		theme: _diindexEmberDevThemesDrillinginfo['default'],
+		rigCount: {
+			chartOptions: {
+				chart: {
+					type: 'area'
+				},
+				plotOptions: {
+					area: {
+						showInLegend: false,
+						marker: {
+							enabled: false,
+							symbol: 'circle',
+							radius: 3,
+							states: {
+								hover: {
+									enabled: true
+								}
+							}
+						}
+					}
+				},
+				title: {
+					text: 'Rig Count (30 Days)'
+				},
+				xAxis: {
+					type: 'datetime',
+					title: {
+						text: 'Date'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Rig Count'
+					},
+					min: 440
+				}
+			}
+		},
+		permitCount: {
+			chartOptions: {
+				chart: {
+					type: 'line'
+				},
+				plotOptions: {
+					line: {
+						//showInLegend: false,
+						pointIntervalUnit: 'month'
+					}
+				},
+				title: {
+					text: 'Permit Count (30 days)'
+				},
+				xAxis: {
+					type: 'datetime',
+					title: {
+						text: 'Date'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Rig Count'
+					},
+					min: 440
+				}
+			}
+		},
+		prodCap: {
+			chartOptions: {
+				chart: {
+					type: 'column'
+				},
+				plotOptions: {
+					column: {
+						showInLegend: false,
+						pointIntervalUnit: 'month'
+					}
+				},
+				title: {
+					text: 'U.S. Production Capacity (MBOE/Day)'
+				},
+				xAxis: {
+					type: 'datetime',
+					title: {
+						text: 'Month'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'MBOE/Day'
+					},
+					min: 400
+				}
+			}
+		},
+		prodCapByType: {
+			chartOptions: {
+				chart: {
+					backgroundColor: {
+						linearGradient: [50, 500, 0, 0],
+						stops: [[0, 'rgb(255, 255, 255)'], [1, 'rgb(29, 84, 160)']]
+					},
+					type: 'line'
+				},
+				plotOptions: {
+					line: {
+						showInLegend: false,
+						pointIntervalUnit: 'month'
+
+					}
+				},
+				title: {
+					text: 'U.S. Production Capacity - Oil vs. Gas'
+				},
+				xAxis: {
+					type: 'datetime',
+					title: {
+						text: 'Month'
+					}
+				},
+				yAxis: [
+				// oil
+				{
+					title: {
+						text: 'MBBL/Day'
+					}
+				},
+				//gas
+				{
+					title: {
+						text: 'BCF/Day'
+					},
+					opposite: true
+				}]
+			}
+		}
+	});
+});
 define('diindex-ember-dev/helpers/delta-direction', ['exports', 'ember'], function (exports, _ember) {
 	exports.deltaDirection = deltaDirection;
 
@@ -455,19 +561,7 @@ define('diindex-ember-dev/router', ['exports', 'ember', 'diindex-ember-dev/confi
     location: _diindexEmberDevConfigEnvironment['default'].locationType
   });
 
-  Router.map(function () {
-    this.route('top-ops');
-    this.route('rig-count');
-    this.route('us-permits');
-    this.route('us-gas-prod-cap');
-    this.route('us-oil-prod-cap');
-    this.route('us-prod-cap');
-    this.route('us-prod-cap-charts');
-    this.route('top-ops-gas');
-    this.route('top-ops-oil');
-    this.route('top-counties-oil');
-    this.route('top-counties-gas');
-  });
+  Router.map(function () {});
 
   exports['default'] = Router;
 });
@@ -597,6 +691,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					// chart series - total energy production
 					var series_mboe = [{
+						name: 'MBOE',
 						pointStart: Date.parse(ordered_data[0].rundatetime),
 						data: highchart_series
 					}];
@@ -636,6 +731,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					highchart_series = highchart_series.reverse();
 
 					var series = [{
+						name: 'Rig Count',
 						pointStart: Date.parse(ordered_data[0].rig_date),
 						pointInterval: 24 * 3600 * 1000, // one day
 						// return a max of thirty days of data
@@ -712,6 +808,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					highchart_series = highchart_series.reverse();
 
 					var series = [{
+						name: 'Permit Count',
 						pointStart: Date.parse(ordered_data[0].rig_date),
 						pointInterval: 24 * 3600 * 1000, // one day
 						// return a max of thirty days of data
@@ -726,257 +823,6 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 			console.log(data);
 
 			return data;
-		}
-	});
-});
-define("diindex-ember-dev/routes/rig-count", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_rig_count?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements.slice(Math.max(data.contents.elements.length - 30, 0));
-			});
-		}
-	});
-});
-define("diindex-ember-dev/routes/top-counties-gas", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_county?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
-			});
-		}
-	});
-});
-define("diindex-ember-dev/routes/top-counties-oil", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_county?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
-			});
-		}
-	});
-});
-define("diindex-ember-dev/routes/top-ops-gas", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_operator?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
-			});
-		}
-	});
-});
-define("diindex-ember-dev/routes/top-ops-oil", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_operator?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
-			});
-		}
-	});
-});
-define('diindex-ember-dev/routes/top-ops', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Route.extend({});
-});
-define("diindex-ember-dev/routes/us-gas-prod-cap", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
-			});
-		}
-	});
-});
-/* globals $ */
-define("diindex-ember-dev/routes/us-oil-prod-cap", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
-			});
-		}
-	});
-});
-/* globals $ */
-define("diindex-ember-dev/routes/us-permits", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_permit_count?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements;
-			});
-		}
-	});
-});
-define("diindex-ember-dev/routes/us-prod-cap-charts", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var mboe_settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
-				},
-				"method": "GET"
-			};
-
-			var rig_settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_rig_count?%24format=json"
-				},
-				"method": "GET"
-			};
-
-			return new _ember["default"].RSVP.hash({
-
-				mboe: $.ajax(mboe_settings).then(function (data) {
-					var highchart_series = [];
-					var ordered_data = data.contents.elements.reverse();
-
-					$.each(ordered_data, function () {
-						highchart_series.push(this.newboeproduction_mboeperday);
-					});
-
-					highchart_series = highchart_series.reverse();
-
-					var series = [{
-						pointStart: Date.parse(ordered_data[0].rundatetime),
-						// return a max of seven months of data
-						data: highchart_series.slice(Math.max(highchart_series.length - 7, 0))
-					}];
-					return series;
-				}),
-
-				rigCount: $.ajax(rig_settings).then(function (data) {
-					var highchart_series = [];
-					var ordered_data = data.contents.elements.reverse();
-
-					$.each(ordered_data, function () {
-						highchart_series.push(this.rig_count);
-					});
-					highchart_series = highchart_series.reverse();
-
-					var series = [{
-						pointStart: Date.parse(ordered_data[0].rig_date),
-						pointInterval: 24 * 3600 * 1000, // one day
-						// return a max of thirty days of data
-						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
-					}];
-					return series;
-				})
-			});
-		}
-	});
-});
-define("diindex-ember-dev/routes/us-prod-cap", ["exports", "ember"], function (exports, _ember) {
-	exports["default"] = _ember["default"].Route.extend({
-		model: function model() {
-			var settings = {
-				"async": true,
-				"crossDomain": true,
-				"dataType": "jsonp",
-				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
-				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
-				},
-				"method": "GET"
-			};
-
-			return $.ajax(settings).then(function (data) {
-				return data.contents.elements.slice(Math.max(data.contents.elements.length - 7, 0));
-			});
 		}
 	});
 });
@@ -1577,98 +1423,6 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
     };
   })());
 });
-define("diindex-ember-dev/templates/components/permit-count-chart", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/permit-count-chart.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/components/rig-count-chart", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/rig-count-chart.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
 define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -1718,6 +1472,92 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
       })();
       var child1 = (function () {
         var child0 = (function () {
+          var child0 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.5",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 11,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 1
+                  }
+                },
+                "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("	");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createElement("td");
+                var el2 = dom.createComment("");
+                dom.appendChild(el1, el2);
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+                var morphs = new Array(1);
+                morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+                return morphs;
+              },
+              statements: [["content", "el", ["loc", [null, [12, 5], [12, 11]]]]],
+              locals: [],
+              templates: []
+            };
+          })();
+          var child1 = (function () {
+            return {
+              meta: {
+                "fragmentReason": false,
+                "revision": "Ember@2.4.5",
+                "loc": {
+                  "source": null,
+                  "start": {
+                    "line": 13,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 1
+                  }
+                },
+                "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
+              },
+              isEmpty: false,
+              arity: 0,
+              cachedFragment: null,
+              hasRendered: false,
+              buildFragment: function buildFragment(dom) {
+                var el0 = dom.createDocumentFragment();
+                var el1 = dom.createTextNode("	");
+                dom.appendChild(el0, el1);
+                var el1 = dom.createElement("td");
+                var el2 = dom.createTextNode("--");
+                dom.appendChild(el1, el2);
+                dom.appendChild(el0, el1);
+                var el1 = dom.createTextNode("\n");
+                dom.appendChild(el0, el1);
+                return el0;
+              },
+              buildRenderNodes: function buildRenderNodes() {
+                return [];
+              },
+              statements: [],
+              locals: [],
+              templates: []
+            };
+          })();
           return {
             meta: {
               "fragmentReason": false,
@@ -1729,7 +1569,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                   "column": 1
                 },
                 "end": {
-                  "line": 12,
+                  "line": 16,
                   "column": 1
                 }
               },
@@ -1741,24 +1581,20 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             hasRendered: false,
             buildFragment: function buildFragment(dom) {
               var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("	");
-              dom.appendChild(el0, el1);
-              var el1 = dom.createElement("td");
-              var el2 = dom.createComment("");
-              dom.appendChild(el1, el2);
-              dom.appendChild(el0, el1);
-              var el1 = dom.createTextNode("\n");
+              var el1 = dom.createComment("");
               dom.appendChild(el0, el1);
               return el0;
             },
             buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
               var morphs = new Array(1);
-              morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+              morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+              dom.insertBoundary(fragment, 0);
+              dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["content", "el", ["loc", [null, [11, 5], [11, 11]]]]],
+            statements: [["block", "if", [["get", "el", ["loc", [null, [11, 7], [11, 9]]]]], [], 0, 1, ["loc", [null, [11, 1], [15, 8]]]]],
             locals: ["el"],
-            templates: []
+            templates: [child0, child1]
           };
         })();
         return {
@@ -1772,7 +1608,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                 "column": 0
               },
               "end": {
-                "line": 14,
+                "line": 18,
                 "column": 0
               }
             },
@@ -1803,7 +1639,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
             return morphs;
           },
-          statements: [["block", "each", [["get", "item", ["loc", [null, [10, 9], [10, 13]]]]], [], 0, null, ["loc", [null, [10, 1], [12, 10]]]]],
+          statements: [["block", "each", [["get", "item", ["loc", [null, [10, 9], [10, 13]]]]], [], 0, null, ["loc", [null, [10, 1], [16, 10]]]]],
           locals: ["item"],
           templates: [child0]
         };
@@ -1821,7 +1657,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
               "column": 0
             },
             "end": {
-              "line": 16,
+              "line": 20,
               "column": 0
             }
           },
@@ -1861,7 +1697,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           morphs[1] = dom.createMorphAt(element0, 3, 3);
           return morphs;
         },
-        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [4, 9], [4, 19]]]]], [], 0, null, ["loc", [null, [4, 1], [6, 10]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [8, 8], [8, 16]]]]], [], 1, null, ["loc", [null, [8, 0], [14, 9]]]]],
+        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [4, 9], [4, 19]]]]], [], 0, null, ["loc", [null, [4, 1], [6, 10]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [8, 8], [8, 16]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 9]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -1874,11 +1710,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 16,
+              "line": 20,
               "column": 0
             },
             "end": {
-              "line": 18,
+              "line": 22,
               "column": 0
             }
           },
@@ -1920,7 +1756,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             "column": 0
           },
           "end": {
-            "line": 18,
+            "line": 22,
             "column": 7
           }
         },
@@ -1943,7 +1779,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [18, 7]]]]],
+      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [22, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -1970,98 +1806,6 @@ define("diindex-ember-dev/templates/components/us-permit-count-widget", ["export
           }
         },
         "moduleName": "diindex-ember-dev/templates/components/us-permit-count-widget.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/components/us-prod-by-type-chart", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/us-prod-by-type-chart.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/components/us-prod-cap-chart", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/components/us-prod-cap-chart.hbs"
       },
       isEmpty: false,
       arity: 0,
@@ -2353,7 +2097,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 28], [5, 42]]]]], [], []]], ["loc", [null, [5, 2], [5, 44]]]]],
+        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 24], [5, 38]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "rigCount.chartOptions", ["loc", [null, [5, 52], [5, 73]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [5, 80], [5, 85]]]]], [], []]], ["loc", [null, [5, 2], [5, 87]]]]],
         locals: [],
         templates: []
       };
@@ -2437,7 +2181,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "permit-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [13, 31], [13, 54]]]]], [], []]], ["loc", [null, [13, 2], [13, 56]]]]],
+        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [13, 24], [13, 47]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "permitCount.chartOptions", ["loc", [null, [13, 61], [13, 85]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [13, 92], [13, 97]]]]], [], []]], ["loc", [null, [13, 2], [13, 99]]]]],
         locals: [],
         templates: []
       };
@@ -2659,7 +2403,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[4] = dom.createMorphAt(element3, 9, 9);
           return morphs;
         },
-        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [36, 42], [36, 70]]]]], [], []]], ["loc", [null, [36, 3], [36, 72]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [37, 31], [37, 68]]]]], [], []]], ["loc", [null, [37, 3], [37, 70]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [41, 34], [41, 62]]]]], [], []]], ["loc", [null, [41, 3], [41, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [43, 34], [43, 62]]]]], [], []]], ["loc", [null, [43, 3], [43, 64]]]], ["inline", "us-prod-by-type-chart", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [44, 35], [44, 66]]]]], [], []]], ["loc", [null, [44, 3], [44, 68]]]]],
+        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [36, 42], [36, 70]]]]], [], []]], ["loc", [null, [36, 3], [36, 72]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [37, 25], [37, 62]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [37, 77], [37, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [37, 104], [37, 109]]]]], [], []]], ["loc", [null, [37, 3], [37, 111]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [41, 34], [41, 62]]]]], [], []]], ["loc", [null, [41, 3], [41, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [43, 34], [43, 62]]]]], [], []]], ["loc", [null, [43, 3], [43, 64]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [44, 25], [44, 56]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [44, 70], [44, 96]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [44, 103], [44, 108]]]]], [], []]], ["loc", [null, [44, 3], [44, 110]]]]],
         locals: [],
         templates: []
       };
@@ -3090,597 +2834,6 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.rigCount", ["loc", [null, [20, 8], [20, 22]]]]], [], 4, 5, ["loc", [null, [20, 2], [24, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [32, 8], [32, 26]]]]], [], 6, 7, ["loc", [null, [32, 2], [48, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [56, 8], [56, 28]]]]], [], 8, 9, ["loc", [null, [56, 2], [73, 9]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8, child9]
-    };
-  })());
-});
-define("diindex-ember-dev/templates/rig-count", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 3,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/rig-count.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("U.S. Rig Count");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/top-counties-gas", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/top-counties-gas.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/top-counties-oil", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/top-counties-oil.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/top-ops-gas", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/top-ops-gas.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/top-ops-oil", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/top-ops-oil.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/top-ops", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 3,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/top-ops.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("Top 10 Operators");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/us-gas-prod-cap", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 3,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/us-gas-prod-cap.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("U.S. Gas Production Capacity");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        return morphs;
-      },
-      statements: [["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model", ["loc", [null, [2, 31], [2, 36]]]]], [], []]], ["loc", [null, [2, 0], [2, 38]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/us-oil-prod-cap", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 38
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/us-oil-prod-cap.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("U.S. Oil Production Capacity");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        dom.insertBoundary(fragment, null);
-        return morphs;
-      },
-      statements: [["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model", ["loc", [null, [2, 31], [2, 36]]]]], [], []]], ["loc", [null, [2, 0], [2, 38]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/us-permits", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 3,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/us-permits.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("U.S. Permits");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/us-prod-cap-charts", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 6,
-            "column": 0
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/us-prod-cap-charts.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("U.S. Production Capacity Charts");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(3);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[1] = dom.createMorphAt(fragment, 4, 4, contextualElement);
-        morphs[2] = dom.createMorphAt(fragment, 6, 6, contextualElement);
-        return morphs;
-      },
-      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]], ["inline", "us-prod-cap-chart", [], ["content", ["subexpr", "@mut", [["get", "model.mboe", ["loc", [null, [3, 28], [3, 38]]]]], [], []]], ["loc", [null, [3, 0], [3, 40]]]], ["inline", "rig-count-chart", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 26], [5, 40]]]]], [], []]], ["loc", [null, [5, 0], [5, 42]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
-define("diindex-ember-dev/templates/us-prod-cap", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    var child0 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.5",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 3,
-              "column": 3
-            },
-            "end": {
-              "line": 3,
-              "column": 46
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/us-prod-cap.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("See Charts");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
-        },
-        statements: [],
-        locals: [],
-        templates: []
-      };
-    })();
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["multiple-nodes", "wrong-type"]
-        },
-        "revision": "Ember@2.4.5",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 3,
-            "column": 62
-          }
-        },
-        "moduleName": "diindex-ember-dev/templates/us-prod-cap.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h3");
-        var el2 = dom.createTextNode("U.S. Production Capacity");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("p");
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [4]), 0, 0);
-        return morphs;
-      },
-      statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model", ["loc", [null, [2, 39], [2, 44]]]]], [], []]], ["loc", [null, [2, 0], [2, 46]]]], ["block", "link-to", ["us-prod-cap-charts"], [], 0, null, ["loc", [null, [3, 3], [3, 58]]]]],
-      locals: [],
-      templates: [child0]
     };
   })());
 });

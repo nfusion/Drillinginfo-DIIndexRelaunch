@@ -8,7 +8,11 @@
 {{#each obj.data as |item|}}
 	<tr>
 	{{#each item as |el|}}
+	{{#if el }}
 	<td>{{el}}</td>
+	{{else}}
+	<td>--</td>
+	{{/if}}
 	{{/each}}
 	</tr>
 {{/each}}

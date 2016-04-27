@@ -25,13 +25,13 @@ define('diindex-ember-dev/tests/components/oil-production-widget.jshint', ['expo
     assert.ok(true, 'components/oil-production-widget.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/components/permit-count-chart.jshint', ['exports'], function (exports) {
+define('diindex-ember-dev/tests/components/rig-count-chart-other.jshint', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('JSHint - components/permit-count-chart.js');
+  QUnit.module('JSHint - components/rig-count-chart-other.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/permit-count-chart.js should pass jshint.');
+    assert.ok(true, 'components/rig-count-chart-other.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/components/rig-count-chart.jshint', ['exports'], function (exports) {
@@ -95,6 +95,15 @@ define('diindex-ember-dev/tests/components/us-rig-count-widget.jshint', ['export
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'components/us-rig-count-widget.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/controllers/index.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - controllers/index.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'controllers/index.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/helpers/delta-direction.jshint', ['exports'], function (exports) {
@@ -218,7 +227,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -263,7 +272,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
+            'revision': 'Ember@2.4.5',
             'loc': {
               'source': null,
               'start': {
@@ -301,7 +310,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -368,7 +377,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -413,7 +422,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
+            'revision': 'Ember@2.4.5',
             'loc': {
               'source': null,
               'start': {
@@ -451,7 +460,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -501,60 +510,6 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
     assert.ok(true, 'integration/components/oil-production-widget-test.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/integration/components/permit-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('permit-count-chart', 'permitCountChart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/permit-count-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/permit-count-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/permit-count-chart-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/rig-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('rig-count-chart', 'Integration | Component | rig count chart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/rig-count-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/rig-count-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/rig-count-chart-test.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('top-ten', 'Integration | Component | top ten', {
@@ -572,7 +527,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -616,7 +571,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
+            'revision': 'Ember@2.4.5',
             'loc': {
               'source': null,
               'start': {
@@ -654,7 +609,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -721,7 +676,7 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -765,7 +720,7 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
+            'revision': 'Ember@2.4.5',
             'loc': {
               'source': null,
               'start': {
@@ -803,7 +758,7 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -853,60 +808,6 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
     assert.ok(true, 'integration/components/us-permit-count-widget-test.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/integration/components/us-prod-by-type-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('us-prod-by-type-chart', 'usProdByTypeChart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-by-type-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/us-prod-by-type-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/us-prod-by-type-chart-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('us-prod-cap-chart', 'Integration | Component | us prod cap chart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/us-prod-cap-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/us-prod-cap-chart-test.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/integration/components/us-production-capacity-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('us-production-capacity-widget', 'Integration | Component | us production capacity widget', {
@@ -924,7 +825,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -968,7 +869,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
+            'revision': 'Ember@2.4.5',
             'loc': {
               'source': null,
               'start': {
@@ -1006,7 +907,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -1073,7 +974,7 @@ define('diindex-ember-dev/tests/integration/components/us-rig-count-widget-test'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -1117,7 +1018,7 @@ define('diindex-ember-dev/tests/integration/components/us-rig-count-widget-test'
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.4',
+            'revision': 'Ember@2.4.5',
             'loc': {
               'source': null,
               'start': {
@@ -1155,7 +1056,7 @@ define('diindex-ember-dev/tests/integration/components/us-rig-count-widget-test'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.4',
+          'revision': 'Ember@2.4.5',
           'loc': {
             'source': null,
             'start': {
@@ -1232,105 +1133,6 @@ define('diindex-ember-dev/tests/routes/index.jshint', ['exports'], function (exp
     assert.ok(true, 'routes/index.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/routes/rig-count.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/rig-count.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/rig-count.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/top-counties-gas.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/top-counties-gas.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/top-counties-gas.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/top-counties-oil.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/top-counties-oil.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/top-counties-oil.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/top-ops-gas.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/top-ops-gas.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/top-ops-gas.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/top-ops-oil.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/top-ops-oil.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/top-ops-oil.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/top-ops.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/top-ops.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/top-ops.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/us-gas-prod-cap.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/us-gas-prod-cap.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/us-gas-prod-cap.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/us-oil-prod-cap.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/us-oil-prod-cap.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/us-oil-prod-cap.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/us-permits.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/us-permits.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/us-permits.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/us-prod-cap-charts.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/us-prod-cap-charts.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/us-prod-cap-charts.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/routes/us-prod-cap.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - routes/us-prod-cap.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/us-prod-cap.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/test-helper', ['exports', 'diindex-ember-dev/tests/helpers/resolver', 'ember-qunit'], function (exports, _diindexEmberDevTestsHelpersResolver, _emberQunit) {
 
   (0, _emberQunit.setResolver)(_diindexEmberDevTestsHelpersResolver['default']);
@@ -1353,6 +1155,28 @@ define('diindex-ember-dev/tests/themes/drillinginfo.jshint', ['exports'], functi
     assert.ok(true, 'themes/drillinginfo.js should pass jshint.');
   });
 });
+define('diindex-ember-dev/tests/unit/controllers/index-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:index', 'Unit | Controller | index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('diindex-ember-dev/tests/unit/controllers/index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/index-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/index-test.js should pass jshint.');
+  });
+});
 define('diindex-ember-dev/tests/unit/helpers/delta-direction-test', ['exports', 'diindex-ember-dev/helpers/delta-direction', 'qunit'], function (exports, _diindexEmberDevHelpersDeltaDirection, _qunit) {
 
   (0, _qunit.module)('Unit | Helper | delta direction');
@@ -1370,237 +1194,6 @@ define('diindex-ember-dev/tests/unit/helpers/delta-direction-test.jshint', ['exp
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/helpers/delta-direction-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/rig-count-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:rig-count', 'Unit | Route | rig count', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/rig-count-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/rig-count-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/rig-count-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-counties-gas-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:top-counties-gas', 'Unit | Route | top counties gas', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-counties-gas-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/top-counties-gas-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/top-counties-gas-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-counties-oil-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:top-counties-oil', 'Unit | Route | top counties oil', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-counties-oil-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/top-counties-oil-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/top-counties-oil-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-ops-gas-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:top-ops-gas', 'Unit | Route | top ops gas', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-ops-gas-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/top-ops-gas-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/top-ops-gas-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-ops-oil-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:top-ops-oil', 'Unit | Route | top ops oil', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-ops-oil-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/top-ops-oil-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/top-ops-oil-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-ops-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:top-ops', 'Unit | Route | top ops', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/top-ops-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/top-ops-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/top-ops-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-gas-prod-cap-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:us-gas-prod-cap', 'Unit | Route | us gas prod cap', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-gas-prod-cap-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/us-gas-prod-cap-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/us-gas-prod-cap-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-oil-prod-cap-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:us-oil-prod-cap', 'Unit | Route | us oil prod cap', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-oil-prod-cap-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/us-oil-prod-cap-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/us-oil-prod-cap-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-permits-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:us-permits', 'Unit | Route | us permits', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-permits-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/us-permits-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/us-permits-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-prod-cap-charts-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:us-prod-cap-charts', 'Unit | Route | us prod cap charts', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-prod-cap-charts-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/us-prod-cap-charts-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/us-prod-cap-charts-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-prod-cap-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleFor)('route:us-prod-cap', 'Unit | Route | us prod cap', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('diindex-ember-dev/tests/unit/routes/us-prod-cap-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - unit/routes/us-prod-cap-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/us-prod-cap-test.js should pass jshint.');
   });
 });
 /* jshint ignore:start */
