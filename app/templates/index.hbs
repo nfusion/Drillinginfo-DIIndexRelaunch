@@ -2,7 +2,7 @@
 	<div class="large-6 columns">
 		<h3>Rig Count</h3>
 		{{#if model.rigCount}}
-		{{rig-count-chart content=model.rigCount}}
+		{{high-charts content=model.rigCount chartOptions=rigCount.chartOptions theme=theme}}
 		{{else}}
 		<p>Rig Count data is not available at this time.</p>
 		{{/if}}
@@ -10,7 +10,7 @@
 	<div class="large-6 columns">
 		<h3>Permit Count</h3>
 		{{#if model.permitCount.chart}}
-		{{permit-count-chart content=model.permitCount.chart}}
+		{{high-charts content=model.permitCount.chart chartOptions=permitCount.chartOptions theme=theme}}
 		{{else}}
 		<p>Permit Count data is not available at this time.</p>
 		{{/if}}
@@ -26,14 +26,14 @@
 
 			<h3>U.S. Production Capacity</h3>
 			{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
-			{{us-prod-cap-chart content=model.prodCapacity.usProdCapMboeChart}}
+			{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
 		</div>
 		<div class="large-6 columns">
 			<h3>U.S. Oil Production Capacity</h3>
 			{{oil-production-widget months=model.prodCapacity.usProdCap}}
 			<h3>U.S. Gas Production Capacity</h3>
 			{{gas-production-widget months=model.prodCapacity.usProdCap}}
-			{{us-prod-by-type-chart content=model.prodCapacity.prodOilVsGas}}
+			{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
 		</div>
 		{{else}}
 		<p>Production Capacity data is not available at this time.</p>

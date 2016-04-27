@@ -25,24 +25,6 @@ define('diindex-ember-dev/tests/components/oil-production-widget.jshint', ['expo
     assert.ok(true, 'components/oil-production-widget.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/components/permit-count-chart.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/permit-count-chart.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/permit-count-chart.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/components/rig-count-chart.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/rig-count-chart.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/rig-count-chart.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/components/top-ten.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -61,24 +43,6 @@ define('diindex-ember-dev/tests/components/us-permit-count-widget.jshint', ['exp
     assert.ok(true, 'components/us-permit-count-widget.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/components/us-prod-by-type-chart.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/us-prod-by-type-chart.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/us-prod-by-type-chart.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/components/us-prod-cap-chart.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/us-prod-cap-chart.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/us-prod-cap-chart.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/components/us-production-capacity-widget.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -95,6 +59,15 @@ define('diindex-ember-dev/tests/components/us-rig-count-widget.jshint', ['export
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'components/us-rig-count-widget.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/controllers/index.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - controllers/index.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'controllers/index.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/helpers/delta-direction.jshint', ['exports'], function (exports) {
@@ -501,60 +474,6 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
     assert.ok(true, 'integration/components/oil-production-widget-test.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/integration/components/permit-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('permit-count-chart', 'permitCountChart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/permit-count-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/permit-count-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/permit-count-chart-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/rig-count-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('rig-count-chart', 'Integration | Component | rig count chart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/rig-count-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/rig-count-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/rig-count-chart-test.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('top-ten', 'Integration | Component | top ten', {
@@ -851,60 +770,6 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/us-permit-count-widget-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-by-type-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('us-prod-by-type-chart', 'usProdByTypeChart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-by-type-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/us-prod-by-type-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/us-prod-by-type-chart-test.js should pass jshint.');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('us-prod-cap-chart', 'Integration | Component | us prod cap chart', {
-    needs: ['component:high-charts']
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-    assert.expect(2);
-
-    // creates the component instance
-    var component = this.subject();
-    assert.equal(component._state, 'preRender');
-
-    // appends the component to the page
-    this.render(assert);
-    assert.equal(component._state, 'inDOM');
-  });
-});
-define('diindex-ember-dev/tests/integration/components/us-prod-cap-chart-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/us-prod-cap-chart-test.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/us-prod-cap-chart-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/integration/components/us-production-capacity-widget-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
@@ -1351,6 +1216,28 @@ define('diindex-ember-dev/tests/themes/drillinginfo.jshint', ['exports'], functi
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'themes/drillinginfo.js should pass jshint.');
+  });
+});
+define('diindex-ember-dev/tests/unit/controllers/index-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('controller:index', 'Unit | Controller | index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+});
+define('diindex-ember-dev/tests/unit/controllers/index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/controllers/index-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/index-test.js should pass jshint.');
   });
 });
 define('diindex-ember-dev/tests/unit/helpers/delta-direction-test', ['exports', 'diindex-ember-dev/helpers/delta-direction', 'qunit'], function (exports, _diindexEmberDevHelpersDeltaDirection, _qunit) {
