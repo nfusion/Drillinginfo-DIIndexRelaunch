@@ -5,13 +5,13 @@ export default Highcharts.extend({
 	chartMode: '', // empty, 'StockChart', or 'Map'
 	chartOptions: {
 		chart: {
-		    type: 'areaspline'
+		    type: 'spline'
 		},
 		plotOptions: {
-			areaspline: {
+			spline: {
 				showInLegend: false,
-				dashStyle: 'ShortDot',
-				lineWidth: 3,
+				dashStyle: 'solid',
+				lineWidth: 2,
 				//lineColor: '#1d54a0',
 				states: {
 					hover: {
@@ -20,7 +20,7 @@ export default Highcharts.extend({
 				},
 				marker: {
                     enabled: true,
-                    symbol: 'diamond',
+                    symbol: 'circle',
                     radius: 3,
                     fillColor: '#296ab1',
                     lineColor: '#296ab1',
