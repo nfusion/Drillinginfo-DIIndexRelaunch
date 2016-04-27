@@ -105,7 +105,7 @@ export default Ember.Route.extend({
 					if (data.status.http_code !== 200) return;
 
 					var prodCapData = {
-						usProdCap : data.contents.elements.slice(0,1)
+						usProdCap: data.contents.elements.slice(0,1)
 					};
 
 
@@ -195,7 +195,7 @@ export default Ember.Route.extend({
 							'Prev.',
 							'MMCF/Day'
 						],
-						data : []
+						data: []
 					};
 					
 					$.each(data.contents.elements, function(){
@@ -224,7 +224,7 @@ export default Ember.Route.extend({
 							'Prev.',
 							'MBBL/Day'
 						],
-						data : []
+						data: []
 					};
 					
 					$.each(data.contents.elements, function(){
@@ -252,7 +252,7 @@ export default Ember.Route.extend({
 							'Prev.',
 							'MMCF/Day'
 						],
-						data : []
+						data: []
 					};
 					
 					$.each(data.contents.elements, function(){
@@ -279,7 +279,7 @@ export default Ember.Route.extend({
 							'Prev.',
 							'MBBL/Day'
 						],
-						data : []
+						data: []
 					};
 					
 					$.each(data.contents.elements, function(){
@@ -297,7 +297,7 @@ export default Ember.Route.extend({
 				}
 			), 
 
-			permitCount : $.ajax(permit_count_settings).then(
+			permitCount: $.ajax(permit_count_settings).then(
 				// needs to return tile and chart
 				function(data){
 					if (data.status.http_code !== 200) return;
@@ -314,6 +314,7 @@ export default Ember.Route.extend({
 
 					var series = [
 					    {
+					    	name: 'Permit Count',
 					    	pointStart: Date.parse(ordered_data[0].rig_date),
 					    	pointInterval: 24 * 3600 * 1000, // one day
 					    	// return a max of thirty days of data

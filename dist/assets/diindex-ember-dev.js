@@ -653,6 +653,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					highchart_series = highchart_series.reverse();
 
 					var series = [{
+						name: 'Permit Count',
 						pointStart: Date.parse(ordered_data[0].rig_date),
 						pointInterval: 24 * 3600 * 1000, // one day
 						// return a max of thirty days of data
