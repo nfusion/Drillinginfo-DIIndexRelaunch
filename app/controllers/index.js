@@ -6,13 +6,13 @@ export default Ember.Controller.extend({
 	rigCount: {
 		chartOptions: {
 			chart: {
-			    type: 'area'
+			    type: 'areaspline'
 			},
 			plotOptions: {
-				area: {
+				areaspline: {
 					showInLegend: false,
 					marker: {
-	                    enabled: false,
+	                    enabled: true,
 	                    symbol: 'circle',
 	                    radius: 3,
 	                    states: {
