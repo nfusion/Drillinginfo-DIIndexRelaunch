@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
 			},
 			plotOptions: {
 				line: {
-					//showInLegend: false,
+					showInLegend: false,
 			    	pointIntervalUnit: 'month'
 			    }
 			},

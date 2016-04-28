@@ -101,7 +101,7 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				},
 				plotOptions: {
 					line: {
-						//showInLegend: false,
+						showInLegend: false,
 						pointIntervalUnit: 'month'
 					}
 				},
@@ -2577,8 +2577,9 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 				stops: [[0, '#FFFFFF'], [1, '#ffffff']]
 			},
 			style: {
-				fontFamily: "'Unica One', sans-serif",
-				color: '#ffffff'
+				fontFamily: "'Unica One', sans-serif;",
+				color: '#ffffff',
+				textTransform: "uppercase"
 			},
 			plotBorderColor: '#333333'
 		},
@@ -2596,15 +2597,15 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 			}
 		},
 		xAxis: {
-			visible: false,
-			gridLineColor: '#fff',
-			gridLineWidth: 1,
+			//visible: false,
+			//gridLineColor: '#fff',
+			gridLineWidth: 0,
 			labels: {
 				style: {
 					color: '#333'
 				}
 			},
-			lineColor: 'transparent',
+			//lineColor: 'transparent',
 			lineWidth: 0,
 			minorGridLineColor: '#000000',
 			minorGridLineWidth: 0,
@@ -2619,15 +2620,15 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 			}
 		},
 		yAxis: {
-			visible: false,
-			gridLineColor: '#fff',
-			gridLineWidth: 5,
+			//visible: false,
+			//gridLineColor: '#fff',
+			gridLineWidth: 1,
 			labels: {
 				style: {
-					color: 'red'
+					color: 'black'
 				}
 			},
-			lineColor: 'transparent',
+			//lineColor: 'transparent',
 			lineWidth: 0,
 			minorGridLineColor: '#000000',
 			minorGridLineWidth: 0,

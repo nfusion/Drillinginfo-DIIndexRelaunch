@@ -21,8 +21,9 @@ export default Highcharts.extend ({
 			]
 		},
 		style: {
-			fontFamily: "'Unica One', sans-serif",
-			color: '#ffffff'
+			fontFamily: "'Unica One', sans-serif;",
+			color: '#ffffff',
+			textTransform: "uppercase"
 		},
 		plotBorderColor: '#333333'
 	},
@@ -40,15 +41,15 @@ export default Highcharts.extend ({
 		}
 	},
 	xAxis: {
-		visible: false,
-		gridLineColor: '#fff',
-		gridLineWidth: 1,
+		//visible: false,
+		//gridLineColor: '#fff',
+		gridLineWidth: 0,
 		labels: {
 			style: {
 				color: '#333'
 			}
 		},
-		lineColor: 'transparent',
+		//lineColor: 'transparent',
 		lineWidth: 0,
 		minorGridLineColor: '#000000',
 		minorGridLineWidth: 0,
@@ -63,15 +64,15 @@ export default Highcharts.extend ({
 		}
 	},
 	yAxis: {
-		visible: false,
-		gridLineColor: '#fff',
-		gridLineWidth: 5,
+		//visible: false,
+		//gridLineColor: '#fff',
+		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: 'red'
+				color: 'black'
 			}
 		},
-		lineColor: 'transparent',
+		//lineColor: 'transparent',
 		lineWidth: 0,
 		minorGridLineColor: '#000000',
 		minorGridLineWidth: 0,
