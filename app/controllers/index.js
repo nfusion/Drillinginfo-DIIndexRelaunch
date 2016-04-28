@@ -99,13 +99,7 @@ export default Ember.Controller.extend({
 	prodCapByType : {
 		chartOptions: {
 			chart: {
-			    backgroundColor: {
-	                linearGradient: [50, 500, 0, 0],
-	                stops: [
-	                    [0, 'rgb(255, 255, 255)'],
-	                    [1, 'rgb(29, 84, 160)']
-	                ]
-	            },
+			    backgroundColor: '#fff',
 	            type: 'line',
 			},
 			plotOptions: {
@@ -116,7 +110,8 @@ export default Ember.Controller.extend({
 			    },
 			},
 			title: {
-			    text: 'U.S. Production Capacity - Oil vs. Gas'
+			    text: 'U.S. Production Capacity - Oil vs. Gas',
+			    style: {"fontSize": "20px"}
 			},
 			xAxis: {
 				type: 'datetime',
