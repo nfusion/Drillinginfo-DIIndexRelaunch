@@ -5,7 +5,7 @@
 
 // Load the fonts
 Highcharts.createElement('link', {
-	href: 'https://fonts.googleapis.com/css?family=Unica+One',
+	href: 'https:https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300',
 	rel: 'stylesheet',
 	type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
@@ -13,23 +13,16 @@ Highcharts.createElement('link', {
 export default Highcharts.extend ({
 	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
-		backgroundColor: {
-			linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-			stops: [
-				[0, '#FFFFFF'],
-				[1, '#ffffff']
-			]
-		},
+		backgroundColor: '#fff',
 		style: {
-			fontFamily: "'Unica One', sans-serif;",
-			color: '#ffffff',
-			textTransform: "uppercase"
+			fontFamily: '"Open Sans Condensed", sans-serif;',
+			color: '#ffffff'
 		},
 		plotBorderColor: '#333333'
 	},
 	title: {
 		style: {
-			color: '#FFFFFF',
+			color: '#585b5d',
 			textTransform: 'uppercase',
 			fontSize: '20px'
 		}
@@ -41,58 +34,58 @@ export default Highcharts.extend ({
 		}
 	},
 	xAxis: {
-		//visible: false,
-		//gridLineColor: '#fff',
-		gridLineWidth: 0,
+		visible: true,
+		gridLineColor: '#fff',
+		gridLineWidth: 1,
 		labels: {
 			style: {
 				color: '#333'
 			}
 		},
-		//lineColor: 'transparent',
-		lineWidth: 0,
-		minorGridLineColor: '#000000',
-		minorGridLineWidth: 0,
+		lineColor: '#333',
+		lineWidth: 1,
+		minorGridLineColor: '#333',
+		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
 			style: {
-				color: '#ffffff'
+				color: '#333'
 
 			}
 		}
 	},
 	yAxis: {
-		//visible: false,
-		//gridLineColor: '#fff',
+		visible: true,
+		gridLineColor: '#e9e7e4',
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: 'black'
+				color: '#333'
 			}
 		},
-		//lineColor: 'transparent',
+		lineColor: '#333',
 		lineWidth: 0,
 		minorGridLineColor: '#000000',
-		minorGridLineWidth: 0,
+		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
 			style: {
-				color: '#ffffff'
+				color: '#333'
 
 			}
 		}
 	},
 	tooltip: {
-		backgroundColor: 'rgba(120, 190, 32, 0.85)',
+		pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+		backgroundColor: '#585b5d',
 		style: {
 			color: '#FFF',
-			fontSize: '18px',
-			padding: '10px',
-			paddingTop: '0px'
+			fontSize: '15px',
+			padding: '8px'
 		}
 	},
 	plotOptions: {
@@ -115,6 +108,7 @@ export default Highcharts.extend ({
 			showInLegend: false,
 			marker: {
                 enabled: false,
+                fillColor: '#585b5d',
                 symbol: 'circle',
                 radius: 2,
                 states: {
@@ -123,13 +117,15 @@ export default Highcharts.extend ({
                     }
                 }
             },
-			line: {
-				lineWidth: 8,
-				marker: {
-					lineWidth: 5,
-					lineColor: '#fff',
-					fillColor: '#1d54a0'
-				}
+		},
+		line: {
+			lineWidth: 2,
+			marker: {
+				lineWidth: 2,
+				lineColor: '#fff',
+				fillColor: '#585b5d',
+				symbol: 'circle',
+				radius: 8
 			}
 		}
 	},
