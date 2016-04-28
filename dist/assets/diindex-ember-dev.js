@@ -106,7 +106,7 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 					}
 				},
 				title: {
-					text: 'Permit Count (30 days)'
+					text: 'Permit Count'
 				},
 				xAxis: {
 					type: 'datetime',
@@ -116,9 +116,8 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				},
 				yAxis: {
 					title: {
-						text: 'Rig Count'
-					},
-					min: 440
+						text: 'Permit Count'
+					}
 				}
 			}
 		},
@@ -402,7 +401,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
 				}
 			};
 
@@ -413,7 +412,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
 				}
 			};
 
@@ -424,7 +423,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
 				}
 			};
 
@@ -435,7 +434,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
 				}
 			};
 
@@ -446,7 +445,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_operator$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_operator?$format=json"
 				}
 			};
 
@@ -457,7 +456,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
 				}
 			};
 
@@ -468,7 +467,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
+					"url": "http://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
 				}
 			};
 
@@ -487,6 +486,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 				function (data) {
 					if (data.status.http_code !== 200) return;
+					//console.log(data);
 
 					var prodCapData = {
 						usProdCap: data.contents.elements.slice(0, 1)
@@ -510,7 +510,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					// chart series - total energy production
 					var series_mboe = [{
 						name: 'MBOE',
-						pointStart: Date.parse(ordered_data[0].rundatetime),
+						pointStart: new Date(ordered_data[0].rundatetime).getTime(),
 						data: highchart_series
 					}];
 
@@ -519,12 +519,12 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					// chart series - oil vs gas production
 					var series_oil_v_gas = [{
 						name: 'Oil',
-						pointStart: Date.parse(ordered_data[0].rundatetime),
+						pointStart: new Date(ordered_data[0].rundatetime).getTime(),
 						data: oil_series,
 						yAxis: 0
 					}, {
 						name: 'Gas',
-						pointStart: Date.parse(ordered_data[0].rundatetime),
+						pointStart: new Date(ordered_data[0].rundatetime).getTime(),
 						data: gas_series,
 						yAxis: 1
 					}];
@@ -542,6 +542,8 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					var highchart_series = [];
 					var ordered_data = data.contents.elements.reverse();
+					// return a max of thirty days of data
+					ordered_data = ordered_data.slice(Math.max(highchart_series.length - 30, 0));
 
 					$.each(ordered_data, function () {
 						highchart_series.push(this.rig_count);
@@ -550,10 +552,9 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					var series = [{
 						name: 'Rig Count',
-						pointStart: Date.parse(ordered_data[0].rig_date),
+						pointStart: new Date(ordered_data[0].rig_date).getTime(),
 						pointInterval: 24 * 3600 * 1000, // one day
-						// return a max of thirty days of data
-						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+						data: highchart_series
 					}];
 					return series;
 				}),
@@ -585,6 +586,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				}),
 
 				topOperatorsGas: $.ajax(to_gas_settings).then(function (data) {
+					console.log(data);
 					var topten = {
 						labels: ['', 'Operator', 'Prev.', 'MMCF/Day'],
 						data: []
@@ -618,19 +620,20 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					var permitData = {};
 
 					var highchart_series = [];
+					// most recent month of data should be the last data point
 					var ordered_data = data.contents.elements.reverse();
+					// return a max of six months of data
+					ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
 
 					$.each(ordered_data, function () {
-						highchart_series.push(this.rig_count);
+						highchart_series.push(this.permit_count);
 					});
 					highchart_series = highchart_series.reverse();
 
 					var series = [{
 						name: 'Permit Count',
-						pointStart: Date.parse(ordered_data[0].rig_date),
-						pointInterval: 24 * 3600 * 1000, // one day
-						// return a max of thirty days of data
-						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+						pointStart: new Date(ordered_data[0].year, ordered_data[0].month - 1).getTime(),
+						data: highchart_series
 					}];
 
 					permitData.chart = series;
@@ -638,7 +641,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				})
 			});
 
-			console.log(data);
+			//console.log(data);
 
 			return data;
 		}
@@ -2805,7 +2808,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+f17c2767"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+f55e5844"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -2813,7 +2816,7 @@ define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+f17c2767"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+f55e5844"});
 }
 
 /* jshint ignore:end */
