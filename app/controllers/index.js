@@ -47,12 +47,12 @@ export default Ember.Controller.extend({
 			},
 			plotOptions: {
 				line: {
-					//showInLegend: false,
+					showInLegend: false,
 			    	pointIntervalUnit: 'month'
 			    }
 			},
 			title: {
-			    text: 'Permit Count (30 days)'
+			    text: 'Permit Count'
 			},
 			xAxis: {
 				type: 'datetime',
@@ -62,9 +62,8 @@ export default Ember.Controller.extend({
 			},
 			yAxis: {
 			    title: {
-			        text: 'Rig Count'
-			    },
-			    min: 440
+			        text: 'Permit Count'
+			    }
 			}
 		}
 	},

@@ -18,7 +18,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
 			}
 		};
 
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
 			}
 		};
 
@@ -40,7 +40,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
 			}
 		};
 
@@ -51,7 +51,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
 			}
 		};
 
@@ -62,7 +62,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_operator$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_operator?$format=json"
 			}
 		};
 
@@ -73,7 +73,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
 			}
 		};
 
@@ -84,7 +84,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
+				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
 			}
 		};
 		
@@ -104,12 +104,11 @@ export default Ember.Route.extend({
 
 				function(data){
 					if (data.status.http_code !== 200) return;
+					//console.log(data);
 
 					var prodCapData = {
 						usProdCap: data.contents.elements.slice(0,1)
 					};
-
-
 					
 					var highchart_series = [],
 						oil_series = [],
@@ -129,7 +128,7 @@ export default Ember.Route.extend({
 					var series_mboe = [
 					    {
 					    	name: 'MBOE',
-							pointStart: Date.parse(ordered_data[0].rundatetime),
+							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
 					    	data: highchart_series
 					    }
 					];
@@ -141,13 +140,13 @@ export default Ember.Route.extend({
 					var series_oil_v_gas = [
 						{
 							name: 'Oil',
-							pointStart: Date.parse(ordered_data[0].rundatetime),
+							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
 							data: oil_series,
 							yAxis: 0
 						},
 						{
 							name: 'Gas',
-							pointStart: Date.parse(ordered_data[0].rundatetime),
+							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
 							data: gas_series,
 							yAxis: 1
 						}
@@ -167,6 +166,8 @@ export default Ember.Route.extend({
 
 					var highchart_series = [];
 					var ordered_data = data.contents.elements.reverse();
+				    	// return a max of thirty days of data
+						ordered_data = ordered_data.slice(Math.max(highchart_series.length - 30, 0));
 
 					$.each(ordered_data, function(){
 						highchart_series.push(this.rig_count);
@@ -176,10 +177,9 @@ export default Ember.Route.extend({
 					var series = [
 					    {
 					    	name: 'Rig Count',
-					    	pointStart: Date.parse(ordered_data[0].rig_date),
+					    	pointStart: new Date(ordered_data[0].rig_date).getTime(),
 					    	pointInterval: 24 * 3600 * 1000, // one day
-					    	// return a max of thirty days of data
-					    	data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+					    	data: highchart_series
 					    }
 					];
 					return series;
@@ -246,6 +246,7 @@ export default Ember.Route.extend({
 
 			topOperatorsGas: $.ajax(to_gas_settings).then(
 				function(data){
+					console.log(data);
 					var topten = {
 						labels: [
 							'',
@@ -306,20 +307,21 @@ export default Ember.Route.extend({
 					var permitData = {};
 
 					var highchart_series = [];
+					// most recent month of data should be the last data point
 					var ordered_data = data.contents.elements.reverse();
+					// return a max of six months of data
+					ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
 
 					$.each(ordered_data, function(){
-						highchart_series.push(this.rig_count);
+						highchart_series.push(this.permit_count);
 					});
 					highchart_series = highchart_series.reverse();
 
 					var series = [
 					    {
 					    	name: 'Permit Count',
-					    	pointStart: Date.parse(ordered_data[0].rig_date),
-					    	pointInterval: 24 * 3600 * 1000, // one day
-					    	// return a max of thirty days of data
-					    	data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
+					    	pointStart: new Date(ordered_data[0].year, ordered_data[0].month-1).getTime(),
+					    	data: highchart_series
 					    }
 					];
 
@@ -329,7 +331,7 @@ export default Ember.Route.extend({
 			)
 		});
 
-		console.log(data);
+		//console.log(data);
 
 		return data;
 	}
