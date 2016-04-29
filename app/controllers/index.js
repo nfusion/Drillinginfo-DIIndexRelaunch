@@ -43,7 +43,8 @@ export default Ember.Controller.extend({
 	permitCount: {
 		chartOptions: {
 			chart: {
-			    type: 'line'
+			    type: 'line',
+			    background: '#6b4c9a'
 			},
 			plotOptions: {
 				line: {
