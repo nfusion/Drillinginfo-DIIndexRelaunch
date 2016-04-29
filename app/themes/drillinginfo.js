@@ -112,7 +112,6 @@ export default Highcharts.extend ({
 			showInLegend: false,
 			marker: {
                 enabled: false,
-                fillColor: '#585b5d',
                 symbol: 'circle',
                 radius: 2,
                 states: {
@@ -126,8 +125,6 @@ export default Highcharts.extend ({
 			lineWidth: 2,
 			marker: {
 				lineWidth: 2,
-				lineColor: '#fff',
-				fillColor: '#585b5d',
 				symbol: 'circle',
 				radius: 8
 			}
