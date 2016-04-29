@@ -25,15 +25,6 @@ define('diindex-ember-dev/tests/components/oil-production-widget.jshint', ['expo
     assert.ok(true, 'components/oil-production-widget.js should pass jshint.');
   });
 });
-define('diindex-ember-dev/tests/components/rig-count-chart-other.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components/rig-count-chart-other.js');
-  QUnit.test('should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/rig-count-chart-other.js should pass jshint.');
-  });
-});
 define('diindex-ember-dev/tests/components/rig-count-chart.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -227,7 +218,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -272,7 +263,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.4.4',
             'loc': {
               'source': null,
               'start': {
@@ -310,7 +301,7 @@ define('diindex-ember-dev/tests/integration/components/gas-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -377,7 +368,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -422,7 +413,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.4.4',
             'loc': {
               'source': null,
               'start': {
@@ -460,7 +451,7 @@ define('diindex-ember-dev/tests/integration/components/oil-production-widget-tes
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -527,7 +518,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -571,7 +562,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.4.4',
             'loc': {
               'source': null,
               'start': {
@@ -609,7 +600,7 @@ define('diindex-ember-dev/tests/integration/components/top-ten-test', ['exports'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -676,7 +667,7 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -720,7 +711,7 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.4.4',
             'loc': {
               'source': null,
               'start': {
@@ -758,7 +749,7 @@ define('diindex-ember-dev/tests/integration/components/us-permit-count-widget-te
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -825,7 +816,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -869,7 +860,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.4.4',
             'loc': {
               'source': null,
               'start': {
@@ -907,7 +898,7 @@ define('diindex-ember-dev/tests/integration/components/us-production-capacity-wi
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -974,7 +965,7 @@ define('diindex-ember-dev/tests/integration/components/us-rig-count-widget-test'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {
@@ -1018,7 +1009,7 @@ define('diindex-ember-dev/tests/integration/components/us-rig-count-widget-test'
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.4.4',
             'loc': {
               'source': null,
               'start': {
@@ -1056,7 +1047,7 @@ define('diindex-ember-dev/tests/integration/components/us-rig-count-widget-test'
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.4.4',
           'loc': {
             'source': null,
             'start': {

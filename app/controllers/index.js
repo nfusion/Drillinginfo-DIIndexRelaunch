@@ -128,7 +128,7 @@ export default Ember.Controller.extend({
 			    title: {
 			        text: 'MBOE/Day'
 			    },
-			    min: 400
+			    min: 300
 			}
 		},
 	},
