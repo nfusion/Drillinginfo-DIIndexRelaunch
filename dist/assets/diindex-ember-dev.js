@@ -42,6 +42,59 @@ define('diindex-ember-dev/components/high-charts', ['exports', 'ember-highcharts
 define('diindex-ember-dev/components/oil-production-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/components/rig-count-chart-other', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
+	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
+		chartMode: '', // empty, 'StockChart', or 'Map'
+		chartOptions: {
+			chart: {
+				type: 'spline'
+			},
+			plotOptions: {
+				spline: {
+					showInLegend: false,
+					dashStyle: 'solid',
+					lineWidth: 2,
+					//lineColor: '#1d54a0',
+					states: {
+						hover: {
+							halo: false
+						}
+					},
+					marker: {
+						enabled: true,
+						symbol: 'circle',
+						radius: 3,
+						fillColor: '#296ab1',
+						lineColor: '#296ab1',
+						lineWidth: 4,
+						states: {
+							hover: {
+								enabled: true
+							}
+						}
+					}
+				}
+			},
+			title: {
+				text: 'Rig Count Other'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date'
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Rig Count'
+				},
+				min: 440
+			}
+		},
+		chartData: [],
+		theme: _diindexEmberDevThemesDrillinginfo['default']
+	});
+});
 define('diindex-ember-dev/components/rig-count-chart', ['exports', 'ember-highcharts/components/high-charts', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _emberHighchartsComponentsHighCharts, _diindexEmberDevThemesDrillinginfo) {
 	exports['default'] = _emberHighchartsComponentsHighCharts['default'].extend({
 		chartMode: '', // empty, 'StockChart', or 'Map'
@@ -230,12 +283,12 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				},
 				plotOptions: {
 					line: {
-						showInLegend: false,
+						//showInLegend: false,
 						pointIntervalUnit: 'month'
 					}
 				},
 				title: {
-					text: 'Permit Count'
+					text: 'Permit Count (30 days)'
 				},
 				xAxis: {
 					type: 'datetime',
@@ -245,8 +298,9 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				},
 				yAxis: {
 					title: {
-						text: 'Permit Count'
-					}
+						text: 'Rig Count'
+					},
+					min: 440
 				}
 			}
 		},
@@ -281,7 +335,10 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 		prodCapByType: {
 			chartOptions: {
 				chart: {
-					backgroundColor: '#fff',
+					backgroundColor: {
+						linearGradient: [50, 500, 0, 0],
+						stops: [[0, 'rgb(255, 255, 255)'], [1, 'rgb(29, 84, 160)']]
+					},
 					type: 'line'
 				},
 				plotOptions: {
@@ -292,8 +349,7 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 					}
 				},
 				title: {
-					text: 'U.S. Production Capacity - Oil vs. Gas',
-					style: { "fontSize": "20px" }
+					text: 'U.S. Production Capacity - Oil vs. Gas'
 				},
 				xAxis: {
 					type: 'datetime',
@@ -519,98 +575,82 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				"dataType": "jsonp",
 				"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
 				"method": "GET"
-				/*
-    "contentType": "text/plain",
-    xhrFields: {
-        // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-        // This can be used to set the 'withCredentials' property.
-        // Set the value to 'true' if you'd like to pass cookies to the server.
-        // If this is enabled, your server must respond with the header
-        // 'Access-Control-Allow-Credentials: true'.
-        withCredentials: false
-    },
-    	headers: {
-        // Set any custom headers here.
-        // If you set any non-simple headers, your server must include these
-        // headers in the 'Access-Control-Allow-Headers' response header.
-        "X-API-KEY": "d06a6c14d099e2bb966e821c58210580"
-    } */
 			};
 
 			var capacity_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
 				}
 			};
 
 			var rig_count_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
 				}
 			};
 
 			var tc_gas_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
 				}
 			};
 
 			var tc_oil_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
 				}
 			};
 
 			var to_gas_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_operator?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_gas_operator$format=json"
 				}
 			};
 
 			var to_oil_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
 				}
 			};
 
 			var permit_count_settings = {
 				"async": settings.async,
 				"crossDomain": settings.crossDomain,
-				"dataType": settings.dataType,
+				"dataType": "jsonp",
 				"url": settings.url,
 				"method": settings.method,
 				"data": {
-					"url": "http://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
+					"url": "http://api-mgmt.dev.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
 				}
 			};
 
@@ -629,7 +669,6 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 				function (data) {
 					if (data.status.http_code !== 200) return;
-					//console.log(data);
 
 					var prodCapData = {
 						usProdCap: data.contents.elements.slice(0, 1)
@@ -653,7 +692,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					// chart series - total energy production
 					var series_mboe = [{
 						name: 'MBOE',
-						pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+						pointStart: Date.parse(ordered_data[0].rundatetime),
 						data: highchart_series
 					}];
 
@@ -662,12 +701,12 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					// chart series - oil vs gas production
 					var series_oil_v_gas = [{
 						name: 'Oil',
-						pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+						pointStart: Date.parse(ordered_data[0].rundatetime),
 						data: oil_series,
 						yAxis: 0
 					}, {
 						name: 'Gas',
-						pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+						pointStart: Date.parse(ordered_data[0].rundatetime),
 						data: gas_series,
 						yAxis: 1
 					}];
@@ -685,8 +724,6 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					var highchart_series = [];
 					var ordered_data = data.contents.elements.reverse();
-					// return a max of thirty days of data
-					ordered_data = ordered_data.slice(Math.max(highchart_series.length - 30, 0));
 
 					$.each(ordered_data, function () {
 						highchart_series.push(this.rig_count);
@@ -695,9 +732,10 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 					var series = [{
 						name: 'Rig Count',
-						pointStart: new Date(ordered_data[0].rig_date).getTime(),
+						pointStart: Date.parse(ordered_data[0].rig_date),
 						pointInterval: 24 * 3600 * 1000, // one day
-						data: highchart_series
+						// return a max of thirty days of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
 					}];
 					return series;
 				}),
@@ -729,7 +767,6 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				}),
 
 				topOperatorsGas: $.ajax(to_gas_settings).then(function (data) {
-					console.log(data);
 					var topten = {
 						labels: ['', 'Operator', 'Prev.', 'MMCF/Day'],
 						data: []
@@ -763,20 +800,19 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 					var permitData = {};
 
 					var highchart_series = [];
-					// most recent month of data should be the last data point
 					var ordered_data = data.contents.elements.reverse();
-					// return a max of six months of data
-					ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
 
 					$.each(ordered_data, function () {
-						highchart_series.push(this.permit_count);
+						highchart_series.push(this.rig_count);
 					});
 					highchart_series = highchart_series.reverse();
 
 					var series = [{
 						name: 'Permit Count',
-						pointStart: new Date(ordered_data[0].year, ordered_data[0].month - 1).getTime(),
-						data: highchart_series
+						pointStart: Date.parse(ordered_data[0].rig_date),
+						pointInterval: 24 * 3600 * 1000, // one day
+						// return a max of thirty days of data
+						data: highchart_series.slice(Math.max(highchart_series.length - 30, 0))
 					}];
 
 					permitData.chart = series;
@@ -784,7 +820,7 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				})
 			});
 
-			//console.log(data);
+			console.log(data);
 
 			return data;
 		}
@@ -805,7 +841,7 @@ define("diindex-ember-dev/templates/application-error", ["exports"], function (e
         "fragmentReason": {
           "name": "triple-curlies"
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -862,7 +898,7 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
           "name": "missing-wrapper",
           "problems": ["multiple-nodes"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -971,7 +1007,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1014,7 +1050,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1065,7 +1101,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1111,7 +1147,7 @@ define("diindex-ember-dev/templates/components/gas-production-widget", ["exports
           "name": "missing-wrapper",
           "problems": ["wrong-type", "multiple-nodes"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1161,7 +1197,7 @@ define("diindex-ember-dev/templates/components/high-charts", ["exports"], functi
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1205,7 +1241,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1248,7 +1284,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1299,7 +1335,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1345,7 +1381,7 @@ define("diindex-ember-dev/templates/components/oil-production-widget", ["exports
           "name": "missing-wrapper",
           "problems": ["wrong-type", "multiple-nodes"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1394,7 +1430,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1440,7 +1476,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             return {
               meta: {
                 "fragmentReason": false,
-                "revision": "Ember@2.4.4",
+                "revision": "Ember@2.4.5",
                 "loc": {
                   "source": null,
                   "start": {
@@ -1484,7 +1520,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             return {
               meta: {
                 "fragmentReason": false,
-                "revision": "Ember@2.4.4",
+                "revision": "Ember@2.4.5",
                 "loc": {
                   "source": null,
                   "start": {
@@ -1525,7 +1561,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           return {
             meta: {
               "fragmentReason": false,
-              "revision": "Ember@2.4.4",
+              "revision": "Ember@2.4.5",
               "loc": {
                 "source": null,
                 "start": {
@@ -1564,7 +1600,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1613,7 +1649,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "fragmentReason": {
             "name": "triple-curlies"
           },
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1670,7 +1706,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1712,7 +1748,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1757,7 +1793,7 @@ define("diindex-ember-dev/templates/components/us-permit-count-widget", ["export
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1802,7 +1838,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
         return {
           meta: {
             "fragmentReason": false,
-            "revision": "Ember@2.4.4",
+            "revision": "Ember@2.4.5",
             "loc": {
               "source": null,
               "start": {
@@ -1853,7 +1889,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1897,7 +1933,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -1939,7 +1975,7 @@ define("diindex-ember-dev/templates/components/us-production-capacity-widget", [
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -1984,7 +2020,7 @@ define("diindex-ember-dev/templates/components/us-rig-count-widget", ["exports"]
           "name": "missing-wrapper",
           "problems": ["wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2028,7 +2064,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2070,7 +2106,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2112,7 +2148,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2154,7 +2190,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
@@ -2196,15 +2232,99 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
-              "line": 24,
+              "line": 20,
               "column": 2
             },
             "end": {
-              "line": 38,
+              "line": 22,
+              "column": 2
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/index.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("		");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [["inline", "rig-count-chart-other", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [21, 34], [21, 48]]]]], [], []]], ["loc", [null, [21, 2], [21, 50]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child5 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.5",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 22,
+              "column": 2
+            },
+            "end": {
+              "line": 24,
+              "column": 2
+            }
+          },
+          "moduleName": "diindex-ember-dev/templates/index.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("		");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("p");
+          var el2 = dom.createTextNode("Rig Count data is not available at this time.");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
+    var child6 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.4.5",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 32,
+              "column": 2
+            },
+            "end": {
+              "line": 46,
               "column": 2
             }
           },
@@ -2283,24 +2403,24 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[4] = dom.createMorphAt(element3, 9, 9);
           return morphs;
         },
-        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [28, 42], [28, 70]]]]], [], []]], ["loc", [null, [28, 3], [28, 72]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [29, 25], [29, 62]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [29, 77], [29, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [29, 104], [29, 109]]]]], [], []]], ["loc", [null, [29, 3], [29, 111]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [33, 34], [33, 62]]]]], [], []]], ["loc", [null, [33, 3], [33, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [35, 34], [35, 62]]]]], [], []]], ["loc", [null, [35, 3], [35, 64]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [36, 25], [36, 56]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [36, 70], [36, 96]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [36, 103], [36, 108]]]]], [], []]], ["loc", [null, [36, 3], [36, 110]]]]],
+        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [36, 42], [36, 70]]]]], [], []]], ["loc", [null, [36, 3], [36, 72]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [37, 25], [37, 62]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [37, 77], [37, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [37, 104], [37, 109]]]]], [], []]], ["loc", [null, [37, 3], [37, 111]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [41, 34], [41, 62]]]]], [], []]], ["loc", [null, [41, 3], [41, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [43, 34], [43, 62]]]]], [], []]], ["loc", [null, [43, 3], [43, 64]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [44, 25], [44, 56]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [44, 70], [44, 96]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [44, 103], [44, 108]]]]], [], []]], ["loc", [null, [44, 3], [44, 110]]]]],
         locals: [],
         templates: []
       };
     })();
-    var child5 = (function () {
+    var child7 = (function () {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
-              "line": 38,
+              "line": 46,
               "column": 2
             },
             "end": {
-              "line": 40,
+              "line": 48,
               "column": 2
             }
           },
@@ -2330,19 +2450,19 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         templates: []
       };
     })();
-    var child6 = (function () {
+    var child8 = (function () {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
-              "line": 48,
+              "line": 56,
               "column": 2
             },
             "end": {
-              "line": 63,
+              "line": 71,
               "column": 2
             }
           },
@@ -2442,24 +2562,24 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[3] = dom.createMorphAt(element1, 9, 9);
           return morphs;
         },
-        statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [52, 17], [52, 38]]]]], [], []]], ["loc", [null, [52, 3], [52, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [54, 17], [54, 38]]]]], [], []]], ["loc", [null, [54, 3], [54, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [59, 17], [59, 37]]]]], [], []]], ["loc", [null, [59, 3], [59, 39]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [61, 17], [61, 37]]]]], [], []]], ["loc", [null, [61, 3], [61, 39]]]]],
+        statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [60, 17], [60, 38]]]]], [], []]], ["loc", [null, [60, 3], [60, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [62, 17], [62, 38]]]]], [], []]], ["loc", [null, [62, 3], [62, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [67, 17], [67, 37]]]]], [], []]], ["loc", [null, [67, 3], [67, 39]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [69, 17], [69, 37]]]]], [], []]], ["loc", [null, [69, 3], [69, 39]]]]],
         locals: [],
         templates: []
       };
     })();
-    var child7 = (function () {
+    var child9 = (function () {
       return {
         meta: {
           "fragmentReason": false,
-          "revision": "Ember@2.4.4",
+          "revision": "Ember@2.4.5",
           "loc": {
             "source": null,
             "start": {
-              "line": 63,
+              "line": 71,
               "column": 2
             },
             "end": {
-              "line": 65,
+              "line": 73,
               "column": 2
             }
           },
@@ -2495,7 +2615,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "name": "missing-wrapper",
           "problems": ["multiple-nodes", "wrong-type"]
         },
-        "revision": "Ember@2.4.4",
+        "revision": "Ember@2.4.5",
         "loc": {
           "source": null,
           "start": {
@@ -2503,7 +2623,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 88,
+            "line": 96,
             "column": 6
           }
         },
@@ -2542,6 +2662,23 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h3");
         var el4 = dom.createTextNode("Permit Count");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("	");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "large-6 columns");
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Rig Count Other");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n");
@@ -2686,16 +2823,17 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element4 = dom.childAt(fragment, [0]);
-        var morphs = new Array(4);
+        var morphs = new Array(5);
         morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 3, 3);
         morphs[1] = dom.createMorphAt(dom.childAt(element4, [3]), 3, 3);
-        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [5, 1]), 3, 3);
-        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [10, 1]), 3, 3);
+        morphs[2] = dom.createMorphAt(dom.childAt(element4, [5]), 3, 3);
+        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [5, 1]), 3, 3);
+        morphs[4] = dom.createMorphAt(dom.childAt(fragment, [10, 1]), 3, 3);
         return morphs;
       },
-      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [24, 8], [24, 26]]]]], [], 4, 5, ["loc", [null, [24, 2], [40, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [48, 8], [48, 28]]]]], [], 6, 7, ["loc", [null, [48, 2], [65, 9]]]]],
+      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "if", [["get", "model.rigCount", ["loc", [null, [20, 8], [20, 22]]]]], [], 4, 5, ["loc", [null, [20, 2], [24, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [32, 8], [32, 26]]]]], [], 6, 7, ["loc", [null, [32, 2], [48, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [56, 8], [56, 28]]]]], [], 8, 9, ["loc", [null, [56, 2], [73, 9]]]]],
       locals: [],
-      templates: [child0, child1, child2, child3, child4, child5, child6, child7]
+      templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8, child9]
     };
   })());
 });
@@ -2951,7 +3089,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+f55e5844"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+f9485075"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -2959,7 +3097,7 @@ define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+f55e5844"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+f9485075"});
 }
 
 /* jshint ignore:end */

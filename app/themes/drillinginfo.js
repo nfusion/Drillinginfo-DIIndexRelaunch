@@ -50,6 +50,7 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
+			enabled: false,
 			style: {
 				color: '#333'
 
@@ -73,6 +74,7 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
+			enabled: false,
 			style: {
 				color: '#333'
 
@@ -82,10 +84,12 @@ export default Highcharts.extend ({
 	tooltip: {
 		pointFormat: '{series.name}: <b>{point.y}</b><br/>',
 		backgroundColor: '#585b5d',
+		borderColor: '#fff',
 		style: {
 			color: '#FFF',
 			fontSize: '15px',
-			padding: '8px'
+			padding: '8px',
+			border: '1px solid red'
 		}
 	},
 	plotOptions: {
