@@ -194,12 +194,16 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				plotOptions: {
 					areaspline: {
 						showInLegend: false,
-						fillColor: '#396ab1',
+						fillColor: {
+							linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+							stops: [[0, '#7293cb'], [1, '#396ab1']]
+						},
 						lineColor: "#7293cb",
 						marker: {
 							enabled: true,
 							symbol: 'circle',
 							radius: 1,
+							fillColor: '#7293cb',
 							states: {
 								hover: {
 									enabled: true,
@@ -222,7 +226,7 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 					title: {
 						text: 'Rig Count'
 					},
-					min: 440
+					min: 350
 				}
 			}
 		},
@@ -232,33 +236,32 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 					type: 'line',
 					backgroundColor: '#6b4c9a',
 					//height: 200,
-					spacingRight: 20,
-					spacingTop: 40
+					spacing: 20
 				},
 				plotOptions: {
 					line: {
 						showInLegend: false,
 						pointIntervalUnit: 'month',
 						color: '#fff',
-						lineWidth: 3,
+						lineWidth: 4,
 						marker: {
 							fillColor: '#fff'
+						},
+						states: {
+							hover: {
+								enabled: true,
+								halo: {
+									attributes: true,
+									size: 20,
+									opacity: 0.25
+								}
+							}
 						}
 					}
 				},
 				title: {
 					text: '',
 					style: { "color": "#fff" }
-				},
-				states: {
-					hover: {
-						enabled: true,
-						halo: {
-							attributes: true,
-							size: 20,
-							opacity: 0.5
-						}
-					}
 				},
 				xAxis: {
 					type: 'datetime',
@@ -268,7 +271,11 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 						style: { "color": "#fff" }
 					},
 					labels: {
-						style: { "color": "#fff" }
+						useHTML: true,
+						style: {
+							color: "#fff",
+							paddingTop: '15px'
+						}
 					}
 				},
 				yAxis: {
@@ -285,10 +292,16 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 		prodCap: {
 			chartOptions: {
 				chart: {
-					type: 'column'
+					type: 'column',
+					//width: 555,
+					height: 214
 				},
 				plotOptions: {
 					column: {
+						color: {
+							linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+							stops: [[0, '#78be20'], [1, '#68a41c']]
+						},
 						showInLegend: false,
 						pointIntervalUnit: 'month',
 						states: {
@@ -317,39 +330,78 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 		},
 		prodCapByType: {
 			chartOptions: {
+				colors: ["#fff", "#e1974c", "#84ba5b"],
 				chart: {
-					type: 'line'
+					type: 'line',
+					backgroundColor: '#396ab1',
+					spacingRight: 20,
+					spacingTop: 40
 				},
 				plotOptions: {
 					line: {
 						showInLegend: false,
 						pointIntervalUnit: 'month',
-						lineColor: '#fff',
-						lineWidth: 4
+						lineWidth: 4,
+						marker: {
+							lineColor: 'transparent'
+						},
+						states: {
+							hover: {
+								enabled: true,
+								halo: {
+									attributes: true,
+									size: 20,
+									opacity: 0.25
+								}
+							}
+						}
 					}
 				},
 				title: {
-					text: 'U.S. Production Capacity - Oil vs. Gas',
-					style: { "fontSize": "20px", "color": "#fff" }
+					text: '',
+					color: "#fff"
+				},
+				tooltip: {
+					useHTML: true,
+					pointFormat: '<span>{series.name}: </span>' + '<span style="text-align: right"><b>{point.y} Units</b></span>',
+					style: {
+						letterSpacing: "2px"
+					}
 				},
 				xAxis: {
 					gridLineWidth: 0,
 					type: 'datetime',
 					title: {
-						text: 'Month'
+						text: 'Month',
+						style: { "color": "#fff" }
+					},
+					labels: {
+						useHTML: true,
+						style: {
+							color: "#fff",
+							paddingTop: '15px'
+						}
 					}
 				},
 				yAxis: [
 				// oil
 				{
 					title: {
-						text: 'MBBL/Day'
+						text: 'MBBL/Day',
+						style: { "color": "#fff", "fontSize": "15px" }
+					},
+					labels: {
+						style: { "color": "#fff" }
 					}
 				},
 				//gas
 				{
 					title: {
-						text: 'BCF/Day'
+						text: 'BCF/Day',
+						style: { "color": "#fff", "fontSize": "15px" }
+					},
+					labels: {
+						style: { "color": "#fff" }
 					},
 					opposite: true
 				}]
@@ -652,6 +704,21 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				}
 			};
 
+			function diffDate(fromDate, toDate) {
+
+				toDate = toDate || new Date();
+
+				fromDate = fromDate.getTime();
+				toDate = toDate.getTime();
+
+				var diffDate = Math.round((toDate - fromDate) / 1000 / 60 / 60 / 24);
+
+				// return no data if it's more than 60 days old.
+				console.log('diffDate', diffDate);
+
+				return diffDate > 60;
+			}
+
 			var data = new _ember["default"].RSVP.hash({
 
 				prodCapacity: $.ajax(capacity_settings).then(
@@ -666,8 +733,13 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
      */
 
 				function (data) {
+					// error out if we get a bad response.
 					if (data.status.http_code !== 200) return;
-					//console.log(data);
+					var runDate = new Date(data.contents.elements[0].rundatetime);
+
+					var oldData = diffDate(runDate);
+
+					if (oldData) return;
 
 					var prodCapData = {
 						usProdCap: data.contents.elements.slice(0, 1)
@@ -797,6 +869,11 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 				// needs to return tile and chart
 				function (data) {
 					if (data.status.http_code !== 200) return;
+
+					var runDate = new Date(data.contents.elements[0].year, data.contents.elements[0].month - 1);
+					var oldData = diffDate(runDate);
+
+					if (oldData) return;
 
 					var permitData = {};
 
@@ -2852,7 +2929,6 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 				showInLegend: false,
 				marker: {
 					enabled: false,
-					fillColor: '#585b5d',
 					symbol: 'circle',
 					radius: 2,
 					states: {
@@ -2866,8 +2942,6 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 				lineWidth: 2,
 				marker: {
 					lineWidth: 2,
-					lineColor: '#fff',
-					fillColor: '#585b5d',
 					symbol: 'circle',
 					radius: 8
 				}
@@ -2993,7 +3067,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+d8fbe041"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+173a457e"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -3001,7 +3075,7 @@ define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+d8fbe041"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+173a457e"});
 }
 
 /* jshint ignore:end */

@@ -105,6 +105,20 @@ export default Ember.Route.extend({
 			}
 		};
 		
+		function diffDate(fromDate, toDate) {
+
+			toDate = toDate || new Date();
+
+			fromDate = fromDate.getTime();
+			toDate = toDate.getTime();
+
+			var diffDate = Math.round( (toDate - fromDate) / 1000 / 60 / 60 / 24 );
+
+			// return no data if it's more than 60 days old.
+			console.log('diffDate',diffDate);
+
+			return ( diffDate > 60 );
+		}
 
 		var data = new Ember.RSVP.hash({
 
@@ -120,9 +134,14 @@ export default Ember.Route.extend({
 				 */	
 
 				function(data){
+					// error out if we get a bad response.
 					if (data.status.http_code !== 200) return;
-					//console.log(data);
+					var runDate = new Date(data.contents.elements[0].rundatetime);
 
+					var oldData = diffDate(runDate);
+
+					if (oldData) return;
+					
 					var prodCapData = {
 						usProdCap: data.contents.elements.slice(0,1)
 					};
@@ -320,6 +339,11 @@ export default Ember.Route.extend({
 				// needs to return tile and chart
 				function(data){
 					if (data.status.http_code !== 200) return;
+
+					var runDate = new Date(data.contents.elements[0].year, data.contents.elements[0].month-1);
+					var oldData = diffDate(runDate);
+
+					if (oldData) return;
 
 					var permitData = {};
 
