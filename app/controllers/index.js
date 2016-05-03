@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
 			    title: {
 			        text: 'Rig Count'
 			    },
-			    min: 440
+			    min: 350
 			}
 		},
 	},
