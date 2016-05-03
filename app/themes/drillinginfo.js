@@ -50,10 +50,11 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: false,
+			enabled: true,
 			style: {
-				color: '#333'
-
+				color: '#333',
+				fontSize: "15px",
+				margin: 60
 			}
 		}
 	},
@@ -74,10 +75,11 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: false,
+			enabled: true,
 			style: {
-				color: '#333'
-
+				color: '#333',
+				fontSize: "15px",
+				margin: 60
 			}
 		}
 	},

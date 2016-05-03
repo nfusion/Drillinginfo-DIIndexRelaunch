@@ -39,12 +39,14 @@ export default Ember.Controller.extend({
 			xAxis: {
 				type: 'datetime',
 				title: {
-					text: 'Date'
+					text: 'Date',
+					margin: 20
 				}
 			},
 			yAxis: {
 			    title: {
-			        text: 'Rig Count'
+			        text: 'Rig Count',
+			        margin: 20
 			    },
 			    min: 440
 			}
@@ -80,7 +82,7 @@ export default Ember.Controller.extend({
 			    }
 			},
 			title: {
-			    text: '',
+			    text: 'Rig Count',
 			    style: {"color":"#fff"}
 			},
 			xAxis: {
@@ -88,7 +90,8 @@ export default Ember.Controller.extend({
 				gridLineColor: 'transparent',
 				title: {
 					text: 'Date',
-					style: {"color" : "#fff"}
+					style: {"color" : "#fff"},
+					margin: 20
 				},
 				labels: {
 					useHTML: true,
@@ -101,7 +104,8 @@ export default Ember.Controller.extend({
 			yAxis: {
 			    title: {
 			        text: 'Permit Count',
-			        style: {"color" : "#fff"}
+			        style: {"color" : "#fff"},
+			        margin: 20
 			    },
 			    labels: {
 					style: {"color" : "#fff"}	
@@ -114,7 +118,8 @@ export default Ember.Controller.extend({
 			chart: {
 			    type: 'column',
 			    //width: 555,
-			    height: 214
+			    //height: 214,
+			    spacingTop: 30
 			},
 			plotOptions: {
 				column: {
@@ -140,12 +145,14 @@ export default Ember.Controller.extend({
 			xAxis: {
 				type: 'datetime',
 				title: {
-					text: 'Month'
+					text: 'Month',
+					margin: 20
 				}
 			},
 			yAxis: {
 			    title: {
-			        text: 'MBOE/Day'
+			        text: 'MBOE/Day',
+			        margin: 20
 			    },
 			    min: 300
 			}
