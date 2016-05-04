@@ -40,7 +40,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.APP.rootElement = '#app';
+    ENV.baseURL = '/';
+    ENV.locationType = 'none';
   }
 
   return ENV;
