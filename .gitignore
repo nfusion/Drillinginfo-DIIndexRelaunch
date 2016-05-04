@@ -1,3 +1,4 @@
+# ember app ignore list
 /plugins/diindex/app/node_modules
 npm-debug.log
 /plugins/diindex/app/tmp
@@ -7,3 +8,23 @@ npm-debug.log
 .node_modules-tmp
 .bower_components-tmp
 /plugins/diindex/app/bower_components
+
+# wordpress -- github default ignore list
+*.log
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/wp-cache-config.php
+wp-content/plugins/hello.php
+
+/.htaccess
+/license.txt
+/readme.html
+/sitemap.xml
+/sitemap.xml.gz
+

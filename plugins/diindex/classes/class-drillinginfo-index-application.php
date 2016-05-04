@@ -67,7 +67,9 @@ final class Drillinginfo_Index_Application {
 	 * @return  void
 	 */
 	public function set_base_url () {
-		
+		if (is_front_page()) {
+			echo '<base href="/ />';
+		}
 	} // End set_base_url()
 
 	/**
@@ -77,7 +79,10 @@ final class Drillinginfo_Index_Application {
 	 * @return  void
 	 */
 	public function application_scripts () {
-
+		if (is_front_page()) {
+			wp_enqueue_script( 'di-app-vendor', $this->plugin_path.'/app/dist/assets/vendor.js', array(), $this->version, true );
+			wp_enqueue_script( 'di-app-vendor', $this->plugin_path.'/app/dist/assets/diindex-ember-dev.js', array(), $this->version, true );
+		}
 	} // End application_scripts()
 
 	/**
@@ -87,7 +92,10 @@ final class Drillinginfo_Index_Application {
 	 * @return  void
 	 */
 	public function application_styles () {
-
+		if (is_front_page()) {
+			wp_enqueue_style( 'di-app-vendor', $this->plugin_path.'/app/dist/assets/vendor.css', array(), $this->version );
+			wp_enqueue_style( 'di-app-vendor', $this->plugin_path.'/app/dist/assets/diindex-ember-dev.css', array(), $this->version );
+		}
 	} // End application_styles()
 
 	/**
@@ -96,7 +104,9 @@ final class Drillinginfo_Index_Application {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	public function application_container (  ) {
+	public function application_container ( $content ) {
+		$content .= '<div id=di-app></div>';
+		return $content;
 		
 	} // End application_container()
 } // End Class
