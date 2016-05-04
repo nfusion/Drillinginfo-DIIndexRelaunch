@@ -1,9 +1,9 @@
-/node_modules
+/plugins/diindex/app/node_modules
 npm-debug.log
-/tmp
-/common-tmp
+/plugins/diindex/app/tmp
+/plugins/diindex/app/common-tmp
 *.tgz
-/docs/build
+/plugins/diindex/app/docs/build
 .node_modules-tmp
 .bower_components-tmp
-/bower_components
+/plugins/diindex/app/bower_components
