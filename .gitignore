@@ -5,8 +5,8 @@ wp-content/plugins/diindex/app/tmp
 wp-content/plugins/diindex/app/common-tmp
 *.tgz
 wp-content/plugins/diindex/app/docs/build
-.node_modules-tmp
-.bower_components-tmp
+wp-content/plugins/diindex/app/.node_modules-tmp
+wp-content/plugins/diindex/app/.bower_components-tmp
 wp-content/plugins/diindex/app/bower_components
 
 # wordpress -- github default ignore list
