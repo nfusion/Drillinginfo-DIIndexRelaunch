@@ -121,7 +121,7 @@ final class Drillinginfo_Index_Application
     {
         if (is_front_page()) {
             wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.css', [], $this->version);
-            wp_enqueue_style('di-app-vendor', $Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.css', [], $this->version);
+            wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.css', [], $this->version);
         }
     }
 
