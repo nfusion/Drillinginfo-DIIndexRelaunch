@@ -117,7 +117,7 @@ export default Ember.Route.extend({
 			// return no data if it's more than 60 days old.
 			console.log('diffDate',diffDate);
 
-			return ( diffDate > 60 );
+			return ( diffDate > 90 );
 		}
 
 		var data = new Ember.RSVP.hash({

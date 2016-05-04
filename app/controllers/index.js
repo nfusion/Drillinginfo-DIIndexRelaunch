@@ -8,31 +8,6 @@ export default Ember.Controller.extend({
 			chart: {
 			    type: 'areaspline',
 		     	},
-			plotOptions: {
-				areaspline: {
-					showInLegend: false,
-					fillColor: {
-						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-			        	stops: [
-			            	[0, '#7293cb'],
-			            	[1, '#396ab1']
-			        	]
-					},
-					lineColor: "#7293cb",
-					marker: {
-	                    enabled: true,
-	                    symbol: 'circle',
-	                    radius: 1,
-	                    fillColor: '#7293cb',
-	                    states: {
-	                        hover: {
-	                            enabled: true,
-	                            fillColor: '#eee'
-	                        }
-	                    }
-	                }
-				}
-			},
 			title: {
 			    text: ''
 			},
@@ -56,29 +31,11 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'line',
-			    backgroundColor: '#6b4c9a',
-			    //height: 200,
-			    spacing: 20
+			    backgroundColor: '#6b4c9a'
 			},
 			plotOptions: {
 				line: {
-					showInLegend: false,
-			    	pointIntervalUnit: 'month',
-			    	color: '#fff',
-			    	lineWidth: 4,
-			    	marker: {
-						fillColor: '#fff'
-					},
-					states: {
-						hover: {
-							enabled: true,
-							halo: {
-								attributes: true,
-								size: 20,
-								opacity: 0.25
-							}
-						}
-					}
+			     	color: '#fff'
 			    }
 			},
 			title: {
@@ -117,27 +74,7 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'column',
-			    //width: 555,
-			    //height: 214,
 			    spacingTop: 30
-			},
-			plotOptions: {
-				column: {
-					color: {
-						linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-					    stops: [
-					        [0, '#78be20'],
-					        [1, '#68a41c']
-					    ]
-					},
-					showInLegend: false,
-			    	pointIntervalUnit: 'month',
-			    	states: {
-						hover: {
-							color: '#b2df8a' 
-						}
-					}	
-			    }
 			},
 			title: {
 			    text: ''
@@ -169,21 +106,9 @@ export default Ember.Controller.extend({
 			},
 			plotOptions: {
 				line: {
-					showInLegend: false,
-			    	pointIntervalUnit: 'month',
-			    	lineWidth: 4,
+			    	colors: ["#fff", "#e1974c"],
 			    	marker: {
 						lineColor: 'transparent'
-					},
-					states: {
-						hover: {
-							enabled: true,
-							halo: {
-								attributes: true,
-								size: 20,
-								opacity: 0.25
-							}
-						}
 					}
 			    }
 			},
