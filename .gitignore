@@ -12,15 +12,19 @@ npm-debug.log
 # wordpress -- github default ignore list
 *.log
 wp-config.php
-wp-content/advanced-cache.php
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/upgrade/
-wp-content/uploads/
-wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
+advanced-cache.php
+backup-db/
+backups/
+blogs.dir/
+cache/
+upgrade/
+uploads/
+wp-cache-config.php
+plugins/hello.php
+plugins/akismet/
+themes/twentyfifteen/
+themes/twentyfourteen/
+themes/twentysixteen/
 
 /.htaccess
 /license.txt
