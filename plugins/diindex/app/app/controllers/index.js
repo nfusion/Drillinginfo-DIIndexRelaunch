@@ -7,7 +7,8 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'areaspline',
-		     	},
+			    zoomType: 'x'
+		    },
 			plotOptions: {
 				areaspline: {
 					showInLegend: false,
@@ -36,6 +37,10 @@ export default Ember.Controller.extend({
 			title: {
 			    text: ''
 			},
+			subtitle: {
+                text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            },
 			xAxis: {
 				type: 'datetime',
 				title: {
