@@ -5,8 +5,7 @@ machine:
 
 ## Customize dependencies
 dependencies:
-  pre: 
-    - cd plugins/diindex/app
   post: 
+    - cd plugins/diindex/app
     - bower install
     - npm rebuild node-sass
