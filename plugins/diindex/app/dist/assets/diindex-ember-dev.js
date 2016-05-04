@@ -189,7 +189,8 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 		rigCount: {
 			chartOptions: {
 				chart: {
-					type: 'areaspline'
+					type: 'areaspline',
+					zoomType: 'x'
 				},
 				plotOptions: {
 					areaspline: {
@@ -215,6 +216,9 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				},
 				title: {
 					text: ''
+				},
+				subtitle: {
+					text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
 				},
 				xAxis: {
 					type: 'datetime',
@@ -3067,7 +3071,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+173a457e"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+6aa4b9de"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -3075,7 +3079,7 @@ define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+173a457e"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+6aa4b9de"});
 }
 
 /* jshint ignore:end */
