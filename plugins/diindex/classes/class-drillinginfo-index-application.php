@@ -87,7 +87,7 @@ final class Drillinginfo_Index_Application
     public function set_base_url()
     {
         if (is_front_page()) {
-            echo '<base href="/ />';
+            echo '<base href="/" />';
         }
     }
 
@@ -103,8 +103,8 @@ final class Drillinginfo_Index_Application
     public function application_scripts()
     {
         if (is_front_page()) {
-            wp_enqueue_script('di-app-vendor', $this->plugin_path.'/app/dist/assets/vendor.js', [], $this->version, true);
-            wp_enqueue_script('di-app-vendor', $this->plugin_path.'/app/dist/assets/diindex-ember-dev.js', [], $this->version, true);
+            wp_enqueue_script('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.js', [], $this->version, true);
+            wp_enqueue_script('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.js', [], $this->version, true);
         }
     }
 
@@ -120,8 +120,8 @@ final class Drillinginfo_Index_Application
     public function application_styles()
     {
         if (is_front_page()) {
-            wp_enqueue_style('di-app-vendor', $this->plugin_path.'/app/dist/assets/vendor.css', [], $this->version);
-            wp_enqueue_style('di-app-vendor', $this->plugin_path.'/app/dist/assets/diindex-ember-dev.css', [], $this->version);
+            wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.css', [], $this->version);
+            wp_enqueue_style('di-app-vendor', $Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.css', [], $this->version);
         }
     }
 
@@ -136,7 +136,7 @@ final class Drillinginfo_Index_Application
      */
     public function application_container($content)
     {
-        $content .= '<div id=di-app></div>';
+        $content .= '<div id="app"></div>';
 
         return $content;
     }
