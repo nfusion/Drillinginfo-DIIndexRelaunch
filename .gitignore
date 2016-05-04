@@ -1,13 +1,13 @@
 # ember app ignore list
-/plugins/diindex/app/node_modules
+wp-content/plugins/diindex/app/node_modules
 npm-debug.log
-/plugins/diindex/app/tmp
-/plugins/diindex/app/common-tmp
+wp-content/plugins/diindex/app/tmp
+wp-content/plugins/diindex/app/common-tmp
 *.tgz
-/plugins/diindex/app/docs/build
+wp-content/plugins/diindex/app/docs/build
 .node_modules-tmp
 .bower_components-tmp
-/plugins/diindex/app/bower_components
+wp-content/plugins/diindex/app/bower_components
 
 # wordpress -- github default ignore list
 *.log
@@ -15,20 +15,20 @@ wp-config.php
 advanced-cache.php
 backup-db/
 backups/
-blogs.dir/
+wp-content/blogs.dir/
 cache/
 upgrade/
 wp-cache-config.php
-plugins/hello.php
-plugins/akismet/
-themes/twentyfifteen/
-themes/twentyfourteen/
-themes/twentysixteen/
-index.php
-plugins/index.php
-themes/index.php
-uploads/
-uploads
+wp-content/plugins/hello.php
+wp-content/plugins/akismet/
+wp-content/themes/twentyfifteen/
+wp-content/themes/twentyfourteen/
+wp-content/themes/twentysixteen/
+wp-content/index.php
+wp-content/plugins/index.php
+wp-content/themes/index.php
+wp-content/uploads/
+wp-content/uploads
 
 /.htaccess
 /license.txt
