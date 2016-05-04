@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 			"async": true,
 			"crossDomain": true,
 			"dataType": "jsonp",
-			"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
+			"url": "wp-content/plugins/diindex/diindex-proxy.php",
 			"method": "GET"
 			/*
 			"contentType": "text/plain",
