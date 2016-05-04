@@ -1,3 +1,5 @@
+general:
+  build_dir: plugins/diindex/app
 ## Customize machine settings for Ember-cli
 machine:
   node:
@@ -6,6 +8,5 @@ machine:
 ## Customize dependencies
 dependencies:
   post: 
-    - cd plugins/diindex/app
     - bower install
     - npm rebuild node-sass
