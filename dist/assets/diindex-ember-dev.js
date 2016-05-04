@@ -713,10 +713,10 @@ define("diindex-ember-dev/routes/index", ["exports", "ember"], function (exports
 
 				var diffDate = Math.round((toDate - fromDate) / 1000 / 60 / 60 / 24);
 
-				// return no data if it's more than 60 days old.
-				console.log('diffDate', diffDate);
+				// return no data if it's more than 75 days old.
+				//console.log('diffDate',diffDate);
 
-				return diffDate > 60;
+				return diffDate > 75;
 			}
 
 			var data = new _ember["default"].RSVP.hash({
