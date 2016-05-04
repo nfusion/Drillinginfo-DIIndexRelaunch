@@ -118,9 +118,9 @@ final class Drillinginfo_Index
         require_once 'classes/class-drillinginfo-index-application.php';
         $this->application = Drillinginfo_Index_Application::instance();
 
-        register_activation_hook(__FILE__, [$this, 'install']);
+        register_activation_hook(__FILE__, array($this, 'install'));
 
-        add_action('init', [$this, 'load_plugin_textdomain']);
+        add_action('init', array($this, 'load_plugin_textdomain'));
     }
 
  // End __construct()
