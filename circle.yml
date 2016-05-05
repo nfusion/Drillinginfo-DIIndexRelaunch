@@ -1,3 +1,5 @@
+general:
+  build_dir: plugins/diindex/app
 ## Customize machine settings for Ember-cli
 machine:
   node:

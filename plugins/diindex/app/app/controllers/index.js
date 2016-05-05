@@ -7,10 +7,44 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'areaspline',
+<<<<<<< HEAD:app/controllers/index.js
 		     	},
+=======
+			    zoomType: 'x'
+		    },
+			plotOptions: {
+				areaspline: {
+					showInLegend: false,
+					fillColor: {
+						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+			        	stops: [
+			            	[0, '#7293cb'],
+			            	[1, '#396ab1']
+			        	]
+					},
+					lineColor: "#7293cb",
+					marker: {
+	                    enabled: true,
+	                    symbol: 'circle',
+	                    radius: 1,
+	                    fillColor: '#7293cb',
+	                    states: {
+	                        hover: {
+	                            enabled: true,
+	                            fillColor: '#eee'
+	                        }
+	                    }
+	                }
+				}
+			},
+>>>>>>> master:plugins/diindex/app/app/controllers/index.js
 			title: {
 			    text: ''
 			},
+			subtitle: {
+                text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            },
 			xAxis: {
 				type: 'datetime',
 				title: {

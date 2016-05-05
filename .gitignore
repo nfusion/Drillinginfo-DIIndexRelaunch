@@ -1,9 +1,39 @@
-/node_modules
+# ember app ignore list
+/plugins/diindex/app/node_modules
 npm-debug.log
-/tmp
-/common-tmp
+/plugins/diindex/app/tmp
+/plugins/diindex/app/common-tmp
 *.tgz
-/docs/build
+/plugins/diindex/app/docs/build
 .node_modules-tmp
 .bower_components-tmp
-/bower_components
+/plugins/diindex/app/bower_components
+
+# wordpress -- github default ignore list
+*.log
+wp-config.php
+advanced-cache.php
+backup-db/
+backups/
+blogs.dir/
+cache/
+upgrade/
+wp-cache-config.php
+plugins/hello.php
+plugins/akismet/
+themes/twentyfifteen/
+themes/twentyfourteen/
+themes/twentysixteen/
+index.php
+plugins/index.php
+themes/index.php
+uploads/
+uploads
+
+/.htaccess
+/license.txt
+/readme.html
+/sitemap.xml
+/sitemap.xml.gz
+
+# this is a comment
