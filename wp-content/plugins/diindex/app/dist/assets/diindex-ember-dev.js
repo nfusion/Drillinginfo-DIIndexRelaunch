@@ -963,7 +963,7 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["wrong-type"]
         },
         "revision": "Ember@2.4.5",
         "loc": {
@@ -973,8 +973,8 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
             "column": 0
           },
           "end": {
-            "line": 25,
-            "column": 0
+            "line": 1,
+            "column": 10
           }
         },
         "moduleName": "diindex-ember-dev/templates/application.hbs"
@@ -985,84 +985,18 @@ define("diindex-ember-dev/templates/application", ["exports"], function (exports
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("nav");
-        dom.setAttribute(el1, "class", "top-bar");
-        dom.setAttribute(el1, "data-topbar", "");
-        dom.setAttribute(el1, "role", "navigation");
-        var el2 = dom.createTextNode("\n  ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("ul");
-        dom.setAttribute(el2, "class", "title-area");
-        var el3 = dom.createTextNode("\n    ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("li");
-        dom.setAttribute(el3, "class", "name");
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("h1");
-        var el5 = dom.createElement("a");
-        dom.setAttribute(el5, "href", "#");
-        var el6 = dom.createTextNode("DI Index Test Suite");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n     ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment(" Remove the class \"menu-icon\" to get rid of menu icon. Take out \"Menu\" to just have icon alone ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("li");
-        dom.setAttribute(el3, "class", "toggle-topbar menu-icon");
-        var el4 = dom.createElement("a");
-        dom.setAttribute(el4, "href", "#");
-        var el5 = dom.createElement("span");
-        var el6 = dom.createTextNode("Menu");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n  ");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n  ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("section class=\"top-bar-section\">\n    <!-- Left Nav Section >\n    <ul class=\"right\">\n      <li>{{#link-to 'us-gas-prod-cap'}}Gas Production{{/link-to}}</li>\n      <li>{{#link-to 'us-oil-prod-cap'}}Oil Production{{/link-to}}</li>\n      <li>{{#link-to 'us-prod-cap'}}U.S. Production Capacity{{/link-to}}</li>\n    </ul>\n  </section");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-12 columns");
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [22, 1], [22, 11]]]]],
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
       locals: [],
       templates: []
     };
@@ -3055,7 +2989,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+17126852"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"name":"diindex-ember-dev","version":"0.0.0+3ab93982"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -3063,7 +2997,7 @@ define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+17126852"});
+  require("diindex-ember-dev/app")["default"].create({"name":"diindex-ember-dev","version":"0.0.0+3ab93982"});
 }
 
 /* jshint ignore:end */
