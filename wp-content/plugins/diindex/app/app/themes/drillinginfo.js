@@ -5,7 +5,7 @@
 
 // Load the fonts
 Highcharts.createElement('link', {
-	href: 'https:https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300',
+	href: 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300',
 	rel: 'stylesheet',
 	type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);

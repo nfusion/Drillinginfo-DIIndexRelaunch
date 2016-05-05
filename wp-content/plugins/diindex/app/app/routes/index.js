@@ -5,27 +5,10 @@ export default Ember.Route.extend({
 	model: function() {
 		var settings = {
 			"async": true,
-			"crossDomain": true,
-			"dataType": "jsonp",
-			"url": "http://local.drillinginfo.nfusion.com/wp-content/plugins/drillinginfo/diindex-proxy.php",
+			"crossDomain": false,
+			"dataType": "json",
+			"url": "wp-content/plugins/diindex/api-proxy.php",
 			"method": "GET"
-			/*
-			"contentType": "text/plain",
-			xhrFields: {
-			    // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-			    // This can be used to set the 'withCredentials' property.
-			    // Set the value to 'true' if you'd like to pass cookies to the server.
-			    // If this is enabled, your server must respond with the header
-			    // 'Access-Control-Allow-Credentials: true'.
-			    withCredentials: false
-			},
-
-			headers: {
-			    // Set any custom headers here.
-			    // If you set any non-simple headers, your server must include these
-			    // headers in the 'Access-Control-Allow-Headers' response header.
-			    "X-API-KEY": "d06a6c14d099e2bb966e821c58210580"
-			} */
 		};
 
 		var capacity_settings = {
