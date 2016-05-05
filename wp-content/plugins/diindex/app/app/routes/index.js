@@ -87,6 +87,17 @@ export default Ember.Route.extend({
 				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
 			}
 		};
+
+		var maps_settings = {
+			"async" : false,
+			"crossDomain" : false,
+			"dataType" : "json",
+			"url" : "wp-json/wp/v2/pages/",
+			"method" : "GET",
+			"data" : {
+				"slug" : "home-page"
+			}
+		};
 		
 		function diffDate(fromDate, toDate) {
 
@@ -265,7 +276,6 @@ export default Ember.Route.extend({
 
 			topOperatorsGas: $.ajax(to_gas_settings).then(
 				function(data){
-					console.log(data);
 					var topten = {
 						labels: [
 							'',
@@ -351,6 +361,13 @@ export default Ember.Route.extend({
 
 					permitData.chart = series;
 					return permitData;
+				}
+			),
+
+			maps: $.ajax(maps_settings).then(
+				function(data) {
+					console.log(data);					
+					return data;
 				}
 			)
 		});

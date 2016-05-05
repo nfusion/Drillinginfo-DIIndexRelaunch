@@ -122,7 +122,6 @@ final class Drillinginfo_Index
 
         register_activation_hook(__FILE__, array($this, 'install'));
 
-        add_action('acf/init', array($this, 'add_fields'));
         add_action('init', array($this, 'load_plugin_textdomain'));
     }
 
@@ -208,11 +207,6 @@ final class Drillinginfo_Index
     {
         // Log the version number.
         update_option($this->token.'-version', $this->version);
-    }
-
-    public function add_fields()
-    {
-        include 'application-acf.php';
     }
 
  // End _log_version_number()
