@@ -115,7 +115,7 @@ final class Drillinginfo_Index
         $this->version = '1.0.0';
 
         // Custom field definitions
-        
+
         // Application - Start
         require_once 'classes/class-drillinginfo-index-application.php';
         $this->application = Drillinginfo_Index_Application::instance();
@@ -210,7 +210,8 @@ final class Drillinginfo_Index
         update_option($this->token.'-version', $this->version);
     }
 
-    public function add_fields() {
+    public function add_fields()
+    {
         include 'application-acf.php';
     }
 
