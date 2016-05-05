@@ -2,7 +2,7 @@
 
 // extract
 extract($args);
-		
+
 ?>
 <div class="wrap acf-settings-wrap">
 	
@@ -11,17 +11,17 @@ extract($args);
 	<form id="post" method="post" name="post">
 		
 		<?php 
-		
-		// render post data
-		acf_form_data(array( 
-			'post_id'	=> 'options', 
-			'nonce'		=> 'options',
-		));
-		
-		wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
-		wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
-		
-		?>
+
+        // render post data
+        acf_form_data(array(
+            'post_id'      => 'options',
+            'nonce'        => 'options',
+        ));
+
+        wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false);
+        wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false);
+
+        ?>
 		
 		<div id="poststuff">
 			
