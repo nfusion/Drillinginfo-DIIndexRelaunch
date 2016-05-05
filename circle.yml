@@ -1,5 +1,5 @@
 general:
-  build_dir: plugins/diindex/app
+  build_dir: wp-content/plugins/diindex/app
 ## Customize machine settings for Ember-cli
 machine:
   node:
