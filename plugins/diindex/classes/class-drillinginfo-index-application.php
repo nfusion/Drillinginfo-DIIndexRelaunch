@@ -44,14 +44,14 @@ final class Drillinginfo_Index_Application
     {
 
         // set the application base URL for Ember
-        add_action('wp_head', [$this, 'set_base_url']);
+        add_action('wp_head', array($this, 'set_base_url'));
 
         // include application JavaScript and CSS
-        add_action('wp_enqueue_scripts', [$this, 'application_scripts']);
-        add_action('wp_enqueue_scripts', [$this, 'application_styles']);
+        add_action('wp_enqueue_scripts', array($this, 'application_scripts'));
+        add_action('wp_enqueue_scripts', array($this, 'application_styles'));
 
         // add container element following body content.
-        add_filter('the_content', [$this, 'application_container']);
+        add_filter('the_content', array($this, 'application_container'));
     }
 
  // End __construct()
@@ -103,8 +103,8 @@ final class Drillinginfo_Index_Application
     public function application_scripts()
     {
         if (is_front_page()) {
-            wp_enqueue_script('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.js', [], $this->version, true);
-            wp_enqueue_script('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.js', [], $this->version, true);
+            wp_enqueue_script('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.js', array(), $this->version, true);
+            wp_enqueue_script('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.js', array(), $this->version, true);
         }
     }
 
@@ -120,8 +120,8 @@ final class Drillinginfo_Index_Application
     public function application_styles()
     {
         if (is_front_page()) {
-            wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.css', [], $this->version);
-            wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.css', [], $this->version);
+            wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/vendor.css', array(), $this->version);
+            wp_enqueue_style('di-app-vendor', Drillinginfo_Index::plugin_url.'/app/dist/assets/diindex-ember-dev.css', array(), $this->version);
         }
     }
 
