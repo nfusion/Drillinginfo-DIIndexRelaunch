@@ -1,8 +1,4 @@
-<?PHP
-
-if (!defined('ABSPATH')) {
-    exit;
-} // Exit if accessed directly
+<?php
 
 // Script: Simple PHP Proxy: Get external HTML, JSON and more!
 //
