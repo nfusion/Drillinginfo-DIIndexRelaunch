@@ -5,9 +5,9 @@ extract($args);
 ?>
 <div id="acf-upgrade-wrap" class="wrap">
 	
-	<h1><?php _e("Advanced Custom Fields Database Upgrade",'acf'); ?></h1>
+	<h1><?php _e('Advanced Custom Fields Database Upgrade', 'acf'); ?></h1>
 	
-	<p><?php _e("The following sites require a DB upgrade. Check the ones you want to update and then click “Upgrade Database”.",'acf'); ?></p>
+	<p><?php _e('The following sites require a DB upgrade. Check the ones you want to update and then click “Upgrade Database”.', 'acf'); ?></p>
 	
 	<p><input type="submit" name="upgrade" value="Update Sites" class="button" id="upgrade-sites"></p>
 	
@@ -16,26 +16,26 @@ extract($args);
 		<thead>
 			<tr>
 				<th class="manage-column check-column" scope="col"><input type="checkbox" id="sites-select-all"></th>
-				<th class="manage-column" scope="col" style="width:33%;"><label for="sites-select-all"><?php _e("Site", 'acf'); ?></label></th>
-				<th><?php _e("Description", 'acf'); ?></th>
+				<th class="manage-column" scope="col" style="width:33%;"><label for="sites-select-all"><?php _e('Site', 'acf'); ?></label></th>
+				<th><?php _e('Description', 'acf'); ?></th>
 			</tr>
 		</thead>
 	
 		<tfoot>
 		<tr>
 			<th class="manage-column check-column" scope="col"><input type="checkbox" id="sites-select-all-2"></th>
-			<th class="manage-column" scope="col"><label for="sites-select-all-2"><?php _e("Site", 'acf'); ?></label></th>
-			<th><?php _e("Description", 'acf'); ?></th>
+			<th class="manage-column" scope="col"><label for="sites-select-all-2"><?php _e('Site', 'acf'); ?></label></th>
+			<th><?php _e('Description', 'acf'); ?></th>
 		</tr>
 		</tfoot>
 		
 		<tbody id="the-list">
 		
-		<?php foreach( $sites as $i => $site ): ?>
+		<?php foreach ($sites as $i => $site): ?>
 			
-			<tr<?php if( $i % 2 == 0 ): ?> class="alternate"<?php endif; ?>>
+			<tr<?php if ($i % 2 == 0): ?> class="alternate"<?php endif; ?>>
 				<th class="check-column" scope="row">
-				<?php if( $site['updates'] ): ?>
+				<?php if ($site['updates']): ?>
 					<input type="checkbox" value="<?php echo $site['blog_id']; ?>" name="checked[]">
 				<?php endif; ?>
 				</th>
@@ -43,10 +43,10 @@ extract($args);
 					<strong><?php echo $site['name']; ?></strong><br /><?php echo $site['url']; ?>
 				</td>
 				<td>
-				<?php if( $site['updates'] ): ?>
+				<?php if ($site['updates']): ?>
 					<span class="response"><?php printf(__('Site requires database upgrade from %s to %s', 'acf'), $site['acf_version'], $plugin_version); ?></span>
 				<?php else: ?>
-					<?php _e("Site is up to date", 'acf'); ?>
+					<?php _e('Site is up to date', 'acf'); ?>
 				<?php endif; ?>
 				</td>
 			</tr>
@@ -59,7 +59,7 @@ extract($args);
 	
 	<p><input type="submit" name="upgrade" value="Update Sites" class="button" id="upgrade-sites-2"></p>
 	
-	<p class="show-on-complete"><?php _e('Database Upgrade complete', 'acf'); ?>. <a href="<?php echo network_admin_url(); ?>"><?php _e("Return to network dashboard",'acf'); ?></a>.</p>
+	<p class="show-on-complete"><?php _e('Database Upgrade complete', 'acf'); ?>. <a href="<?php echo network_admin_url(); ?>"><?php _e('Return to network dashboard', 'acf'); ?></a>.</p>
 	
 	<style type="text/css">
 		
