@@ -114,12 +114,15 @@ final class Drillinginfo_Index
         $this->plugin_path = plugin_dir_path(__FILE__);
         $this->version = '1.0.0';
 
+        // Custom field definitions
+        
         // Application - Start
         require_once 'classes/class-drillinginfo-index-application.php';
         $this->application = Drillinginfo_Index_Application::instance();
 
         register_activation_hook(__FILE__, array($this, 'install'));
 
+        add_action('acf/init', array($this, 'add_fields'));
         add_action('init', array($this, 'load_plugin_textdomain'));
     }
 
@@ -205,6 +208,10 @@ final class Drillinginfo_Index
     {
         // Log the version number.
         update_option($this->token.'-version', $this->version);
+    }
+
+    public function add_fields() {
+        include 'application-acf.php';
     }
 
  // End _log_version_number()
