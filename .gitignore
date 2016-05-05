@@ -9,6 +9,10 @@ wp-content/plugins/diindex/app/.node_modules-tmp
 wp-content/plugins/diindex/app/.bower_components-tmp
 wp-content/plugins/diindex/app/bower_components
 
+# composer ignore list
+/vendor
+composer.lock
+
 # wordpress -- github default ignore list
 *.log
 wp-config.php
@@ -19,14 +23,24 @@ wp-content/blogs.dir/
 cache/
 upgrade/
 wp-cache-config.php
+
+# plugins
 wp-content/plugins/hello.php
 wp-content/plugins/akismet/
+wp-content/plugins/rest-api/
+wp-content/plugins/acf-to-rest-api
+
+# themes
 wp-content/themes/twentyfifteen/
 wp-content/themes/twentyfourteen/
 wp-content/themes/twentysixteen/
+
+
 wp-content/index.php
 wp-content/plugins/index.php
 wp-content/themes/index.php
+
+# uploads
 wp-content/uploads/
 wp-content/uploads
 
