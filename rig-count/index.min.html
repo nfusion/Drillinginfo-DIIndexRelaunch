@@ -1,0 +1,8 @@
+<!DOCTYPE html> <html> <head> <title>Drillinginfo Index: Rig Count</title> </head> <body> <div id="rig-count"></div> <script src="vendor.js"></script> <script id="rig-count-tpl" type="text/x-handlebars-template"><h1>Rig Count</h1>
+		<ul>
+			<li>count change: {{count_change}}</li>
+			<!--li>date order: {{date_order}}</li-->
+			<li>percent change: {{delta pct_change append="%"}}</li>
+			<li>rig count: {{rig_count}}</li>
+			<li>rig date: {{dateformat rig_date "dddd, MMMM Do YYYY"}}</li>
+		</ul></script> <script>Handlebars.registerHelper("delta",function(a,e){return a=Math.round(a),a>=0?new Handlebars.SafeString('<span class="inc">'+a+e.hash.append+"</span>"):new Handlebars.SafeString('<span class="dec">'+a+e.hash.append+"</span>")}),Handlebars.registerHelper("dateformat",function(a,e){return moment(a).format(e)})</script> <script>!function(t){var n=t("#rig-count-tpl").html(),i=Handlebars.compile(n),o={dataType:"json",url:"/wp-content/plugins/diindex/api-proxy.php",method:"GET",data:{url:"http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"},success:function(n,o){var e=n.contents.elements[0];t("#rig-count").html(i(e))},error:function(){t("#rig-count").html("<p>Rig count not available at this time.</p>")},complete:function(t,n){}};t.ajax(o)}(jQuery)</script> </body> </html>

@@ -5,20 +5,38 @@
 </head>
 <body>
 	<div id="rig-count"></div>
-	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+	<!-- libraries -->
+	<script src="vendor.js"></script>
 
+	<!-- handlebars templates and helpers -->
 	<script id="rig-count-tpl" type="text/x-handlebars-template">
 		<h1>Rig Count</h1>
 		<ul>
 			<li>count change: {{count_change}}</li>
-			<li>date order: {{date_order}}</li>
-			<li>percent change: {{pct_change}}</li>
+			<!--li>date order: {{date_order}}</li-->
+			<li>percent change: {{delta pct_change append="%"}}</li>
 			<li>rig count: {{rig_count}}</li>
-			<li>rig date: {{rig_date}}</li>
+			<li>rig date: {{dateformat rig_date "dddd, MMMM Do YYYY"}}</li>
 		</ul>
 	</script>
+	<script>
+		// positive or negative change?
+		Handlebars.registerHelper('delta', function(delta, context) {
+			delta = Math.round(delta);
+			if (delta >= 0) {
+				return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '</span>');
+			}
+
+			return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '</span>');
+		});
+
+		// date formatting
+		Handlebars.registerHelper('dateformat', function(date, format) {
+			return moment(date).format(format);
+		});
+	</script>
+
 	<script>
 		(function($){
 			var source = $("#rig-count-tpl").html();
@@ -31,7 +49,6 @@
 					"url" : "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
 				},
 				"success" : function(data,status) {
-					console.log(data.contents.elements);
 					var current = data.contents.elements[0];
 					// render template
 					$("#rig-count").html(template(current));
