@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drillinginfo Index: Rig Count</title>
+</head>
+<body>
+	<div id="rig-count"></div>
+
+	
+	<!--[if lte IE 9]>
+    	<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+	<![endif]-->
+	<![if !lte IE 9]> <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script><![endif]>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+	<script id="rig-count-tpl" type="text/x-handlebars-template">
+		<h1>Rig Count</h1>
+		<ul>
+			<li>count change: {{count_change}}</li>
+			<li>date order: {{date_order}}</li>
+			<li>percent change: {{pct_change}}</li>
+			<li>rig count: {{rig_count}}</li>
+			<li>rig date: {{rig_date}}</li>
+		</ul>
+	</script>
+	<script>
+		(function($){
+			var source = $("#rig-count-tpl").html();
+			var template = Handlebars.compile(source);
+			var settings = {
+				"dataType": "json",
+				"url": "/wp-content/plugins/diindex/api-proxy.php",
+				"method": "GET",
+				"data" : {
+					"url" : "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+				},
+				"success" : function(data,status) {
+					console.log(data.contents.elements);
+					var current = data.contents.elements[0];
+					// render template
+					$("#rig-count").html(template(current));
+				},
+				"error" : function() {
+					$("#rig-count").html("<p>Rig count not available at this time.</p>");
+				},
+				"complete" : function(data, status) {
+					
+				}
+			};
+
+			$.ajax(settings);
+		})(Zepto || jQuery);
+	</script>
+</body>
+</html>
