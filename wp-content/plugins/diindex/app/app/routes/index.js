@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import moment from 'moment';
 
 export default Ember.Route.extend({
 	model: function() {
@@ -158,7 +158,7 @@ export default Ember.Route.extend({
 					var series_mboe = [
 					    {
 					    	name: 'MBOE',
-							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
 					    	data: highchart_series
 					    }
 					];
@@ -170,13 +170,13 @@ export default Ember.Route.extend({
 					var series_oil_v_gas = [
 						{
 							name: 'Oil',
-							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
 							data: oil_series,
 							yAxis: 0
 						},
 						{
 							name: 'Gas',
-							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
 							data: gas_series,
 							yAxis: 1
 						}
@@ -203,11 +203,11 @@ export default Ember.Route.extend({
 						highchart_series.push(this.rig_count);
 					});
 					highchart_series = highchart_series.reverse();
-
+					
 					var series = [
 					    {
 					    	name: 'Rig Count',
-					    	pointStart: new Date(ordered_data[0].rig_date).getTime(),
+					    	pointStart: moment(ordered_data[0].rig_date).milliseconds(),
 					    	pointInterval: 24 * 3600 * 1000, // one day
 					    	data: highchart_series
 					    }
@@ -366,8 +366,9 @@ export default Ember.Route.extend({
 
 			maps: $.ajax(maps_settings).then(
 				function(data) {
-					console.log(data);					
-					return data;
+					if (!data.length) return;
+					// expecting a single page, since query by slug.
+					return data[0];
 				}
 			)
 		});
