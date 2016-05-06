@@ -50,32 +50,35 @@
     </script>
 
     <script>
-        (function($) {
-            var source = $("#rig-count-tpl").html();
+        (function() {
+            var source = document.getElementById("rig-count-tpl").innerHTML;
             var template = Handlebars.compile(source);
-            var settings = {
-                "dataType": "json",
-                "url": "/wp-content/plugins/diindex/api-proxy.php",
-                "method": "GET",
-                "data": {
-                    "url": "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
-                },
-                "success": function(data, status) {
-                    var current = data.contents.elements[0];
-                    // render template
-                    $("#rig-count").html(template(current));
-                },
-                "error": function() {
-                    $("#rig-count").html("<p>Rig count not available at this time.</p>");
-                },
-                "complete": function(data, status) {
 
-                }
+            var request_url = "/wp-content/plugins/diindex/api-proxy.php";
+            var data_url = "url=http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json";
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+            	if(xmlhttp.readyState == 4) {
+            		if(xmlhttp.status == 200) {
+	            		// success
+	            		response_json = JSON.parse(xmlhttp.responseText);
+	            		var current = response_json.contents.elements[0];
+	                    // render template
+	                    document.getElementById("rig-count").innerHTML = template(current);
+	                }
+	                else {
+	                	// failure
+	               		var p = document.createElement(p);
+	               		p.textContent = "Rig data is not available at this time.";
+	               		document.getElementById("rig-count").appendChild(p);
+	                }
+            	} 
             };
-
-            $.ajax(settings);
-        })(jQuery);
+            // send request
+            xmlhttp.open("GET", request_url + "?" + data_url, true);
+            xmlhttp.send();
+        })();
     </script>
 </body>
-
 </html>
