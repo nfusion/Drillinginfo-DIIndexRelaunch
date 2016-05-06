@@ -1,72 +1,81 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Drillinginfo Index: Rig Count</title>
-	<style>
-		body {background:aliceblue;}
-		#rig-count {padding:5px; font:16px 'helvetica neue',sans-serif;}
-	</style>
+    <title>Drillinginfo Index: Rig Count</title>
+    <style>
+        body {
+            background: aliceblue;
+        }
+        
+        #rig-count {
+            padding: 5px;
+            font: 16px 'helvetica neue', sans-serif;
+        }
+    </style>
 </head>
+
 <body>
-	<div id="rig-count"></div>
+    <div id="rig-count"></div>
 
-	<!-- libraries -->
-	<script src="vendor.js"></script>
+    <!-- libraries -->
+    <script src="vendor.js"></script>
 
-	<!-- handlebars templates and helpers -->
-	<script id="rig-count-tpl" type="text/x-handlebars-template">
-		<h1>Rig Count</h1>
-		<ul>
-			<li>count change: {{count_change}}</li>
-			<!--li>date order: {{date_order}}</li-->
-			<li>percent change: {{delta pct_change append="%"}}</li>
-			<li>rig count: {{rig_count}}</li>
-			<li>rig date: {{dateformat rig_date "dddd, MMMM Do YYYY"}}</li>
-		</ul>
-	</script>
-	<script>
-		// positive or negative change?
-		Handlebars.registerHelper('delta', function(delta, context) {
-			delta = Math.round(delta);
-			if (delta >= 0) {
-				return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '</span>');
-			}
+    <!-- handlebars templates and helpers -->
+    <script id="rig-count-tpl" type="text/x-handlebars-template">
+        <h1>Rig Count</h1>
+        <ul>
+            <li>count change: {{count_change}}</li>
+            <!--li>date order: {{date_order}}</li-->
+            <li>percent change: {{delta pct_change append="%"}}</li>
+            <li>rig count: {{rig_count}}</li>
+            <li>rig date: {{dateformat rig_date "dddd, MMMM Do YYYY"}}</li>
+        </ul>
+    </script>
+    <script>
+        // positive or negative change?
+        Handlebars.registerHelper('delta', function(delta, context) {
+            delta = Math.round(delta);
+            if (delta >= 0) {
+                return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '</span>');
+            }
 
-			return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '</span>');
-		});
+            return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '</span>');
+        });
 
-		// date formatting
-		Handlebars.registerHelper('dateformat', function(date, format) {
-			return moment(date).format(format);
-		});
-	</script>
+        // date formatting
+        Handlebars.registerHelper('dateformat', function(date, format) {
+            return moment(date).format(format);
+        });
+    </script>
 
-	<script>
-		(function($){
-			var source = $("#rig-count-tpl").html();
-			var template = Handlebars.compile(source);
-			var settings = {
-				"dataType": "json",
-				"url": "/wp-content/plugins/diindex/api-proxy.php",
-				"method": "GET",
-				"data" : {
-					"url" : "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
-				},
-				"success" : function(data,status) {
-					var current = data.contents.elements[0];
-					// render template
-					$("#rig-count").html(template(current));
-				},
-				"error" : function() {
-					$("#rig-count").html("<p>Rig count not available at this time.</p>");
-				},
-				"complete" : function(data, status) {
-					
-				}
-			};
+    <script>
+        (function($) {
+            var source = $("#rig-count-tpl").html();
+            var template = Handlebars.compile(source);
+            var settings = {
+                "dataType": "json",
+                "url": "/wp-content/plugins/diindex/api-proxy.php",
+                "method": "GET",
+                "data": {
+                    "url": "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+                },
+                "success": function(data, status) {
+                    var current = data.contents.elements[0];
+                    // render template
+                    $("#rig-count").html(template(current));
+                },
+                "error": function() {
+                    $("#rig-count").html("<p>Rig count not available at this time.</p>");
+                },
+                "complete": function(data, status) {
 
-			$.ajax(settings);
-		})(jQuery);
-	</script>
+                }
+            };
+
+            $.ajax(settings);
+        })(jQuery);
+    </script>
 </body>
+
 </html>
