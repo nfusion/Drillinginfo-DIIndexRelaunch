@@ -7,9 +7,6 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'areaspline',
-<<<<<<< HEAD:app/controllers/index.js
-		     	},
-=======
 			    zoomType: 'x'
 		    },
 			plotOptions: {
@@ -37,7 +34,6 @@ export default Ember.Controller.extend({
 	                }
 				}
 			},
->>>>>>> master:plugins/diindex/app/app/controllers/index.js
 			title: {
 			    text: ''
 			},
