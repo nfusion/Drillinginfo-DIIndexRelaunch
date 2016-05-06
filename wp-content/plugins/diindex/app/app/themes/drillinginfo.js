@@ -11,9 +11,10 @@ Highcharts.createElement('link', {
 }, null, document.getElementsByTagName('head')[0]);
 
 export default Highcharts.extend ({
-	colors: ["#78be20", "#1d54a0", "#585b5d"],
+	//colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: '#fff',
+		spacing: 20,
 		style: {
 			fontFamily: '"Open Sans Condensed", sans-serif;',
 			color: '#ffffff'
@@ -50,10 +51,11 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: false,
+			enabled: true,
 			style: {
-				color: '#333'
-
+				color: '#333',
+				fontSize: "15px",
+				margin: 60
 			}
 		}
 	},
@@ -74,10 +76,11 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: false,
+			enabled: true,
 			style: {
-				color: '#333'
-
+				color: '#333',
+				fontSize: "15px",
+				margin: 60
 			}
 		}
 	},
@@ -97,37 +100,64 @@ export default Highcharts.extend ({
 			borderWidth: 0,
 			dataLabels: {
 				color: '#ffffff'
-			}
-		},
-		boxplot: {
-			fillColor: '#505053'
-		},
-		candlestick: {
-			lineColor: 'white'
-		},
-		errorbar: {
-			color: 'white'
-		},
-		area: {
+			},
+			color: {
+				linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+			    stops: [
+			        [0, '#78be20'],
+			        [1, '#68a41c']
+			    ]
+			},
 			showInLegend: false,
-			marker: {
-                enabled: false,
-                symbol: 'circle',
-                radius: 2,
-                states: {
-                    hover: {
-                        enabled: true
-                    }
-                }
-            },
+	    	pointIntervalUnit: 'month',
+	    	states: {
+				hover: {
+					color: '#b2df8a' 
+				}
+			}
 		},
 		line: {
-			lineWidth: 2,
-			marker: {
-				lineWidth: 2,
-				symbol: 'circle',
-				radius: 8
+			showInLegend: false,
+	    	pointIntervalUnit: 'month',
+	    	lineWidth: 4,
+	    	marker: {
+	    		enabled: true,
+				radius: 7,
+				symbol: 'circle'
+			},
+			states: {
+				hover: {
+					enabled: true,
+					halo: {
+						attributes: true,
+						size: 20,
+						opacity: 0.25
+					}
+				}
 			}
+		},
+		areaspline: {
+			showInLegend: false,
+			fillColor: {
+				linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+	        	stops: [
+	            	[0, '#7293cb'],
+	            	[1, '#396ab1']
+	        	]
+			},
+			lineColor: "#7293cb",
+			marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 1,
+                fillColor: '#7293cb',
+                states: {
+                    hover: {
+                        enabled: true,
+                        fillColor: '#eee'
+                    }
+                }
+            }
 		}
 	},
 	legend: {

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import moment from 'moment';
 
 export default Ember.Route.extend({
 	model: function() {
@@ -87,6 +87,17 @@ export default Ember.Route.extend({
 				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
 			}
 		};
+
+		var maps_settings = {
+			"async" : false,
+			"crossDomain" : false,
+			"dataType" : "json",
+			"url" : "wp-json/wp/v2/pages/",
+			"method" : "GET",
+			"data" : {
+				"slug" : "home-page"
+			}
+		};
 		
 		function diffDate(fromDate, toDate) {
 
@@ -147,7 +158,7 @@ export default Ember.Route.extend({
 					var series_mboe = [
 					    {
 					    	name: 'MBOE',
-							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
 					    	data: highchart_series
 					    }
 					];
@@ -159,13 +170,13 @@ export default Ember.Route.extend({
 					var series_oil_v_gas = [
 						{
 							name: 'Oil',
-							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
 							data: oil_series,
 							yAxis: 0
 						},
 						{
 							name: 'Gas',
-							pointStart: new Date(ordered_data[0].rundatetime).getTime(),
+							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
 							data: gas_series,
 							yAxis: 1
 						}
@@ -192,11 +203,11 @@ export default Ember.Route.extend({
 						highchart_series.push(this.rig_count);
 					});
 					highchart_series = highchart_series.reverse();
-
+					
 					var series = [
 					    {
 					    	name: 'Rig Count',
-					    	pointStart: new Date(ordered_data[0].rig_date).getTime(),
+					    	pointStart: moment(ordered_data[0].rig_date).milliseconds(),
 					    	pointInterval: 24 * 3600 * 1000, // one day
 					    	data: highchart_series
 					    }
@@ -265,7 +276,6 @@ export default Ember.Route.extend({
 
 			topOperatorsGas: $.ajax(to_gas_settings).then(
 				function(data){
-					console.log(data);
 					var topten = {
 						labels: [
 							'',
@@ -351,6 +361,14 @@ export default Ember.Route.extend({
 
 					permitData.chart = series;
 					return permitData;
+				}
+			),
+
+			maps: $.ajax(maps_settings).then(
+				function(data) {
+					if (!data.length) return;
+					// expecting a single page, since query by slug.
+					return data[0];
 				}
 			)
 		});

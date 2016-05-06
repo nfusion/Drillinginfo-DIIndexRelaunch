@@ -114,6 +114,8 @@ final class Drillinginfo_Index
         $this->plugin_path = plugin_dir_path(__FILE__);
         $this->version = '1.0.0';
 
+        // Custom field definitions
+
         // Application - Start
         require_once 'classes/class-drillinginfo-index-application.php';
         $this->application = Drillinginfo_Index_Application::instance();

@@ -44,12 +44,14 @@ export default Ember.Controller.extend({
 			xAxis: {
 				type: 'datetime',
 				title: {
-					text: 'Date'
+					text: 'Date',
+					margin: 20
 				}
 			},
 			yAxis: {
 			    title: {
-			        text: 'Rig Count'
+			        text: 'Rig Count',
+			        margin: 20
 			    },
 			    min: 350
 			}
@@ -59,33 +61,15 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'line',
-			    backgroundColor: '#6b4c9a',
-			    //height: 200,
-			    spacing: 20
+			    backgroundColor: '#6b4c9a'
 			},
 			plotOptions: {
 				line: {
-					showInLegend: false,
-			    	pointIntervalUnit: 'month',
-			    	color: '#fff',
-			    	lineWidth: 4,
-			    	marker: {
-						fillColor: '#fff'
-					},
-					states: {
-						hover: {
-							enabled: true,
-							halo: {
-								attributes: true,
-								size: 20,
-								opacity: 0.25
-							}
-						}
-					}
+			     	color: '#fff'
 			    }
 			},
 			title: {
-			    text: '',
+			    text: 'Rig Count',
 			    style: {"color":"#fff"}
 			},
 			xAxis: {
@@ -93,7 +77,8 @@ export default Ember.Controller.extend({
 				gridLineColor: 'transparent',
 				title: {
 					text: 'Date',
-					style: {"color" : "#fff"}
+					style: {"color" : "#fff"},
+					margin: 20
 				},
 				labels: {
 					useHTML: true,
@@ -106,7 +91,8 @@ export default Ember.Controller.extend({
 			yAxis: {
 			    title: {
 			        text: 'Permit Count',
-			        style: {"color" : "#fff"}
+			        style: {"color" : "#fff"},
+			        margin: 20
 			    },
 			    labels: {
 					style: {"color" : "#fff"}	
@@ -118,26 +104,7 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'column',
-			    //width: 555,
-			    height: 214
-			},
-			plotOptions: {
-				column: {
-					color: {
-						linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-					    stops: [
-					        [0, '#78be20'],
-					        [1, '#68a41c']
-					    ]
-					},
-					showInLegend: false,
-			    	pointIntervalUnit: 'month',
-			    	states: {
-						hover: {
-							color: '#b2df8a' 
-						}
-					}	
-			    }
+			    spacingTop: 30
 			},
 			title: {
 			    text: ''
@@ -145,12 +112,14 @@ export default Ember.Controller.extend({
 			xAxis: {
 				type: 'datetime',
 				title: {
-					text: 'Month'
+					text: 'Month',
+					margin: 20
 				}
 			},
 			yAxis: {
 			    title: {
-			        text: 'MBOE/Day'
+			        text: 'MBOE/Day',
+			        margin: 20
 			    },
 			    min: 300
 			}
@@ -167,21 +136,9 @@ export default Ember.Controller.extend({
 			},
 			plotOptions: {
 				line: {
-					showInLegend: false,
-			    	pointIntervalUnit: 'month',
-			    	lineWidth: 4,
+			    	colors: ["#fff", "#e1974c"],
 			    	marker: {
 						lineColor: 'transparent'
-					},
-					states: {
-						hover: {
-							enabled: true,
-							halo: {
-								attributes: true,
-								size: 20,
-								opacity: 0.25
-							}
-						}
 					}
 			    }
 			},
