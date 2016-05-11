@@ -1,11 +1,7 @@
-{{#unless months}}
-	<p>Data not available.</p>
-{{/unless}}
-
 {{#if months}}
 <ul>
-{{#each months as |month|}}
-	<li>BCF Per Day: {{month.newgasproduction_bcfperday}}, {{{delta-direction month.pctchggas}}}</li>
-{{/each}}
+	<li>BCF Per Day: {{months.newgasproduction_bcfperday}}, {{{delta-direction months.pctchggas}}}</li>
 </ul>
+{{else}}
+<p>Data not available.</p>
 {{/if}}

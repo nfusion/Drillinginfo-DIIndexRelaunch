@@ -1,13 +1,16 @@
 import Ember from 'ember';
 import moment from 'moment';
+import _collection from 'lodash/collection';
+import ENV from 'diindex-ember-dev/config/environment';
 
 export default Ember.Route.extend({
+	rigCountNew : null,
 	model: function() {
 		var settings = {
 			"async": true,
-			"crossDomain": false,
-			"dataType": "json",
-			"url": "wp-content/plugins/diindex/api-proxy.php",
+			"crossDomain": true,
+			"dataType": "jsonp",
+			"url": ENV.APP.connectionPath + 'wp-content/plugins/diindex/api-proxy.php',
 			"method": "GET"
 		};
 
@@ -89,10 +92,10 @@ export default Ember.Route.extend({
 		};
 
 		var maps_settings = {
-			"async" : false,
-			"crossDomain" : false,
+			"async" : true,
+			"crossDomain" : true,
 			"dataType" : "json",
-			"url" : "wp-json/wp/v2/pages/",
+			"url" : ENV.APP.connectionPath + "wp-json/wp/v2/pages/",
 			"method" : "GET",
 			"data" : {
 				"slug" : "home-page"
@@ -101,16 +104,12 @@ export default Ember.Route.extend({
 		
 		function diffDate(fromDate, toDate) {
 
-			toDate = toDate || new Date();
-
-			fromDate = fromDate.getTime();
-			toDate = toDate.getTime();
-
-			var diffDate = Math.round( (toDate - fromDate) / 1000 / 60 / 60 / 24 );
-
-			// return no data if it's more than 75 days old.
+			toDate = toDate || new moment();
+			
+			var diffDate = toDate.diff(fromDate, 'days');
 			//console.log('diffDate',diffDate);
 
+			// return no data if it's more than 75 days old.
 			return ( diffDate > 75 );
 		}
 
@@ -130,25 +129,33 @@ export default Ember.Route.extend({
 				function(data){
 					// error out if we get a bad response.
 					if (data.status.http_code !== 200) return;
-					var runDate = new Date(data.contents.elements[0].rundatetime);
 
+					// use the negative month count index to order data.
+					var capacity_data = _collection.sortBy(data.contents.elements,'monthnumber');
+					//console.log('initial capacity data: ',capacity_data);
+					
+					// parse the most recent month
+					var most_recent = capacity_data[capacity_data.length-1];
+					//console.log('most_recent:',most_recent);
+
+					var runDate = moment(most_recent.rundatetime);
 					var oldData = diffDate(runDate);
 
+					// error out if we are past the 'freshness' date
 					if (oldData) return;
 					
 					var prodCapData = {
-						usProdCap: data.contents.elements.slice(0,1)
+						usProdCap: most_recent
 					};
-					
+
 					var highchart_series = [],
 						oil_series = [],
 						gas_series = [],
-						// most recent month of data should be the last data point
-						ordered_data = data.contents.elements.reverse();
-						// return a max of six months of data
-						ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
 
-					$.each(ordered_data, function(){
+					// return a max of six months of data
+					recent_data = capacity_data.slice(Math.max(capacity_data.length - 6, 0));
+
+					$.each(recent_data, function(){
 						highchart_series.push(this.newboeproduction_mboeperday);
 						oil_series.push(this.newoilproduction_mbblperday);
 						gas_series.push(this.newgasproduction_bcfperday);
@@ -158,7 +165,7 @@ export default Ember.Route.extend({
 					var series_mboe = [
 					    {
 					    	name: 'MBOE',
-							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
+							pointStart: moment.utc(recent_data[0].rundatetime).valueOf(),
 					    	data: highchart_series
 					    }
 					];
@@ -170,13 +177,13 @@ export default Ember.Route.extend({
 					var series_oil_v_gas = [
 						{
 							name: 'Oil',
-							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
+							pointStart: moment.utc(recent_data[0].rundatetime).valueOf(),
 							data: oil_series,
 							yAxis: 0
 						},
 						{
 							name: 'Gas',
-							pointStart: moment(ordered_data[0].rundatetime).milliseconds(),
+							pointStart: moment.utc(recent_data[0].rundatetime).valueOf(),
 							data: gas_series,
 							yAxis: 1
 						}
@@ -195,19 +202,20 @@ export default Ember.Route.extend({
 					if (data.status.http_code !== 200) return;
 
 					var highchart_series = [];
-					var ordered_data = data.contents.elements.reverse();
-				    	// return a max of thirty days of data
-						ordered_data = ordered_data.slice(Math.max(highchart_series.length - 30, 0));
+					// use the negative daily count index to order data.
+					var ordered_data = _collection.sortBy(data.contents.elements,'date_order');
+				    
+				    // return a max of thirty days of data
+					ordered_data = ordered_data.slice(Math.max(highchart_series.length - 30, 0));
 
 					$.each(ordered_data, function(){
 						highchart_series.push(this.rig_count);
 					});
-					highchart_series = highchart_series.reverse();
-					
+
 					var series = [
 					    {
 					    	name: 'Rig Count',
-					    	pointStart: moment(ordered_data[0].rig_date).milliseconds(),
+					    	pointStart: moment.utc(ordered_data[0].rig_date).valueOf(),
 					    	pointInterval: 24 * 3600 * 1000, // one day
 					    	data: highchart_series
 					    }
@@ -229,7 +237,9 @@ export default Ember.Route.extend({
 						data: []
 					};
 					
-					$.each(data.contents.elements, function(){
+					var topten_data = _collection.sortBy(data.contents.elements,'rank');
+
+					$.each(topten_data, function(){
 						topten.data.push([
 							this.rank,
 							this.county.slice(0, this.county.length-4).trim(),
@@ -257,8 +267,11 @@ export default Ember.Route.extend({
 						],
 						data: []
 					};
-					
-					$.each(data.contents.elements, function(){
+
+					// sort 1-10 by rank
+					var topten_data = _collection.sortBy(data.contents.elements,'rank');
+
+					$.each(topten_data, function(){
 						topten.data.push([
 							this.rank,
 							this.county.slice(0, this.county.length-4).trim(),
@@ -286,7 +299,10 @@ export default Ember.Route.extend({
 						data: []
 					};
 					
-					$.each(data.contents.elements, function(){
+					// sort 1-10 by rank
+					var topten_data = _collection.sortBy(data.contents.elements,'rank');
+
+					$.each(topten_data, function(){
 						topten.data.push([
 							this.rank,
 							this.operator,
@@ -312,8 +328,11 @@ export default Ember.Route.extend({
 						],
 						data: []
 					};
+
+					// sort 1-10 by rank
+					var topten_data = _collection.sortBy(data.contents.elements,'rank');
 					
-					$.each(data.contents.elements, function(){
+					$.each(topten_data, function(){
 						topten.data.push([
 							this.rank,
 							this.operator,
@@ -333,7 +352,12 @@ export default Ember.Route.extend({
 				function(data){
 					if (data.status.http_code !== 200) return;
 
-					var runDate = new Date(data.contents.elements[0].year, data.contents.elements[0].month-1);
+					// use the negative month count index to order data.
+					var ordered_data = _collection.sortBy(data.contents.elements, 'month_order');
+
+					var most_recent = ordered_data[ordered_data.length-1];
+
+					var runDate = new moment([most_recent.year, most_recent.month-1]);
 					var oldData = diffDate(runDate);
 
 					if (oldData) return;
@@ -341,20 +365,19 @@ export default Ember.Route.extend({
 					var permitData = {};
 
 					var highchart_series = [];
-					// most recent month of data should be the last data point
-					var ordered_data = data.contents.elements.reverse();
+					
 					// return a max of six months of data
 					ordered_data = ordered_data.slice(Math.max(ordered_data.length - 6, 0));
+					//console.log(ordered_data);
 
 					$.each(ordered_data, function(){
 						highchart_series.push(this.permit_count);
 					});
-					highchart_series = highchart_series.reverse();
 
 					var series = [
 					    {
 					    	name: 'Permit Count',
-					    	pointStart: new Date(ordered_data[0].year, ordered_data[0].month-1).getTime(),
+					    	pointStart: moment.utc([ordered_data[0].year, ordered_data[0].month-1]).valueOf(),
 					    	data: highchart_series
 					    }
 					];
@@ -376,5 +399,19 @@ export default Ember.Route.extend({
 		//console.log(data);
 
 		return data;
-	}
+	},
+	setupController: function(controller, model) {
+		var series;
+		var min;
+		controller.set('model', model);
+		// lower bounds for rig count
+		series = model.rigCount[0].data;
+		min = _collection.min(series);
+    	controller.set('rigCountMin', min);
+
+    	// lower bounds for production capacity
+    	series = model.prodCapacity.usProdCapMboeChart[0].data;
+    	min = _collection.min(series);
+    	controller.set('prodCapMin',min);
+  	}
 });

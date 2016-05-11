@@ -1,11 +1,7 @@
-{{#unless months}}
-	<p>Data not available.</p>
-{{/unless}}
-
 {{#if months}}
 <ul>
-{{#each months as |month|}}
-	<li>MBBL Per Day: {{month.newoilproduction_mbblperday}}, {{{delta-direction month.pctchgoil}}}</li>
-{{/each}}
+<li>MBBL Per Day: {{months.newoilproduction_mbblperday}}, {{{delta-direction months.pctchgoil}}}</li>
 </ul>
+{{else}}
+	<p>Data not available.</p>
 {{/if}}
