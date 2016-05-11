@@ -1,11 +1,13 @@
 <div class="row">
 	<div class="large-6 columns">
-		<h3>Rig Count</h3>
-		{{#if model.rigCount}}
-		{{high-charts content=model.rigCount chartOptions=rigCount.chartOptions theme=theme}}
-		{{else}}
-		<p>Rig Count data is not available at this time.</p>
-		{{/if}}
+		<div class="widget">
+			<h3>Rig Count</h3>
+			{{#if model.rigCount}}
+			{{high-charts content=model.rigCount chartOptions=rigCount.chartOptions theme=theme}}
+			{{else}}
+			<p>Rig Count data is not available at this time.</p>
+			{{/if}}
+		</div>
 	</div>
 	<div class="large-6 columns">
 		<h3>Permit Count</h3>

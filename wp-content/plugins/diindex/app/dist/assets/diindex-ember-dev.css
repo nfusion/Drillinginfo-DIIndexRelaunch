@@ -3218,6 +3218,15 @@ table.hover tr:nth-of-type(even):hover {
 .top-bar-right {
   float: right; }
 
+body {
+  background: #f4f4f4; }
+
+.dec {
+  color: #ce2221; }
+
+.widget {
+  box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.55); }
+
 .accordion-title::before {
   background: #639a25;
   border-radius: 50%;
@@ -3235,5 +3244,8 @@ table.hover tr:nth-of-type(even):hover {
   color: white;
   border: none;
   font-weight: bold; }
+
+.accordion-title:hover {
+  color: white; }
 
 /*# sourceMappingURL=diindex-ember-dev.css.map */

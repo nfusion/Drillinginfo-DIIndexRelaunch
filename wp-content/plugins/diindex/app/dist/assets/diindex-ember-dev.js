@@ -292,18 +292,19 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				chartOptions: {
 					chart: {
 						type: 'areaspline',
-						zoomType: 'x'
+						zoomType: 'x',
+						backgroundColor: '#585b5d',
+						style: {
+							borderRadius: '0 0 .5rem .5rem'
+						}
 					},
 					plotOptions: {
 						areaspline: {
 							showInLegend: false,
-							fillColor: {
-								linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-								stops: [[0, '#7293cb'], [1, '#396ab1']]
-							},
-							lineColor: "#7293cb",
+							fillColor: "#dc7c23",
+							lineColor: "#dc7c23",
 							marker: {
-								enabled: true,
+								enabled: false,
 								symbol: 'circle',
 								radius: 1,
 								fillColor: '#7293cb',
@@ -316,23 +317,41 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 							}
 						}
 					},
-					title: {
-						text: ''
-					},
 					subtitle: {
-						text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+						text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
+						style: {
+							color: '#fff'
+						}
 					},
 					xAxis: {
 						type: 'datetime',
 						title: {
-							text: 'Date'
+							text: 'Date',
+							style: {
+								color: '#fff'
+							}
+						},
+						lineColor: '#818485',
+						labels: {
+							style: {
+								color: '#fff'
+							}
 						}
 					},
 					yAxis: {
 						title: {
-							text: 'Rig Count'
+							text: 'Rig Count',
+							style: {
+								color: '#fff'
+							}
 						},
-						min: null
+						min: null,
+						lineColor: '#818485',
+						labels: {
+							style: {
+								color: '#fff'
+							}
+						}
 					}
 				}
 			};
@@ -343,9 +362,10 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 			chartOptions: {
 				chart: {
 					type: 'line',
-					backgroundColor: '#6b4c9a',
-					//height: 200,
-					spacing: 20
+					backgroundColor: '#006f98',
+					style: {
+						borderRadius: '0 0 .5rem .5rem'
+					}
 				},
 				plotOptions: {
 					line: {
@@ -354,6 +374,7 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 						color: '#fff',
 						lineWidth: 4,
 						marker: {
+							enabled: true,
 							fillColor: '#fff'
 						},
 						states: {
@@ -368,10 +389,6 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 						}
 					}
 				},
-				title: {
-					text: '',
-					style: { "color": "#fff" }
-				},
 				xAxis: {
 					type: 'datetime',
 					gridLineColor: 'transparent',
@@ -385,7 +402,8 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 							color: "#fff",
 							paddingTop: '15px'
 						}
-					}
+					},
+					lineColor: '#4395b3'
 				},
 				yAxis: {
 					title: {
@@ -393,8 +411,11 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 						style: { "color": "#fff" }
 					},
 					labels: {
-						style: { "color": "#fff" }
-					}
+						style: { "color": "#fff" },
+						padding: 0,
+						step: 1
+					},
+					lineColor: '#4395b3'
 				}
 			}
 		},
@@ -402,9 +423,7 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 			var prodCapConfig = {
 				chartOptions: {
 					chart: {
-						type: 'column',
-						//width: 555,
-						height: 214
+						type: 'column'
 					},
 					plotOptions: {
 						column: {
@@ -2252,12 +2271,12 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 4,
-              "column": 2
+              "line": 5,
+              "column": 3
             },
             "end": {
-              "line": 6,
-              "column": 2
+              "line": 7,
+              "column": 3
             }
           },
           "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2268,7 +2287,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
+          var el1 = dom.createTextNode("			");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -2281,7 +2300,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 24], [5, 38]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "rigCount.chartOptions", ["loc", [null, [5, 52], [5, 73]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [5, 80], [5, 85]]]]], [], []]], ["loc", [null, [5, 2], [5, 87]]]]],
+        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [6, 25], [6, 39]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "rigCount.chartOptions", ["loc", [null, [6, 53], [6, 74]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [6, 81], [6, 86]]]]], [], []]], ["loc", [null, [6, 3], [6, 88]]]]],
         locals: [],
         templates: []
       };
@@ -2294,12 +2313,12 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 6,
-              "column": 2
+              "line": 7,
+              "column": 3
             },
             "end": {
-              "line": 8,
-              "column": 2
+              "line": 9,
+              "column": 3
             }
           },
           "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2310,7 +2329,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
+          var el1 = dom.createTextNode("			");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("p");
           var el2 = dom.createTextNode("Rig Count data is not available at this time.");
@@ -2336,11 +2355,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 12,
+              "line": 14,
               "column": 2
             },
             "end": {
-              "line": 14,
+              "line": 16,
               "column": 2
             }
           },
@@ -2365,7 +2384,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [13, 24], [13, 47]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "permitCount.chartOptions", ["loc", [null, [13, 61], [13, 85]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [13, 92], [13, 97]]]]], [], []]], ["loc", [null, [13, 2], [13, 99]]]]],
+        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [15, 24], [15, 47]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "permitCount.chartOptions", ["loc", [null, [15, 61], [15, 85]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [15, 92], [15, 97]]]]], [], []]], ["loc", [null, [15, 2], [15, 99]]]]],
         locals: [],
         templates: []
       };
@@ -2378,11 +2397,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 14,
+              "line": 16,
               "column": 2
             },
             "end": {
-              "line": 16,
+              "line": 18,
               "column": 2
             }
           },
@@ -2421,11 +2440,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 28,
+                "line": 30,
                 "column": 3
               },
               "end": {
-                "line": 42,
+                "line": 44,
                 "column": 3
               }
             },
@@ -2504,7 +2523,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             morphs[4] = dom.createMorphAt(element9, 9, 9);
             return morphs;
           },
-          statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [32, 43], [32, 71]]]]], [], []]], ["loc", [null, [32, 4], [32, 73]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [33, 26], [33, 63]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [33, 78], [33, 98]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [33, 105], [33, 110]]]]], [], []]], ["loc", [null, [33, 4], [33, 112]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [37, 35], [37, 63]]]]], [], []]], ["loc", [null, [37, 4], [37, 65]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [39, 35], [39, 63]]]]], [], []]], ["loc", [null, [39, 4], [39, 65]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [40, 26], [40, 57]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [40, 71], [40, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [40, 104], [40, 109]]]]], [], []]], ["loc", [null, [40, 4], [40, 111]]]]],
+          statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [34, 43], [34, 71]]]]], [], []]], ["loc", [null, [34, 4], [34, 73]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [35, 26], [35, 63]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [35, 78], [35, 98]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [35, 105], [35, 110]]]]], [], []]], ["loc", [null, [35, 4], [35, 112]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [39, 35], [39, 63]]]]], [], []]], ["loc", [null, [39, 4], [39, 65]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [41, 35], [41, 63]]]]], [], []]], ["loc", [null, [41, 4], [41, 65]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [42, 26], [42, 57]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [42, 71], [42, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [42, 104], [42, 109]]]]], [], []]], ["loc", [null, [42, 4], [42, 111]]]]],
           locals: [],
           templates: []
         };
@@ -2517,11 +2536,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 42,
+                "line": 44,
                 "column": 3
               },
               "end": {
-                "line": 44,
+                "line": 46,
                 "column": 3
               }
             },
@@ -2559,11 +2578,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 56,
+                "line": 58,
                 "column": 4
               },
               "end": {
-                "line": 71,
+                "line": 73,
                 "column": 4
               }
             },
@@ -2663,7 +2682,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             morphs[3] = dom.createMorphAt(element7, 9, 9);
             return morphs;
           },
-          statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [60, 19], [60, 40]]]]], [], []]], ["loc", [null, [60, 5], [60, 42]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [62, 19], [62, 40]]]]], [], []]], ["loc", [null, [62, 5], [62, 42]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [67, 19], [67, 39]]]]], [], []]], ["loc", [null, [67, 5], [67, 41]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [69, 19], [69, 39]]]]], [], []]], ["loc", [null, [69, 5], [69, 41]]]]],
+          statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [62, 19], [62, 40]]]]], [], []]], ["loc", [null, [62, 5], [62, 42]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [64, 19], [64, 40]]]]], [], []]], ["loc", [null, [64, 5], [64, 42]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [69, 19], [69, 39]]]]], [], []]], ["loc", [null, [69, 5], [69, 41]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [71, 19], [71, 39]]]]], [], []]], ["loc", [null, [71, 5], [71, 41]]]]],
           locals: [],
           templates: []
         };
@@ -2676,11 +2695,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 71,
+                "line": 73,
                 "column": 4
               },
               "end": {
-                "line": 73,
+                "line": 75,
                 "column": 4
               }
             },
@@ -2719,11 +2738,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 95,
+                  "line": 97,
                   "column": 5
                 },
                 "end": {
-                  "line": 97,
+                  "line": 99,
                   "column": 5
                 }
               },
@@ -2755,7 +2774,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               morphs[2] = dom.createAttrMorph(element5, 'alt');
               return morphs;
             },
-            statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [96, 17], [96, 54]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [96, 86], [96, 120]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [96, 131], [96, 167]]]]]]]],
+            statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [98, 17], [98, 54]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [98, 86], [98, 120]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [98, 131], [98, 167]]]]]]]],
             locals: [],
             templates: []
           };
@@ -2768,11 +2787,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 97,
+                  "line": 99,
                   "column": 5
                 },
                 "end": {
-                  "line": 99,
+                  "line": 101,
                   "column": 5
                 }
               },
@@ -2799,7 +2818,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               morphs[1] = dom.createAttrMorph(element3, 'alt');
               return morphs;
             },
-            statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [98, 18], [98, 52]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [98, 63], [98, 99]]]]]]]],
+            statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [100, 18], [100, 52]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [100, 63], [100, 99]]]]]]]],
             locals: [],
             templates: []
           };
@@ -2812,11 +2831,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 103,
+                  "line": 105,
                   "column": 5
                 },
                 "end": {
-                  "line": 105,
+                  "line": 107,
                   "column": 5
                 }
               },
@@ -2848,7 +2867,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               morphs[2] = dom.createAttrMorph(element2, 'alt');
               return morphs;
             },
-            statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [104, 17], [104, 52]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [104, 84], [104, 116]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [104, 127], [104, 161]]]]]]]],
+            statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [106, 17], [106, 52]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [106, 84], [106, 116]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [106, 127], [106, 161]]]]]]]],
             locals: [],
             templates: []
           };
@@ -2861,11 +2880,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 105,
+                  "line": 107,
                   "column": 5
                 },
                 "end": {
-                  "line": 107,
+                  "line": 109,
                   "column": 5
                 }
               },
@@ -2892,7 +2911,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
               morphs[1] = dom.createAttrMorph(element0, 'alt');
               return morphs;
             },
-            statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [106, 18], [106, 50]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [106, 61], [106, 95]]]]]]]],
+            statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [108, 18], [108, 50]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [108, 61], [108, 95]]]]]]]],
             locals: [],
             templates: []
           };
@@ -2904,11 +2923,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 92,
+                "line": 94,
                 "column": 4
               },
               "end": {
-                "line": 109,
+                "line": 111,
                 "column": 4
               }
             },
@@ -2964,7 +2983,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3]), 3, 3);
             return morphs;
           },
-          statements: [["block", "if", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [95, 11], [95, 48]]]]], [], 0, 1, ["loc", [null, [95, 5], [99, 12]]]], ["block", "if", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [103, 11], [103, 46]]]]], [], 2, 3, ["loc", [null, [103, 5], [107, 12]]]]],
+          statements: [["block", "if", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [97, 11], [97, 48]]]]], [], 0, 1, ["loc", [null, [97, 5], [101, 12]]]], ["block", "if", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [105, 11], [105, 46]]]]], [], 2, 3, ["loc", [null, [105, 5], [109, 12]]]]],
           locals: [],
           templates: [child0, child1, child2, child3]
         };
@@ -2977,11 +2996,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 109,
+                "line": 111,
                 "column": 4
               },
               "end": {
-                "line": 111,
+                "line": 113,
                 "column": 4
               }
             },
@@ -3018,11 +3037,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 20,
+              "line": 22,
               "column": 0
             },
             "end": {
-              "line": 116,
+              "line": 118,
               "column": 0
             }
           },
@@ -3206,7 +3225,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[2] = dom.createMorphAt(dom.childAt(fragment, [5, 3, 5, 1]), 3, 3);
           return morphs;
         },
-        statements: [["block", "if", [["get", "model.prodCapacity", ["loc", [null, [28, 9], [28, 27]]]]], [], 0, 1, ["loc", [null, [28, 3], [44, 10]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [56, 10], [56, 30]]]]], [], 2, 3, ["loc", [null, [56, 4], [73, 11]]]], ["block", "if", [["get", "model.maps", ["loc", [null, [92, 10], [92, 20]]]]], [], 4, 5, ["loc", [null, [92, 4], [111, 11]]]]],
+        statements: [["block", "if", [["get", "model.prodCapacity", ["loc", [null, [30, 9], [30, 27]]]]], [], 0, 1, ["loc", [null, [30, 3], [46, 10]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [58, 10], [58, 30]]]]], [], 2, 3, ["loc", [null, [58, 4], [75, 11]]]], ["block", "if", [["get", "model.maps", ["loc", [null, [94, 10], [94, 20]]]]], [], 4, 5, ["loc", [null, [94, 4], [113, 11]]]]],
         locals: [],
         templates: [child0, child1, child2, child3, child4, child5]
       };
@@ -3225,7 +3244,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 116,
+            "line": 118,
             "column": 17
           }
         },
@@ -3245,15 +3264,22 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.setAttribute(el2, "class", "large-6 columns");
         var el3 = dom.createTextNode("\n		");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h3");
-        var el4 = dom.createTextNode("Rig Count");
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "widget");
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h3");
+        var el5 = dom.createTextNode("Rig Count");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("		");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("	");
+        var el3 = dom.createTextNode("\n	");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
@@ -3287,13 +3313,13 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element10 = dom.childAt(fragment, [0]);
         var morphs = new Array(3);
-        morphs[0] = dom.createMorphAt(dom.childAt(element10, [1]), 3, 3);
+        morphs[0] = dom.createMorphAt(dom.childAt(element10, [1, 1]), 3, 3);
         morphs[1] = dom.createMorphAt(dom.childAt(element10, [3]), 3, 3);
         morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "zf-accordion", [], [], 4, null, ["loc", [null, [20, 0], [116, 17]]]]],
+      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [5, 9], [5, 23]]]]], [], 0, 1, ["loc", [null, [5, 3], [9, 10]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [14, 8], [14, 31]]]]], [], 2, 3, ["loc", [null, [14, 2], [18, 9]]]], ["block", "zf-accordion", [], [], 4, null, ["loc", [null, [22, 0], [118, 17]]]]],
       locals: [],
       templates: [child0, child1, child2, child3, child4]
     };
@@ -3318,9 +3344,10 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 			backgroundColor: '#fff',
 			style: {
 				fontFamily: '"Open Sans Condensed", sans-serif;',
-				color: '#ffffff'
+				color: '#333'
 			},
-			plotBorderColor: '#333333'
+			plotBorderColor: 'transparent',
+			height: 300
 		},
 		title: {
 			style: {
@@ -3337,11 +3364,13 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 		},
 		xAxis: {
 			visible: true,
-			gridLineColor: '#fff',
+			gridLineColor: 'transparent',
 			gridLineWidth: 1,
 			labels: {
 				style: {
-					color: '#333'
+					color: '#333',
+					fontWeight: 'bold',
+					fontSize: '1rem'
 				}
 			},
 			lineColor: '#333',
@@ -3352,34 +3381,37 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 			tickLength: 0,
 			tickWidth: 0,
 			title: {
-				enabled: false,
 				style: {
-					color: '#333'
-
-				}
+					color: '#333',
+					fontStyle: 'italic',
+					fontSize: '1rem'
+				},
+				margin: 30
 			}
 		},
 		yAxis: {
 			visible: true,
-			gridLineColor: '#e9e7e4',
+			gridLineColor: 'transparent',
 			gridLineWidth: 1,
 			labels: {
 				style: {
-					color: '#333'
+					color: '#333',
+					fontWeight: 'bold',
+					fontSize: '1rem'
 				}
 			},
 			lineColor: '#333',
-			lineWidth: 0,
+			lineWidth: 1,
 			minorGridLineColor: '#000000',
 			minorGridLineWidth: 1,
 			minorTickLength: 0,
 			tickLength: 0,
 			tickWidth: 0,
 			title: {
-				enabled: false,
 				style: {
-					color: '#333'
-
+					color: '#333',
+					fontStyle: 'italic',
+					fontSize: '1rem'
 				}
 			}
 		},

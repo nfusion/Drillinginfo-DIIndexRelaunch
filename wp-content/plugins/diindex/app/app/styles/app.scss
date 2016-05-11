@@ -2,6 +2,11 @@
 @import "foundation";
 @include foundation-everything;
 
+body {background:#f4f4f4;}
+.dec {color:#ce2221;}
+.widget {
+	box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.55);
+}
 .accordion-title::before {
 	background:#639a25;
 	border-radius: 50%;
@@ -18,4 +23,7 @@
 	color:white;
 	border:none;
 	font-weight: bold;
+}
+.accordion-title:hover {
+	color:white;
 }

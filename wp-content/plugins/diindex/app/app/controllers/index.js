@@ -13,21 +13,19 @@ export default Ember.Controller.extend({
 			chartOptions: {
 				chart: {
 				    type: 'areaspline',
-				    zoomType: 'x'
+				    zoomType: 'x',
+				    backgroundColor: '#585b5d',
+				    style: {
+				    	borderRadius: '0 0 .5rem .5rem'
+				    }
 			    },
 				plotOptions: {
 					areaspline: {
 						showInLegend: false,
-						fillColor: {
-							linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-				        	stops: [
-				            	[0, '#7293cb'],
-				            	[1, '#396ab1']
-				        	]
-						},
-						lineColor: "#7293cb",
+						fillColor: "#dc7c23",
+						lineColor: "#dc7c23",
 						marker: {
-		                    enabled: true,
+		                    enabled: false,
 		                    symbol: 'circle',
 		                    radius: 1,
 		                    fillColor: '#7293cb',
@@ -40,24 +38,42 @@ export default Ember.Controller.extend({
 		                }
 					}
 				},
-				title: {
-				    text: ''
-				},
 				subtitle: {
 		            text: document.ontouchstart === undefined ?
-		                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+		                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
+		            style: {
+		            	color: '#fff'
+		            }
 		        },
 				xAxis: {
 					type: 'datetime',
 					title: {
-						text: 'Date'
-					}
+						text: 'Date',
+						style: {
+							color: '#fff'
+						}
+					},
+					lineColor: '#818485',
+					labels: {
+						style: {
+							color: '#fff'
+						}
+					},
 				},
 				yAxis: {
 				    title: {
-				        text: 'Rig Count'
+				        text: 'Rig Count',
+				        style: {
+				        	color: '#fff'
+				        }
 				    },
-				    min: null
+				    min: null,
+				    lineColor: '#818485',
+				    labels: {
+						style: {
+							color: '#fff'
+						}
+					},
 				}
 			}
 		};
@@ -68,9 +84,10 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			chart: {
 			    type: 'line',
-			    backgroundColor: '#6b4c9a',
-			    //height: 200,
-			    spacing: 20
+			    backgroundColor: '#006f98',
+			    style: {
+				    	borderRadius: '0 0 .5rem .5rem'
+				}
 			},
 			plotOptions: {
 				line: {
@@ -79,6 +96,7 @@ export default Ember.Controller.extend({
 			    	color: '#fff',
 			    	lineWidth: 4,
 			    	marker: {
+			    		enabled: true,
 						fillColor: '#fff'
 					},
 					states: {
@@ -93,10 +111,6 @@ export default Ember.Controller.extend({
 					}
 			    }
 			},
-			title: {
-			    text: '',
-			    style: {"color":"#fff"}
-			},
 			xAxis: {
 				type: 'datetime',
 				gridLineColor: 'transparent',
@@ -110,7 +124,8 @@ export default Ember.Controller.extend({
 						color : "#fff",
 						paddingTop: '15px'
 					}
-				}
+				},
+				lineColor: '#4395b3'
 			},
 			yAxis: {
 			    title: {
@@ -118,8 +133,11 @@ export default Ember.Controller.extend({
 			        style: {"color" : "#fff"}
 			    },
 			    labels: {
-					style: {"color" : "#fff"}	
-				}
+					style: {"color" : "#fff"},
+					padding: 0,
+					step: 1
+				},
+				lineColor: '#4395b3'
 			}
 		}
 	},
@@ -127,9 +145,7 @@ export default Ember.Controller.extend({
 		var prodCapConfig = {
 			chartOptions: {
 				chart: {
-				    type: 'column',
-				    //width: 555,
-				    height: 214
+				    type: 'column'
 				},
 				plotOptions: {
 					column: {

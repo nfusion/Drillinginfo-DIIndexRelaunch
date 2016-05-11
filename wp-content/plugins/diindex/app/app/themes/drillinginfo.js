@@ -16,9 +16,10 @@ export default Highcharts.extend ({
 		backgroundColor: '#fff',
 		style: {
 			fontFamily: '"Open Sans Condensed", sans-serif;',
-			color: '#ffffff'
+			color: '#333'
 		},
-		plotBorderColor: '#333333'
+		plotBorderColor: 'transparent',
+		height: 300
 	},
 	title: {
 		style: {
@@ -35,11 +36,13 @@ export default Highcharts.extend ({
 	},
 	xAxis: {
 		visible: true,
-		gridLineColor: '#fff',
+		gridLineColor: 'transparent',
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#333'
+				color: '#333',
+				fontWeight: 'bold',
+				fontSize: '1rem'
 			}
 		},
 		lineColor: '#333',
@@ -50,34 +53,37 @@ export default Highcharts.extend ({
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: false,
 			style: {
-				color: '#333'
-
-			}
+				color: '#333',
+				fontStyle: 'italic',
+				fontSize: '1rem'
+			},
+			margin: 30
 		}
 	},
 	yAxis: {
 		visible: true,
-		gridLineColor: '#e9e7e4',
+		gridLineColor: 'transparent',
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#333'
+				color: '#333',
+				fontWeight: 'bold',
+				fontSize: '1rem',
 			}
 		},
 		lineColor: '#333',
-		lineWidth: 0,
+		lineWidth: 1,
 		minorGridLineColor: '#000000',
 		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: false,
 			style: {
-				color: '#333'
-
+				color: '#333',
+				fontStyle: 'italic',
+				fontSize: '1rem'
 			}
 		}
 	},
