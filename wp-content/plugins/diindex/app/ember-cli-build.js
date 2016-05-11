@@ -8,6 +8,9 @@ module.exports = function(defaults) {
     storeConfigInMeta: false,
     fingerprint: {
       enabled: false
+    },
+    'ember-cli-foundation-6-sass': {
+      'foundationJs': 'all'
     }
   });
 
@@ -25,6 +28,11 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('vendor/oval.svg');
+  // Bourbon and Foundation 6
+  app.import('bower_components/bourbon/app/assets/stylesheets/_bourbon.scss');
+  app.import('bower_components/foundation-sites/scss/foundation.scss');
+
+  app.import('bower_components/foundation-sites/dist/foundation.js');
 
   return app.toTree();
 };

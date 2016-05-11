@@ -1,5 +1,4 @@
 <div class="row">
-{{test}}
 	<div class="large-6 columns">
 		<h3>Rig Count</h3>
 		{{#if model.rigCount}}
@@ -18,84 +17,100 @@
 	</div>
 </div><!-- end .row -->
 
-<!-- First Tab - Production Capacity -->
-<div class="row">
-	<div class="large-12 columns panel">
-		<h2>Production Capacity</h2>
-		{{#if model.prodCapacity}}
-		<div class="large-6 columns">
+{{#zf-accordion}}
+  <li class="accordion-item is-active" data-accordion-item>
+    <a class="accordion-title">Production Capacity</a>
+    <div class="accordion-content" data-tab-content>
+      <!-- First Tab - Production Capacity -->
+	<div class="row">
+		<div class="large-12 columns panel">
+			<h2>Production Capacity</h2>
+			{{#if model.prodCapacity}}
+			<div class="large-6 columns">
 
-			<h3>U.S. Production Capacity</h3>
-			{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
-			{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
-		</div>
-		<div class="large-6 columns">
-			<h3>U.S. Oil Production Capacity</h3>
-			{{oil-production-widget months=model.prodCapacity.usProdCap}}
-			<h3>U.S. Gas Production Capacity</h3>
-			{{gas-production-widget months=model.prodCapacity.usProdCap}}
-			{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
-		</div>
-		{{else}}
-		<p>Production Capacity data is not available at this time.</p>
-		{{/if}}
-	</div>
-</div><!-- end .row -->
-
-<!-- Second Tab - Top Ten Lists -->
-<div class="row">
-	<div class="large-12 columns panel">
-		<h2>Top Ten</h2>
-		{{#if model.topCountiesGas}}
-		<div class="large-6 columns">
-			<h3>New Production by <strong>Operators</strong></h3>
-			<h4>Gas</h4>
-			{{top-ten obj=model.topOperatorsGas}}
-			<h4>Oil</h4>
-			{{top-ten obj=model.topOperatorsOil}}
-		</div>
-		<div class="large-6 columns">
-			<h3>New Production by <strong>Counties</strong></h3>
-			<h4>Gas</h4>
-			{{top-ten obj=model.topCountiesGas}}
-			<h4>Oil</h4>
-			{{top-ten obj=model.topCountiesOil}}
-		</div>
-		{{else}}
-		<p>Production Capacity data is not available at this time.</p>
-		{{/if}}
-	</div>
-</div><!-- end .row -->
-<!-- Third Tab - Maps -->
-<!-- 
-	So I have a couple of ideas on implementation for this. But this is the best one.
-	We will use Wordpress' REST API to pull custom image fields from a node where 
-	they select two images and two PDFs from the media library, one of each for wells and rigs.
-	That way we don't have to rebuild the app or overwrite any imagery; we just pull
-	the data real-time same as we are doing everything else.
--->
-<div class="row">
-	<div class="large-12 columns panel">
-		<h2>Maps</h2>
-		{{#if model.maps}}
-		<div class="large-6 columns">
-			<h3>New Wells</h3>
-			{{#if model.maps.acf.wells_expanded_version}}
-				<a href="{{model.maps.acf.wells_expanded_version}}" target="_blank"><img src="{{model.maps.acf.wells_map_image.url}}" alt="{{model.maps.acf.wells_map_image.title}}" /></a>
+				<h3>U.S. Production Capacity</h3>
+				{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
+				{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
+			</div>
+			<div class="large-6 columns">
+				<h3>U.S. Oil Production Capacity</h3>
+				{{oil-production-widget months=model.prodCapacity.usProdCap}}
+				<h3>U.S. Gas Production Capacity</h3>
+				{{gas-production-widget months=model.prodCapacity.usProdCap}}
+				{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
+			</div>
 			{{else}}
-				<img src="{{model.maps.acf.wells_map_image.url}}" alt="{{model.maps.acf.wells_map_image.title}}" />
+			<p>Production Capacity data is not available at this time.</p>
 			{{/if}}
 		</div>
-		<div class="large-6 columns">
-			<h3>Rig Movement</h3>
-			{{#if model.maps.acf.rig_expanded_version}}
-				<a href="{{model.maps.acf.rig_expanded_version}}" target="_blank"><img src="{{model.maps.acf.rig_map_image.url}}" alt="{{model.maps.acf.rig_map_image.title}}" /></a>
-			{{else}}
-				<img src="{{model.maps.acf.rig_map_image.url}}" alt="{{model.maps.acf.rig_map_image.title}}" />
-			{{/if}}
+</div><!-- end .row -->
+    </div>
+  </li>
+  <li class="accordion-item" data-accordion-item>
+    <a class="accordion-title">Top 10</a>
+    <div class="accordion-content" data-tab-content>
+    	<!-- Second Tab - Top Ten Lists -->
+		<div class="row">
+			<div class="large-12 columns panel">
+				<h2>Top Ten</h2>
+				{{#if model.topCountiesGas}}
+				<div class="large-6 columns">
+					<h3>New Production by <strong>Operators</strong></h3>
+					<h4>Gas</h4>
+					{{top-ten obj=model.topOperatorsGas}}
+					<h4>Oil</h4>
+					{{top-ten obj=model.topOperatorsOil}}
+				</div>
+				<div class="large-6 columns">
+					<h3>New Production by <strong>Counties</strong></h3>
+					<h4>Gas</h4>
+					{{top-ten obj=model.topCountiesGas}}
+					<h4>Oil</h4>
+					{{top-ten obj=model.topCountiesOil}}
+				</div>
+				{{else}}
+				<p>Production Capacity data is not available at this time.</p>
+				{{/if}}
+			</div>
+		</div><!-- end .row -->
+    </div>
+  </li>
+  <li class="accordion-item" data-accordion-item>
+    <a class="accordion-title">Maps</a>
+    <div class="accordion-content" data-tab-content>
+    	<!-- Third Tab - Maps -->
+		<!-- 
+			So I have a couple of ideas on implementation for this. But this is the best one.
+			We will use Wordpress' REST API to pull custom image fields from a node where 
+			they select two images and two PDFs from the media library, one of each for wells and rigs.
+			That way we don't have to rebuild the app or overwrite any imagery; we just pull
+			the data real-time same as we are doing everything else.
+		-->
+		<div class="row">
+			<div class="large-12 columns panel">
+				<h2>Maps</h2>
+				{{#if model.maps}}
+				<div class="large-6 columns">
+					<h3>New Wells</h3>
+					{{#if model.maps.acf.wells_expanded_version}}
+						<a href="{{model.maps.acf.wells_expanded_version}}" target="_blank"><img src="{{model.maps.acf.wells_map_image.url}}" alt="{{model.maps.acf.wells_map_image.title}}" /></a>
+					{{else}}
+						<img src="{{model.maps.acf.wells_map_image.url}}" alt="{{model.maps.acf.wells_map_image.title}}" />
+					{{/if}}
+				</div>
+				<div class="large-6 columns">
+					<h3>Rig Movement</h3>
+					{{#if model.maps.acf.rig_expanded_version}}
+						<a href="{{model.maps.acf.rig_expanded_version}}" target="_blank"><img src="{{model.maps.acf.rig_map_image.url}}" alt="{{model.maps.acf.rig_map_image.title}}" /></a>
+					{{else}}
+						<img src="{{model.maps.acf.rig_map_image.url}}" alt="{{model.maps.acf.rig_map_image.title}}" />
+					{{/if}}
+				</div>
+				{{else}}
+				<p>Map data is not available at this time.</p>
+				{{/if}}
+			</div>
 		</div>
-		{{else}}
-		<p>Map data is not available at this time.</p>
-		{{/if}}
-	</div>
-</div>
+    </div>
+  </li>
+{{/zf-accordion}}

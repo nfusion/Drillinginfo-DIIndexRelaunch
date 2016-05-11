@@ -183,6 +183,102 @@ define('diindex-ember-dev/components/us-production-capacity-widget', ['exports',
 define('diindex-ember-dev/components/us-rig-count-widget', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('diindex-ember-dev/components/zf-accordion-menu', ['exports', 'ember-cli-foundation-6-sass/components/zf-accordion-menu'], function (exports, _emberCliFoundation6SassComponentsZfAccordionMenu) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfAccordionMenu['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-accordion', ['exports', 'ember-cli-foundation-6-sass/components/zf-accordion'], function (exports, _emberCliFoundation6SassComponentsZfAccordion) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfAccordion['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-drilldown-menu', ['exports', 'ember-cli-foundation-6-sass/components/zf-drilldown-menu'], function (exports, _emberCliFoundation6SassComponentsZfDrilldownMenu) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfDrilldownMenu['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-dropdown-menu', ['exports', 'ember-cli-foundation-6-sass/components/zf-dropdown-menu'], function (exports, _emberCliFoundation6SassComponentsZfDropdownMenu) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfDropdownMenu['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-dropdown', ['exports', 'ember-cli-foundation-6-sass/components/zf-dropdown'], function (exports, _emberCliFoundation6SassComponentsZfDropdown) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfDropdown['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-magellan', ['exports', 'ember-cli-foundation-6-sass/components/zf-magellan'], function (exports, _emberCliFoundation6SassComponentsZfMagellan) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfMagellan['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-off-canvas', ['exports', 'ember-cli-foundation-6-sass/components/zf-off-canvas'], function (exports, _emberCliFoundation6SassComponentsZfOffCanvas) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfOffCanvas['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-orbit', ['exports', 'ember-cli-foundation-6-sass/components/zf-orbit'], function (exports, _emberCliFoundation6SassComponentsZfOrbit) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfOrbit['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-reveal', ['exports', 'ember-cli-foundation-6-sass/components/zf-reveal'], function (exports, _emberCliFoundation6SassComponentsZfReveal) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfReveal['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-slider', ['exports', 'ember-cli-foundation-6-sass/components/zf-slider'], function (exports, _emberCliFoundation6SassComponentsZfSlider) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfSlider['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-tabs', ['exports', 'ember-cli-foundation-6-sass/components/zf-tabs'], function (exports, _emberCliFoundation6SassComponentsZfTabs) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfTabs['default'];
+    }
+  });
+});
+define('diindex-ember-dev/components/zf-tooltip', ['exports', 'ember-cli-foundation-6-sass/components/zf-tooltip'], function (exports, _emberCliFoundation6SassComponentsZfTooltip) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassComponentsZfTooltip['default'];
+    }
+  });
+});
 define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-ember-dev/themes/drillinginfo'], function (exports, _ember, _diindexEmberDevThemesDrillinginfo) {
 	exports['default'] = _ember['default'].Controller.extend({
 		// lower bounds for computed chart configuration properties
@@ -248,7 +344,6 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				chart: {
 					type: 'line',
 					backgroundColor: '#6b4c9a',
-					zoomType: 'x',
 					//height: 200,
 					spacing: 20
 				},
@@ -276,9 +371,6 @@ define('diindex-ember-dev/controllers/index', ['exports', 'ember', 'diindex-embe
 				title: {
 					text: '',
 					style: { "color": "#fff" }
-				},
-				subtitle: {
-					text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
 				},
 				xAxis: {
 					type: 'datetime',
@@ -636,6 +728,20 @@ define('diindex-ember-dev/initializers/transforms', ['exports', 'ember'], functi
     before: 'store',
     initialize: _ember['default'].K
   };
+});
+define('diindex-ember-dev/initializers/zf-widget', ['exports', 'ember-cli-foundation-6-sass/initializers/zf-widget'], function (exports, _emberCliFoundation6SassInitializersZfWidget) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassInitializersZfWidget['default'];
+    }
+  });
+  Object.defineProperty(exports, 'initialize', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliFoundation6SassInitializersZfWidget.initialize;
+    }
+  });
 });
 define("diindex-ember-dev/instance-initializers/ember-data", ["exports", "ember-data/-private/instance-initializers/initialize-store-service"], function (exports, _emberDataPrivateInstanceInitializersInitializeStoreService) {
   exports["default"] = {
@@ -1500,12 +1606,12 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             "loc": {
               "source": null,
               "start": {
-                "line": 4,
-                "column": 1
+                "line": 5,
+                "column": 2
               },
               "end": {
-                "line": 6,
-                "column": 1
+                "line": 7,
+                "column": 2
               }
             },
             "moduleName": "diindex-ember-dev/templates/components/top-ten.hbs"
@@ -1516,7 +1622,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("		");
+            var el1 = dom.createTextNode("			");
             dom.appendChild(el0, el1);
             var el1 = dom.createElement("th");
             var el2 = dom.createComment("");
@@ -1531,7 +1637,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
             return morphs;
           },
-          statements: [["content", "label", ["loc", [null, [5, 6], [5, 15]]]]],
+          statements: [["content", "label", ["loc", [null, [6, 7], [6, 16]]]]],
           locals: ["label"],
           templates: []
         };
@@ -1546,11 +1652,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 11,
+                    "line": 14,
                     "column": 1
                   },
                   "end": {
-                    "line": 13,
+                    "line": 16,
                     "column": 1
                   }
                 },
@@ -1577,7 +1683,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                 morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
                 return morphs;
               },
-              statements: [["content", "el", ["loc", [null, [12, 5], [12, 11]]]]],
+              statements: [["content", "el", ["loc", [null, [15, 5], [15, 11]]]]],
               locals: [],
               templates: []
             };
@@ -1590,11 +1696,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
                 "loc": {
                   "source": null,
                   "start": {
-                    "line": 13,
+                    "line": 16,
                     "column": 1
                   },
                   "end": {
-                    "line": 15,
+                    "line": 18,
                     "column": 1
                   }
                 },
@@ -1631,11 +1737,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 10,
+                  "line": 13,
                   "column": 1
                 },
                 "end": {
-                  "line": 16,
+                  "line": 19,
                   "column": 1
                 }
               },
@@ -1658,7 +1764,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
               dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["block", "if", [["get", "el", ["loc", [null, [11, 7], [11, 9]]]]], [], 0, 1, ["loc", [null, [11, 1], [15, 8]]]]],
+            statements: [["block", "if", [["get", "el", ["loc", [null, [14, 7], [14, 9]]]]], [], 0, 1, ["loc", [null, [14, 1], [18, 8]]]]],
             locals: ["el"],
             templates: [child0, child1]
           };
@@ -1670,11 +1776,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             "loc": {
               "source": null,
               "start": {
-                "line": 8,
+                "line": 11,
                 "column": 0
               },
               "end": {
-                "line": 18,
+                "line": 21,
                 "column": 0
               }
             },
@@ -1705,7 +1811,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
             return morphs;
           },
-          statements: [["block", "each", [["get", "item", ["loc", [null, [10, 9], [10, 13]]]]], [], 0, null, ["loc", [null, [10, 1], [16, 10]]]]],
+          statements: [["block", "each", [["get", "item", ["loc", [null, [13, 9], [13, 13]]]]], [], 0, null, ["loc", [null, [13, 1], [19, 10]]]]],
           locals: ["item"],
           templates: [child0]
         };
@@ -1723,7 +1829,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
               "column": 0
             },
             "end": {
-              "line": 20,
+              "line": 24,
               "column": 0
             }
           },
@@ -1739,17 +1845,29 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           dom.setAttribute(el1, "width", "100%");
           var el2 = dom.createTextNode("\n	");
           dom.appendChild(el1, el2);
-          var el2 = dom.createElement("tr");
-          var el3 = dom.createTextNode("\n");
+          var el2 = dom.createElement("thead");
+          var el3 = dom.createTextNode("\n		");
           dom.appendChild(el2, el3);
-          var el3 = dom.createComment("");
+          var el3 = dom.createElement("tr");
+          var el4 = dom.createTextNode("\n");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("		");
+          dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("	");
+          var el3 = dom.createTextNode("\n	");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n");
           dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
+          var el2 = dom.createElement("tbody");
+          var el3 = dom.createTextNode("\n");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -1759,11 +1877,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element0 = dom.childAt(fragment, [0]);
           var morphs = new Array(2);
-          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 1, 1);
-          morphs[1] = dom.createMorphAt(element0, 3, 3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1, 1]), 1, 1);
+          morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 1, 1);
           return morphs;
         },
-        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [4, 9], [4, 19]]]]], [], 0, null, ["loc", [null, [4, 1], [6, 10]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [8, 8], [8, 16]]]]], [], 1, null, ["loc", [null, [8, 0], [18, 9]]]]],
+        statements: [["block", "each", [["get", "obj.labels", ["loc", [null, [5, 10], [5, 20]]]]], [], 0, null, ["loc", [null, [5, 2], [7, 11]]]], ["block", "each", [["get", "obj.data", ["loc", [null, [11, 8], [11, 16]]]]], [], 1, null, ["loc", [null, [11, 0], [21, 9]]]]],
         locals: [],
         templates: [child0, child1]
       };
@@ -1776,11 +1894,11 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 20,
+              "line": 24,
               "column": 0
             },
             "end": {
-              "line": 22,
+              "line": 26,
               "column": 0
             }
           },
@@ -1822,7 +1940,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
             "column": 0
           },
           "end": {
-            "line": 22,
+            "line": 26,
             "column": 7
           }
         },
@@ -1845,7 +1963,7 @@ define("diindex-ember-dev/templates/components/top-ten", ["exports"], function (
         dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [22, 7]]]]],
+      statements: [["block", "if", [["get", "obj.data", ["loc", [null, [1, 6], [1, 14]]]]], [], 0, 1, ["loc", [null, [1, 0], [26, 7]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -2134,11 +2252,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 5,
+              "line": 4,
               "column": 2
             },
             "end": {
-              "line": 7,
+              "line": 6,
               "column": 2
             }
           },
@@ -2163,7 +2281,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [6, 24], [6, 38]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "rigCount.chartOptions", ["loc", [null, [6, 52], [6, 73]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [6, 80], [6, 85]]]]], [], []]], ["loc", [null, [6, 2], [6, 87]]]]],
+        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.rigCount", ["loc", [null, [5, 24], [5, 38]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "rigCount.chartOptions", ["loc", [null, [5, 52], [5, 73]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [5, 80], [5, 85]]]]], [], []]], ["loc", [null, [5, 2], [5, 87]]]]],
         locals: [],
         templates: []
       };
@@ -2176,11 +2294,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 7,
+              "line": 6,
               "column": 2
             },
             "end": {
-              "line": 9,
+              "line": 8,
               "column": 2
             }
           },
@@ -2218,11 +2336,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 13,
+              "line": 12,
               "column": 2
             },
             "end": {
-              "line": 15,
+              "line": 14,
               "column": 2
             }
           },
@@ -2247,7 +2365,7 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [14, 24], [14, 47]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "permitCount.chartOptions", ["loc", [null, [14, 61], [14, 85]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [14, 92], [14, 97]]]]], [], []]], ["loc", [null, [14, 2], [14, 99]]]]],
+        statements: [["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.permitCount.chart", ["loc", [null, [13, 24], [13, 47]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "permitCount.chartOptions", ["loc", [null, [13, 61], [13, 85]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [13, 92], [13, 97]]]]], [], []]], ["loc", [null, [13, 2], [13, 99]]]]],
         locals: [],
         templates: []
       };
@@ -2260,11 +2378,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 15,
+              "line": 14,
               "column": 2
             },
             "end": {
-              "line": 17,
+              "line": 16,
               "column": 2
             }
           },
@@ -2295,303 +2413,6 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
       };
     })();
     var child4 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.5",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 25,
-              "column": 2
-            },
-            "end": {
-              "line": 39,
-              "column": 2
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/index.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("U.S. Production Capacity");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n		");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("U.S. Oil Production Capacity");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("U.S. Gas Production Capacity");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n		");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element8 = dom.childAt(fragment, [1]);
-          var element9 = dom.childAt(fragment, [3]);
-          var morphs = new Array(5);
-          morphs[0] = dom.createMorphAt(element8, 3, 3);
-          morphs[1] = dom.createMorphAt(element8, 5, 5);
-          morphs[2] = dom.createMorphAt(element9, 3, 3);
-          morphs[3] = dom.createMorphAt(element9, 7, 7);
-          morphs[4] = dom.createMorphAt(element9, 9, 9);
-          return morphs;
-        },
-        statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [29, 42], [29, 70]]]]], [], []]], ["loc", [null, [29, 3], [29, 72]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [30, 25], [30, 62]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [30, 77], [30, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [30, 104], [30, 109]]]]], [], []]], ["loc", [null, [30, 3], [30, 111]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [34, 34], [34, 62]]]]], [], []]], ["loc", [null, [34, 3], [34, 64]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [36, 34], [36, 62]]]]], [], []]], ["loc", [null, [36, 3], [36, 64]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [37, 25], [37, 56]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [37, 70], [37, 96]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [37, 103], [37, 108]]]]], [], []]], ["loc", [null, [37, 3], [37, 110]]]]],
-        locals: [],
-        templates: []
-      };
-    })();
-    var child5 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.5",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 39,
-              "column": 2
-            },
-            "end": {
-              "line": 41,
-              "column": 2
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/index.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("p");
-          var el2 = dom.createTextNode("Production Capacity data is not available at this time.");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
-        },
-        statements: [],
-        locals: [],
-        templates: []
-      };
-    })();
-    var child6 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.5",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 49,
-              "column": 2
-            },
-            "end": {
-              "line": 64,
-              "column": 2
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/index.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("New Production by ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("strong");
-          var el4 = dom.createTextNode("Operators");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h4");
-          var el3 = dom.createTextNode("Gas");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h4");
-          var el3 = dom.createTextNode("Oil");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n		");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("New Production by ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("strong");
-          var el4 = dom.createTextNode("Counties");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h4");
-          var el3 = dom.createTextNode("Gas");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h4");
-          var el3 = dom.createTextNode("Oil");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n		");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element6 = dom.childAt(fragment, [1]);
-          var element7 = dom.childAt(fragment, [3]);
-          var morphs = new Array(4);
-          morphs[0] = dom.createMorphAt(element6, 5, 5);
-          morphs[1] = dom.createMorphAt(element6, 9, 9);
-          morphs[2] = dom.createMorphAt(element7, 5, 5);
-          morphs[3] = dom.createMorphAt(element7, 9, 9);
-          return morphs;
-        },
-        statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [53, 17], [53, 38]]]]], [], []]], ["loc", [null, [53, 3], [53, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [55, 17], [55, 38]]]]], [], []]], ["loc", [null, [55, 3], [55, 40]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [60, 17], [60, 37]]]]], [], []]], ["loc", [null, [60, 3], [60, 39]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [62, 17], [62, 37]]]]], [], []]], ["loc", [null, [62, 3], [62, 39]]]]],
-        locals: [],
-        templates: []
-      };
-    })();
-    var child7 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.5",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 64,
-              "column": 2
-            },
-            "end": {
-              "line": 66,
-              "column": 2
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/index.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("p");
-          var el2 = dom.createTextNode("Production Capacity data is not available at this time.");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
-        },
-        statements: [],
-        locals: [],
-        templates: []
-      };
-    })();
-    var child8 = (function () {
       var child0 = (function () {
         return {
           meta: {
@@ -2600,11 +2421,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 83,
+                "line": 28,
                 "column": 3
               },
               "end": {
-                "line": 85,
+                "line": 42,
                 "column": 3
               }
             },
@@ -2616,11 +2437,56 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("				");
+            var el1 = dom.createTextNode("			");
             dom.appendChild(el0, el1);
-            var el1 = dom.createElement("a");
-            dom.setAttribute(el1, "target", "_blank");
-            var el2 = dom.createElement("img");
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("U.S. Production Capacity");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n			");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("U.S. Oil Production Capacity");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("U.S. Gas Production Capacity");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
             dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
@@ -2628,15 +2494,17 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element4 = dom.childAt(fragment, [1]);
-            var element5 = dom.childAt(element4, [0]);
-            var morphs = new Array(3);
-            morphs[0] = dom.createAttrMorph(element4, 'href');
-            morphs[1] = dom.createAttrMorph(element5, 'src');
-            morphs[2] = dom.createAttrMorph(element5, 'alt');
+            var element8 = dom.childAt(fragment, [1]);
+            var element9 = dom.childAt(fragment, [3]);
+            var morphs = new Array(5);
+            morphs[0] = dom.createMorphAt(element8, 3, 3);
+            morphs[1] = dom.createMorphAt(element8, 5, 5);
+            morphs[2] = dom.createMorphAt(element9, 3, 3);
+            morphs[3] = dom.createMorphAt(element9, 7, 7);
+            morphs[4] = dom.createMorphAt(element9, 9, 9);
             return morphs;
           },
-          statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [84, 15], [84, 52]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [84, 84], [84, 118]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [84, 129], [84, 165]]]]]]]],
+          statements: [["inline", "us-production-capacity-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [32, 43], [32, 71]]]]], [], []]], ["loc", [null, [32, 4], [32, 73]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCapMboeChart", ["loc", [null, [33, 26], [33, 63]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCap.chartOptions", ["loc", [null, [33, 78], [33, 98]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [33, 105], [33, 110]]]]], [], []]], ["loc", [null, [33, 4], [33, 112]]]], ["inline", "oil-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [37, 35], [37, 63]]]]], [], []]], ["loc", [null, [37, 4], [37, 65]]]], ["inline", "gas-production-widget", [], ["months", ["subexpr", "@mut", [["get", "model.prodCapacity.usProdCap", ["loc", [null, [39, 35], [39, 63]]]]], [], []]], ["loc", [null, [39, 4], [39, 65]]]], ["inline", "high-charts", [], ["content", ["subexpr", "@mut", [["get", "model.prodCapacity.prodOilVsGas", ["loc", [null, [40, 26], [40, 57]]]]], [], []], "chartOptions", ["subexpr", "@mut", [["get", "prodCapByType.chartOptions", ["loc", [null, [40, 71], [40, 97]]]]], [], []], "theme", ["subexpr", "@mut", [["get", "theme", ["loc", [null, [40, 104], [40, 109]]]]], [], []]], ["loc", [null, [40, 4], [40, 111]]]]],
           locals: [],
           templates: []
         };
@@ -2649,11 +2517,11 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 85,
+                "line": 42,
                 "column": 3
               },
               "end": {
-                "line": 87,
+                "line": 44,
                 "column": 3
               }
             },
@@ -2665,22 +2533,20 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           hasRendered: false,
           buildFragment: function buildFragment(dom) {
             var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("				");
+            var el1 = dom.createTextNode("			");
             dom.appendChild(el0, el1);
-            var el1 = dom.createElement("img");
+            var el1 = dom.createElement("p");
+            var el2 = dom.createTextNode("Production Capacity data is not available at this time.");
+            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
             return el0;
           },
-          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element3 = dom.childAt(fragment, [1]);
-            var morphs = new Array(2);
-            morphs[0] = dom.createAttrMorph(element3, 'src');
-            morphs[1] = dom.createAttrMorph(element3, 'alt');
-            return morphs;
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
           },
-          statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [86, 16], [86, 50]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [86, 61], [86, 97]]]]]]]],
+          statements: [],
           locals: [],
           templates: []
         };
@@ -2693,12 +2559,12 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 91,
-                "column": 3
+                "line": 56,
+                "column": 4
               },
               "end": {
-                "line": 93,
-                "column": 3
+                "line": 71,
+                "column": 4
               }
             },
             "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2711,9 +2577,76 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             var el0 = dom.createDocumentFragment();
             var el1 = dom.createTextNode("				");
             dom.appendChild(el0, el1);
-            var el1 = dom.createElement("a");
-            dom.setAttribute(el1, "target", "_blank");
-            var el2 = dom.createElement("img");
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("New Production by ");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createElement("strong");
+            var el4 = dom.createTextNode("Operators");
+            dom.appendChild(el3, el4);
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h4");
+            var el3 = dom.createTextNode("Gas");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h4");
+            var el3 = dom.createTextNode("Oil");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n				");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("New Production by ");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createElement("strong");
+            var el4 = dom.createTextNode("Counties");
+            dom.appendChild(el3, el4);
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h4");
+            var el3 = dom.createTextNode("Gas");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h4");
+            var el3 = dom.createTextNode("Oil");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n				");
             dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
@@ -2721,15 +2654,16 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element1 = dom.childAt(fragment, [1]);
-            var element2 = dom.childAt(element1, [0]);
-            var morphs = new Array(3);
-            morphs[0] = dom.createAttrMorph(element1, 'href');
-            morphs[1] = dom.createAttrMorph(element2, 'src');
-            morphs[2] = dom.createAttrMorph(element2, 'alt');
+            var element6 = dom.childAt(fragment, [1]);
+            var element7 = dom.childAt(fragment, [3]);
+            var morphs = new Array(4);
+            morphs[0] = dom.createMorphAt(element6, 5, 5);
+            morphs[1] = dom.createMorphAt(element6, 9, 9);
+            morphs[2] = dom.createMorphAt(element7, 5, 5);
+            morphs[3] = dom.createMorphAt(element7, 9, 9);
             return morphs;
           },
-          statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [92, 15], [92, 50]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [92, 82], [92, 114]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [92, 125], [92, 159]]]]]]]],
+          statements: [["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsGas", ["loc", [null, [60, 19], [60, 40]]]]], [], []]], ["loc", [null, [60, 5], [60, 42]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topOperatorsOil", ["loc", [null, [62, 19], [62, 40]]]]], [], []]], ["loc", [null, [62, 5], [62, 42]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesGas", ["loc", [null, [67, 19], [67, 39]]]]], [], []]], ["loc", [null, [67, 5], [67, 41]]]], ["inline", "top-ten", [], ["obj", ["subexpr", "@mut", [["get", "model.topCountiesOil", ["loc", [null, [69, 19], [69, 39]]]]], [], []]], ["loc", [null, [69, 5], [69, 41]]]]],
           locals: [],
           templates: []
         };
@@ -2742,12 +2676,12 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 93,
-                "column": 3
+                "line": 71,
+                "column": 4
               },
               "end": {
-                "line": 95,
-                "column": 3
+                "line": 73,
+                "column": 4
               }
             },
             "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2760,20 +2694,319 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             var el0 = dom.createDocumentFragment();
             var el1 = dom.createTextNode("				");
             dom.appendChild(el0, el1);
-            var el1 = dom.createElement("img");
+            var el1 = dom.createElement("p");
+            var el2 = dom.createTextNode("Production Capacity data is not available at this time.");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+      var child4 = (function () {
+        var child0 = (function () {
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.5",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 95,
+                  "column": 5
+                },
+                "end": {
+                  "line": 97,
+                  "column": 5
+                }
+              },
+              "moduleName": "diindex-ember-dev/templates/index.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("						");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("a");
+              dom.setAttribute(el1, "target", "_blank");
+              var el2 = dom.createElement("img");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var element4 = dom.childAt(fragment, [1]);
+              var element5 = dom.childAt(element4, [0]);
+              var morphs = new Array(3);
+              morphs[0] = dom.createAttrMorph(element4, 'href');
+              morphs[1] = dom.createAttrMorph(element5, 'src');
+              morphs[2] = dom.createAttrMorph(element5, 'alt');
+              return morphs;
+            },
+            statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [96, 17], [96, 54]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [96, 86], [96, 120]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [96, 131], [96, 167]]]]]]]],
+            locals: [],
+            templates: []
+          };
+        })();
+        var child1 = (function () {
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.5",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 97,
+                  "column": 5
+                },
+                "end": {
+                  "line": 99,
+                  "column": 5
+                }
+              },
+              "moduleName": "diindex-ember-dev/templates/index.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("						");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("img");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var element3 = dom.childAt(fragment, [1]);
+              var morphs = new Array(2);
+              morphs[0] = dom.createAttrMorph(element3, 'src');
+              morphs[1] = dom.createAttrMorph(element3, 'alt');
+              return morphs;
+            },
+            statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.wells_map_image.url", ["loc", [null, [98, 18], [98, 52]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.wells_map_image.title", ["loc", [null, [98, 63], [98, 99]]]]]]]],
+            locals: [],
+            templates: []
+          };
+        })();
+        var child2 = (function () {
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.5",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 103,
+                  "column": 5
+                },
+                "end": {
+                  "line": 105,
+                  "column": 5
+                }
+              },
+              "moduleName": "diindex-ember-dev/templates/index.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("						");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("a");
+              dom.setAttribute(el1, "target", "_blank");
+              var el2 = dom.createElement("img");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var element1 = dom.childAt(fragment, [1]);
+              var element2 = dom.childAt(element1, [0]);
+              var morphs = new Array(3);
+              morphs[0] = dom.createAttrMorph(element1, 'href');
+              morphs[1] = dom.createAttrMorph(element2, 'src');
+              morphs[2] = dom.createAttrMorph(element2, 'alt');
+              return morphs;
+            },
+            statements: [["attribute", "href", ["concat", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [104, 17], [104, 52]]]]]]], ["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [104, 84], [104, 116]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [104, 127], [104, 161]]]]]]]],
+            locals: [],
+            templates: []
+          };
+        })();
+        var child3 = (function () {
+          return {
+            meta: {
+              "fragmentReason": false,
+              "revision": "Ember@2.4.5",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 105,
+                  "column": 5
+                },
+                "end": {
+                  "line": 107,
+                  "column": 5
+                }
+              },
+              "moduleName": "diindex-ember-dev/templates/index.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("						");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("img");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var element0 = dom.childAt(fragment, [1]);
+              var morphs = new Array(2);
+              morphs[0] = dom.createAttrMorph(element0, 'src');
+              morphs[1] = dom.createAttrMorph(element0, 'alt');
+              return morphs;
+            },
+            statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [106, 18], [106, 50]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [106, 61], [106, 95]]]]]]]],
+            locals: [],
+            templates: []
+          };
+        })();
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.5",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 92,
+                "column": 4
+              },
+              "end": {
+                "line": 109,
+                "column": 4
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("				");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("New Wells");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("				");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n				");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "large-6 columns");
+            var el2 = dom.createTextNode("\n					");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("h3");
+            var el3 = dom.createTextNode("Rig Movement");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("				");
+            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
             return el0;
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-            var element0 = dom.childAt(fragment, [1]);
             var morphs = new Array(2);
-            morphs[0] = dom.createAttrMorph(element0, 'src');
-            morphs[1] = dom.createAttrMorph(element0, 'alt');
+            morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 3, 3);
+            morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3]), 3, 3);
             return morphs;
           },
-          statements: [["attribute", "src", ["concat", [["get", "model.maps.acf.rig_map_image.url", ["loc", [null, [94, 16], [94, 48]]]]]]], ["attribute", "alt", ["concat", [["get", "model.maps.acf.rig_map_image.title", ["loc", [null, [94, 59], [94, 93]]]]]]]],
+          statements: [["block", "if", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [95, 11], [95, 48]]]]], [], 0, 1, ["loc", [null, [95, 5], [99, 12]]]], ["block", "if", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [103, 11], [103, 46]]]]], [], 2, 3, ["loc", [null, [103, 5], [107, 12]]]]],
+          locals: [],
+          templates: [child0, child1, child2, child3]
+        };
+      })();
+      var child5 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.4.5",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 109,
+                "column": 4
+              },
+              "end": {
+                "line": 111,
+                "column": 4
+              }
+            },
+            "moduleName": "diindex-ember-dev/templates/index.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("				");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("p");
+            var el2 = dom.createTextNode("Map data is not available at this time.");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
           locals: [],
           templates: []
         };
@@ -2785,12 +3018,12 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 80,
-              "column": 2
+              "line": 20,
+              "column": 0
             },
             "end": {
-              "line": 97,
-              "column": 2
+              "line": 116,
+              "column": 0
             }
           },
           "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2801,38 +3034,165 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
+          var el1 = dom.createTextNode("  ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n			");
+          var el1 = dom.createElement("li");
+          dom.setAttribute(el1, "class", "accordion-item is-active");
+          dom.setAttribute(el1, "data-accordion-item", "");
+          var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("New Wells");
+          var el2 = dom.createElement("a");
+          dom.setAttribute(el2, "class", "accordion-title");
+          var el3 = dom.createTextNode("Production Capacity");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n");
+          var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("		");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("div");
-          dom.setAttribute(el1, "class", "large-6 columns");
-          var el2 = dom.createTextNode("\n			");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("h3");
-          var el3 = dom.createTextNode("Rig Movement");
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "accordion-content");
+          dom.setAttribute(el2, "data-tab-content", "");
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment(" First Tab - Production Capacity ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n	");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "row");
+          var el4 = dom.createTextNode("\n		");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          dom.setAttribute(el4, "class", "large-12 columns panel");
+          var el5 = dom.createTextNode("\n			");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("h2");
+          var el6 = dom.createTextNode("Production Capacity");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("		");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment(" end .row ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n");
+          var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("li");
+          dom.setAttribute(el1, "class", "accordion-item");
+          dom.setAttribute(el1, "data-accordion-item", "");
+          var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("		");
+          var el2 = dom.createElement("a");
+          dom.setAttribute(el2, "class", "accordion-title");
+          var el3 = dom.createTextNode("Top 10");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "accordion-content");
+          dom.setAttribute(el2, "data-tab-content", "");
+          var el3 = dom.createTextNode("\n    	");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment(" Second Tab - Top Ten Lists ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n		");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "row");
+          var el4 = dom.createTextNode("\n			");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          dom.setAttribute(el4, "class", "large-12 columns panel");
+          var el5 = dom.createTextNode("\n				");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("h2");
+          var el6 = dom.createTextNode("Top Ten");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("			");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n		");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment(" end .row ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("li");
+          dom.setAttribute(el1, "class", "accordion-item");
+          dom.setAttribute(el1, "data-accordion-item", "");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("a");
+          dom.setAttribute(el2, "class", "accordion-title");
+          var el3 = dom.createTextNode("Maps");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2, "class", "accordion-content");
+          dom.setAttribute(el2, "data-tab-content", "");
+          var el3 = dom.createTextNode("\n    	");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment(" Third Tab - Maps ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n		");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment(" \n			So I have a couple of ideas on implementation for this. But this is the best one.\n			We will use Wordpress' REST API to pull custom image fields from a node where \n			they select two images and two PDFs from the media library, one of each for wells and rigs.\n			That way we don't have to rebuild the app or overwrite any imagery; we just pull\n			the data real-time same as we are doing everything else.\n		");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n		");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3, "class", "row");
+          var el4 = dom.createTextNode("\n			");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("div");
+          dom.setAttribute(el4, "class", "large-12 columns panel");
+          var el5 = dom.createTextNode("\n				");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("h2");
+          var el6 = dom.createTextNode("Maps");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createComment("");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("			");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n		");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -2840,56 +3200,15 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(2);
-          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 3, 3);
-          morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3]), 3, 3);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 3, 3, 1]), 3, 3);
+          morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3, 3, 3, 1]), 3, 3);
+          morphs[2] = dom.createMorphAt(dom.childAt(fragment, [5, 3, 5, 1]), 3, 3);
           return morphs;
         },
-        statements: [["block", "if", [["get", "model.maps.acf.wells_expanded_version", ["loc", [null, [83, 9], [83, 46]]]]], [], 0, 1, ["loc", [null, [83, 3], [87, 10]]]], ["block", "if", [["get", "model.maps.acf.rig_expanded_version", ["loc", [null, [91, 9], [91, 44]]]]], [], 2, 3, ["loc", [null, [91, 3], [95, 10]]]]],
+        statements: [["block", "if", [["get", "model.prodCapacity", ["loc", [null, [28, 9], [28, 27]]]]], [], 0, 1, ["loc", [null, [28, 3], [44, 10]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [56, 10], [56, 30]]]]], [], 2, 3, ["loc", [null, [56, 4], [73, 11]]]], ["block", "if", [["get", "model.maps", ["loc", [null, [92, 10], [92, 20]]]]], [], 4, 5, ["loc", [null, [92, 4], [111, 11]]]]],
         locals: [],
-        templates: [child0, child1, child2, child3]
-      };
-    })();
-    var child9 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.4.5",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 97,
-              "column": 2
-            },
-            "end": {
-              "line": 99,
-              "column": 2
-            }
-          },
-          "moduleName": "diindex-ember-dev/templates/index.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("		");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("p");
-          var el2 = dom.createTextNode("Map data is not available at this time.");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
-        },
-        statements: [],
-        locals: [],
-        templates: []
+        templates: [child0, child1, child2, child3, child4, child5]
       };
     })();
     return {
@@ -2906,8 +3225,8 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 101,
-            "column": 6
+            "line": 116,
+            "column": 17
           }
         },
         "moduleName": "diindex-ember-dev/templates/index.hbs"
@@ -2920,10 +3239,6 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -2965,112 +3280,22 @@ define("diindex-ember-dev/templates/index", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" First Tab - Production Capacity ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-12 columns panel");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h2");
-        var el4 = dom.createTextNode("Production Capacity");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" end .row ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" Second Tab - Top Ten Lists ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-12 columns panel");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h2");
-        var el4 = dom.createTextNode("Top Ten");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" end .row ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" Third Tab - Maps ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment(" \n	So I have a couple of ideas on implementation for this. But this is the best one.\n	We will use Wordpress' REST API to pull custom image fields from a node where \n	they select two images and two PDFs from the media library, one of each for wells and rigs.\n	That way we don't have to rebuild the app or overwrite any imagery; we just pull\n	the data real-time same as we are doing everything else.\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "row");
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "large-12 columns panel");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h2");
-        var el4 = dom.createTextNode("Maps");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element10 = dom.childAt(fragment, [0]);
-        var morphs = new Array(6);
-        morphs[0] = dom.createMorphAt(element10, 1, 1);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(dom.childAt(element10, [1]), 3, 3);
         morphs[1] = dom.createMorphAt(dom.childAt(element10, [3]), 3, 3);
-        morphs[2] = dom.createMorphAt(dom.childAt(element10, [5]), 3, 3);
-        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [5, 1]), 3, 3);
-        morphs[4] = dom.createMorphAt(dom.childAt(fragment, [10, 1]), 3, 3);
-        morphs[5] = dom.createMorphAt(dom.childAt(fragment, [17, 1]), 3, 3);
+        morphs[2] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["content", "test", ["loc", [null, [2, 0], [2, 8]]]], ["block", "if", [["get", "model.rigCount", ["loc", [null, [5, 8], [5, 22]]]]], [], 0, 1, ["loc", [null, [5, 2], [9, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [13, 8], [13, 31]]]]], [], 2, 3, ["loc", [null, [13, 2], [17, 9]]]], ["block", "if", [["get", "model.prodCapacity", ["loc", [null, [25, 8], [25, 26]]]]], [], 4, 5, ["loc", [null, [25, 2], [41, 9]]]], ["block", "if", [["get", "model.topCountiesGas", ["loc", [null, [49, 8], [49, 28]]]]], [], 6, 7, ["loc", [null, [49, 2], [66, 9]]]], ["block", "if", [["get", "model.maps", ["loc", [null, [80, 8], [80, 18]]]]], [], 8, 9, ["loc", [null, [80, 2], [99, 9]]]]],
+      statements: [["block", "if", [["get", "model.rigCount", ["loc", [null, [4, 8], [4, 22]]]]], [], 0, 1, ["loc", [null, [4, 2], [8, 9]]]], ["block", "if", [["get", "model.permitCount.chart", ["loc", [null, [12, 8], [12, 31]]]]], [], 2, 3, ["loc", [null, [12, 2], [16, 9]]]], ["block", "zf-accordion", [], [], 4, null, ["loc", [null, [20, 0], [116, 17]]]]],
       locals: [],
-      templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8, child9]
+      templates: [child0, child1, child2, child3, child4]
     };
   })());
 });
@@ -3327,7 +3552,7 @@ define('diindex-ember-dev/themes/drillinginfo', ['exports'], function (exports) 
 /* jshint ignore:start */
 
 define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
-  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"none","rootElement":"#app","EmberENV":{"FEATURES":{}},"APP":{"connectionPath":"http://local.diindex.nfusion.com/","name":"diindex-ember-dev","version":"0.0.0+9b34fbf9"},"sassOptions":{"includePaths":["bower_components/foundation/scss"]},"exportApplicationGlobal":true}};
+  return { 'default': {"modulePrefix":"diindex-ember-dev","environment":"development","baseURL":"/","locationType":"none","rootElement":"#app","EmberENV":{"FEATURES":{}},"APP":{"connectionPath":"http://local.diindex.nfusion.com/","name":"diindex-ember-dev","version":"0.0.0+33667143"},"exportApplicationGlobal":true}};
 });
 
 /* jshint ignore:end */
@@ -3335,7 +3560,7 @@ define('diindex-ember-dev/config/environment', ['ember'], function(Ember) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("diindex-ember-dev/app")["default"].create({"connectionPath":"http://local.diindex.nfusion.com/","name":"diindex-ember-dev","version":"0.0.0+9b34fbf9"});
+  require("diindex-ember-dev/app")["default"].create({"connectionPath":"http://local.diindex.nfusion.com/","name":"diindex-ember-dev","version":"0.0.0+33667143"});
 }
 
 /* jshint ignore:end */

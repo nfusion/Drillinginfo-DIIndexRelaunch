@@ -1,10 +1,13 @@
 {{#if obj.data}}
 <table width="100%">
-	<tr>
-	{{#each obj.labels as |label|}}
-		<th>{{label}}</th>
-	{{/each}}
-	</tr>
+	<thead>
+		<tr>
+		{{#each obj.labels as |label|}}
+			<th>{{label}}</th>
+		{{/each}}
+		</tr>
+	</thead>
+<tbody>
 {{#each obj.data as |item|}}
 	<tr>
 	{{#each item as |el|}}
@@ -16,6 +19,7 @@
 	{{/each}}
 	</tr>
 {{/each}}
+</tbody>
 </table>
 {{else}}
 <p>Data not available.</p>

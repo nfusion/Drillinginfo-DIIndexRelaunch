@@ -69,7 +69,6 @@ export default Ember.Controller.extend({
 			chart: {
 			    type: 'line',
 			    backgroundColor: '#6b4c9a',
-			    zoomType: 'x',
 			    //height: 200,
 			    spacing: 20
 			},
@@ -98,10 +97,6 @@ export default Ember.Controller.extend({
 			    text: '',
 			    style: {"color":"#fff"}
 			},
-			subtitle: {
-                text: document.ontouchstart === undefined ?
-                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-            },
 			xAxis: {
 				type: 'datetime',
 				gridLineColor: 'transparent',
