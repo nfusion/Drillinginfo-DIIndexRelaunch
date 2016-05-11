@@ -18,8 +18,8 @@ export default Highcharts.extend ({
 			fontFamily: '"Open Sans Condensed", sans-serif;',
 			color: '#333'
 		},
-		plotBorderColor: 'transparent',
-		height: 300
+		plotBorderColor: 'transparent'
+		//height: 300
 	},
 	title: {
 		style: {

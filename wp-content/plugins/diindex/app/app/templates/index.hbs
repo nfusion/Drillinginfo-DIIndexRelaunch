@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="large-6 columns">
-		<div class="widget">
+		<div class="di-module">
 			<h3>Rig Count</h3>
 			{{#if model.rigCount}}
 			{{high-charts content=model.rigCount chartOptions=rigCount.chartOptions theme=theme}}
@@ -10,12 +10,14 @@
 		</div>
 	</div>
 	<div class="large-6 columns">
-		<h3>Permit Count</h3>
-		{{#if model.permitCount.chart}}
-		{{high-charts content=model.permitCount.chart chartOptions=permitCount.chartOptions theme=theme}}
-		{{else}}
-		<p>Permit Count data is not available at this time.</p>
-		{{/if}}
+		<div class="di-module">
+			<h3>Permit Count</h3>
+			{{#if model.permitCount.chart}}
+			{{high-charts content=model.permitCount.chart chartOptions=permitCount.chartOptions theme=theme}}
+			{{else}}
+			<p>Permit Count data is not available at this time.</p>
+			{{/if}}
+		</div>
 	</div>
 </div><!-- end .row -->
 

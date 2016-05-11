@@ -2,28 +2,30 @@
 @import "foundation";
 @include foundation-everything;
 
-body {background:#f4f4f4;}
-.dec {color:#ce2221;}
-.widget {
-	box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.55);
-}
-.accordion-title::before {
-	background:#639a25;
-	border-radius: 50%;
-	width:2rem;
-	height:2rem;
-	line-height:2rem;
-	top:30%;
-}
-.accordion-title {
-	text-transform:uppercase;
-	text-align:center;
-	@include background-image(linear-gradient(to top, #59901c, #78ba2f));
-	box-shadow: inset 0px -3px 5px 0px rgba(63,110,12,0.75);
-	color:white;
-	border:none;
-	font-weight: bold;
-}
-.accordion-title:hover {
-	color:white;
+#diindex-dashboard {
+	background:#f4f4f4;
+	.dec {color:#ce2221;}
+	.di-module {
+		box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.55);
+	}
+	.accordion-title::before {
+		background:#639a25;
+		border-radius: 50%;
+		width:2rem;
+		height:2rem;
+		line-height:2rem;
+		top:30%;
+	}
+	.accordion-title {
+		text-transform:uppercase;
+		text-align:center;
+		@include background-image(linear-gradient(to top, #59901c, #78ba2f));
+		box-shadow: inset 0px -3px 5px 0px rgba(63,110,12,0.75);
+		color:white;
+		border:none;
+		font-weight: bold;
+	}
+	.accordion-title:hover {
+		color:white;
+	}
 }
