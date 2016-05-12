@@ -3,10 +3,42 @@
 @include foundation-everything;
 
 #diindex-dashboard {
-	background:#f4f4f4;
-	.dec {color:#ce2221;}
+	
+	.counts-row {
+		background:#f4f4f4;
+		padding: 25px 15px;
+	}
+
+	.dec {
+		color:#ce2221;
+		&::before {
+			@include css-triangle(5px, #ce2221, 'down');
+			display: inline-block;
+			margin-right:5px;
+			vertical-align:middle;
+		}
+	}
+	.inc {
+		color:#76c000;
+		&::before {
+			@include css-triangle(5px, #76c000, 'up');
+			display: inline-block;
+			margin-right:5px;
+			vertical-align:middle;
+		}
+	}
+	
 	.di-module {
-		box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.55);
+		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
+		border-radius: 5px;
+		margin-bottom:25px;
+	}
+
+	.pc-overview {
+		border-bottom:1px solid #cecfcf;
+	}
+	.pc-widget {
+		padding-bottom: 25px;
 	}
 	.accordion-title::before {
 		background:#639a25;

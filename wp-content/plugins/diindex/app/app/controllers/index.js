@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
 				    zoomType: 'x',
 				    backgroundColor: '#585b5d',
 				    style: {
-				    	borderRadius: '0 0 .5rem .5rem'
+				    	borderRadius: '0 0 5px 5px'
 				    }
 			    },
 				plotOptions: {
@@ -24,10 +24,11 @@ export default Ember.Controller.extend({
 						showInLegend: false,
 						fillColor: "#dc7c23",
 						lineColor: "#dc7c23",
+						lineWidth: 1,
 						marker: {
 		                    enabled: false,
 		                    symbol: 'circle',
-		                    radius: 1,
+		                    radius: 4,
 		                    fillColor: '#7293cb',
 		                    states: {
 		                        hover: {
@@ -37,6 +38,9 @@ export default Ember.Controller.extend({
 		                    }
 		                }
 					}
+				},
+				title: {
+					text: ''
 				},
 				subtitle: {
 		            text: document.ontouchstart === undefined ?
@@ -75,6 +79,13 @@ export default Ember.Controller.extend({
 						}
 					},
 				}
+			},
+			widgetOptions: {
+				title: 'U.S. Rig Count',
+				units: '',
+				dateFormat: 'MMMM D, YYYY',
+				interval: 'Daily',
+				changeText: ''
 			}
 		};
 		rigConfig.chartOptions.yAxis.min = this.get('rigCountMin');
@@ -86,7 +97,7 @@ export default Ember.Controller.extend({
 			    type: 'line',
 			    backgroundColor: '#006f98',
 			    style: {
-				    	borderRadius: '0 0 .5rem .5rem'
+				    	borderRadius: '0 0 5px 5px'
 				}
 			},
 			plotOptions: {
@@ -94,7 +105,7 @@ export default Ember.Controller.extend({
 					showInLegend: false,
 			    	pointIntervalUnit: 'month',
 			    	color: '#fff',
-			    	lineWidth: 4,
+			    	lineWidth: 1,
 			    	marker: {
 			    		enabled: true,
 						fillColor: '#fff'
@@ -104,12 +115,15 @@ export default Ember.Controller.extend({
 							enabled: true,
 							halo: {
 								attributes: true,
-								size: 20,
+								size: 10,
 								opacity: 0.25
 							}
 						}
 					}
 			    }
+			},
+			title: {
+				text: ''
 			},
 			xAxis: {
 				type: 'datetime',
@@ -139,30 +153,51 @@ export default Ember.Controller.extend({
 				},
 				lineColor: '#4395b3'
 			}
+		},
+		widgetOptions: {
+			title: 'U.S. Permits',
+			units: '',
+			dateFormat: 'MMMM YYYY',
+			interval: 'Monthly',
+			changeText: ''
 		}
 	},
 	prodCap : Ember.computed(function(){
 		var prodCapConfig = {
 			chartOptions: {
 				chart: {
-				    type: 'column'
+				    type: 'areaspline'
 				},
 				plotOptions: {
-					column: {
-						color: {
+					areaspline: {
+						fillColor: {
 							linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
 						    stops: [
-						        [0, '#78be20'],
-						        [1, '#68a41c']
+						        [0, '#7251a0'],
+						        [1, '#9165a9']
 						    ]
 						},
+						lineColor: '#7251a0',
+						lineWidth: 1,
 						showInLegend: false,
 				    	pointIntervalUnit: 'month',
 				    	states: {
 							hover: {
 								color: '#b2df8a' 
 							}
-						}	
+						},
+						marker: {
+		                    enabled: true,
+		                    symbol: 'circle',
+		                    radius: 4,
+		                    fillColor: '#7251a0',
+		                    states: {
+		                        hover: {
+		                            enabled: true,
+		                            fillColor: '#7251a0'
+		                        }
+		                    }
+		                }	
 				    }
 				},
 				title: {
@@ -180,6 +215,13 @@ export default Ember.Controller.extend({
 				    },
 				    min: null
 				}
+			},
+			widgetOptions: {
+				title: 'New U.S. Production Capacity',
+				units: '',
+				dateFormat: 'MMMM YYYY',
+				interval: '',
+				changeText: ''
 			}
 		};
 		prodCapConfig.chartOptions.yAxis.min = this.get('prodCapMin');
@@ -189,25 +231,27 @@ export default Ember.Controller.extend({
 		chartOptions: {
 			colors: ["#fff", "#e1974c", "#84ba5b"],
 			chart: {
-	            type: 'line',
-			    backgroundColor: '#396ab1',
+			    type: 'line',
+			    backgroundColor: '#006f98',
 			    spacingRight: 20,
 			    spacingTop: 40
 			},
 			plotOptions: {
 				line: {
-					showInLegend: false,
+					showInLegend: true,
 			    	pointIntervalUnit: 'month',
-			    	lineWidth: 4,
+			    	//color: '#fff',
+			    	lineWidth: 1,
 			    	marker: {
-						lineColor: 'transparent'
+			    		enabled: true,
+						//fillColor: '#fff'
 					},
 					states: {
 						hover: {
 							enabled: true,
 							halo: {
 								attributes: true,
-								size: 20,
+								size: 10,
 								opacity: 0.25
 							}
 						}
@@ -239,7 +283,8 @@ export default Ember.Controller.extend({
 						color : "#fff",
 						paddingTop: '15px'
 					}	
-				}
+				},
+				lineColor: '#4395b3'
 			},
 			yAxis: [
 				// oil
@@ -250,7 +295,8 @@ export default Ember.Controller.extend({
 				    },
 				    labels: {
 						style: {"color" : "#fff"}	
-					}
+					},
+					gridLineColor: '#4395b3',
 			    },
 			    //gas
 			    {
@@ -261,9 +307,23 @@ export default Ember.Controller.extend({
 				    labels: {
 						style: {"color" : "#fff"}	
 					},
-				    opposite: true
-			    },
+				    opposite: true,
+					gridLineColor: '#4395b3',	    },
 			]
 		},
+	},
+	oilWidgetOptions: {
+		title: 'Oil Production Capacity',
+		units: 'MBBL/Day',
+		dateFormat: 'MMMM YYYY',
+		interval: '',
+		changeText: ''
+	},
+	gasWidgetOptions: {
+		title: 'Gas Production Capacity',
+		units: 'BCF/Day',
+		dateFormat: 'MMMM YYYY',
+		interval: '',
+		changeText: ''
 	}
 });

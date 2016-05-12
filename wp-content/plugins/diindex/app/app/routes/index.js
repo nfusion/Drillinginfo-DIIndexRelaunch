@@ -6,6 +6,7 @@ import ENV from 'diindex-ember-dev/config/environment';
 export default Ember.Route.extend({
 	rigCountNew : null,
 	model: function() {
+		var model = this;
 		var settings = {
 			"async": true,
 			"crossDomain": true,
@@ -131,29 +132,32 @@ export default Ember.Route.extend({
 					if (data.status.http_code !== 200) return;
 
 					// use the negative month count index to order data.
-					var capacity_data = _collection.sortBy(data.contents.elements,'monthnumber');
-					//console.log('initial capacity data: ',capacity_data);
-					
-					// parse the most recent month
-					var most_recent = capacity_data[capacity_data.length-1];
-					//console.log('most_recent:',most_recent);
+					let capacity_data = _collection.sortBy(data.contents.elements,'monthnumber'),
+						// parse the most recent month
+						most_recent = capacity_data[capacity_data.length-1],
+						// data freshness
+						runDate = moment(most_recent.rundatetime),
+						oldData = diffDate(runDate);
 
-					var runDate = moment(most_recent.rundatetime);
-					var oldData = diffDate(runDate);
+					//console.log('initial capacity data: ',capacity_data);
+					console.log('most_recent:',most_recent);						
 
 					// error out if we are past the 'freshness' date
 					if (oldData) return;
 					
-					var prodCapData = {
-						usProdCap: most_recent
+					let prodCapData = {
+						current: most_recent
 					};
+					// numeric value formatting
+					prodCapData.current.newboeproduction_mboeperday.toLocaleString();
+					prodCapData.current.newoilproduction_mbblperday.toLocaleString();
+					prodCapData.current.newgasproduction_bcfperday.toLocaleString();
 
-					var highchart_series = [],
+					let highchart_series = [],
 						oil_series = [],
 						gas_series = [],
-
-					// return a max of six months of data
-					recent_data = capacity_data.slice(Math.max(capacity_data.length - 6, 0));
+						// return a max of six months of data
+						recent_data = capacity_data.slice(Math.max(capacity_data.length - 6, 0));
 
 					$.each(recent_data, function(){
 						highchart_series.push(this.newboeproduction_mboeperday);
@@ -165,11 +169,17 @@ export default Ember.Route.extend({
 					var series_mboe = [
 					    {
 					    	name: 'MBOE',
-							pointStart: moment.utc(recent_data[0].rundatetime).valueOf(),
-					    	data: highchart_series
+							pointStart: moment(recent_data[0].rundatetime).valueOf(),
+					    	data: highchart_series,
+					    	dataLabels: {
+			                    align: 'left',
+			                    enabled: true,
+			                    style: {
+			                    	fontSize: '.8rem'
+			                    }
+			                }
 					    }
 					];
-
 					prodCapData.usProdCapMboeChart = series_mboe;
 
 
@@ -197,9 +207,12 @@ export default Ember.Route.extend({
 
 			rigCount: $.ajax(rig_count_settings).then(
 				// needs to return tile and chart
+
 				function(data){
 
 					if (data.status.http_code !== 200) return;
+
+					var rigCountData = {};
 
 					var highchart_series = [];
 					// use the negative daily count index to order data.
@@ -212,7 +225,7 @@ export default Ember.Route.extend({
 						highchart_series.push(this.rig_count);
 					});
 
-					var series = [
+					rigCountData.series = [
 					    {
 					    	name: 'Rig Count',
 					    	pointStart: moment.utc(ordered_data[0].rig_date).valueOf(),
@@ -220,7 +233,9 @@ export default Ember.Route.extend({
 					    	data: highchart_series
 					    }
 					];
-					return series;
+					rigCountData.current = ordered_data[ordered_data.length-1];
+					rigCountData.current.rig_count = rigCountData.current.rig_count.toLocaleString();
+					return rigCountData;
 				}
 			),
 
@@ -377,12 +392,16 @@ export default Ember.Route.extend({
 					var series = [
 					    {
 					    	name: 'Permit Count',
-					    	pointStart: moment.utc([ordered_data[0].year, ordered_data[0].month-1]).valueOf(),
+					    	pointStart: moment([ordered_data[0].year, ordered_data[0].month-1]).valueOf(),
 					    	data: highchart_series
 					    }
 					];
 
 					permitData.chart = series;
+					permitData.current = most_recent;
+					permitData.current.permit_date = [most_recent.year, most_recent.month-1];
+					permitData.current.permit_count = most_recent.permit_count.toLocaleString();
+					//console.log(permitData.current);
 					return permitData;
 				}
 			),
@@ -401,11 +420,12 @@ export default Ember.Route.extend({
 		return data;
 	},
 	setupController: function(controller, model) {
-		var series;
-		var min;
+		let series, min;
 		controller.set('model', model);
+		//console.log(model);
+
 		// lower bounds for rig count
-		series = model.rigCount[0].data;
+		series = model.rigCount.series[0].data;
 		min = _collection.min(series);
     	controller.set('rigCountMin', min);
 

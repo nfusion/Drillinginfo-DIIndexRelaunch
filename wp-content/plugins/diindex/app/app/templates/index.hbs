@@ -1,54 +1,125 @@
-<div class="row">
-	<div class="large-6 columns">
-		<div class="di-module">
-			<h3>Rig Count</h3>
-			{{#if model.rigCount}}
-			{{high-charts content=model.rigCount chartOptions=rigCount.chartOptions theme=theme}}
-			{{else}}
-			<p>Rig Count data is not available at this time.</p>
-			{{/if}}
-		</div>
-	</div>
-	<div class="large-6 columns">
-		<div class="di-module">
-			<h3>Permit Count</h3>
-			{{#if model.permitCount.chart}}
-			{{high-charts content=model.permitCount.chart chartOptions=permitCount.chartOptions theme=theme}}
-			{{else}}
-			<p>Permit Count data is not available at this time.</p>
-			{{/if}}
-		</div>
-	</div>
-</div><!-- end .row -->
+<div class="counts-row">
+	<div class="row">
+		<div class="large-6 columns">
+			<section class="di-module">
+				{{#if model.rigCount}}
+				<header>
+					<div class="row">
+						<div class="small-4 columns">
+							<h3>{{rigCount.widgetOptions.title}}</h3>
+							<p>{{moment-format model.rigCount.current.rig_date rigCount.widgetOptions.dateFormat}} ({{rigCount.widgetOptions.interval}})</p>
+						</div>
+						<div class="small-4 columns">
+							<h3>{{model.rigCount.current.rig_count}}</h3>
 
+						</div>
+						<div class="small-4 columns">
+							{{{delta-direction model.rigCount.current.pct_change}}}
+							<p>Since previous day</p>
+						</div>
+					</div>
+				</header>
+				
+				{{high-charts content=model.rigCount.series chartOptions=rigCount.chartOptions theme=theme}}
+				{{else}}
+				<p>Rig Count data is not available at this time.</p>
+				{{/if}}
+			</section>
+		</div>
+		<div class="large-6 columns">
+			<section class="di-module">
+				<header>
+					<div class="row">
+						<div class="small-4 columns">
+							<h3>{{permitCount.widgetOptions.title}}</h3>
+							<p>{{moment-format model.permitCount.current.permit_date permitCount.widgetOptions.dateFormat}} ({{permitCount.widgetOptions.interval}})</p>
+						</div>
+						<div class="small-4 columns">
+							<h3>{{model.permitCount.current.permit_count}}</h3>
+
+						</div>
+						<div class="small-4 columns">
+							{{{delta-direction model.permitCount.current.pct_change}}}
+							<p>Since previous month</p>
+						</div>
+					</div>
+				</header>
+				{{#if model.permitCount.chart}}
+				{{high-charts content=model.permitCount.chart chartOptions=permitCount.chartOptions theme=theme}}
+				{{else}}
+				<p>Permit Count data is not available at this time.</p>
+				{{/if}}
+			</section>
+		</div>
+	</div><!-- / .row -->
+</div><!-- /.counts-row -->
 {{#zf-accordion}}
   <li class="accordion-item is-active" data-accordion-item>
     <a class="accordion-title">Production Capacity</a>
     <div class="accordion-content" data-tab-content>
-      <!-- First Tab - Production Capacity -->
-	<div class="row">
-		<div class="large-12 columns panel">
-			<h2>Production Capacity</h2>
-			{{#if model.prodCapacity}}
-			<div class="large-6 columns">
+      	<!-- First Tab - Production Capacity -->
+		<div class="row">
+			<div class="large-12 columns panel">
+				<h2 class="show-for-sr">Production Capacity</h2>
+				{{#if model.prodCapacity}}
+				<div class="large-6 columns">
+					<section class="pc-overview">
+						<header class="pc-widget">
+							<div class="row">
+								<div class="small-4 columns">
+									<h3>{{prodCap.widgetOptions.title}}</h3>
+								</div>
+								<div class="small-4 columns">
+									<h3>{{model.prodCapacity.current.newboeproduction_mboeperday}}</h3>
 
-				<h3>U.S. Production Capacity</h3>
-				{{us-production-capacity-widget months=model.prodCapacity.usProdCap}}
-				{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
+								</div>
+								<div class="small-4 columns">
+									{{{delta-direction model.prodCapacity.current.pctchgboe}}}
+									<p>Since previous month</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-12 columns text-center"><p>(Data from {{moment-format model.prodCapacity.current.rundatetime prodCap.widgetOptions.dateFormat}})</p></div>
+							</div>
+						</header>
+						{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
+					</section>
+				</div>
+				<section class="large-6 columns">
+						<div class="row pc-widget">
+							<div class="small-4 columns">
+								<h3>{{oilWidgetOptions.title}}</h3>
+							</div>
+							<div class="small-4 columns">
+								<h3>{{model.prodCapacity.current.newoilproduction_mbblperday}}</h3>
+								<p>{{oilWidgetOptions.units}}</p>
+							</div>
+							<div class="small-4 columns">
+								{{{delta-direction model.prodCapacity.current.pctchgoil}}}
+								<p>Since previous month</p>
+							</div>
+						</div>
+						<div class="row pc-widget">
+							<div class="small-4 columns">
+								<h3>{{gasWidgetOptions.title}}</h3>
+							</div>
+							<div class="small-4 columns">
+								<h3>{{model.prodCapacity.current.newgasproduction_bcfperday}}</h3>
+								<p>{{gasWidgetOptions.units}}</p>
+							</div>
+							<div class="small-4 columns">
+								{{{delta-direction model.prodCapacity.current.pctchggas}}}
+								<p>Since previous month</p>
+							</div>
+						</div>
+					{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
+				</section>
+				{{else}}
+				<p>Production Capacity data is not available at this time.</p>
+				{{/if}}
 			</div>
-			<div class="large-6 columns">
-				<h3>U.S. Oil Production Capacity</h3>
-				{{oil-production-widget months=model.prodCapacity.usProdCap}}
-				<h3>U.S. Gas Production Capacity</h3>
-				{{gas-production-widget months=model.prodCapacity.usProdCap}}
-				{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
-			</div>
-			{{else}}
-			<p>Production Capacity data is not available at this time.</p>
-			{{/if}}
-		</div>
-</div><!-- end .row -->
-    </div>
+		</div><!-- / .row -->
+    </div><!-- / .accordion-content -->
   </li>
   <li class="accordion-item" data-accordion-item>
     <a class="accordion-title">Top 10</a>
@@ -76,20 +147,13 @@
 				<p>Production Capacity data is not available at this time.</p>
 				{{/if}}
 			</div>
-		</div><!-- end .row -->
+		</div><!-- / .row -->
     </div>
   </li>
   <li class="accordion-item" data-accordion-item>
     <a class="accordion-title">Maps</a>
     <div class="accordion-content" data-tab-content>
     	<!-- Third Tab - Maps -->
-		<!-- 
-			So I have a couple of ideas on implementation for this. But this is the best one.
-			We will use Wordpress' REST API to pull custom image fields from a node where 
-			they select two images and two PDFs from the media library, one of each for wells and rigs.
-			That way we don't have to rebuild the app or overwrite any imagery; we just pull
-			the data real-time same as we are doing everything else.
-		-->
 		<div class="row">
 			<div class="large-12 columns panel">
 				<h2>Maps</h2>

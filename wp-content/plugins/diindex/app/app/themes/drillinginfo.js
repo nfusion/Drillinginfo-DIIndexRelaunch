@@ -128,11 +128,11 @@ export default Highcharts.extend ({
             },
 		},
 		line: {
-			lineWidth: 2,
+			lineWidth: 0,
 			marker: {
-				lineWidth: 2,
+				lineWidth: 0,
 				symbol: 'circle',
-				radius: 8
+				radius: 4
 			}
 		}
 	},
