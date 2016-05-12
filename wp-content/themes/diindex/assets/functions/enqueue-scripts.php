@@ -8,7 +8,7 @@ function site_scripts()
     wp_enqueue_script('what-input', get_template_directory_uri().'/vendor/what-input/what-input.min.js', array(), '', true);
 
     // Adding Foundation scripts file in the footer
-    if (!class_exists( 'Drillinginfo_Index_Application' ) && !is_front_page()) {
+    if (!class_exists('Drillinginfo_Index_Application') && !is_front_page()) {
         wp_enqueue_script('foundation-js', get_template_directory_uri().'/assets/js/foundation.js', array('jquery'), '6.2', true);
     }
     // Adding scripts file in the footer
