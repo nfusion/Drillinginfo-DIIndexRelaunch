@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import defaultTheme from '../themes/drillinginfo';
+import ENV from 'diindex-ember-dev/config/environment';
 
 export default Ember.Controller.extend({
 	// lower bounds for computed chart configuration properties

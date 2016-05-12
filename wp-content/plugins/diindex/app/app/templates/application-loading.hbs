@@ -1,2 +1,6 @@
 <h2>Loading...</h2>
-<!--img src="vendor/oval.svg" /-->
+{{#if isProduction}}
+<img src="/wp-content/plugins/diindex/app/dist/vendor/oval.svg" />
+{{else}}
+<img src="vendor/oval.svg" />
+{{/if}}

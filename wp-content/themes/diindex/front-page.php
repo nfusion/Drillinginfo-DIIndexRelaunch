@@ -2,9 +2,8 @@
 			
 	<div id="content">
 
-		<div id="inner-content" class="row">
-	FRONT-PAGE
-		    <main id="main" class="large-12 medium-12 columns" role="main">
+		<div id="inner-content">
+		    <main id="main" role="main">
 		    	
 			   <?php the_content(); ?>
 																								

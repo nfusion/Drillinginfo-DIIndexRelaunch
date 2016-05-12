@@ -42,7 +42,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.connectionPath = '';
+    //ENV.APP.connectionPath = '';
   }
 
   return ENV;

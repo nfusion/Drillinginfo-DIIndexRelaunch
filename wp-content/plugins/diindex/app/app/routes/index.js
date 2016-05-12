@@ -140,7 +140,7 @@ export default Ember.Route.extend({
 						oldData = diffDate(runDate);
 
 					//console.log('initial capacity data: ',capacity_data);
-					console.log('most_recent:',most_recent);						
+					//console.log('most_recent:',most_recent);						
 
 					// error out if we are past the 'freshness' date
 					if (oldData) return;
