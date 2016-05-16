@@ -13,17 +13,23 @@
 		<meta class="foundation-mq">
 		
 		<!-- If Site Icon isn't set in customizer -->
-		<?php if ( ! function_exists( 'has_site_icon' ) || ! has_site_icon() ) { ?>
+		<?php if (!function_exists('has_site_icon') || !has_site_icon()) {
+    ?>
 			<!-- Icons & Favicons -->
-			<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
-			<link href="<?php echo get_template_directory_uri(); ?>/assets/images/apple-icon-touch.png" rel="apple-touch-icon" />
+			<link rel="icon" href="<?php echo get_template_directory_uri();
+    ?>/favicon.png">
+			<link href="<?php echo get_template_directory_uri();
+    ?>/assets/images/apple-icon-touch.png" rel="apple-touch-icon" />
 			<!--[if IE]>
-				<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
+				<link rel="shortcut icon" href="<?php echo get_template_directory_uri();
+    ?>/favicon.ico">
 			<![endif]-->
 			<meta name="msapplication-TileColor" content="#f01d4f">
-			<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/assets/images/win8-tile-icon.png">
+			<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri();
+    ?>/assets/images/win8-tile-icon.png">
 	    	<meta name="theme-color" content="#121212">
-	    <?php } ?>
+	    <?php 
+} ?>
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
@@ -42,7 +48,7 @@
 			
 			<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 				
-				<?php get_template_part( 'parts/content', 'offcanvas' ); ?>
+				<?php get_template_part('parts/content', 'offcanvas'); ?>
 				
 				<div class="off-canvas-content" data-off-canvas-content>
 					
@@ -50,6 +56,6 @@
 							
 						 <!-- This navs will be applied to the topbar, above all content 
 							  To see additional nav styles, visit the /parts directory -->
-						 <?php get_template_part( 'parts/nav', 'offcanvas-topbar' ); ?>
+						 <?php get_template_part('parts/nav', 'offcanvas-topbar'); ?>
 		 	
 					</header> <!-- end .header -->
