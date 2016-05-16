@@ -2,15 +2,19 @@
 @import "foundation";
 //@include foundation-everything;
 
+$bold-font-family: 'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+
+
 #diindex-dashboard {
 	
 	.counts-row {
 		background:#f4f4f4;
-		padding: 25px 15px;
+		padding: 25px 5px; /* account for gutters */
 	}
 
 	.dec {
 		color:#ce2221;
+		font-size: rem-calc(15);
 		&::before {
 			@include css-triangle(5px, #ce2221, 'down');
 			display: inline-block;
@@ -20,6 +24,7 @@
 	}
 	.inc {
 		color:#76c000;
+		font-size: rem-calc(15);
 		&::before {
 			@include css-triangle(5px, #76c000, 'up');
 			display: inline-block;
@@ -36,13 +41,39 @@
 
 	.pc-overview {
 		border-bottom:1px solid #cecfcf;
+		.pc-widget {
+			.count {
+				font-size: rem-calc(22);
+			}
+		}
 	}
 	.pc-widget {
 		padding-bottom: 25px;
+		.data-widget-wrapper {
+			.data-header {
+				&:first-child {margin-left:0;}
+				&:last-child {margin-right:0;}
+			}
+		}
+	}
+
+	.oilvgas {
+		.data-widget-wrapper {
+			.count {
+				font-size: rem-calc(28);
+			}
+		}
 	}
 
 	.data-widget-wrapper {
-		padding:20px;
+		p {font-size:rem-calc(11);}
+		.count {
+			font-size: rem-calc(22);
+			font-family: $bold-font-family; 
+			font-weight: normal;
+		}
+		.data-header {margin:15px 15px 10px;}
+		h3,p {margin-bottom:0;}
 	}
 
 	/* accordion styling */
@@ -61,20 +92,26 @@
 		box-shadow: inset 0px -3px 5px 0px rgba(63,110,12,0.75);
 		color:white;
 		border:none;
-		font-weight: bold;
+		font-family: $bold-font-family;
+		font-weight: normal;
 	}
 	.accordion-title:hover {
 		color:white;
+	}
+	.accordion-content {
+		padding:0;
 	}
 
 	/* tab styling */
 	.tabs-title {
 		width: 33.333333333%;
 		text-align:center;
-		/*
+		text-transform:uppercase;
+		font-family: $bold-font-family;
+		font-weight: normal; 
+		
 		& > a[aria-selected='true'], & > a:focus {
-			background: #59901c;
 			color: #fff; 
-		}*/
+		}
 	}
 }

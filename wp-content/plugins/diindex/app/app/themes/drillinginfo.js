@@ -14,6 +14,7 @@ export default Highcharts.extend ({
 	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: '#fff',
+		height: 215,
 		style: {
 			fontFamily: '"Open Sans Condensed", sans-serif;',
 			color: '#333'
@@ -42,7 +43,7 @@ export default Highcharts.extend ({
 			style: {
 				color: '#333',
 				fontWeight: 'bold',
-				fontSize: '1rem'
+				fontSize: '.625rem'
 			}
 		},
 		lineColor: '#333',
@@ -56,9 +57,10 @@ export default Highcharts.extend ({
 			style: {
 				color: '#333',
 				fontStyle: 'italic',
-				fontSize: '1rem'
+				fontSize: '.625rem'
 			},
-			margin: 30
+			margin: 30,
+			y: 0
 		}
 	},
 	yAxis: {
@@ -69,7 +71,7 @@ export default Highcharts.extend ({
 			style: {
 				color: '#333',
 				fontWeight: 'bold',
-				fontSize: '1rem',
+				fontSize: '.625rem',
 			}
 		},
 		lineColor: '#333',
@@ -83,12 +85,13 @@ export default Highcharts.extend ({
 			style: {
 				color: '#333',
 				fontStyle: 'italic',
-				fontSize: '1rem'
-			}
+				fontSize: '.625rem'
+			},
+			y: 0
 		}
 	},
 	tooltip: {
-		pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+		//pointFormat: '{series.name}: <b>{point.y}</b><br/>',
 		backgroundColor: '#585b5d',
 		borderColor: '#fff',
 		style: {

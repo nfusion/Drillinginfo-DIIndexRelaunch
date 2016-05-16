@@ -49,7 +49,7 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #2199e8,
+  primary: #76c000,
   secondary: #777,
   success: #3adb76,
   warning: #ffae00,
@@ -63,12 +63,13 @@ $white: #fefefe;
 $body-background: $white;
 $body-font-color: $medium-gray;
 $body-font-family: 'univers-light-condensed','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$bold-font-family: 'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius: 5px; 
 $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;
@@ -82,7 +83,6 @@ $dark-blue: #03465e;
 
 @include font-face("univers-light-condensed", "../fonts/universltstd-cn");
 @include font-face("univers-light-condensed-bold", "../fonts/universltstd-boldcn");
-
 
 // 2. Breakpoints
 // --------------
@@ -117,12 +117,12 @@ $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
   small: (
-    'h1': 24,
+    'h1': 25,
     'h2': 20,
-    'h3': 19,
-    'h4': 18,
-    'h5': 17,
-    'h6': 16,
+    'h3': 17,
+    'h4': 16,
+    'h5': 15,
+    'h6': 14,
   ),
   medium: (
     'h1': 48,
@@ -257,6 +257,8 @@ $button-sizes: (
   large: 1.25rem,
 );
 $button-opacity-disabled: 0.25;
+$button-fill: solid;
+
 
 // 12. Button Group
 // ----------------

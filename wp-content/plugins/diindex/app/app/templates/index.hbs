@@ -50,6 +50,7 @@
 			<div class="large-12 columns panel">
 				<h2 class="show-for-sr">Production Capacity</h2>
 				{{#if model.prodCapacity}}
+				<div class="row">
 				<div class="large-6 columns">
 					<section class="pc-overview">
 						<header class="pc-widget">
@@ -63,7 +64,7 @@
 						{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
 					</section>
 				</div>
-				<section class="large-6 columns">
+				<section class="large-6 columns oilvgas">
 						<div class="pc-widget">
 						{{data-widget 
 							widgetOptions = oilWidgetOptions 
@@ -80,6 +81,7 @@
 						</div>
 					{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
 				</section>
+				</div>
 				{{else}}
 				<p>Production Capacity data is not available at this time.</p>
 				{{/if}}

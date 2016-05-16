@@ -7,7 +7,10 @@ Stylesheet: Main Stylesheet
 /*********************
 GENERAL STYLES
 *********************/
-
+strong, b {
+	font-family: $bold-font-family;
+	font-weight: normal;
+}
 /*********************
 LINK STYLES
 *********************/
@@ -67,6 +70,10 @@ NAVIGATION STYLES
 	.title-area {
 		z-index: 1;
 	}
+
+	.top-bar-left, .top-bar-right {
+		width:auto;
+	}
 } 
 
 .off-canvas-list {
@@ -103,6 +110,12 @@ NAVIGATION STYLES
 .menu .active > a {
 	background:transparent;
 	font-weight:bold;
+}
+
+
+
+.menu a[data-toggle] i:before {
+	font-size:100%;
 }
 
 /*********************
@@ -522,12 +535,28 @@ FOOTER STYLES
 .footer {
 	clear: both;
 	margin-top: 1em;
-}
+} 
 	
 /*********************
 FOUNDATION STYLES
 *********************/
+.button {
+	text-transform: uppercase;
+	font-size:rem-calc(11);
+	font-family: $bold-font-family;
+}
+i[class^="fi-"]:before {
+	font-size:125%;
+	opacity:.5;
+	margin-right:3px;
+}
+.lead {
+}
 
+.accordion-title {
+	font-family: $bold-font-family;
+	font-size: rem-calc(16);
+}
 /*********************
 PLUGIN STYLES
 *********************/

@@ -415,7 +415,7 @@ export default Ember.Route.extend({
 			)
 		});
 
-		//console.log(data);
+		console.log(data);
 
 		return data;
 	},

@@ -3,9 +3,7 @@
   "private": true,
   "ignore": [],
   "dependencies": {
-    "foundation-sites": ">=6.1"
-  },
-  "devDependencies": {
+    "foundation-sites": ">=6.1",
     "bourbon": "^4.2.7"
   }
 }

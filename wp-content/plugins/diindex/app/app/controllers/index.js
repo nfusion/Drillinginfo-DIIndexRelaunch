@@ -238,7 +238,8 @@ export default Ember.Controller.extend({
 			    type: 'line',
 			    backgroundColor: '#006f98',
 			    spacingRight: 20,
-			    spacingTop: 40
+			    spacingTop: 40,
+			    height: 315
 			},
 			plotOptions: {
 				line: {
