@@ -4,23 +4,16 @@
 			<section class="di-module">
 				{{#if model.rigCount}}
 				<header>
-					<div class="row">
-						<div class="small-4 columns">
-							<h3>{{rigCount.widgetOptions.title}}</h3>
-							<p>{{moment-format model.rigCount.current.rig_date rigCount.widgetOptions.dateFormat}} ({{rigCount.widgetOptions.interval}})</p>
-						</div>
-						<div class="small-4 columns">
-							<h3>{{model.rigCount.current.rig_count}}</h3>
-
-						</div>
-						<div class="small-4 columns">
-							{{{delta-direction model.rigCount.current.pct_change}}}
-							<p>Since previous day</p>
-						</div>
-					</div>
+					{{data-widget 
+						widgetOptions = rigCount.widgetOptions 
+						count = model.rigCount.current.rig_count 
+						delta = model.rigCount.current.pct_change 
+						dateUpdated = model.rigCount.current.rig_date
+					}}
 				</header>
 				
 				{{high-charts content=model.rigCount.series chartOptions=rigCount.chartOptions theme=theme}}
+
 				{{else}}
 				<p>Rig Count data is not available at this time.</p>
 				{{/if}}
@@ -28,24 +21,18 @@
 		</div>
 		<div class="large-6 columns">
 			<section class="di-module">
-				<header>
-					<div class="row">
-						<div class="small-4 columns">
-							<h3>{{permitCount.widgetOptions.title}}</h3>
-							<p>{{moment-format model.permitCount.current.permit_date permitCount.widgetOptions.dateFormat}} ({{permitCount.widgetOptions.interval}})</p>
-						</div>
-						<div class="small-4 columns">
-							<h3>{{model.permitCount.current.permit_count}}</h3>
-
-						</div>
-						<div class="small-4 columns">
-							{{{delta-direction model.permitCount.current.pct_change}}}
-							<p>Since previous month</p>
-						</div>
-					</div>
-				</header>
 				{{#if model.permitCount.chart}}
+				<header>
+					{{data-widget 
+						widgetOptions = permitCount.widgetOptions 
+						count = model.permitCount.current.permit_count 
+						delta = model.permitCount.current.pct_change 
+						dateUpdated = model.permitCount.current.permit_date
+					}}
+				</header>
+				
 				{{high-charts content=model.permitCount.chart chartOptions=permitCount.chartOptions theme=theme}}
+
 				{{else}}
 				<p>Permit Count data is not available at this time.</p>
 				{{/if}}
@@ -53,7 +40,7 @@
 		</div>
 	</div><!-- / .row -->
 </div><!-- /.counts-row -->
-{{#if media.isMobile}}
+{{#if media.isMedium}}
 {{#zf-accordion}}
   <li class="accordion-item is-active" data-accordion-item>
     <a class="accordion-title">Production Capacity</a>
@@ -66,52 +53,30 @@
 				<div class="large-6 columns">
 					<section class="pc-overview">
 						<header class="pc-widget">
-							<div class="row">
-								<div class="small-4 columns">
-									<h3>{{prodCap.widgetOptions.title}}</h3>
-								</div>
-								<div class="small-4 columns">
-									<h3>{{model.prodCapacity.current.newboeproduction_mboeperday}}</h3>
-
-								</div>
-								<div class="small-4 columns">
-									{{{delta-direction model.prodCapacity.current.pctchgboe}}}
-									<p>Since previous month</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="small-12 columns text-center"><p>(Data from {{moment-format model.prodCapacity.current.rundatetime prodCap.widgetOptions.dateFormat}})</p></div>
-							</div>
+							{{data-widget 
+								widgetOptions = prodCap.widgetOptions 
+								count = model.prodCapacity.current.newboeproduction_mboeperday 
+								delta = model.prodCapacity.current.pctchgboe 
+								dateUpdated = model.prodCapacity.current.rundatetime
+							}}
 						</header>
 						{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
 					</section>
 				</div>
 				<section class="large-6 columns">
-						<div class="row pc-widget">
-							<div class="small-4 columns">
-								<h3>{{oilWidgetOptions.title}}</h3>
-							</div>
-							<div class="small-4 columns">
-								<h3>{{model.prodCapacity.current.newoilproduction_mbblperday}}</h3>
-								<p>{{oilWidgetOptions.units}}</p>
-							</div>
-							<div class="small-4 columns">
-								{{{delta-direction model.prodCapacity.current.pctchgoil}}}
-								<p>Since previous month</p>
-							</div>
+						<div class="pc-widget">
+						{{data-widget 
+							widgetOptions = oilWidgetOptions 
+							count = model.prodCapacity.current.newoilproduction_mbblperday 
+							delta = model.prodCapacity.current.pctchgoil 
+						}}
 						</div>
-						<div class="row pc-widget">
-							<div class="small-4 columns">
-								<h3>{{gasWidgetOptions.title}}</h3>
-							</div>
-							<div class="small-4 columns">
-								<h3>{{model.prodCapacity.current.newgasproduction_bcfperday}}</h3>
-								<p>{{gasWidgetOptions.units}}</p>
-							</div>
-							<div class="small-4 columns">
-								{{{delta-direction model.prodCapacity.current.pctchggas}}}
-								<p>Since previous month</p>
-							</div>
+						<div class="pc-widget">
+						{{data-widget 
+							widgetOptions = gasWidgetOptions 
+							count = model.prodCapacity.current.newgasproduction_bcfperday 
+							delta = model.prodCapacity.current.pctchggas
+						}}
 						</div>
 					{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
 				</section>
@@ -199,52 +164,32 @@
 				<div class="large-6 columns">
 					<section class="pc-overview">
 						<header class="pc-widget">
-							<div class="row">
-								<div class="small-4 columns">
-									<h3>{{prodCap.widgetOptions.title}}</h3>
-								</div>
-								<div class="small-4 columns">
-									<h3>{{model.prodCapacity.current.newboeproduction_mboeperday}}</h3>
 
-								</div>
-								<div class="small-4 columns">
-									{{{delta-direction model.prodCapacity.current.pctchgboe}}}
-									<p>Since previous month</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="small-12 columns text-center"><p>(Data from {{moment-format model.prodCapacity.current.rundatetime prodCap.widgetOptions.dateFormat}})</p></div>
-							</div>
+							{{data-widget 
+								widgetOptions = prodCap.widgetOptions 
+								count = model.prodCapacity.current.newboeproduction_mboeperday 
+								delta = model.prodCapacity.current.pctchgboe 
+								dateUpdated = model.prodCapacity.current.rundatetime
+							}}
+
 						</header>
 						{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
 					</section>
 				</div>
 				<section class="large-6 columns">
-						<div class="row pc-widget">
-							<div class="small-4 columns">
-								<h3>{{oilWidgetOptions.title}}</h3>
-							</div>
-							<div class="small-4 columns">
-								<h3>{{model.prodCapacity.current.newoilproduction_mbblperday}}</h3>
-								<p>{{oilWidgetOptions.units}}</p>
-							</div>
-							<div class="small-4 columns">
-								{{{delta-direction model.prodCapacity.current.pctchgoil}}}
-								<p>Since previous month</p>
-							</div>
+						<div class="pc-widget">
+						{{data-widget 
+							widgetOptions = oilWidgetOptions 
+							count = model.prodCapacity.current.newoilproduction_mbblperday 
+							delta = model.prodCapacity.current.pctchgoil
+						}}
 						</div>
-						<div class="row pc-widget">
-							<div class="small-4 columns">
-								<h3>{{gasWidgetOptions.title}}</h3>
-							</div>
-							<div class="small-4 columns">
-								<h3>{{model.prodCapacity.current.newgasproduction_bcfperday}}</h3>
-								<p>{{gasWidgetOptions.units}}</p>
-							</div>
-							<div class="small-4 columns">
-								{{{delta-direction model.prodCapacity.current.pctchggas}}}
-								<p>Since previous month</p>
-							</div>
+						<div class="pc-widget">
+						{{data-widget 
+							widgetOptions = gasWidgetOptions 
+							count = model.prodCapacity.current.newgasproduction_bcfperday 
+							delta = model.prodCapacity.current.pctchggas
+						}}
 						</div>
 					{{high-charts content=model.prodCapacity.prodOilVsGas chartOptions=prodCapByType.chartOptions theme=theme}}
 				</section>
@@ -259,6 +204,12 @@
 		<div class="row">
 			<div class="large-12 columns panel">
 				<h2>Top Ten</h2>
+				<div class="switch tiny">
+					<input class="switch-input" id="tinySwitch" type="checkbox" name="exampleSwitch">
+					<label class="switch-paddle" for="tinySwitch">
+					<span class="show-for-sr">Tiny Sandwiches Enabled</span>
+					</label>
+				</div>
 				{{#if model.topCountiesGas}}
 				<div class="large-6 columns">
 					<h3>New Production by <strong>Operators</strong></h3>

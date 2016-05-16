@@ -3,6 +3,9 @@ import defaultTheme from '../themes/drillinginfo';
 import ENV from 'diindex-ember-dev/config/environment';
 
 export default Ember.Controller.extend({
+	actions: {
+
+	},
 	// lower bounds for computed chart configuration properties
 	prodCapMin: null,
 	rigCountMin: null,
@@ -10,86 +13,85 @@ export default Ember.Controller.extend({
 	theme: defaultTheme,
 	// chart configuration properties
 	rigCount: Ember.computed(function(){
-		var rigConfig = {
-			chartOptions: {
-				chart: {
-				    type: 'areaspline',
-				    zoomType: 'x',
-				    backgroundColor: '#585b5d',
-				    style: {
-				    	borderRadius: '0 0 5px 5px'
-				    }
-			    },
-				plotOptions: {
-					areaspline: {
-						showInLegend: false,
-						fillColor: "#dc7c23",
-						lineColor: "#dc7c23",
-						lineWidth: 1,
-						marker: {
-		                    enabled: false,
-		                    symbol: 'circle',
-		                    radius: 4,
-		                    fillColor: '#7293cb',
-		                    states: {
-		                        hover: {
-		                            enabled: true,
-		                            fillColor: '#eee'
-		                        }
-		                    }
-		                }
-					}
-				},
-				title: {
-					text: ''
-				},
-				subtitle: {
-		            text: document.ontouchstart === undefined ?
-		                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
-		            style: {
-		            	color: '#fff'
-		            }
-		        },
-				xAxis: {
-					type: 'datetime',
-					title: {
-						text: 'Date',
-						style: {
-							color: '#fff'
-						}
-					},
-					lineColor: '#818485',
-					labels: {
-						style: {
-							color: '#fff'
-						}
-					},
-				},
-				yAxis: {
-				    title: {
-				        text: 'Rig Count',
-				        style: {
-				        	color: '#fff'
-				        }
-				    },
-				    min: null,
-				    lineColor: '#818485',
-				    labels: {
-						style: {
-							color: '#fff'
-						}
-					},
+		var rigConfig = {};
+		rigConfig.chartOptions = {
+			chart: {
+			    type: 'areaspline',
+			    zoomType: 'x',
+			    backgroundColor: '#585b5d',
+			    style: {
+			    	borderRadius: '0 0 5px 5px'
+			    }
+		    },
+			plotOptions: {
+				areaspline: {
+					showInLegend: false,
+					fillColor: "#dc7c23",
+					lineColor: "#dc7c23",
+					lineWidth: 1,
+					marker: {
+	                    enabled: false,
+	                    symbol: 'circle',
+	                    radius: 4,
+	                    fillColor: '#7293cb',
+	                    states: {
+	                        hover: {
+	                            enabled: true,
+	                            fillColor: '#eee'
+	                        }
+	                    }
+	                }
 				}
 			},
-			widgetOptions: {
-				title: 'U.S. Rig Count',
-				units: '',
-				dateFormat: 'MMMM D, YYYY',
-				interval: 'Daily',
-				changeText: ''
+			title: {
+				text: ''
+			},
+			subtitle: {
+	            text: document.ontouchstart === undefined ?
+	                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
+	            style: {
+	            	color: '#fff'
+	            }
+	        },
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date',
+					style: {
+						color: '#fff'
+					}
+				},
+				lineColor: '#818485',
+				labels: {
+					style: {
+						color: '#fff'
+					}
+				},
+			},
+			yAxis: {
+			    title: {
+			        text: 'Rig Count',
+			        style: {
+			        	color: '#fff'
+			        }
+			    },
+			    min: null,
+			    lineColor: '#818485',
+			    labels: {
+					style: {
+						color: '#fff'
+					}
+				},
 			}
 		};
 		rigConfig.chartOptions.yAxis.min = this.get('rigCountMin');
+		rigConfig.widgetOptions = {
+			title: 'U.S. Rig Count',
+			units: '',
+			dateFormat: 'MMMM DD, YYYY',
+			interval: 'Daily',
+			changeText: 'Since previous week'
+		};
 		return rigConfig;
 	}),
 	permitCount: {
@@ -160,72 +162,73 @@ export default Ember.Controller.extend({
 			units: '',
 			dateFormat: 'MMMM YYYY',
 			interval: 'Monthly',
-			changeText: ''
+			changeText: 'Since previous month'
 		}
 	},
 	prodCap : Ember.computed(function(){
-		var prodCapConfig = {
-			chartOptions: {
-				chart: {
-				    type: 'areaspline'
-				},
-				plotOptions: {
-					areaspline: {
-						fillColor: {
-							linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-						    stops: [
-						        [0, '#7251a0'],
-						        [1, '#9165a9']
-						    ]
-						},
-						lineColor: '#7251a0',
-						lineWidth: 1,
-						showInLegend: false,
-				    	pointIntervalUnit: 'month',
-				    	states: {
-							hover: {
-								color: '#b2df8a' 
-							}
-						},
-						marker: {
-		                    enabled: true,
-		                    symbol: 'circle',
-		                    radius: 4,
-		                    fillColor: '#7251a0',
-		                    states: {
-		                        hover: {
-		                            enabled: true,
-		                            fillColor: '#7251a0'
-		                        }
-		                    }
-		                }	
-				    }
-				},
+		var prodCapConfig = {};
+		prodCapConfig.chartOptions = {
+			chart: {
+			    type: 'areaspline'
+			},
+			plotOptions: {
+				areaspline: {
+					fillColor: {
+						linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+					    stops: [
+					        [0, '#7251a0'],
+					        [1, '#9165a9']
+					    ]
+					},
+					lineColor: '#7251a0',
+					lineWidth: 1,
+					showInLegend: false,
+			    	pointIntervalUnit: 'month',
+			    	states: {
+						hover: {
+							color: '#b2df8a' 
+						}
+					},
+					marker: {
+	                    enabled: true,
+	                    symbol: 'circle',
+	                    radius: 4,
+	                    fillColor: '#7251a0',
+	                    states: {
+	                        hover: {
+	                            enabled: true,
+	                            fillColor: '#7251a0'
+	                        }
+	                    }
+	                }	
+			    }
+			},
+			title: {
+			    text: ''
+			},
+			xAxis: {
+				type: 'datetime',
 				title: {
-				    text: ''
-				},
-				xAxis: {
-					type: 'datetime',
-					title: {
-						text: 'Month'
-					}
-				},
-				yAxis: {
-				    title: {
-				        text: 'MBOE/Day'
-				    },
-				    min: null
+					text: 'Month'
 				}
 			},
-			widgetOptions: {
-				title: 'New U.S. Production Capacity',
-				units: '',
-				dateFormat: 'MMMM YYYY',
-				interval: '',
-				changeText: ''
+			yAxis: {
+			    title: {
+			        text: 'MBOE/Day'
+			    },
+			    min: null
 			}
 		};
 		prodCapConfig.chartOptions.yAxis.min = this.get('prodCapMin');
+		prodCapConfig.widgetOptions = {
+			title: 'New U.S. Production Capacity',
+			units: '',
+			dateFormat: 'MMMM YYYY',
+			datePosition: 'bottom',
+			interval: '',
+			changeText: 'Since previous month',
+		};
+		
 		return prodCapConfig;
 	}),
 	prodCapByType : {
@@ -318,13 +321,13 @@ export default Ember.Controller.extend({
 		units: 'MBBL/Day',
 		dateFormat: 'MMMM YYYY',
 		interval: '',
-		changeText: ''
+		changeText: 'Since previous month'
 	},
 	gasWidgetOptions: {
 		title: 'Gas Production Capacity',
 		units: 'BCF/Day',
 		dateFormat: 'MMMM YYYY',
 		interval: '',
-		changeText: ''
+		changeText: 'Since previous month'
 	}
 });

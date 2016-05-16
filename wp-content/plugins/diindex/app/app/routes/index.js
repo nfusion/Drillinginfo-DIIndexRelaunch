@@ -228,7 +228,7 @@ export default Ember.Route.extend({
 					rigCountData.series = [
 					    {
 					    	name: 'Rig Count',
-					    	pointStart: moment.utc(ordered_data[0].rig_date).valueOf(),
+					    	pointStart: moment(ordered_data[0].rig_date).valueOf(),
 					    	pointInterval: 24 * 3600 * 1000, // one day
 					    	data: highchart_series
 					    }

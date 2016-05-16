@@ -32,7 +32,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	
+
 }
 
 h2, .h2 {
@@ -81,6 +81,28 @@ NAVIGATION STYLES
 			margin-left: 20px;
 		}
 	}
+}
+
+.off-canvas-wrapper {
+
+}
+
+.off-canvas {
+	li.is-submenu-item a {
+		padding-left: 2em; 
+	}
+}
+
+.off-canvas.position-right.is-open {
+	@include linear-gradient(left top,$light-blue, $dark-blue);
+	height:100%;
+}
+.menu > li > a {
+	color:#fff;
+}
+.menu .active > a {
+	background:transparent;
+	font-weight:bold;
 }
 
 /*********************

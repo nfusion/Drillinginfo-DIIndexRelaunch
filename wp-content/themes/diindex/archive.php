@@ -7,14 +7,14 @@
 		    <main id="main" class="large-8 medium-8 columns" role="main">
 			    
 		    	<header>
-		    		<h1 class="page-title"><?php the_archive_title(); ?></h1>
-					<?php the_archive_description('<div class="taxonomy-description">', '</div>'); ?>
+		    		<h1 class="page-title"><?php the_archive_title();?></h1>
+					<?php the_archive_description('<div class="taxonomy-description">', '</div>');?>
 		    	</header>
 		
 		    	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			 
 					<!-- To see additional archive styles, visit the /parts directory -->
-					<?php get_template_part('parts/loop', 'archive'); ?>
+					<?php get_template_part( 'parts/loop', 'archive' ); ?>
 				    
 				<?php endwhile; ?>	
 
@@ -22,7 +22,7 @@
 					
 				<?php else : ?>
 											
-					<?php get_template_part('parts/content', 'missing'); ?>
+					<?php get_template_part( 'parts/content', 'missing' ); ?>
 						
 				<?php endif; ?>
 		

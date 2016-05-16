@@ -31,8 +31,8 @@ module.exports = function(defaults) {
   
   // Bourbon and Foundation 6
   app.import('bower_components/bourbon/app/assets/stylesheets/_bourbon.scss');
-  app.import('bower_components/foundation-sites/scss/foundation.scss');
-
+  //app.import('bower_components/foundation-sites/scss/foundation.scss');
+  //app.import('bower_components/foundation-sites/scss/util/_util.scss');
   app.import('bower_components/foundation-sites/dist/foundation.js');
 
   return app.toTree();

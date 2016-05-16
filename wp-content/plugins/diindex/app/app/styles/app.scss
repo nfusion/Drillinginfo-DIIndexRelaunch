@@ -1,6 +1,6 @@
 @import "bourbon";
 @import "foundation";
-@include foundation-everything;
+//@include foundation-everything;
 
 #diindex-dashboard {
 	
@@ -40,6 +40,12 @@
 	.pc-widget {
 		padding-bottom: 25px;
 	}
+
+	.data-widget-wrapper {
+		padding:20px;
+	}
+
+	/* accordion styling */
 	.accordion-title::before {
 		background:#639a25;
 		border-radius: 50%;
@@ -59,5 +65,16 @@
 	}
 	.accordion-title:hover {
 		color:white;
+	}
+
+	/* tab styling */
+	.tabs-title {
+		width: 33.333333333%;
+		text-align:center;
+		/*
+		& > a[aria-selected='true'], & > a:focus {
+			background: #59901c;
+			color: #fff; 
+		}*/
 	}
 }

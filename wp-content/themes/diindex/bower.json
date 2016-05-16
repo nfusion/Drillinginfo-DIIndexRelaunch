@@ -1,8 +1,11 @@
 {
   "name": "JointsWP",
   "private": true,
-  "ignore":  [],
+  "ignore": [],
   "dependencies": {
     "foundation-sites": ">=6.1"
+  },
+  "devDependencies": {
+    "bourbon": "^4.2.7"
   }
 }
