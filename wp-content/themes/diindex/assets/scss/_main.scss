@@ -11,6 +11,8 @@ strong, b {
 	font-family: $bold-font-family;
 	font-weight: normal;
 }
+ul.inline li {display:inline-block;}
+ul.inline .button {margin-right:rem-calc(8);}
 /*********************
 LINK STYLES
 *********************/
@@ -35,15 +37,17 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-
+	text-transform:uppercase;
+	font-family: $bold-font-family;
 }
 
 h2, .h2 {
-
+	text-transform:uppercase;
+	font-family: $bold-font-family;
 }
 
 h3, .h3 {
-
+	font-family: $bold-font-family;
 }
 
 h4, .h4 {
@@ -62,7 +66,7 @@ HEADER STYLES
 		list-style: none;
 	}
 }
-    
+
 /*********************
 NAVIGATION STYLES
 *********************/
@@ -107,6 +111,10 @@ NAVIGATION STYLES
 .menu > li > a {
 	color:#fff;
 }
+.menu > li > button {
+    margin: 0.7rem 1rem;
+    line-height: 1;
+}
 .menu .active > a {
 	background:transparent;
 	font-weight:bold;
@@ -116,6 +124,24 @@ NAVIGATION STYLES
 
 .menu a[data-toggle] i:before {
 	font-size:100%;
+}
+
+.menu-icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
+  .menu-icon::after {
+    opacity:0.5;
+    height: 4px;
+    border-radius: 2px;
+ }
+  .menu-icon:hover::after {
+    background: $primary-color;
+    box-shadow: 0 7px 0 $primary-color, 0 14px 0 $primary-color;
 }
 
 /*********************

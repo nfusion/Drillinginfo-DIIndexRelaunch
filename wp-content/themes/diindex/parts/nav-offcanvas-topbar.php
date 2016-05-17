@@ -4,7 +4,7 @@
 <div class="top-bar" id="top-bar-menu">
 	<div class="top-bar-left float-left">
 		<ul class="menu">
-			<li><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></li>
+			<li><a href="<?php echo home_url(); ?>" class="site-name"><img src="<?php echo get_template_directory_uri (); ?>/assets/images/drillinginfo-logo.png" alt="<?php bloginfo('name'); ?>"></a></li>
 		</ul>
 	</div>
 	<div class="top-bar-right show-for-medium">
@@ -12,8 +12,8 @@
 	</div>
 	<div class="top-bar-right float-right show-for-small-only">
 		<ul class="menu">
-			<!-- <li><button class="menu-icon" type="button" data-toggle="off-canvas"></button></li> -->
-			<li><a data-toggle="off-canvas"><i class="fi-list"></i><?php _e('Menu', 'jointswp'); ?></a></li>
+			<li><button class="menu-icon" type="button" data-toggle="off-canvas"></button></li>
+			<!--li><a data-toggle="off-canvas"><i class="fi-list"></i><?php _e('Menu', 'jointswp'); ?></a></li-->
 		</ul>
 	</div>
 </div>
