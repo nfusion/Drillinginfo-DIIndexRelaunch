@@ -105,18 +105,18 @@
 
 				{{#if model.topCountiesGas}}
 				<div class="medium-6 columns">
-					<h3>New Production by <strong>Operators</strong></h3>
-					<h4>Gas</h4>
-					{{top-ten obj=model.topOperatorsGas}}
-					<h4>Oil</h4>
-					{{top-ten obj=model.topOperatorsOil}}
+					{{toggle-block 
+						widgetOptions=toggleOperators 
+						offState=model.topOperatorsGas 
+						onState=model.topOperatorsOil
+					}}
 				</div>
 				<div class="medium-6 columns">
-					<h3>New Production by <strong>Counties</strong></h3>
-					<h4>Gas</h4>
-					{{top-ten obj=model.topCountiesGas}}
-					<h4>Oil</h4>
-					{{top-ten obj=model.topCountiesOil}}
+					{{toggle-block 
+						widgetOptions=toggleCounties 
+						offState=model.topCountiesGas 
+						onState=model.topCountiesOil
+					}}
 				</div>
 				{{else}}
 				<p>Production Capacity data is not available at this time.</p>
