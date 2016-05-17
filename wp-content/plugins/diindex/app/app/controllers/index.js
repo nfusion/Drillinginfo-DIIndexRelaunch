@@ -43,9 +43,6 @@ export default Ember.Controller.extend({
 	                }
 				}
 			},
-			title: {
-				text: ''
-			},
 			subtitle: {
 	            text: document.ontouchstart === undefined ?
 	                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
@@ -100,7 +97,7 @@ export default Ember.Controller.extend({
 			    type: 'line',
 			    backgroundColor: '#006f98',
 			    style: {
-				    	borderRadius: '0 0 5px 5px'
+				    borderRadius: '0 0 5px 5px'
 				}
 			},
 			plotOptions: {
@@ -125,15 +122,14 @@ export default Ember.Controller.extend({
 					}
 			    }
 			},
-			title: {
-				text: ''
-			},
 			xAxis: {
 				type: 'datetime',
 				gridLineColor: 'transparent',
 				title: {
 					text: 'Date',
-					style: {"color" : "#fff"}
+					style: {
+						color: "#fff"
+					}
 				},
 				labels: {
 					useHTML: true,
@@ -147,10 +143,14 @@ export default Ember.Controller.extend({
 			yAxis: {
 			    title: {
 			        text: 'Permit Count',
-			        style: {"color" : "#fff"}
+			        style: {
+			        	color : "#fff"
+			        }
 			    },
 			    labels: {
-					style: {"color" : "#fff"},
+					style: {
+						color: "#fff"
+					},
 					padding: 0,
 					step: 1
 				},
@@ -202,9 +202,6 @@ export default Ember.Controller.extend({
 	                    }
 	                }	
 			    }
-			},
-			title: {
-			    text: ''
 			},
 			xAxis: {
 				type: 'datetime',
@@ -263,10 +260,6 @@ export default Ember.Controller.extend({
 					}
 			    }
 			},
-			title: {
-			    text: '',
-			    color: "#fff"
-			},
 			tooltip: {
 				useHTML: true,
 				pointFormat: '<span>{series.name}: </span>' +
@@ -280,7 +273,9 @@ export default Ember.Controller.extend({
 				type: 'datetime',
 				title: {
 					text: 'Month',
-					style: {"color" : "#fff"}
+					style: {
+						color : "#fff"
+					}
 				},
 				labels: {
 					useHTML: true,
@@ -296,7 +291,7 @@ export default Ember.Controller.extend({
 				{
 				    title: {
 				        text: 'MBBL/Day',
-				        style: {"color" : "#fff", "fontSize":"15px"}
+				        style: {"color" : "#fff", "fontSize":"0.625rem"}
 				    },
 				    labels: {
 						style: {"color" : "#fff"}	
@@ -307,7 +302,7 @@ export default Ember.Controller.extend({
 			    {
 				    title: {
 				        text: 'BCF/Day',
-				        style: {"color" : "#fff", "fontSize":"15px"}
+				        style: {"color" : "#fff", "fontSize":"0.625rem"}
 				    },
 				    labels: {
 						style: {"color" : "#fff"}	

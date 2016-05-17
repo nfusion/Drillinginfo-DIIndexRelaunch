@@ -14,7 +14,7 @@ export default Highcharts.extend ({
 	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: '#fff',
-		height: 215,
+		//height: 215,
 		style: {
 			fontFamily: '"Open Sans Condensed", sans-serif;',
 			color: '#333'
@@ -23,6 +23,7 @@ export default Highcharts.extend ({
 		//height: 300
 	},
 	title: {
+		text: '',
 		style: {
 			color: '#585b5d',
 			textTransform: 'uppercase',
@@ -57,10 +58,9 @@ export default Highcharts.extend ({
 			style: {
 				color: '#333',
 				fontStyle: 'italic',
-				fontSize: '.625rem'
+				fontSize: '0.625rem'
 			},
-			margin: 30,
-			y: 0
+			margin: 30
 		}
 	},
 	yAxis: {
@@ -69,25 +69,24 @@ export default Highcharts.extend ({
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#333',
-				fontWeight: 'bold',
-				fontSize: '.625rem',
+				"color": '#333',
+				"fontWeight": 'bold'
 			}
 		},
 		lineColor: '#333',
 		lineWidth: 1,
-		minorGridLineColor: '#000000',
+		minorGridLineColor: '#000',
 		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
+			text: '',
 			style: {
 				color: '#333',
 				fontStyle: 'italic',
-				fontSize: '.625rem'
-			},
-			y: 0
+				fontSize: '0.625rem'
+			}
 		}
 	},
 	tooltip: {
@@ -141,13 +140,13 @@ export default Highcharts.extend ({
 	},
 	legend: {
 		itemStyle: {
-			color: '#333'
+			color: '#fff'
 		},
 		itemHoverStyle: {
-			color: 'red'
+			color: '#76c000'
 		},
 		itemHiddenStyle: {
-			color: '#606063'
+			color: '#9b9d9e'
 		}
 	},
 	credits: {
