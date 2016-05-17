@@ -1,17 +1,23 @@
 <!-- widgetOptions, onState, offState -->
 <h3>{{{widgetOptions.title}}}</h3>
-<div class="switch tiny">
-	<input class="switch-input" id="{{widgetOptions.switch.id}}" type="checkbox" name="{{widgetOptions.switch.id}}">
-	<label class="switch-paddle" for="{{widgetOptions.switch.id}}">
-		<span class="show-for-sr">{{widgetOptions.switch.text}}</span>
-	</label>
+<div class="row">
+	<div class="small-5 columns text-right">{{widgetOptions.offState.title}}</div>
+	<div class="small-2 columns text-center">
+		<div class="switch tiny">
+			<input class="switch-input" id="{{widgetOptions.switch.id}}" type="checkbox" name="{{widgetOptions.switch.id}}">
+			<label class="switch-paddle" for="{{widgetOptions.switch.id}}">
+				<span class="show-for-sr">{{widgetOptions.switch.text}}</span>
+			</label>
+		</div>
+	</div>
+	<div class="small-5 columns">{{widgetOptions.onState.title}}</div>
 </div>
 <div class="toggle-panels">
-	<div id="{{elementID}}-on" class="toggle-panel">
+	<div id="{{elementID}}-on" class="toggle-panel" data-display="hidden">
 		<h4>{{widgetOptions.onState.title}}</h4>
 		{{top-ten obj=onState}}
 	</div>
-	<div id="{{elementID}}-off" class="toggle-panel" data-display="hidden">
+	<div id="{{elementID}}-off" class="toggle-panel">
 		<h4>{{widgetOptions.offState.title}}</h4>
 		{{top-ten obj=offState}}
 	</div>

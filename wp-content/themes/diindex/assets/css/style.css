@@ -3547,7 +3547,7 @@ body.is-reveal-open {
   width: 4rem;
   height: 2rem;
   transition: all 0.25s ease-out;
-  border-radius: 5px;
+  border-radius: 0.75rem;
   color: inherit;
   font-weight: inherit; }
   input + .switch-paddle {
@@ -3563,7 +3563,7 @@ body.is-reveal-open {
     width: 1.5rem;
     transition: all 0.25s ease-out;
     transform: translate3d(0, 0, 0);
-    border-radius: 5px; }
+    border-radius: 50%; }
   input:checked ~ .switch-paddle {
     background: #76c000; }
     input:checked ~ .switch-paddle::after {
