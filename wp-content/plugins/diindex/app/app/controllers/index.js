@@ -326,32 +326,22 @@ export default Ember.Controller.extend({
 		interval: '',
 		changeText: 'Since previous month'
 	},
-	toggleOperators: {
-		title: 'New Production by <strong>Operators</strong>',
-		switch: {
-			id: 'toggleOperators',
-			text: 'Enable for Top Ten Operators - Oil'
+	toggleOptions: {
+		group1: {
+			title: 'New Production by <strong>Operators</strong>',
 		},
-		offState: {
-			title: 'Gas'
+		group2: {
+			title: 'New Production by <strong>County</strong>',
 		},
-		onState: {
-			title: 'Oil'
-		}
-
-	},
-	toggleCounties: {
-		title: 'New Production by <strong>County</strong>',
 		switch: {
 			id: 'toggleCounties',
-			text: 'Enable for Top Ten Counties - Oil'
-		},
-		offState: {
-			title: 'Gas'
-		},
-		onState: {
-			title: 'Oil'
+			text: 'View Oil',
+			offState: {
+				title: 'Oil'
+			},
+			onState: {
+				title: 'Gas'
+			}
 		}
-
 	}
 });
