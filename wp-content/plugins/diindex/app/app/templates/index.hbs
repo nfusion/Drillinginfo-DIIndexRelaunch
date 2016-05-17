@@ -1,6 +1,6 @@
 <div class="counts-row">
 	<div class="row">
-		<div class="large-6 columns">
+		<div class="medium-6 columns">
 			<section class="di-module">
 				{{#if model.rigCount}}
 				<header>
@@ -19,7 +19,7 @@
 				{{/if}}
 			</section>
 		</div>
-		<div class="large-6 columns">
+		<div class="medium-6 columns">
 			<section class="di-module">
 				{{#if model.permitCount.chart}}
 				<header>
@@ -47,11 +47,11 @@
     <div class="accordion-content" data-tab-content>
       	<!-- First Tab - Production Capacity -->
 		<div class="row">
-			<div class="large-12 columns panel">
+			<div class="small-12 columns panel">
 				<h2 class="show-for-sr">Production Capacity</h2>
 				{{#if model.prodCapacity}}
 				<div class="row">
-				<div class="large-6 columns">
+				<div class="medium-6 columns">
 					<section class="pc-overview">
 						<header class="pc-widget">
 							{{data-widget 
@@ -64,7 +64,7 @@
 						{{high-charts content=model.prodCapacity.usProdCapMboeChart  chartOptions=prodCap.chartOptions theme=theme}}
 					</section>
 				</div>
-				<section class="large-6 columns oilvgas">
+				<section class="medium-6 columns oilvgas">
 						<div class="pc-widget">
 						{{data-widget 
 							widgetOptions = oilWidgetOptions 
@@ -94,17 +94,24 @@
     <div class="accordion-content" data-tab-content>
     	<!-- Second Tab - Top Ten Lists -->
 		<div class="row">
-			<div class="large-12 columns panel">
+			<div class="small-12 columns panel">
 				<h2>Top Ten</h2>
+				<div class="switch tiny">
+					<input class="switch-input" id="tinySwitch" type="checkbox" name="exampleSwitch">
+					<label class="switch-paddle" for="tinySwitch">
+					<span class="show-for-sr">Tiny Sandwiches Enabled</span>
+					</label>
+				</div>
+
 				{{#if model.topCountiesGas}}
-				<div class="large-6 columns">
+				<div class="medium-6 columns">
 					<h3>New Production by <strong>Operators</strong></h3>
 					<h4>Gas</h4>
 					{{top-ten obj=model.topOperatorsGas}}
 					<h4>Oil</h4>
 					{{top-ten obj=model.topOperatorsOil}}
 				</div>
-				<div class="large-6 columns">
+				<div class="medium-6 columns">
 					<h3>New Production by <strong>Counties</strong></h3>
 					<h4>Gas</h4>
 					{{top-ten obj=model.topCountiesGas}}
@@ -123,7 +130,7 @@
     <div class="accordion-content" data-tab-content>
     	<!-- Third Tab - Maps -->
 		<div class="row">
-			<div class="large-12 columns panel">
+			<div class="small-12 columns panel">
 				<h2>Maps</h2>
 				{{#if model.maps}}
 				<div class="large-6 columns">
@@ -156,11 +163,11 @@
   <li class="tabs-title"><a href="#panel2">Top 10</a></li>
   <li class="tabs-title"><a href="#panel3">Maps</a></li>
 {{/zf-tabs}}
-<div class="tabs-content" data-tabs-content="example-tabs">
+<div class="tabs-content" data-tabs-content="dashboard-tabs">
   <div class="tabs-panel is-active" id="panel1">
     	<!-- First Tab - Production Capacity -->
 		<div class="row">
-			<div class="large-12 columns panel">
+			<div class="small-12 columns panel">
 				<h2 class="show-for-sr">Production Capacity</h2>
 				{{#if model.prodCapacity}}
 				<div class="large-6 columns">
@@ -204,28 +211,21 @@
   <div class="tabs-panel" id="panel2">
     <!-- Second Tab - Top Ten Lists -->
 		<div class="row">
-			<div class="large-12 columns panel">
-				<h2>Top Ten</h2>
-				<div class="switch tiny">
-					<input class="switch-input" id="tinySwitch" type="checkbox" name="exampleSwitch">
-					<label class="switch-paddle" for="tinySwitch">
-					<span class="show-for-sr">Tiny Sandwiches Enabled</span>
-					</label>
-				</div>
+			<div class="small-12 columns panel">
 				{{#if model.topCountiesGas}}
-				<div class="large-6 columns">
-					<h3>New Production by <strong>Operators</strong></h3>
-					<h4>Gas</h4>
-					{{top-ten obj=model.topOperatorsGas}}
-					<h4>Oil</h4>
-					{{top-ten obj=model.topOperatorsOil}}
+				<div class="medium-6 columns">
+					{{toggle-block 
+						widgetOptions=toggleOperators 
+						offState=model.topOperatorsGas 
+						onState=model.topOperatorsOil
+					}}
 				</div>
-				<div class="large-6 columns">
-					<h3>New Production by <strong>Counties</strong></h3>
-					<h4>Gas</h4>
-					{{top-ten obj=model.topCountiesGas}}
-					<h4>Oil</h4>
-					{{top-ten obj=model.topCountiesOil}}
+				<div class="medium-6 columns">
+					{{toggle-block 
+						widgetOptions=toggleCounties 
+						offState=model.topCountiesGas 
+						onState=model.topCountiesOil
+					}}
 				</div>
 				{{else}}
 				<p>Production Capacity data is not available at this time.</p>
@@ -236,7 +236,7 @@
   <div class="tabs-panel" id="panel3">
     <!-- Third Tab - Maps -->
 		<div class="row">
-			<div class="large-12 columns panel">
+			<div class="small-12 columns panel">
 				<h2>Maps</h2>
 				{{#if model.maps}}
 				<div class="large-6 columns">
