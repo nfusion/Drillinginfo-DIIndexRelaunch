@@ -3721,7 +3721,7 @@ table.hover tr:nth-of-type(even):hover {
     .tabs-title > a:hover {
       background: #fefefe; }
     .tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
-      background: #78ba2f; }
+      background: #76c000; }
 
 .tabs-content {
   background: #fefefe;

@@ -14,13 +14,12 @@ export default Highcharts.extend ({
 	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: '#fff',
-		//height: 215,
+		height: 215,
 		style: {
 			fontFamily: '"Open Sans Condensed", sans-serif;',
 			color: '#333'
 		},
 		plotBorderColor: 'transparent'
-		//height: 300
 	},
 	title: {
 		text: '',
