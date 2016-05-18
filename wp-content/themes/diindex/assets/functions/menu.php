@@ -100,35 +100,33 @@ function required_active_nav_class($classes, $item)
 add_filter('nav_menu_css_class', 'required_active_nav_class', 10, 2);
 
 /*  http://wordpress.stackexchange.com/questions/2802/display-a-portion-branch-of-the-menu-tree-using-wp-nav-menu/2809#2809 */
-add_filter( 'wp_nav_menu_objects', 'submenu_limit', 10, 2 );
+add_filter('wp_nav_menu_objects', 'submenu_limit', 10, 2);
 
-function submenu_limit( $items, $args ) {
-
-    if ( empty( $args->submenu ) ) {
+function submenu_limit($items, $args)
+{
+    if (empty($args->submenu)) {
         return $items;
     }
 
-    $ids       = wp_filter_object_list( $items, array( 'title' => $args->submenu ), 'and', 'ID' );
-    $parent_id = array_pop( $ids );
-    $children  = submenu_get_children_ids( $parent_id, $items );
+    $ids = wp_filter_object_list($items, array('title' => $args->submenu), 'and', 'ID');
+    $parent_id = array_pop($ids);
+    $children = submenu_get_children_ids($parent_id, $items);
 
-    foreach ( $items as $key => $item ) {
-
-        if ( ! in_array( $item->ID, $children ) ) {
-            unset( $items[$key] );
+    foreach ($items as $key => $item) {
+        if (!in_array($item->ID, $children)) {
+            unset($items[$key]);
         }
     }
 
     return $items;
 }
 
-function submenu_get_children_ids( $id, $items ) {
+function submenu_get_children_ids($id, $items)
+{
+    $ids = wp_filter_object_list($items, array('menu_item_parent' => $id), 'and', 'ID');
 
-    $ids = wp_filter_object_list( $items, array( 'menu_item_parent' => $id ), 'and', 'ID' );
-
-    foreach ( $ids as $id ) {
-
-        $ids = array_merge( $ids, submenu_get_children_ids( $id, $items ) );
+    foreach ($ids as $id) {
+        $ids = array_merge($ids, submenu_get_children_ids($id, $items));
     }
 
     return $ids;
