@@ -65,21 +65,24 @@ HEADER STYLES
 	ul.off-canvas-list li {
 		list-style: none;
 	}
-}
 
-.site-meta {
-	padding: rem-calc(20) rem-calc(16);
-	h3, p {
-		margin:0;
-		line-height: 1;
+	.logo {
+		background: url(../images/drillinginfo-logo.png);
+		width: 151px;
+		height: 50px;
+
+		@include breakpoint(medium) {
+			background: url(../images/drillinginfo-logo-gray.png);
+		width: 170px;
+		height: 56px;
+		}
 	}
-	color:$white;
 }
-
 /*********************
 NAVIGATION STYLES
 *********************/
 .top-bar {
+	
 	.title-area {
 		z-index: 1;
 	}
@@ -87,10 +90,39 @@ NAVIGATION STYLES
 	.top-bar-left, .top-bar-right {
 		width:auto;
 	}
+
+	@include breakpoint(medium) {
+		padding-bottom:0;
+		background: $white;
+
+		ul {
+			background: transparent;
+		}
+
+		.menu > li > a {
+    		color: $medium-gray;
+    	}
+    	.top-bar-right {
+			padding-top:2rem;
+			.menu {
+				position: relative;
+				bottom: rem-calc(-9);
+			}
+			.menu > .menu-item::after {
+				content: '';
+				display: block;
+				height: 9px;
+			}
+			.menu > .current-menu-parent::after {
+    			@include css-triangle(9px, $white, down);
+    			margin: 0 auto;
+    		}
+		}
+  	}
 } 
 
 .site-nav-bar {
-	//background: #0085ad;
+	padding: rem-calc(20) rem-calc(16);
 	@include linear-gradient(to right, #2f9bba, #0085ad);
 	.menu .menu-item > a {
 		// offsetting the active state.
@@ -99,6 +131,12 @@ NAVIGATION STYLES
 	.menu .active > a { 
 		border-bottom: 4px solid $primary-color;
 	}
+
+	h3, p {
+		margin:0;
+		line-height: 1;
+	}
+	color:$white;
 }
 
 .off-canvas-list {
@@ -130,7 +168,7 @@ NAVIGATION STYLES
 	height:100%;
 }
 .menu > li > a {
-	color:#fff;
+	color: $white;
 }
 .menu > li > button {
     margin: 0.7rem 1rem;
@@ -139,7 +177,6 @@ NAVIGATION STYLES
 .menu .active > a {
 	background:transparent;
 	font-weight:bold;
-	//border-bottom: 5px solid $primary-color; medium up
 }
 
 
@@ -415,7 +452,7 @@ COMMENT STYLES
 			left: 10px;
 			padding: 2px;
 			border: 1px solid #cecece;
-			background: #fff;
+			background: $white;
 		}
 
 	} // end .commentlist .vcard  
@@ -489,7 +526,7 @@ COMMENT FORM STYLES
 			line-height: 1.5em;
 
 			&:focus {
-				background: #fff;
+				background: $white;
 			}
 
 			// form validation  

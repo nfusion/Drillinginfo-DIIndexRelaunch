@@ -3957,12 +3957,15 @@ HEADER STYLES
 .header ul.off-canvas-list li {
   list-style: none; }
 
-.site-meta {
-  padding: 1.25rem 1rem;
-  color: #fefefe; }
-  .site-meta h3, .site-meta p {
-    margin: 0;
-    line-height: 1; }
+.header .logo {
+  background: url(../images/drillinginfo-logo.png);
+  width: 151px;
+  height: 50px; }
+  @media screen and (min-width: 40em) {
+    .header .logo {
+      background: url(../images/drillinginfo-logo-gray.png);
+      width: 170px;
+      height: 56px; } }
 
 /*********************
 NAVIGATION STYLES
@@ -3973,13 +3976,46 @@ NAVIGATION STYLES
 .top-bar .top-bar-left, .top-bar .top-bar-right {
   width: auto; }
 
+@media screen and (min-width: 40em) {
+  .top-bar {
+    padding-bottom: 0;
+    background: #fefefe; }
+    .top-bar ul {
+      background: transparent; }
+    .top-bar .menu > li > a {
+      color: #585b5d; }
+    .top-bar .top-bar-right {
+      padding-top: 2rem; }
+      .top-bar .top-bar-right .menu {
+        position: relative;
+        bottom: -0.5625rem; }
+      .top-bar .top-bar-right .menu > .menu-item::after {
+        content: '';
+        display: block;
+        height: 9px; }
+      .top-bar .top-bar-right .menu > .current-menu-parent::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border: inset 9px;
+        border-color: #fefefe transparent transparent;
+        border-top-style: solid;
+        border-bottom-width: 0;
+        margin: 0 auto; } }
+
 .site-nav-bar {
+  padding: 1.25rem 1rem;
   background-color: #2f9bba;
-  background-image: linear-gradient(to right,#2f9bba, #0085ad); }
+  background-image: linear-gradient(to right,#2f9bba, #0085ad);
+  color: #fefefe; }
   .site-nav-bar .menu .menu-item > a {
     border-bottom: 4px solid transparent; }
   .site-nav-bar .menu .active > a {
     border-bottom: 4px solid #76c000; }
+  .site-nav-bar h3, .site-nav-bar p {
+    margin: 0;
+    line-height: 1; }
 
 .off-canvas-list ul {
   margin-left: 0; }
@@ -3997,7 +4033,7 @@ NAVIGATION STYLES
   height: 100%; }
 
 .menu > li > a {
-  color: #fff; }
+  color: #fefefe; }
 
 .menu > li > button {
   margin: 0.7rem 1rem;
@@ -4162,7 +4198,7 @@ COMMENT STYLES
     left: 10px;
     padding: 2px;
     border: 1px solid #cecece;
-    background: #fff; }
+    background: #fefefe; }
 
 .commentlist .comment_content p {
   margin: 0.7335em 0 1.5em;
@@ -4199,7 +4235,7 @@ COMMENT FORM STYLES
       .respond-form form input[type=email]:focus,
       .respond-form form input[type=url]:focus,
       .respond-form form textarea:focus {
-        background: #fff; }
+        background: #fefefe; }
       .respond-form form input[type=text]:invalid,
       .respond-form form input[type=email]:invalid,
       .respond-form form input[type=url]:invalid,
