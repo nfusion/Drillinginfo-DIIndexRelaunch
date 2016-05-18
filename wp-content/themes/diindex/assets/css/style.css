@@ -3976,6 +3976,8 @@ NAVIGATION STYLES
 .site-nav-bar {
   background-color: #2f9bba;
   background-image: linear-gradient(to right,#2f9bba, #0085ad); }
+  .site-nav-bar .menu .menu-item > a {
+    border-bottom: 4px solid transparent; }
   .site-nav-bar .menu .active > a {
     border-bottom: 4px solid #76c000; }
 
