@@ -22,3 +22,19 @@ jQuery(document).ready(function() {
   });
 
 });
+
+(function($){
+  'use strict';
+  $('#phoneNumbers').on('change', function(){
+    var $t = $(this),
+        tel = $t.val(),
+        display = $t.find('option:selected').attr('data-display'),
+        display_div = $('#phoneDisplay');
+
+    //console.log($t,tel,display);
+
+    var html = '<a href=' + tel + '>' + display + '</a>';
+
+    display_div.html(html);
+  });
+})(jQuery);
