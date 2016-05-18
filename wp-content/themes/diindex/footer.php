@@ -4,7 +4,7 @@
 								<div class="large-12 medium-12 columns">
 									<h4>Get In Touch With Us</h4>
 										<div style="display:inline-block; margin:0 auto;">
-											<div class="float-left">
+											<div class="tel-selector">
 												<label>
 												  <select id="phoneNumbers">
 												    <option value="tel:+18884777667,,1" data-display="+1 (888) 477-7667 ext. 1" selected="selected">US</option>
@@ -14,7 +14,7 @@
 												  </select>
 												</label>
 											</div>
-											<div id="phoneDisplay" class="tel float-left"><a href="tel://+18884777667,,1">+1 (888) 477-7667 ext. 1</a></div>
+											<div id="phoneDisplay" class="tel"><a href="tel://+18884777667,,1">+1 (888) 477-7667 ext. 1</a></div>
 										</div>
 									<p><a href="mailto:info@drillinginfo.com"></a></p>
 		    					</div>
