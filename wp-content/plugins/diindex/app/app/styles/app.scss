@@ -4,7 +4,7 @@
 
 $body-font-family: 'univers-light-condensed','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $bold-font-family: 'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
-
+$primary-color: #76c000;
 
 #diindex-dashboard {
 	h1, h2, h3 {
@@ -117,5 +117,9 @@ $bold-font-family: 'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, 
 		& > a[aria-selected='true'], & > a:focus {
 			color: #fff; 
 		}
+	}
+
+	.toggle-container-wrapper .active {
+		color:$primary-color;
 	}
 }

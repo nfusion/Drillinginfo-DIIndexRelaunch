@@ -16,7 +16,7 @@ function joints_top_nav()
         'menu_class'     => 'vertical medium-horizontal menu',       // Adding custom nav class
         'items_wrap'     => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion medium-dropdown">%3$s</ul>',
         'theme_location' => 'main-nav',                    // Where it's located in the theme
-        'depth'          => 5,                                   // Limit the depth of the nav
+        'depth'          => 1,                             // Limit the depth of the nav (5 orig)
         'fallback_cb'    => false,                         // Fallback function (see below)
         'walker'         => new Topbar_Menu_Walker(),
     ));
@@ -98,3 +98,38 @@ function required_active_nav_class($classes, $item)
     return $classes;
 }
 add_filter('nav_menu_css_class', 'required_active_nav_class', 10, 2);
+
+/*  http://wordpress.stackexchange.com/questions/2802/display-a-portion-branch-of-the-menu-tree-using-wp-nav-menu/2809#2809 */
+add_filter( 'wp_nav_menu_objects', 'submenu_limit', 10, 2 );
+
+function submenu_limit( $items, $args ) {
+
+    if ( empty( $args->submenu ) ) {
+        return $items;
+    }
+
+    $ids       = wp_filter_object_list( $items, array( 'title' => $args->submenu ), 'and', 'ID' );
+    $parent_id = array_pop( $ids );
+    $children  = submenu_get_children_ids( $parent_id, $items );
+
+    foreach ( $items as $key => $item ) {
+
+        if ( ! in_array( $item->ID, $children ) ) {
+            unset( $items[$key] );
+        }
+    }
+
+    return $items;
+}
+
+function submenu_get_children_ids( $id, $items ) {
+
+    $ids = wp_filter_object_list( $items, array( 'menu_item_parent' => $id ), 'and', 'ID' );
+
+    foreach ( $ids as $id ) {
+
+        $ids = array_merge( $ids, submenu_get_children_ids( $id, $items ) );
+    }
+
+    return $ids;
+}

@@ -17,3 +17,19 @@
 		</ul>
 	</div>
 </div>
+<div id="site-nav-menu" class="clearfix site-nav-bar show-for-medium">
+	<div class="float-left site-meta">
+		<h3><?php echo get_bloginfo( 'name' ); ?>:</h3>
+		<p><?php echo get_bloginfo( 'description' ); ?></p>
+	</div>
+	<div class="float-right">
+	<?php 
+		$args = array(
+	    'menu'    => 'Primary Navigation',
+	    'submenu' => 'DI Index',
+	);
+
+	wp_nav_menu( $args );
+	?>
+</div>
+</div>

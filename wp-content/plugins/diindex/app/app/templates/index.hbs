@@ -41,7 +41,7 @@
 	</div><!-- / .row -->
 </div><!-- /.counts-row -->
 {{#if media.isMedium}}
-{{#zf-accordion}}
+{{#zf-accordion allowAllClosed=true}}
   <li class="accordion-item is-active" data-accordion-item>
     <a class="accordion-title">Production Capacity</a>
     <div class="accordion-content" data-tab-content>
@@ -96,20 +96,7 @@
 		<div class="row">
 			<div class="small-12 columns panel">
 				{{#if model.topCountiesGas}}
-				<div class="medium-6 columns">
-					{{toggle-block 
-						widgetOptions=toggleOperators 
-						offState=model.topOperatorsGas 
-						onState=model.topOperatorsOil
-					}}
-				</div>
-				<div class="medium-6 columns">
-					{{toggle-block 
-						widgetOptions=toggleCounties 
-						offState=model.topCountiesGas 
-						onState=model.topCountiesOil
-					}}
-				</div>
+				{{toggle-container widgetOptions=toggleOptions model=model}}
 				{{else}}
 				<p>Production Capacity data is not available at this time.</p>
 				{{/if}}

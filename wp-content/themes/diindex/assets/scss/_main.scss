@@ -67,6 +67,15 @@ HEADER STYLES
 	}
 }
 
+.site-meta {
+	padding: rem-calc(20) rem-calc(16);
+	h3, p {
+		margin:0;
+		line-height: 1;
+	}
+	color:$white;
+}
+
 /*********************
 NAVIGATION STYLES
 *********************/
@@ -79,6 +88,14 @@ NAVIGATION STYLES
 		width:auto;
 	}
 } 
+
+.site-nav-bar {
+	//background: #0085ad;
+	@include linear-gradient(to right, #2f9bba, #0085ad);
+	.menu .active > a { 
+		border-bottom: 4px solid $primary-color;
+	}
+}
 
 .off-canvas-list {
 	ul {
@@ -118,6 +135,7 @@ NAVIGATION STYLES
 .menu .active > a {
 	background:transparent;
 	font-weight:bold;
+	//border-bottom: 5px solid $primary-color; medium up
 }
 
 
@@ -561,6 +579,59 @@ FOOTER STYLES
 .footer {
 	clear: both;
 	margin-top: 1em;
+	background: $medium-gray;
+	color: rgba(255,255,255,0.7);
+
+	.footer-row {padding:20px;}
+
+	#inner-footer {
+		background: $dark-gray;
+	}
+	.copyright {
+		padding-left:rem-calc(20);
+		line-height:1;
+	}
+	.copyright::before {
+		content: '\00A9';
+		position: relative;
+		margin-left: rem-calc(-16);
+		margin-right: rem-calc(4);
+	}
+
+	nav[role=navigation] {
+		.menu > li > a {
+			padding:0;
+		}
+		i {
+			margin-right: rem-calc(10);
+			&[class^="fi-"]:before {
+				font-size:rem-calc(46);
+				opacity: 0.7;
+				text-align:center;
+			}
+			&[class^="fi-social-twitter"]:before {
+				background: $white;
+				opacity: 0.7;
+				color: $dark-gray;
+				border-radius: 2px;
+				font-size:rem-calc(30);
+				padding:2px 5px 1px;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.tel {
+		display: inline-block;
+		line-height: 1;
+		padding: rem-calc(13) rem-calc(20) rem-calc(10);
+		background: $white;
+		opacity:0.7;
+		border-radius: $global-radius;
+		color: $medium-gray;
+	}
 } 
 	
 /*********************

@@ -328,10 +328,10 @@ export default Ember.Controller.extend({
 	},
 	toggleOptions: {
 		group1: {
-			title: 'New Production by <strong>Operators</strong>',
+			title: 'New Production by Operators',
 		},
 		group2: {
-			title: 'New Production by <strong>County</strong>',
+			title: 'New Production by Counties',
 		},
 		switch: {
 			id: 'toggleCounties',
