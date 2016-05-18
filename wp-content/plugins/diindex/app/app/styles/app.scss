@@ -74,12 +74,36 @@
 				font-size: rem-calc(40);
 			}
 		}
+
+		.highcharts-wrapper {
+			height: 325px;
+
+			@include breakpoint(medium) {
+				height: 375px;
+			}
+
+			@include breakpoint(large) {
+				height: 400px;
+			}
+		}
 	}
 
 	.data-widget-wrapper {
 		p {font-size:rem-calc(11);}
 		.data-header {margin:15px 15px 10px;}
 		h3,p {margin-bottom:0;}
+	}
+
+	/* charts */
+	.highcharts-wrapper {
+		height: 215px;
+
+		@include breakpoint(medium) {
+			height: 325px;
+		}
+		@include breakpoint(large) {
+			height: 400px;
+		}
 	}
 
 	/* accordion styling */
