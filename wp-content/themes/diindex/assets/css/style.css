@@ -3918,6 +3918,9 @@ POSTS & CONTENT STYLES
 #content #inner-content {
   padding: 1rem 0rem; }
 
+.home #content #inner-content {
+  padding-bottom: 0; }
+
 .page-title .vcard {
   border: 0px;
   padding: 0px; }
@@ -4206,6 +4209,9 @@ FOOTER STYLES
     @media screen and (min-width: 40em) {
       .footer .contact-email {
         margin: 0; } }
+
+.home .footer {
+  margin-top: 0; }
 
 /*********************
 FOUNDATION STYLES

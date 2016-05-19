@@ -211,7 +211,9 @@ POSTS & CONTENT STYLES
 		padding: 1rem 0rem;
 	}
 }
-
+.home #content #inner-content {
+	padding-bottom: 0;
+}
 .single-title,
 .page-title {
 	
@@ -723,6 +725,9 @@ FOOTER STYLES
 		}
 	}
 } 
+.home .footer {
+	margin-top:0;
+}
 	
 /*********************
 FOUNDATION STYLES

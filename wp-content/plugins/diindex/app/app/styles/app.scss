@@ -4,6 +4,7 @@
 //@include foundation-everything;
 
 #diindex-dashboard {
+	background:#f4f4f4;
 	h1, h2, h3 {
 		font-family: $body-font-family;
 	}
@@ -133,12 +134,32 @@
 	}
 
 	/* tab styling */
+	.di-module .tabs {
+		border-radius: $global-radius $global-radius 0 0 ;
+		border: none;
+		border-bottom: 1px solid $light-gray;
+	}
 	.tabs-title {
 		width: 33.333333333%;
 		text-align: center;
 		font-family: $bold-font-family;
 		font-weight: normal; 
-		border: 1px solid $medium-gray;
+		border-right: 1px solid $light-gray;
+		
+		&:first-child {
+			border-top-left-radius: $global-radius;
+			a {
+				border-top-left-radius: $global-radius;
+			}
+		}
+
+		&:last-child {
+			border-right: none;
+			a {
+				border-top-right-radius: $global-radius;
+			}
+		}
+
 		& > a {
 			color: $medium-gray;
 			font-size: rem-calc(16);
@@ -149,8 +170,13 @@
 		}
 	}
 
+	.tabs-content {
+		border:none;
+		border-radius: 0 0 $global-radius $global-radius;
+	}
+
 	.toggle-container-wrapper .active {
-		color:$primary-color;
+		color: $primary-color;
 	}
 
 	/* top-ten tables */
