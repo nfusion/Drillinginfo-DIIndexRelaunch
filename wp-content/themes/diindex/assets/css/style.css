@@ -3993,15 +3993,16 @@ POSTS & CONTENT STYLES
     background-color: #64a300;
     color: #fefefe; }
 
-#socialShare .menu {
-  display: inline-block;
-  margin: 0 auto;
+#socialShare {
   text-align: center; }
-  #socialShare .menu a {
-    color: #76c000; }
-    #socialShare .menu a i {
-      font-size: 2.5rem;
-      opacity: 1.0; }
+  #socialShare .menu {
+    display: inline-block; }
+    #socialShare .menu a {
+      color: #76c000; }
+      #socialShare .menu a i {
+        font-size: 2.5rem; }
+        #socialShare .menu a i::before {
+          opacity: 1.0; }
 
 /*********************
 IMAGE GALLERY STYLES

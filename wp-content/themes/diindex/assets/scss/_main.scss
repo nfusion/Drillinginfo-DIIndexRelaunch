@@ -309,15 +309,18 @@ POSTS & CONTENT STYLES
 	@include button;
 }
 
-#socialShare .menu {
-	display: inline-block;
-	margin: 0 auto;
-	text-align: center;
-	a {
-		color: $primary-color;
-		i {
-			font-size: rem-calc(40);
-			opacity: 1.0;
+#socialShare {
+	text-align:center;
+	.menu {
+		display: inline-block;
+		a {
+			color: $primary-color;
+			i {
+				font-size: rem-calc(40);
+				&::before {
+					opacity: 1.0;
+				}
+			}
 		}
 	}
 }
