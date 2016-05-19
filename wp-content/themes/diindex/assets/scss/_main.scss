@@ -113,10 +113,15 @@ NAVIGATION STYLES
 				display: block;
 				height: 9px;
 			}
-			.menu > .current-menu-parent::after {
-    			@include css-triangle(9px, $white, down);
-    			margin: 0 auto;
-    		}
+			.menu > .current-menu-parent {
+				&> a {
+					color: $primary-color;
+				}
+				&::after {
+	    			@include css-triangle(9px, $white, down);
+	    			margin: 0 auto;
+	    		}
+	    	}
 		}
   	}
 } 
@@ -737,10 +742,13 @@ FOUNDATION STYLES
 	font-size:rem-calc(11);
 	font-family: $bold-font-family;
 }
-i[class^="fi-"]:before {
-	font-size:125%;
+i[class^="fi-"]::before {
+	font-size:150%;
 	opacity:.5;
 	margin-right:3px;
+	position:relative;
+	bottom:-3px;
+	margin-top:-3px;
 }
 .lead {
 }

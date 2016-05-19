@@ -8,6 +8,13 @@
 	h1, h2, h3 {
 		font-family: $body-font-family;
 	}
+
+	h3 {
+		font-size: rem-calc(17);
+		@include breakpoint(medium) {
+			font-size: rem-calc(27);
+		}
+	}
 	
 	.counts-row {
 		background:#f4f4f4;
@@ -186,6 +193,7 @@
 	.top-ten {
 		font-size:rem(14);
 		width:100%;
+		display:table;
 		@include breakpoint(medium) {
 			display:block;
 			margin: 0 auto;
