@@ -2373,26 +2373,6 @@ select {
   border-bottom: 1px solid #e6e6e6;
   background-color: #fefefe; }
 
-.is-accordion-submenu-parent > a {
-  position: relative; }
-  .is-accordion-submenu-parent > a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    border: inset 6px;
-    border-color: #76c000 transparent transparent;
-    border-top-style: solid;
-    border-bottom-width: 0;
-    position: absolute;
-    top: 50%;
-    margin-top: -4px;
-    right: 1rem; }
-
-.is-accordion-submenu-parent[aria-expanded='true'] > a::after {
-  transform-origin: 50% 50%;
-  transform: scaleY(-1); }
-
 .badge {
   display: inline-block;
   padding: 0.3em;
@@ -4178,14 +4158,16 @@ FOOTER STYLES
       border-radius: 2px;
       font-size: 1.875rem;
       padding: 2px 5px 1px; }
-  .footer #menu-footer-navigation li {
-    border-right: 1px solid #76c000; }
-    .footer #menu-footer-navigation li:last-child {
-      border-right: none; }
-  .footer #menu-footer-navigation a {
-    color: #76c000;
-    font-size: 0.625rem;
-    padding: 0 0.5rem; }
+  .footer #menu-footer-navigation {
+    display: inline-block; }
+    .footer #menu-footer-navigation li {
+      border-right: 1px solid #76c000; }
+      .footer #menu-footer-navigation li:last-child {
+        border-right: none; }
+    .footer #menu-footer-navigation a {
+      color: #76c000;
+      font-size: 0.625rem;
+      padding: 0 0.5rem; }
   .footer .tel {
     line-height: 1.8;
     display: block;
@@ -4217,6 +4199,13 @@ FOOTER STYLES
         margin-right: -10px; }
         .footer .tel-selector select {
           border-radius: 5px 0 0 5px; } }
+  .footer .contact-email {
+    margin: 0.75rem 0; }
+    .footer .contact-email a {
+      color: #ccc; }
+    @media screen and (min-width: 40em) {
+      .footer .contact-email {
+        margin: 0; } }
 
 /*********************
 FOUNDATION STYLES

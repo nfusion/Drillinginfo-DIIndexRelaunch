@@ -16,7 +16,7 @@
 											</div>
 											<div id="phoneDisplay" class="tel"><a href="tel://+18884777667,,1">+1 (888) 477-7667 ext. 1</a></div>
 										</div>
-									<p><a href="mailto:info@drillinginfo.com">info@drillinginfo.com</a></p>
+									<p class="contact-email"><a href="mailto:info@drillinginfo.com">info@drillinginfo.com</a></p>
 		    					</div>
 							</div>
 						</div>

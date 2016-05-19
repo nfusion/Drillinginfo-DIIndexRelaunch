@@ -665,6 +665,7 @@ FOOTER STYLES
 	}
 
 	#menu-footer-navigation {
+		display:inline-block;
 		li {
 			border-right: 1px solid $primary-color;
 			&:last-child {
@@ -712,6 +713,14 @@ FOOTER STYLES
 			}
 		}
 		
+	}
+	.contact-email {
+		margin: rem-calc(12) 0;
+		a {color:#ccc;}
+
+		@include breakpoint (medium) {
+			margin:0;
+		}
 	}
 } 
 	
