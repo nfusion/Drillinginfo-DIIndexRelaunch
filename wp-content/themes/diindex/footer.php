@@ -9,12 +9,13 @@
 												  <select id="phoneNumbers">
 												    <option value="tel:+18884777667,,1" data-display="+1 (888) 477-7667 ext. 1" selected="selected">US</option>
 												    <option value="tel:+4401453793930" data-display="+44 (0) 1453-793-930">UK</option>
+												    <option value="tel:+8562251153" data-display="+85 6225-1153">Singapore</option>
 												    <option value="tel:+17133359049" data-display="+1 (713) 335-9049">Latin America</option>
 												    <option value="tel:+14035407105" data-display="+1 (403) 540-7105">Canada</option>
 												  </select>
 												</label>
 											</div>
-											<div id="phoneDisplay" class="tel"><a href="tel://+18884777667,,1">+1 (888) 477-7667 ext. 1</a></div>
+											<div id="phoneDisplay" class="tel"><a href="tel:+18884777667,,1">+1 (888) 477-7667 ext. 1</a></div>
 										</div>
 									<p class="contact-email"><a href="mailto:info@drillinginfo.com">info@drillinginfo.com</a></p>
 		    					</div>
