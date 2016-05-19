@@ -3993,6 +3993,11 @@ POSTS & CONTENT STYLES
     background-color: #64a300;
     color: #fefefe; }
 
+#socialShare .menu a {
+  color: #76c000; }
+  #socialShare .menu a i {
+    font-size: 2.5rem; }
+
 /*********************
 IMAGE GALLERY STYLES
 *********************/

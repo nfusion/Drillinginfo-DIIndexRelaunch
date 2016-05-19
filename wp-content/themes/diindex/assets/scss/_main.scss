@@ -309,6 +309,15 @@ POSTS & CONTENT STYLES
 	@include button;
 }
 
+#socialShare .menu {
+	a {
+		color: $primary-color;
+		i {
+			font-size: rem-calc(40);
+		}
+	}
+}
+
 /*********************
 IMAGE GALLERY STYLES
 *********************/
