@@ -16,19 +16,24 @@
 											</div>
 											<div id="phoneDisplay" class="tel"><a href="tel://+18884777667,,1">+1 (888) 477-7667 ext. 1</a></div>
 										</div>
-									<p><a href="mailto:info@drillinginfo.com"></a></p>
+									<p><a href="mailto:info@drillinginfo.com">info@drillinginfo.com</a></p>
 		    					</div>
 							</div>
 						</div>
 						<div id="inner-footer" class="footer-row">
 							<div class="row">
-								<div class="small-6 columns">
+								<div class="small-6 medium-4 columns">
 									<p class="source-org copyright float-left">Copyright <?php echo date('Y'); ?><br />
 									<small>All data and information is provided "As Is".</small></p>
 								</div>
-								<div class="small-6 columns">
-									<nav role="navigation" class="float-right">
+								<div class="medium-4 columns show-for-medium">
+									<nav role="navigation" class="text-center">
 			    						<?php joints_footer_links(); ?>
+			    					</nav>
+								</div>
+								<div class="small-6 medium-4 columns">
+									<nav role="navigation" class="float-right">
+			    						<?php joints_social_links(); ?>
 			    					</nav>
 			    				</div>
 							</div>

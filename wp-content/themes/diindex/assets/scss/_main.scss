@@ -639,11 +639,11 @@ FOOTER STYLES
 		margin-right: rem-calc(4);
 	}
 
-	nav[role=navigation] {
-		.menu > li > a {
+	#menu-social-navigation {
+		&> li > a {
 			padding:0;
 		}
-		.menu > li:last-child > a > i {
+		&> li:last-child > a > i {
 			margin-right:0;
 		}
 		i {
@@ -661,6 +661,20 @@ FOOTER STYLES
 				font-size:rem-calc(30);
 				padding:2px 5px 1px;
 			}
+		}
+	}
+
+	#menu-footer-navigation {
+		li {
+			border-right: 1px solid $primary-color;
+			&:last-child {
+				border-right: none;
+			}
+		}
+		a {
+			color: $primary-color;
+			font-size: rem-calc(10);
+			padding: 0 rem-calc(8);
 		}
 	}
 	.tel {
