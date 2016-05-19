@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
 			chart: {
 			    type: 'areaspline',
 			    zoomType: 'x',
-			    backgroundColor: '#585b5d',
+			    backgroundColor: '#ccc',
 			    style: {
 			    	borderRadius: '0 0 5px 5px'
 			    }
@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
 	            text: document.ontouchstart === undefined ?
 	                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
 	            style: {
-	            	color: '#fff'
+	            	color: '#585b5d'
 	            }
 	        },
 			xAxis: {
@@ -55,13 +55,13 @@ export default Ember.Controller.extend({
 				title: {
 					text: 'Date',
 					style: {
-						color: '#fff'
+						color: '#585b5d'
 					}
 				},
 				lineColor: '#818485',
 				labels: {
 					style: {
-						color: '#fff'
+						color: '#585b5d'
 					}
 				},
 			},
@@ -69,14 +69,14 @@ export default Ember.Controller.extend({
 			    title: {
 			        text: 'Rig Count',
 			        style: {
-			        	color: '#fff'
+			        	color: '#585b5d'
 			        }
 			    },
 			    min: null,
 			    lineColor: '#818485',
 			    labels: {
 					style: {
-						color: '#fff'
+						color: '#585b5d'
 					}
 				},
 			}
@@ -213,7 +213,9 @@ export default Ember.Controller.extend({
 			    title: {
 			        text: 'MBOE/Day'
 			    },
-			    min: null
+			    min: null,
+			    gridLineColor: '#ccc',
+
 			}
 		};
 		prodCapConfig.chartOptions.yAxis.min = this.get('prodCapMin');

@@ -4,7 +4,7 @@
 //@include foundation-everything;
 
 #diindex-dashboard {
-	background:#f4f4f4;
+	background:$light-gray;
 	h1, h2, h3 {
 		font-family: $body-font-family;
 	}
@@ -17,7 +17,6 @@
 	}
 	
 	.counts-row {
-		background:#f4f4f4;
 		padding: 25px 5px; /* account for gutters */
 	}
 
@@ -46,6 +45,10 @@
 		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
 		border-radius: $global-radius;
 		margin-bottom: rem-calc(25);
+
+		.data-widget-wrapper {
+			border-radius: $global-radius $global-radius 0 0;
+		}
 	}
 
 	.stat {
@@ -60,8 +63,14 @@
 	.pc-overview {
 		border-bottom: 1px solid #cecfcf;
 
-		@include breakpoint (large) {
+		@include breakpoint (medium) {
 			border-bottom: none;
+		}
+
+		@include breakpoint(large) {
+			.highcharts-wrapper {
+				height: 590px;
+			}
 		}
 	}
 	.pc-widget {
@@ -70,6 +79,11 @@
 			.data-header {
 				&:first-child {margin-left:0;}
 				&:last-child {margin-right:0;}
+			}
+			@include breakpoint(medium) {
+				h3 {
+					font-size: rem-calc(24);
+				}	
 			}
 		}
 	}
@@ -96,12 +110,6 @@
 		}
 	}
 
-	.data-widget-wrapper {
-		p {font-size:rem-calc(11);}
-		.data-header {margin:15px 15px 10px;}
-		h3,p {margin-bottom:0;}
-	}
-
 	/* charts */
 	.highcharts-wrapper {
 		height: 215px;
@@ -112,6 +120,13 @@
 		@include breakpoint(large) {
 			height: 400px;
 		}
+	}
+
+	.data-widget-wrapper {
+		p {font-size:rem-calc(11);}
+		.data-header {margin:15px 15px 10px;}
+		h3,p {margin-bottom:0;}
+		background: $white;
 	}
 
 	/* accordion styling */

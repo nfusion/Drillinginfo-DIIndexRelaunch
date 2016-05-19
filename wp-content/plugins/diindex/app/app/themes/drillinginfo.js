@@ -4,19 +4,13 @@
  */
 
 // Load the fonts
-Highcharts.createElement('link', {
-	href: 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300',
-	rel: 'stylesheet',
-	type: 'text/css'
-}, null, document.getElementsByTagName('head')[0]);
-
 export default Highcharts.extend ({
 	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: '#fff',
 		//height: 215,
 		style: {
-			fontFamily: '"Open Sans Condensed", sans-serif;',
+			fontFamily: "'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif",
 			color: '#333'
 		},
 		plotBorderColor: 'transparent'
@@ -31,7 +25,7 @@ export default Highcharts.extend ({
 	},
 	subtitle: {
 		style: {
-			color: '#000000',
+			color: '#585b5d',
 			textTransform: 'uppercase'
 		}
 	},
@@ -41,21 +35,21 @@ export default Highcharts.extend ({
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#333',
+				color: '#585b5d',
 				fontWeight: 'bold',
 				fontSize: '.625rem'
 			}
 		},
-		lineColor: '#333',
+		lineColor: '#585b5d',
 		lineWidth: 1,
-		minorGridLineColor: '#333',
+		minorGridLineColor: '#585b5d',
 		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
 			style: {
-				color: '#333',
+				color: '#585b5d',
 				fontStyle: 'italic',
 				fontSize: '0.625rem'
 			},
@@ -68,11 +62,11 @@ export default Highcharts.extend ({
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				"color": '#333',
+				"color": '#585b5d',
 				"fontWeight": 'bold'
 			}
 		},
-		lineColor: '#333',
+		lineColor: '#585b5d',
 		lineWidth: 1,
 		minorGridLineColor: '#000',
 		minorGridLineWidth: 1,
@@ -82,7 +76,7 @@ export default Highcharts.extend ({
 		title: {
 			text: '',
 			style: {
-				color: '#333',
+				color: '#585b5d',
 				fontStyle: 'italic',
 				fontSize: '0.625rem'
 			}
@@ -93,7 +87,7 @@ export default Highcharts.extend ({
 		backgroundColor: '#585b5d',
 		borderColor: '#fff',
 		style: {
-			color: '#FFF',
+			color: '#fff',
 			fontSize: '15px',
 			padding: '8px',
 			border: '1px solid red'
@@ -103,7 +97,7 @@ export default Highcharts.extend ({
 		column: {
 			borderWidth: 0,
 			dataLabels: {
-				color: '#ffffff'
+				color: '#fff'
 			}
 		},
 		boxplot: {
@@ -204,7 +198,7 @@ export default Highcharts.extend ({
 		},
 		inputBoxBorderColor: '#505053',
 		inputStyle: {
-			backgroundColor: '#333',
+			backgroundColor: '#585b5d',
 			color: 'silver'
 		},
 		labelStyle: {
