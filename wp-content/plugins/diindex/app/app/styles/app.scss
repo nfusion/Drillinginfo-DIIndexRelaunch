@@ -138,6 +138,7 @@
 		text-align: center;
 		font-family: $bold-font-family;
 		font-weight: normal; 
+		border: 1px solid $medium-gray;
 		& > a {
 			color: $medium-gray;
 			font-size: rem-calc(16);
@@ -150,5 +151,22 @@
 
 	.toggle-container-wrapper .active {
 		color:$primary-color;
+	}
+
+	/* top-ten tables */
+	.toggle-panel {
+		margin-bottom: rem-calc(25);
+	}
+	.top-ten {
+		font-size:rem(14);
+		width:100%;
+		@include breakpoint(medium) {
+			display:block;
+			margin: 0 auto;
+		}
+		@include breakpoint(795) {
+			// go back to 100% width here.
+			display:table;
+		}
 	}
 }
