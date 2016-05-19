@@ -305,6 +305,16 @@ POSTS & CONTENT STYLES
 		padding: 10px;
 		}
 
+	h2 {
+		text-transform: none;
+		margin: rem-calc(16) 0;
+	}
+
+	h3 {
+		font-size: rem-calc(18);
+		margin: rem-calc(16) 0;
+	}
+
 } 
 
 .wp-caption {
@@ -657,6 +667,13 @@ SIDEBARS & ASIDES
 			ul {}
 
 		}
+	}
+}
+
+.widget_archive {
+	//.widgettitle {display:none;}
+	a {
+		color: $primary-color;
 	}
 }
 /*********************

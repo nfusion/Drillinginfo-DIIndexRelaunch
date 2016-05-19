@@ -208,7 +208,7 @@
 	.top-ten {
 		font-size:rem(14);
 		width:100%;
-		display:table;
+		
 		@include breakpoint(medium) {
 			display:block;
 			margin: 0 auto;

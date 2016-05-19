@@ -3979,6 +3979,14 @@ POSTS & CONTENT STYLES
   border: 1px solid #cecece;
   padding: 10px; }
 
+.entry-content h2 {
+  text-transform: none;
+  margin: 1rem 0; }
+
+.entry-content h3 {
+  font-size: 1.125rem;
+  margin: 1rem 0; }
+
 .wp-caption {
   max-width: 100%;
   background: #eee;
@@ -4156,6 +4164,9 @@ SIDEBARS & ASIDES
   margin: 0; }
   .widget ul li {
     list-style: none; }
+
+.widget_archive a {
+  color: #76c000; }
 
 /*********************
 FOOTER STYLES
