@@ -58,6 +58,20 @@ h5, .h5 {
 
 }
 
+.h1 {
+	font-size: rem-calc(25);
+	@include breakpoint(medium) {
+		font-size: rem-calc(32);
+	}
+}
+
+.h2 {
+	font-size: rem-calc(20);
+	@include breakpoint(medium) {
+		font-size: rem-calc(26);
+	}
+}
+
 /*********************
 HEADER STYLES
 *********************/
@@ -113,7 +127,7 @@ NAVIGATION STYLES
 				display: block;
 				height: 9px;
 			}
-			.menu > .current-menu-parent {
+			.menu > .active {
 				&> a {
 					color: $primary-color;
 				}
@@ -142,6 +156,10 @@ NAVIGATION STYLES
 		line-height: 1;
 	}
 	color:$white;
+}
+.single-post .site-nav-bar .nav-posts a {
+	border-bottom: 4px solid $primary-color;
+	font-weight: bold;
 }
 
 .off-canvas-list {
@@ -214,6 +232,10 @@ POSTS & CONTENT STYLES
 #content {
 	#inner-content {
 		padding: 1rem 0rem;
+	}
+
+	@include breakpoint(medium) {
+		background: $light-gray;
 	}
 }
 .home #content #inner-content {

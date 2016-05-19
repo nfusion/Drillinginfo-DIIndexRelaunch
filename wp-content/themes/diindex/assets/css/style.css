@@ -1696,9 +1696,9 @@ h6 {
 
 @media screen and (min-width: 40em) {
   h1 {
-    font-size: 3rem; }
+    font-size: 2rem; }
   h2 {
-    font-size: 2.5rem; }
+    font-size: 1.625rem; }
   h3 {
     font-size: 1.9375rem; }
   h4 {
@@ -1779,14 +1779,14 @@ code {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
   color: #0a0a0a;
-  background-color: #e6e6e6;
+  background-color: #f4f4f4;
   border: 1px solid #585b5d;
   padding: 0.125rem 0.3125rem 0.0625rem; }
 
 kbd {
   padding: 0.125rem 0.25rem 0;
   margin: 0;
-  background-color: #e6e6e6;
+  background-color: #f4f4f4;
   color: #0a0a0a;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   border-radius: 5px; }
@@ -1952,7 +1952,7 @@ textarea::placeholder {
 input:disabled, input[readonly],
 textarea:disabled,
 textarea[readonly] {
-  background-color: #e6e6e6;
+  background-color: #f4f4f4;
   cursor: default; }
 
 [type='submit'],
@@ -2021,7 +2021,7 @@ label {
 .input-group-label {
   text-align: center;
   padding: 0 1rem;
-  background: #e6e6e6;
+  background: #f4f4f4;
   color: #0a0a0a;
   border: 1px solid #585b5d;
   white-space: nowrap;
@@ -2091,7 +2091,7 @@ select {
     select {
       background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAYAAACbU/80AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIpJREFUeNrEkckNgDAMBBfRkEt0ObRBBdsGXUDgmQfK4XhH2m8czQAAy27R3tsw4Qfe2x8uOO6oYLb6GlOor3GF+swURAOmUJ+RwtEJs9WvTGEYxBXqI1MQAZhCfUQKRzDMVj+TwrAIV6jvSUEkYAr1LSkcyTBb/V+KYfX7xAeusq3sLDtGH3kEGACPWIflNZfhRQAAAABJRU5ErkJggg=="); } }
   select:disabled {
-    background-color: #e6e6e6;
+    background-color: #f4f4f4;
     cursor: default; }
   select::-ms-expand {
     display: none; }
@@ -2343,7 +2343,7 @@ select {
 .accordion {
   list-style-type: none;
   background: #fefefe;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #f4f4f4;
   border-bottom: 0;
   border-radius: 5px;
   margin-left: 0; }
@@ -2355,9 +2355,9 @@ select {
   font-size: 0.75rem;
   color: #76c000;
   position: relative;
-  border-bottom: 1px solid #e6e6e6; }
+  border-bottom: 1px solid #f4f4f4; }
   .accordion-title:hover, .accordion-title:focus {
-    background-color: #e6e6e6; }
+    background-color: #f4f4f4; }
   .accordion-title::before {
     content: '+';
     position: absolute;
@@ -2370,7 +2370,7 @@ select {
 .accordion-content {
   padding: 1rem;
   display: none;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #f4f4f4;
   background-color: #fefefe; }
 
 .badge {
@@ -3127,7 +3127,7 @@ body {
     border-radius: 5px; }
     .pagination a:hover,
     .pagination button:hover {
-      background: #e6e6e6; }
+      background: #f4f4f4; }
   .pagination .current {
     padding: 0.1875rem 0.625rem;
     background: #76c000;
@@ -3198,7 +3198,7 @@ body {
   height: 0.5rem;
   margin-top: 1.25rem;
   margin-bottom: 2.25rem;
-  background-color: #e6e6e6;
+  background-color: #f4f4f4;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3536,7 +3536,7 @@ table.hover tr:nth-of-type(even):hover {
   margin: 0;
   list-style-type: none;
   background: #fefefe;
-  border: 1px solid #e6e6e6; }
+  border: 1px solid #f4f4f4; }
   .tabs::before, .tabs::after {
     content: ' ';
     display: table; }
@@ -3575,11 +3575,11 @@ table.hover tr:nth-of-type(even):hover {
 .tabs-content {
   background: #fefefe;
   transition: all 0.5s ease;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #f4f4f4;
   border-top: 0; }
 
 .tabs-content.vertical {
-  border: 1px solid #e6e6e6;
+  border: 1px solid #f4f4f4;
   border-left: 0; }
 
 .tabs-panel {
@@ -3800,6 +3800,18 @@ h2, .h2 {
 h3, .h3 {
   font-family: "univers-light-condensed-bold", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
 
+.h1 {
+  font-size: 1.5625rem; }
+  @media screen and (min-width: 40em) {
+    .h1 {
+      font-size: 2rem; } }
+
+.h2 {
+  font-size: 1.25rem; }
+  @media screen and (min-width: 40em) {
+    .h2 {
+      font-size: 1.625rem; } }
+
 /*********************
 HEADER STYLES
 *********************/
@@ -3842,9 +3854,9 @@ NAVIGATION STYLES
         content: '';
         display: block;
         height: 9px; }
-      .top-bar .top-bar-right .menu > .current-menu-parent > a {
+      .top-bar .top-bar-right .menu > .active > a {
         color: #76c000; }
-      .top-bar .top-bar-right .menu > .current-menu-parent::after {
+      .top-bar .top-bar-right .menu > .active::after {
         content: '';
         display: block;
         width: 0;
@@ -3867,6 +3879,10 @@ NAVIGATION STYLES
   .site-nav-bar h3, .site-nav-bar p {
     margin: 0;
     line-height: 1; }
+
+.single-post .site-nav-bar .nav-posts a {
+  border-bottom: 4px solid #76c000;
+  font-weight: bold; }
 
 .off-canvas-list ul {
   margin-left: 0; }
@@ -3919,6 +3935,10 @@ POSTS & CONTENT STYLES
 *********************/
 #content #inner-content {
   padding: 1rem 0rem; }
+
+@media screen and (min-width: 40em) {
+  #content {
+    background: #f4f4f4; } }
 
 .home #content #inner-content {
   padding-bottom: 0; }
