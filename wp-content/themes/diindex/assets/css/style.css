@@ -4483,6 +4483,10 @@ FOOTER STYLES
       font-size: 1.875rem;
       padding: 2px 5px 1px;
       line-height: 1; }
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        .footer #menu-social-navigation i[class^="fi-social-twitter"]:before {
+          /* IE10+ specific styles go here */
+          margin-top: -3px; } }
   .footer #menu-footer-navigation {
     display: inline-block; }
     .footer #menu-footer-navigation li {

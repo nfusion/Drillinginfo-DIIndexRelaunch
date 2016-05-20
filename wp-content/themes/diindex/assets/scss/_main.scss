@@ -776,6 +776,11 @@ FOOTER STYLES
 				font-size:rem-calc(30);
 				padding:2px 5px 1px;
 				line-height: 1;
+
+				@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+				   /* IE10+ specific styles go here */  
+				   margin-top: -3px;
+				}
 			}
 		}
 	}
