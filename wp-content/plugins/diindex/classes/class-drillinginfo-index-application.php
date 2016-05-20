@@ -94,8 +94,8 @@ final class Drillinginfo_Index_Application
     public function application_scripts()
     {
         if (is_front_page()) {
-            wp_enqueue_script('di-app-vendor', DrillingInfo_Index::instance()->plugin_url.'app/dist/assets/vendor.js', array('foundation-js','site-js'), DrillingInfo_Index::instance()->version, true);
-            wp_enqueue_script('di-app-ember-dev', DrillingInfo_Index::instance()->plugin_url.'app/dist/assets/diindex-ember-dev.js', array('foundation-js','site-js', 'di-app-vendor'), DrillingInfo_Index::instance()->version, true);
+            wp_enqueue_script('di-app-vendor', DrillingInfo_Index::instance()->plugin_url.'app/dist/assets/vendor.js', array('foundation-js', 'site-js'), DrillingInfo_Index::instance()->version, true);
+            wp_enqueue_script('di-app-ember-dev', DrillingInfo_Index::instance()->plugin_url.'app/dist/assets/diindex-ember-dev.js', array('foundation-js', 'site-js', 'di-app-vendor'), DrillingInfo_Index::instance()->version, true);
         }
     }
 
