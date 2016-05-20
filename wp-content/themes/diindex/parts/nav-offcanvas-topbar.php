@@ -4,7 +4,7 @@
 <?php 
     $section = 'Index';
     if (is_home() || is_singular('post')) {
-        $section = 'Perspective';
+        $section = 'Perspectives';
     }
 ?>
 

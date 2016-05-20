@@ -3800,7 +3800,7 @@ table.hover tr:nth-of-type(even):hover {
     .tabs-title > a:hover {
       background: #fefefe; }
     .tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
-      background: #76c000; }
+      background: linear-gradient(180deg, #fefefe 0%, #fefefe 90%, #76c000 90%, #76c000 100%); }
 
 .tabs-content {
   background: #fefefe;
@@ -4056,9 +4056,9 @@ HEADER STYLES
 
 .header .logo {
   border-right: 1px solid #8a8d8e;
-  background: url(../images/drillinginfo-logo.png) 0 50% no-repeat;
-  width: 165px;
-  height: 50px; }
+  background: url(../images/drillinginfo-logo-tiny.png) 0 50% no-repeat;
+  width: 123px;
+  height: 48px; }
   @media screen and (min-width: 40em) {
     .header .logo {
       border-right-color: #cdcdce;
@@ -4069,7 +4069,7 @@ HEADER STYLES
 .header .section-title {
   color: #fefefe;
   text-transform: uppercase;
-  font-size: 1.5625rem;
+  font-size: 1.25rem;
   display: block;
   line-height: 1;
   padding-top: 0.375rem; }
@@ -4089,7 +4089,7 @@ NAVIGATION STYLES
   width: auto; }
 
 .top-bar .menu > li > button {
-  margin: 1.25rem 1.25rem 0 0; }
+  margin: 1.4375rem 1.25rem 0 0; }
 
 .top-bar .top-bar-left .menu > li > a {
   padding: 0.625rem 0.5rem 0.625rem 0.7rem; }
@@ -4546,9 +4546,77 @@ i[class^="fi-"]::before {
   bottom: -3px;
   margin-top: -3px; }
 
+/* accordion styling */
 .accordion-title {
+  text-transform: uppercase;
+  text-align: center;
+  background-image: linear-gradient(to top, #59901c, #78ba2f);
+  box-shadow: inset 0px -3px 5px 0px rgba(63, 110, 12, 0.75);
+  color: white;
+  border: none;
   font-family: "univers-light-condensed-bold", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: normal;
   font-size: 1rem; }
+  .accordion-title::before {
+    background: #639a25;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    top: 30%; }
+  .accordion-title:hover {
+    color: #fefefe; }
+
+.accordion-content {
+  padding: 0; }
+
+/* tab styling */
+.di-module .tabs {
+  border-radius: 5px 5px 0 0;
+  border: none;
+  border-bottom: 1px solid #f4f4f4; }
+
+.tabs-title {
+  width: 33.333333333%;
+  text-align: center;
+  font-weight: normal;
+  border-right: 1px solid #f4f4f4; }
+  .tabs-title:first-child {
+    border-top-left-radius: 5px; }
+    .tabs-title:first-child a {
+      border-top-left-radius: 5px; }
+  .tabs-title:last-child {
+    border-right: none; }
+    .tabs-title:last-child a {
+      border-top-right-radius: 5px; }
+  .tabs-title > a {
+    color: #585b5d;
+    font-size: 1rem; }
+  .tabs-title > a[aria-selected='true'], .tabs-title > a:focus {
+    color: #585b5d;
+    font-family: "univers-light-condensed-bold", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+
+.tabs-content {
+  border: none;
+  border-radius: 0 0 5px 5px; }
+
+.toggle-container-wrapper .active {
+  color: #76c000; }
+
+/* top-ten tables */
+.toggle-panel {
+  margin-bottom: 1.5625rem; }
+
+.top-ten {
+  font-size: 0.875rem;
+  width: 100%; }
+  @media screen and (min-width: 40em) {
+    .top-ten {
+      display: block;
+      margin: 0 auto; } }
+  @media screen and (min-width: 49.6875em) {
+    .top-ten {
+      display: table; } }
 
 /*********************
 PLUGIN STYLES

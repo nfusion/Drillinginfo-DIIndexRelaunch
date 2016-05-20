@@ -1,7 +1,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 						
 	<header class="article-header">	
-		<div class="h1">Perspective</div>
+		<div class="h1">Perspectives</div>
 		<h1 class="entry-title single-title h2" itemprop="headline"><?php the_title(); ?></h1>
     </header> <!-- end article header -->
 					

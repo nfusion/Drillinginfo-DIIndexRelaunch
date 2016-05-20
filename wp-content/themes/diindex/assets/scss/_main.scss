@@ -82,9 +82,9 @@ HEADER STYLES
 	.logo {
 		border-right: 1px solid #8a8d8e;
 
-		background: url(../images/drillinginfo-logo.png) 0 50% no-repeat;
-		width: 165px; // add padding
-		height: 50px;
+		background: url(../images/drillinginfo-logo-tiny.png) 0 50% no-repeat;
+		width: 123px; // add padding
+		height: 48px;
 
 		@include breakpoint(medium) {
 			border-right-color: #cdcdce;
@@ -97,7 +97,7 @@ HEADER STYLES
 	.section-title {
 		color: $white;
 		text-transform: uppercase;
-		font-size: rem-calc(25);
+		font-size: rem-calc(20);
 		display: block;
 		line-height: 1;
 		padding-top: rem-calc(6);
@@ -122,7 +122,7 @@ NAVIGATION STYLES
 	}
 
 	.menu > li > button {
-		margin: rem-calc(20) rem-calc(20) 0 0;
+		margin: rem-calc(23) rem-calc(20) 0 0;
 	}
 
 	.top-bar-left {
@@ -859,10 +859,100 @@ i[class^="fi-"]::before {
 .lead {
 }
 
+/* accordion styling */
 .accordion-title {
+	text-transform:uppercase;
+	text-align:center;
+	@include background-image(linear-gradient(to top, #59901c, #78ba2f));
+	box-shadow: inset 0px -3px 5px 0px rgba(63,110,12,0.75);
+	color:white;
+	border:none;
 	font-family: $bold-font-family;
+	font-weight: normal;
 	font-size: rem-calc(16);
+
+	&::before {
+		background:#639a25;
+		border-radius: 50%;
+		width:2rem;
+		height:2rem;
+		line-height:2rem;
+		top:30%;
+	}
+
+	&:hover {
+		color: $white;
+	}
+
 }
+
+.accordion-content {
+	padding:0;
+}
+
+/* tab styling */
+.di-module .tabs {
+	border-radius: $global-radius $global-radius 0 0 ;
+	border: none;
+	border-bottom: 1px solid $light-gray;
+}
+.tabs-title {
+	width: 33.333333333%;
+	text-align: center;
+	font-weight: normal; 
+	border-right: 1px solid $light-gray;
+	
+	&:first-child {
+		border-top-left-radius: $global-radius;
+		a {
+			border-top-left-radius: $global-radius;
+		}
+	}
+
+	&:last-child {
+		border-right: none;
+		a {
+			border-top-right-radius: $global-radius;
+		}
+	}
+
+	& > a {
+		color: $medium-gray;
+		font-size: rem-calc(16);
+	}
+	
+	& > a[aria-selected='true'], & > a:focus {
+		color: $medium-gray; 
+		font-family: $bold-font-family;
+	}
+}
+
+.tabs-content {
+	border:none;
+	border-radius: 0 0 $global-radius $global-radius;
+}
+
+.toggle-container-wrapper .active {
+	color: $primary-color;
+}
+
+/* top-ten tables */
+.toggle-panel {
+	margin-bottom: rem-calc(25);
+}
+.top-ten {
+	font-size:rem(14);
+	width:100%;
+	
+	@include breakpoint(medium) {
+		display:block;
+		margin: 0 auto;
+	}
+	@include breakpoint(795) {
+		// go back to 100% width here.
+		display:table;
+	}
+	}
 /*********************
 PLUGIN STYLES
 *********************/

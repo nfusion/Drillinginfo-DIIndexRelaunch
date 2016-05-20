@@ -522,7 +522,7 @@ $show-header-for-stacked: false;
 
 $tab-margin: 0;
 $tab-background: $white;
-$tab-background-active: $primary-color;
+$tab-background-active: linear-gradient(180deg, $white 0%, $white 90%, $primary-color 90%, $primary-color 100%);
 $tab-item-font-size: rem-calc(12);
 $tab-item-background-hover: $white;
 $tab-item-padding: 1.25rem 1.5rem;
