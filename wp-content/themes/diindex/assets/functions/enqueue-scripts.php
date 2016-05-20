@@ -12,7 +12,7 @@ function site_scripts()
     // Adding scripts file in the footer
     $dependencies = array('foundation-js');
 
-    if ( class_exists( 'Drillinginfo_Index_Application' ) ) {
+    if (class_exists('Drillinginfo_Index_Application')) {
         //array_push($dependencies, 'di-app-ember-dev');
     }
     wp_enqueue_script('site-js', get_template_directory_uri().'/assets/js/scripts.js', $dependencies, '', true);
