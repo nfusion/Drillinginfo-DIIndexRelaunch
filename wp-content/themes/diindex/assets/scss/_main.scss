@@ -82,7 +82,7 @@ HEADER STYLES
 	.logo {
 		border-right: 1px solid #8a8d8e;
 		background: url(../images/drillinginfo-logo.png) 0 0 no-repeat;
-		width: 167px; // add padding
+		width: 165px; // add padding
 		height: 50px;
 
 		@include breakpoint(medium) {
@@ -96,6 +96,9 @@ HEADER STYLES
 		color: $white;
 		text-transform: uppercase;
 		font-size: rem-calc(20);
+		display: block;
+		line-height: 1;
+		padding-top: rem-calc(6);
 	}
 }
 /*********************
@@ -111,13 +114,13 @@ NAVIGATION STYLES
 	}
 
 	.menu > li > button {
-		margin: rem-calc(28) rem-calc(28) 0 0;
+		margin: rem-calc(20) rem-calc(20) 0 0;
 	}
 
 	.top-bar-left {
 		.menu > li > a {
-			display: inline-block;
-			padding-right: rem-calc(8);
+			padding: rem-calc(10) rem-calc(8) rem-calc(10) .7rem;
+
 		}
 	}
 
