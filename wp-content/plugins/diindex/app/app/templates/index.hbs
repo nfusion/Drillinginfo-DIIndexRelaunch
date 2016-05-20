@@ -94,7 +94,7 @@
     <div class="accordion-content" data-tab-content>
     	<!-- Second Tab - Top Ten Lists -->
 		<div class="row">
-			<div class="small-12 columns panel">
+			<div class="small-12 columns panel topten-wrapper">
 				{{#if model.topCountiesGas}}
 				{{toggle-container widgetOptions=toggleOptions model=model}}
 				{{else}}
@@ -109,7 +109,7 @@
     <div class="accordion-content" data-tab-content>
     	<!-- Third Tab - Maps -->
 		<div class="row">
-			<div class="small-12 columns panel">
+			<div class="small-12 columns panel maps-wrapper">
 				{{#if model.maps}}
 					{{wp-maps model=model}}
 				{{else}}
