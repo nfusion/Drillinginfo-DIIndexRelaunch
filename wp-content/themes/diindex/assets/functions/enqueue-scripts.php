@@ -10,7 +10,7 @@ function site_scripts()
     // Adding Foundation scripts file in the footer
     wp_enqueue_script('foundation-js', get_template_directory_uri().'/assets/js/foundation.js', array('jquery'), '6.2', true);
     // Adding scripts file in the footer
-    wp_enqueue_script('site-js', get_template_directory_uri().'/assets/js/scripts.js', array(), '', true);
+    wp_enqueue_script('site-js', get_template_directory_uri().'/assets/js/scripts.js', array('foundation-js'), '', true);
 
     // Register main stylesheet
     wp_enqueue_style('site-css', get_template_directory_uri().'/assets/css/style.css', array(), '', 'all');

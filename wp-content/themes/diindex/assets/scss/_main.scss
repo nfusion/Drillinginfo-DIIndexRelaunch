@@ -345,6 +345,7 @@ POSTS & CONTENT STYLES
 	text-align:center;
 	.menu {
 		display: inline-block;
+		height: rem-calc(60);
 		a {
 			color: $primary-color;
 			i {

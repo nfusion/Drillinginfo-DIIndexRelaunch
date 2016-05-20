@@ -4260,7 +4260,8 @@ POSTS & CONTENT STYLES
 #socialShare {
   text-align: center; }
   #socialShare .menu {
-    display: inline-block; }
+    display: inline-block;
+    height: 3.75rem; }
     #socialShare .menu a {
       color: #76c000; }
       #socialShare .menu a i {
