@@ -42,13 +42,13 @@
 		</div>
 		<div class="float-right">
 			<?php 
-		        $args = array(
-		            'menu'    => 'Primary Navigation',
-		            'submenu' => 'DI Index',
-		        );
+                $args = array(
+                    'menu'    => 'Primary Navigation',
+                    'submenu' => 'DI Index',
+                );
 
-		        wp_nav_menu($args);
-		    ?>
+                wp_nav_menu($args);
+            ?>
 		</div>
 	</div>
 </div>
