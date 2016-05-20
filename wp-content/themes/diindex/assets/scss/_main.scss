@@ -229,8 +229,8 @@ NAVIGATION STYLES
 		}
 
 		&.active .nav-item-inner {
-			border-left: rem-calc(10) solid $primary-color;
-			left: rem-calc(-22);
+			border-left: rem-calc(6) solid $primary-color;
+			left: rem-calc(-18);
 		}
 	}
 }
@@ -845,7 +845,7 @@ FOUNDATION STYLES
 *********************/
 .button {
 	text-transform: uppercase;
-	font-size:rem-calc(11);
+	//font-size:rem-calc(11);
 	font-family: $bold-font-family;
 }
 i[class^="fi-"]::before {
