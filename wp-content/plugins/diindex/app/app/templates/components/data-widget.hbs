@@ -1,41 +1,54 @@
-<div class="row">
-	<div class="small-5 columns">
-		<div class="data-header">
-			<h3>{{widgetOptions.title}}</h3>
-			{{#if dateUpdated}}
-			<p>
-				
-				{{#unless dateToBottom}}
-					{{moment-format dateUpdated widgetOptions.dateFormat}}
-				{{/unless}}
-			
-			{{#if widgetOptions.interval}}
-				&nbsp;({{widgetOptions.interval}})
-			{{/if}}
-			</p>
-			{{/if}}
-		</div>
-	</div>
-	<div class="small-2 columns text-center">
-		<div class="data-header stat-count">
-			<div class="stat">{{count}}</div>
-			{{#if widgetOptions.units}}
-			<p>{{widgetOptions.units}}</p>
-			{{/if}}
-		</div>
-	</div>
-	<div class="small-5 columns text-right">
-		<div class="data-header">
-			{{{delta-direction delta}}}
-			<p>{{widgetOptions.changeText}}</p>
-		</div>
-	</div>
-</div>
-{{#if dateUpdated}}
 {{#if dateToBottom}}
-	<div class="small-12 columns text-center">
-		<p>(Data from {{moment-format dateUpdated widgetOptions.dateFormat}})</p>
+	<!-- cheating here. the only one with this layout is our problem child. -->
+	<div class="row big-widget">
+		<div class="small-12 columns text-center">
+			<h2>{{widgetOptions.title}}</h2>
+			<p>Data from {{moment-format dateUpdated widgetOptions.dateFormat}}</p>
+		</div>
+		<div class="small-4 small-push-2 medium-4 medium-push-2 large-4 large-push-2 columns">
+			<div class="data-header stat-count">
+				<div class="stat">{{count}}</div>
+			</div>
+		</div>
+		<div class="small-4 small-pull-2 medium-4 medium-pull-2 large-4 large-pull-2 columns text-right">
+			<div class="data-header">
+				{{{delta-direction delta}}}
+				<p>{{widgetOptions.changeText}}</p>
+			</div>
+		</div>
 	</div>
+{{else}}
+	<div class="row">
+		<div class="small-5 columns">
+			<div class="data-header">
+				<h3>{{widgetOptions.title}}</h3>
+				{{#if dateUpdated}}
+				<p>
+					
+					{{#unless dateToBottom}}
+						{{moment-format dateUpdated widgetOptions.dateFormat}}
+					{{/unless}}
+				
+				{{#if widgetOptions.interval}}
+					&nbsp;({{widgetOptions.interval}})
+				{{/if}}
+				</p>
+				{{/if}}
+			</div>
+		</div>
+		<div class="small-2 columns text-center">
+			<div class="data-header stat-count">
+				<div class="stat">{{count}}</div>
+				{{#if widgetOptions.units}}
+				<p>{{widgetOptions.units}}</p>
+				{{/if}}
+			</div>
+		</div>
+		<div class="small-5 columns text-right">
+			<div class="data-header">
+				{{{delta-direction delta}}}
+				<p>{{widgetOptions.changeText}}</p>
+			</div>
+		</div>
+	</div><!-- /.row -->
 {{/if}}
-{{/if}}
-{{yield}}

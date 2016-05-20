@@ -220,8 +220,8 @@ export default Ember.Controller.extend({
 		};
 		prodCapConfig.chartOptions.yAxis.min = this.get('prodCapMin');
 		prodCapConfig.widgetOptions = {
-			title: 'New U.S. Production Capacity',
-			units: '',
+			title: 'U.S. Production Capacity',
+			units: 'MBOE',
 			dateFormat: 'MMMM YYYY',
 			datePosition: 'bottom',
 			interval: '',
