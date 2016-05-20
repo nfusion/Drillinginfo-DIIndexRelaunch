@@ -4481,7 +4481,8 @@ FOOTER STYLES
       color: #434547;
       border-radius: 2px;
       font-size: 1.875rem;
-      padding: 2px 5px 1px; }
+      padding: 2px 5px 1px;
+      line-height: 0; }
   .footer #menu-footer-navigation {
     display: inline-block; }
     .footer #menu-footer-navigation li {
