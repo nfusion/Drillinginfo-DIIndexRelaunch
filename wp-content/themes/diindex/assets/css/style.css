@@ -1093,8 +1093,8 @@ button {
     padding-right: 0; }
   .row .row {
     max-width: none;
-    margin-left: -0.625rem;
-    margin-right: -0.625rem;
+    margin-left: -0.375rem;
+    margin-right: -0.375rem;
     max-width: none; }
     @media screen and (min-width: 40em) {
       .row .row {
@@ -1112,8 +1112,8 @@ button {
 .column, .columns {
   width: 100%;
   float: left;
-  padding-left: 0.625rem;
-  padding-right: 0.625rem; }
+  padding-left: 0.375rem;
+  padding-right: 0.375rem; }
   @media screen and (min-width: 40em) {
     .column, .columns {
       padding-left: 0.9375rem;
@@ -1380,8 +1380,8 @@ button {
   margin-right: 0; }
 
 .small-uncollapse > .column, .small-uncollapse > .columns {
-  padding-left: 0.625rem;
-  padding-right: 0.625rem; }
+  padding-left: 0.375rem;
+  padding-right: 0.375rem; }
 
 .small-centered {
   float: none;
@@ -1884,16 +1884,16 @@ h2 {
   font-size: 1.25rem; }
 
 h3 {
-  font-size: 1.0625rem; }
+  font-size: 1.125rem; }
 
 h4 {
-  font-size: 1rem; }
+  font-size: 1.125rem; }
 
 h5 {
-  font-size: 0.9375rem; }
+  font-size: 1.125rem; }
 
 h6 {
-  font-size: 0.875rem; }
+  font-size: 1.125rem; }
 
 @media screen and (min-width: 40em) {
   h1 {
@@ -1903,11 +1903,11 @@ h6 {
   h3 {
     font-size: 1.9375rem; }
   h4 {
-    font-size: 1.5625rem; }
+    font-size: 1.9375rem; }
   h5 {
-    font-size: 1.25rem; }
+    font-size: 1.9375rem; }
   h6 {
-    font-size: 1rem; } }
+    font-size: 1.9375rem; } }
 
 a {
   color: #0d8bb1;
@@ -4434,6 +4434,9 @@ COMMENT FORM STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
+.widgettitle {
+  font-size: 1.875rem; }
+
 .widget ul {
   margin: 0; }
   .widget ul li {

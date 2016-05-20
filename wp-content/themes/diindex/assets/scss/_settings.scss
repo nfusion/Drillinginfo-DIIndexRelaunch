@@ -102,7 +102,7 @@ $breakpoint-classes: (small medium large);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small: 20px,
+  small: 12px,
   medium: 30px,
 );
 $grid-column-align-edge: true;
@@ -119,18 +119,18 @@ $header-sizes: (
   small: (
     'h1': 25,
     'h2': 20,
-    'h3': 17,
-    'h4': 16,
-    'h5': 15,
-    'h6': 14,
+    'h3': 18,
+    'h4': 18,
+    'h5': 18,
+    'h6': 18,
   ),
   medium: (
     'h1': 32,
     'h2': 26,
     'h3': 31,
-    'h4': 25,
-    'h5': 20,
-    'h6': 16,
+    'h4': 31,
+    'h5': 31,
+    'h6': 31,
   ),
 );
 $header-color: inherit;
