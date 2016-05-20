@@ -1,4 +1,4 @@
-<div id="sidebar1" class="sidebar large-2 medium-2 columns" role="complementary">
+<div id="sidebar1" class="sidebar large-2 medium-3 columns" role="complementary">
 	<?php if (is_active_sidebar('sidebar1')) : ?>
 
 		<?php dynamic_sidebar('sidebar1'); ?>

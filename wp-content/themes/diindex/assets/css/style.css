@@ -4213,6 +4213,11 @@ POSTS & CONTENT STYLES
   #content {
     background: #f4f4f4; } }
 
+@media screen and (min-width: 75em) {
+  #content #main.columns {
+    padding-left: 0;
+    padding-right: 0; } }
+
 .home #content #inner-content {
   padding-bottom: 0; }
 
