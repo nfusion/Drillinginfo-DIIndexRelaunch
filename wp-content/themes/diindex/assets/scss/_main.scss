@@ -79,10 +79,10 @@ HEADER STYLES
 	ul.off-canvas-list li {
 		list-style: none;
 	}
-
 	.logo {
-		background: url(../images/drillinginfo-logo.png);
-		width: 151px;
+		border-right: 1px solid #8a8d8e;
+		background: url(../images/drillinginfo-logo.png) 0 0 no-repeat;
+		width: 167px; // add padding
 		height: 50px;
 
 		@include breakpoint(medium) {
@@ -91,18 +91,34 @@ HEADER STYLES
 		height: 56px;
 		}
 	}
+
+	.section-title {
+		color: $white;
+		text-transform: uppercase;
+		font-size: rem-calc(20);
+	}
 }
 /*********************
 NAVIGATION STYLES
 *********************/
 .top-bar {
-	
 	.title-area {
 		z-index: 1;
 	}
 
 	.top-bar-left, .top-bar-right {
 		width:auto;
+	}
+
+	.menu > li > button {
+		margin: rem-calc(28) rem-calc(28) 0 0;
+	}
+
+	.top-bar-left {
+		.menu > li > a {
+			display: inline-block;
+			padding-right: rem-calc(8);
+		}
 	}
 
 	@include breakpoint(medium) {
@@ -116,6 +132,7 @@ NAVIGATION STYLES
 		.menu > li > a {
     		color: $medium-gray;
     	}
+
     	.top-bar-right {
 			padding-top:2rem;
 			.menu {
@@ -222,8 +239,9 @@ NAVIGATION STYLES
     border-radius: 2px;
  }
   .menu-icon:hover::after {
-    background: $primary-color;
-    box-shadow: 0 7px 0 $primary-color, 0 14px 0 $primary-color;
+  	background: $white;
+    opacity:1.0;
+    box-shadow: 0 7px 0 $white, 0 14px 0 $white;
 }
 
 /*********************

@@ -3952,7 +3952,7 @@ table.hover tr:nth-of-type(even):hover {
     transform: translateY(-50%); }
 
 .top-bar {
-  padding: 0.5rem; }
+  padding: 0; }
   .top-bar::before, .top-bar::after {
     content: ' ';
     display: table; }
@@ -4055,14 +4055,20 @@ HEADER STYLES
   list-style: none; }
 
 .header .logo {
-  background: url(../images/drillinginfo-logo.png);
-  width: 151px;
+  border-right: 1px solid #8a8d8e;
+  background: url(../images/drillinginfo-logo.png) 0 0 no-repeat;
+  width: 167px;
   height: 50px; }
   @media screen and (min-width: 40em) {
     .header .logo {
       background: url(../images/drillinginfo-logo-gray.png);
       width: 170px;
       height: 56px; } }
+
+.header .section-title {
+  color: #fefefe;
+  text-transform: uppercase;
+  font-size: 1.25rem; }
 
 /*********************
 NAVIGATION STYLES
@@ -4072,6 +4078,13 @@ NAVIGATION STYLES
 
 .top-bar .top-bar-left, .top-bar .top-bar-right {
   width: auto; }
+
+.top-bar .menu > li > button {
+  margin: 1.75rem 1.75rem 0 0; }
+
+.top-bar .top-bar-left .menu > li > a {
+  display: inline-block;
+  padding-right: 0.5rem; }
 
 @media screen and (min-width: 40em) {
   .top-bar {
@@ -4163,8 +4176,9 @@ NAVIGATION STYLES
   border-radius: 2px; }
 
 .menu-icon:hover::after {
-  background: #76c000;
-  box-shadow: 0 7px 0 #76c000, 0 14px 0 #76c000; }
+  background: #fefefe;
+  opacity: 1.0;
+  box-shadow: 0 7px 0 #fefefe, 0 14px 0 #fefefe; }
 
 /*********************
 POSTS & CONTENT STYLES

@@ -1,10 +1,25 @@
 <!-- By default, this menu will use off-canvas for small
 	 and a topbar for medium-up -->
 
+<?php 
+	$section = 'Index';
+	if ( is_home() || is_singular('post') ) {
+		$section = 'Perspective';
+	}
+?>
+
 <div class="top-bar" id="top-bar-menu">
 	<div class="top-bar-left float-left">
 		<ul class="menu">
-			<li><a href="<?php echo home_url(); ?>" class="site-name"><div class="logo"><span class="show-for-sr"><?php echo get_bloginfo('name'); ?></span></div></a></li>
+			<li>
+				<a href="<?php echo home_url(); ?>" class="site-name">
+					<div class="logo"><span class="show-for-sr"><?php echo get_bloginfo('name'); ?></span></div>
+				</a>
+
+			</li>
+			<li>
+				<span class="section-title"><?php echo $section ?></span>
+			</li>
 		</ul>
 	</div>
 	<div class="top-bar-right show-for-medium">
@@ -31,5 +46,4 @@
 
         wp_nav_menu($args);
     ?>
-</div>
 </div>
