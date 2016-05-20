@@ -4450,7 +4450,7 @@ FOOTER STYLES
 *********************/
 .footer {
   clear: both;
-  margin-top: 1em;
+  margin-top: 0;
   background: #585b5d;
   color: rgba(255, 255, 255, 0.7); }
   .footer .footer-row {
@@ -4530,9 +4530,6 @@ FOOTER STYLES
     @media screen and (min-width: 40em) {
       .footer .contact-email {
         margin: 0; } }
-
-.home .footer {
-  margin-top: 0; }
 
 /*********************
 FOUNDATION STYLES

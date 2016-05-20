@@ -734,7 +734,7 @@ FOOTER STYLES
 *********************/
 .footer {
 	clear: both;
-	margin-top: 1em;
+	margin-top: 0;
 	background: $medium-gray;
 	color: rgba(255,255,255,0.7);
 
@@ -837,9 +837,6 @@ FOOTER STYLES
 			margin:0;
 		}
 	}
-} 
-.home .footer {
-	margin-top:0;
 }
 	
 /*********************
