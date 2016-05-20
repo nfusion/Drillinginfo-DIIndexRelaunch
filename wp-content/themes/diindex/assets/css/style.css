@@ -74,6 +74,7 @@ CSS3 GRADIENTS.
 
 .slide-in-down.mui-enter {
   -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
   transform: translateY(-100%);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -82,10 +83,12 @@ CSS3 GRADIENTS.
 
 .slide-in-down.mui-enter.mui-enter-active {
   -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0); }
 
 .slide-in-left.mui-enter {
   -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
   transform: translateX(-100%);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -94,10 +97,12 @@ CSS3 GRADIENTS.
 
 .slide-in-left.mui-enter.mui-enter-active {
   -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0); }
 
 .slide-in-up.mui-enter {
   -webkit-transform: translateY(100%);
+  -ms-transform: translateY(100%);
   transform: translateY(100%);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -106,10 +111,12 @@ CSS3 GRADIENTS.
 
 .slide-in-up.mui-enter.mui-enter-active {
   -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0); }
 
 .slide-in-right.mui-enter {
   -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
   transform: translateX(100%);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -118,10 +125,12 @@ CSS3 GRADIENTS.
 
 .slide-in-right.mui-enter.mui-enter-active {
   -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0); }
 
 .slide-out-down.mui-leave {
   -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -130,10 +139,12 @@ CSS3 GRADIENTS.
 
 .slide-out-down.mui-leave.mui-leave-active {
   -webkit-transform: translateY(100%);
+  -ms-transform: translateY(100%);
   transform: translateY(100%); }
 
 .slide-out-right.mui-leave {
   -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -142,10 +153,12 @@ CSS3 GRADIENTS.
 
 .slide-out-right.mui-leave.mui-leave-active {
   -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
   transform: translateX(100%); }
 
 .slide-out-up.mui-leave {
   -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -154,10 +167,12 @@ CSS3 GRADIENTS.
 
 .slide-out-up.mui-leave.mui-leave-active {
   -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
   transform: translateY(-100%); }
 
 .slide-out-left.mui-leave {
   -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -166,6 +181,7 @@ CSS3 GRADIENTS.
 
 .slide-out-left.mui-leave.mui-leave-active {
   -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
   transform: translateX(-100%); }
 
 .fade-in.mui-enter {
@@ -186,6 +202,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotateX(-90deg);
   transform: perspective(2000px) rotateX(-90deg);
   -webkit-transform-origin: top;
+  -ms-transform-origin: top;
   transform-origin: top;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -200,6 +217,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotateY(-90deg);
   transform: perspective(2000px) rotateY(-90deg);
   -webkit-transform-origin: right;
+  -ms-transform-origin: right;
   transform-origin: right;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -214,6 +232,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotateX(90deg);
   transform: perspective(2000px) rotateX(90deg);
   -webkit-transform-origin: bottom;
+  -ms-transform-origin: bottom;
   transform-origin: bottom;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -228,6 +247,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotateY(90deg);
   transform: perspective(2000px) rotateY(90deg);
   -webkit-transform-origin: left;
+  -ms-transform-origin: left;
   transform-origin: left;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -242,6 +262,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotateX(-90deg);
   transform: perspective(2000px) rotateX(-90deg);
   -webkit-transform-origin: center;
+  -ms-transform-origin: center;
   transform-origin: center;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -256,6 +277,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotateY(-90deg);
   transform: perspective(2000px) rotateY(-90deg);
   -webkit-transform-origin: center;
+  -ms-transform-origin: center;
   transform-origin: center;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -270,6 +292,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotate(0deg);
   transform: perspective(2000px) rotate(0deg);
   -webkit-transform-origin: top;
+  -ms-transform-origin: top;
   transform-origin: top;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -284,6 +307,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotate(0deg);
   transform: perspective(2000px) rotate(0deg);
   -webkit-transform-origin: right;
+  -ms-transform-origin: right;
   transform-origin: right;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -298,6 +322,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotate(0deg);
   transform: perspective(2000px) rotate(0deg);
   -webkit-transform-origin: bottom;
+  -ms-transform-origin: bottom;
   transform-origin: bottom;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -312,6 +337,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotate(0deg);
   transform: perspective(2000px) rotate(0deg);
   -webkit-transform-origin: left;
+  -ms-transform-origin: left;
   transform-origin: left;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -326,6 +352,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotate(0deg);
   transform: perspective(2000px) rotate(0deg);
   -webkit-transform-origin: center;
+  -ms-transform-origin: center;
   transform-origin: center;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -340,6 +367,7 @@ CSS3 GRADIENTS.
   -webkit-transform: perspective(2000px) rotate(0deg);
   transform: perspective(2000px) rotate(0deg);
   -webkit-transform-origin: center;
+  -ms-transform-origin: center;
   transform-origin: center;
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -352,6 +380,7 @@ CSS3 GRADIENTS.
 
 .scale-in-up.mui-enter {
   -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
   transform: scale(0.5);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -359,11 +388,13 @@ CSS3 GRADIENTS.
 
 .scale-in-up.mui-enter.mui-enter-active {
   -webkit-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
   opacity: 1; }
 
 .scale-in-down.mui-enter {
   -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
   transform: scale(1.5);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -371,11 +402,13 @@ CSS3 GRADIENTS.
 
 .scale-in-down.mui-enter.mui-enter-active {
   -webkit-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
   opacity: 1; }
 
 .scale-out-up.mui-leave {
   -webkit-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -383,11 +416,13 @@ CSS3 GRADIENTS.
 
 .scale-out-up.mui-leave.mui-leave-active {
   -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
   transform: scale(1.5);
   opacity: 0; }
 
 .scale-out-down.mui-leave {
   -webkit-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -395,11 +430,13 @@ CSS3 GRADIENTS.
 
 .scale-out-down.mui-leave.mui-leave-active {
   -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
   transform: scale(0.5);
   opacity: 0; }
 
 .spin-in.mui-enter {
   -webkit-transform: rotate(-0.75turn);
+  -ms-transform: rotate(-0.75turn);
   transform: rotate(-0.75turn);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -407,11 +444,13 @@ CSS3 GRADIENTS.
 
 .spin-in.mui-enter.mui-enter-active {
   -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
   transform: rotate(0);
   opacity: 1; }
 
 .spin-out.mui-leave {
   -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
   transform: rotate(0);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -419,11 +458,13 @@ CSS3 GRADIENTS.
 
 .spin-out.mui-leave.mui-leave-active {
   -webkit-transform: rotate(0.75turn);
+  -ms-transform: rotate(0.75turn);
   transform: rotate(0.75turn);
   opacity: 0; }
 
 .spin-in-ccw.mui-enter {
   -webkit-transform: rotate(0.75turn);
+  -ms-transform: rotate(0.75turn);
   transform: rotate(0.75turn);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -431,11 +472,13 @@ CSS3 GRADIENTS.
 
 .spin-in-ccw.mui-enter.mui-enter-active {
   -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
   transform: rotate(0);
   opacity: 1; }
 
 .spin-out-ccw.mui-leave {
   -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
   transform: rotate(0);
   transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
@@ -443,6 +486,7 @@ CSS3 GRADIENTS.
 
 .spin-out-ccw.mui-leave.mui-leave-active {
   -webkit-transform: rotate(-0.75turn);
+  -ms-transform: rotate(-0.75turn);
   transform: rotate(-0.75turn);
   opacity: 0; }
 
@@ -2742,9 +2786,11 @@ select {
     z-index: 1;
     display: block;
     -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
     transform: translateX(-100%); }
   .is-drilldown-submenu.is-closing {
     -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
     transform: translateX(100%); }
 
 .is-drilldown-submenu-parent > a {
@@ -3152,6 +3198,7 @@ body {
   max-height: 100%;
   overflow-y: auto;
   -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0); }
   [data-whatinput='mouse'] .off-canvas {
     outline: 0; }
@@ -3161,6 +3208,7 @@ body {
     width: 250px; }
     .is-open-left {
       -webkit-transform: translateX(250px);
+      -ms-transform: translateX(250px);
       transform: translateX(250px); }
   .off-canvas.position-right {
     right: -250px;
@@ -3168,6 +3216,7 @@ body {
     width: 250px; }
     .is-open-right {
       -webkit-transform: translateX(-250px);
+      -ms-transform: translateX(-250px);
       transform: translateX(-250px); }
 
 @media screen and (min-width: 40em) {
@@ -3235,6 +3284,7 @@ body {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 10;
   padding: 1rem;
@@ -3353,6 +3403,7 @@ body {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   position: absolute;
   margin: 0;
@@ -3392,6 +3443,7 @@ body {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   position: absolute;
   left: 0;
@@ -3422,6 +3474,7 @@ body {
   height: 12.5rem;
   margin: 0 1.25rem;
   -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
   transform: scale(1, -1); }
   .slider.vertical .slider-fill {
     top: 0;
@@ -3434,6 +3487,7 @@ body {
     width: 1.4rem;
     height: 1.4rem;
     -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%); }
 
 .sticky-container {
@@ -3598,6 +3652,7 @@ body.is-reveal-open {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
 .switch-active {
@@ -3851,6 +3906,7 @@ table.hover tr:nth-of-type(even):hover {
     position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%); }
   .tooltip.top::before {
     content: '';
@@ -3876,6 +3932,7 @@ table.hover tr:nth-of-type(even):hover {
     left: 100%;
     top: 50%;
     -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
   .tooltip.right::before {
     content: '';
@@ -3891,6 +3948,7 @@ table.hover tr:nth-of-type(even):hover {
     right: 100%;
     top: 50%;
     -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
 
 .top-bar {
