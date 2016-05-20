@@ -2,10 +2,10 @@
 	 and a topbar for medium-up -->
 
 <?php 
-	$section = 'Index';
-	if ( is_home() || is_singular('post') ) {
-		$section = 'Perspective';
-	}
+    $section = 'Index';
+    if (is_home() || is_singular('post')) {
+        $section = 'Perspective';
+    }
 ?>
 
 <div class="top-bar" id="top-bar-menu">
