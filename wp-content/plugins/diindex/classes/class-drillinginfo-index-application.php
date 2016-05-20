@@ -131,6 +131,7 @@ final class Drillinginfo_Index_Application
             $content = '<div class="original-content">'.$content.'</div>';
             $content .= '<div id="diindex-dashboard"></div>';
         }
+
         return $content;
     }
 
