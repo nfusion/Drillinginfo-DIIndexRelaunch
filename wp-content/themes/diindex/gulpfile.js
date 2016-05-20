@@ -25,7 +25,7 @@ gulp.task('styles', function() {
         .pipe(sourcemaps.init()) // Start Sourcemaps
         .pipe(sass())
         .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
+            browsers: ['last 2 versions','ios_saf 8.4', 'Android 4.4'],
             cascade: false
         }))
         .pipe(gulp.dest('./assets/css/'))

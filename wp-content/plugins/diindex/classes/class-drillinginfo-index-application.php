@@ -95,6 +95,7 @@ final class Drillinginfo_Index_Application
     {
         if (is_front_page()) {
             wp_dequeue_script('foundation-js');
+            wp_dequeue_script('jquery');
             wp_enqueue_script('di-app-vendor', DrillingInfo_Index::instance()->plugin_url.'app/dist/assets/vendor.js', array(), DrillingInfo_Index::instance()->version, true);
             wp_enqueue_script('di-app-ember-dev', DrillingInfo_Index::instance()->plugin_url.'app/dist/assets/diindex-ember-dev.js', array(), DrillingInfo_Index::instance()->version, true);
         }

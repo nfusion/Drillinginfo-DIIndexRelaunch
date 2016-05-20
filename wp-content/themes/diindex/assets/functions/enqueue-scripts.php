@@ -5,7 +5,7 @@ function site_scripts()
     global $wp_styles; // Call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
 
     // Load What-Input files in footer
-    wp_enqueue_script('what-input', get_template_directory_uri().'/vendor/what-input/what-input.min.js', array(), '', true);
+    //wp_enqueue_script('what-input', get_template_directory_uri().'/vendor/what-input/what-input.min.js', array(), '', true);
 
     // Adding Foundation scripts file in the footer
     // disabling this for the front page only since we've got redundant libraries being loaded by the Ember application.
