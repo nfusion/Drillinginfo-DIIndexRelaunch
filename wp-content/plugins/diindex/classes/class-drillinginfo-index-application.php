@@ -127,9 +127,10 @@ final class Drillinginfo_Index_Application
      */
     public function application_container($content)
     {
-        $content = '<div class="original-content">'.$content.'</div>';
-        $content .= '<div id="diindex-dashboard"></div>';
-
+        if (is_front_page()) {
+            $content = '<div class="original-content">'.$content.'</div>';
+            $content .= '<div id="diindex-dashboard"></div>';
+        }
         return $content;
     }
 

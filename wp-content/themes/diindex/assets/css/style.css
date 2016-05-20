@@ -4223,6 +4223,9 @@ POSTS & CONTENT STYLES
 .byline {
   color: #999; }
 
+.entry-content .lead {
+  font-size: 125%; }
+
 .entry-content img {
   max-width: 100%;
   height: auto; }
