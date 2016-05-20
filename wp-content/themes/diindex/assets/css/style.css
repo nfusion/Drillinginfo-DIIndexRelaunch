@@ -4482,7 +4482,7 @@ FOOTER STYLES
       border-radius: 2px;
       font-size: 1.875rem;
       padding: 2px 5px 1px;
-      line-height: 0; }
+      line-height: 1; }
   .footer #menu-footer-navigation {
     display: inline-block; }
     .footer #menu-footer-navigation li {
