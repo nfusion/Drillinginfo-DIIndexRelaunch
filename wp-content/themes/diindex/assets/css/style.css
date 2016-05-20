@@ -4551,6 +4551,10 @@ i[class^="fi-"]::before {
   bottom: -3px;
   margin-top: -3px; }
 
+@media screen and (min-width: 40em) {
+  .lead {
+    font-size: 150%; } }
+
 /* accordion styling */
 .accordion-title {
   text-transform: uppercase;
