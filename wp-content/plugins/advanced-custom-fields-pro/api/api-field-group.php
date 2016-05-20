@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 
 /*
 *  acf_is_field_group_key
@@ -14,32 +13,29 @@
 *  @return	(boolean)
 */
 
-function acf_is_field_group_key($key = '')
-{
-
-    // bail early if not string
-    if (!is_string($key)) {
-        return false;
-    }
-
-    // bail early if is numeric (could be numeric string '123')
-    if (is_numeric($key)) {
-        return false;
-    }
-
-    // look for 'field_' prefix
-    if (substr($key, 0, 6) === 'group_') {
-        return true;
-    }
-
-    // allow local field group key to not start with prefix
-    if (acf_is_local_field_group($key)) {
-        return true;
-    }
-
-    // return
-    return false;
+function acf_is_field_group_key( $key = '' ) {
+	
+	// bail early if not string
+	if( !is_string($key) ) return false;
+	
+	
+	// bail early if is numeric (could be numeric string '123')
+	if( is_numeric($key) ) return false;
+	
+	
+	// look for 'field_' prefix
+	if( substr($key, 0, 6) === 'group_' ) return true;
+	
+	
+	// allow local field group key to not start with prefix
+	if( acf_is_local_field_group($key) ) return true;
+	
+	
+	// return
+	return false;
+	
 }
+
 
 /*
 *  acf_get_valid_field_group
@@ -54,35 +50,39 @@ function acf_is_field_group_key($key = '')
 *  @return	$field_group (array)
 */
 
-function acf_get_valid_field_group($field_group = false)
-{
+function acf_get_valid_field_group( $field_group = false ) {
+	
+	// parse in defaults
+	$field_group = acf_parse_args( $field_group, array(
+		'ID'					=> 0,
+		'key'					=> '',
+		'title'					=> '',
+		'fields'				=> array(),
+		'location'				=> array(),
+		'menu_order'			=> 0,
+		'position'				=> 'normal',
+		'style'					=> 'default',
+		'label_placement'		=> 'top',
+		'instruction_placement'	=> 'label',
+		'hide_on_screen'		=> array(),
+		'active'				=> 1, // Added in 5.2.9
+		'description'			=> '' // Added in 5.2.9
+	));
+	
+	
+	// filter
+	$field_group = apply_filters('acf/get_valid_field_group', $field_group);
 
-    // parse in defaults
-    $field_group = acf_parse_args($field_group, array(
-        'ID'                       => 0,
-        'key'                      => '',
-        'title'                    => '',
-        'fields'                   => array(),
-        'location'                 => array(),
-        'menu_order'               => 0,
-        'position'                 => 'normal',
-        'style'                    => 'default',
-        'label_placement'          => 'top',
-        'instruction_placement'    => 'label',
-        'hide_on_screen'           => array(),
-        'active'                   => 1, // Added in 5.2.9
-        'description'              => '', // Added in 5.2.9
-    ));
-
-    // filter
-    $field_group = apply_filters('acf/get_valid_field_group', $field_group);
-
-    // translate
-    $field_group = acf_translate_field_group($field_group);
-
-    // return
-    return $field_group;
+	
+	// translate
+	$field_group = acf_translate_field_group( $field_group );
+	
+	
+	// return
+	return $field_group;
+	
 }
+
 
 /*
 *  acf_translate_field_group
@@ -97,26 +97,31 @@ function acf_get_valid_field_group($field_group = false)
 *  @return	$field_group
 */
 
-function acf_translate_field_group($field_group)
-{
-
-    // vars
-    $l10n = acf_get_setting('l10n');
-    $l10n_textdomain = acf_get_setting('l10n_textdomain');
-
-    // if
-    if ($l10n && $l10n_textdomain) {
-
-        // translate
-        $field_group['title'] = acf_translate($field_group['title']);
-
-        // filters
-        $field_group = apply_filters('acf/translate_field_group', $field_group);
-    }
-
-    // return
-    return $field_group;
+function acf_translate_field_group( $field_group ) {
+	
+	// vars
+	$l10n = acf_get_setting('l10n');
+	$l10n_textdomain = acf_get_setting('l10n_textdomain');
+	
+	
+	// if
+	if( $l10n && $l10n_textdomain ) {
+		
+		// translate
+		$field_group['title'] = acf_translate( $field_group['title'] );
+		
+		
+		// filters
+		$field_group = apply_filters( "acf/translate_field_group", $field_group );
+		
+	}
+	
+	
+	// return
+	return $field_group;
+	
 }
+
 
 /*
 *  acf_get_field_groups
@@ -131,49 +136,61 @@ function acf_translate_field_group($field_group)
 *  @return	$field_groups (array)
 */
 
-function acf_get_field_groups($args = false)
-{
-
-    // vars
-    $field_groups = array();
-
-    // cache
-    $found = false;
-    $cache = wp_cache_get('get_field_groups', 'acf', false, $found);
-
-    if ($found) {
-        return acf_filter_field_groups($cache, $args);
-    }
-
-    // load from DB
-    $posts = get_posts(array(
-        'post_type'                    => 'acf-field-group',
-        'posts_per_page'               => -1,
-        'orderby'                      => 'menu_order title',
-        'order'                        => 'asc',
-        'suppress_filters'             => false, // allow WPML to modify the query
-        'post_status'                  => array('publish', 'acf-disabled'),
-        'update_post_meta_cache'       => false,
-    ));
-
-    // loop through and load field groups
-    if ($posts) {
-        foreach ($posts as $post) {
-
-            // add to return array
-            $field_groups[] = acf_get_field_group($post);
-        }
-    }
-
-    // filter
-    $field_groups = apply_filters('acf/get_field_groups', $field_groups);
-
-    // set cache
-    wp_cache_set('get_field_groups', $field_groups, 'acf');
-
-    // return
-    return acf_filter_field_groups($field_groups, $args);
+function acf_get_field_groups( $args = false ) {
+	
+	// vars
+	$field_groups = array();
+	
+	
+	// cache
+	$found = false;
+	$cache = wp_cache_get( 'get_field_groups', 'acf', false, $found );
+	
+	if( $found ) {
+		
+		return acf_filter_field_groups( $cache, $args );
+		
+	}
+	
+	
+	// load from DB
+	$posts = get_posts(array(
+		'post_type'					=> 'acf-field-group',
+		'posts_per_page'			=> -1,
+		'orderby' 					=> 'menu_order title',
+		'order' 					=> 'asc',
+		'suppress_filters'			=> false, // allow WPML to modify the query
+		'post_status'				=> array('publish', 'acf-disabled'),
+		'update_post_meta_cache'	=> false
+	));
+	
+	
+	// loop through and load field groups
+	if( $posts ) {
+		
+		foreach( $posts as $post ) {
+			
+			// add to return array
+			$field_groups[] = acf_get_field_group( $post );
+			
+		}
+		
+	}
+	
+	
+	// filter
+	$field_groups = apply_filters('acf/get_field_groups', $field_groups);
+	
+	
+	// set cache
+	wp_cache_set( 'get_field_groups', $field_groups, 'acf' );
+			
+	
+	// return		
+	return acf_filter_field_groups( $field_groups, $args );
+	
 }
+
 
 /*
 *  acf_filter_field_groups
@@ -189,35 +206,46 @@ function acf_get_field_groups($args = false)
 *  @return	$field_groups (array)
 */
 
-function acf_filter_field_groups($field_groups, $args = false)
-{
-
-    // bail early if empty sargs
-    if (empty($args) || empty($field_groups)) {
-        return $field_groups;
-    }
-
-    // vars
-    $keys = array_keys($field_groups);
-
-    // loop through keys
-    foreach ($keys as $key) {
-
-        // get visibility
-        $visibility = acf_get_field_group_visibility($field_groups[$key], $args);
-
-        // unset
-        if (!$visibility) {
-            unset($field_groups[$key]);
-        }
-    }
-
-    // re assign index
-    $field_groups = array_values($field_groups);
-
-    // return
-    return $field_groups;
+function acf_filter_field_groups( $field_groups, $args = false ) {
+	
+	// bail early if empty sargs
+	if( empty($args) || empty($field_groups) ) {
+		
+		return $field_groups;
+		
+	}
+	
+	
+	// vars
+	$keys = array_keys( $field_groups );
+	
+	
+	// loop through keys
+	foreach( $keys as $key ) {
+		
+		// get visibility
+		$visibility = acf_get_field_group_visibility( $field_groups[ $key ], $args );
+		
+		
+		// unset
+		if( !$visibility ) {
+			
+			unset($field_groups[ $key ]);
+			
+		}
+		
+	}
+	
+	
+	// re assign index
+	$field_groups = array_values( $field_groups );
+	
+	
+	// return
+	return $field_groups;
+	
 }
+
 
 /*
 *  acf_get_field_group
@@ -233,53 +261,70 @@ function acf_filter_field_groups($field_groups, $args = false)
 *  @return	$field_group (array)
 */
 
-function acf_get_field_group($selector = false)
-{
-
-    // vars
-    $field_group = false;
-    $k = 'ID';
-    $v = 0;
-
-    // $post_id or $key
-    if (is_numeric($selector)) {
-        $v = $selector;
-    } elseif (is_string($selector)) {
-        $k = 'key';
-        $v = $selector;
-    } elseif (is_object($selector)) {
-        $v = $selector->ID;
-    } else {
-        return false;
-    }
-
-    // get cache key
-    $cache_key = "get_field_group/{$k}={$v}";
-
-    // get cache
-    $found = false;
-    $cache = wp_cache_get($cache_key, 'acf', false, $found);
-
-    if ($found) {
-        return $cache;
-    }
-
-    // get field group from ID or key
-    if ($k == 'ID') {
-        $field_group = _acf_get_field_group_by_id($v);
-    } else {
-        $field_group = _acf_get_field_group_by_key($v);
-    }
-
-    // filter for 3rd party customization
-    $field_group = apply_filters('acf/get_field_group', $field_group);
-
-    // set cache
-    wp_cache_set($cache_key, $field_group, 'acf');
-
-    // return
-    return $field_group;
+function acf_get_field_group( $selector = false ) {
+	
+	// vars
+	$field_group = false;
+	$k = 'ID';
+	$v = 0;
+	
+	
+	// $post_id or $key
+	if( is_numeric($selector) ) {
+		
+		$v = $selector;
+		
+	} elseif( is_string($selector) ) {
+		
+		$k = 'key';
+		$v = $selector;
+		
+	} elseif( is_object($selector) ) {
+		
+		$v = $selector->ID;
+		
+	} else {
+		
+		return false;
+		
+	}
+	
+	
+	// get cache key
+	$cache_key = "get_field_group/{$k}={$v}";
+	
+	
+	// get cache
+	$found = false;
+	$cache = wp_cache_get( $cache_key, 'acf', false, $found );
+	
+	if( $found ) return $cache;
+	
+	
+	// get field group from ID or key
+	if( $k == 'ID' ) {
+		
+		$field_group = _acf_get_field_group_by_id( $v );
+		
+	} else {
+		
+		$field_group = _acf_get_field_group_by_key( $v );
+		
+	}
+	
+	
+	// filter for 3rd party customization
+	$field_group = apply_filters('acf/get_field_group', $field_group);
+	
+	
+	// set cache
+	wp_cache_set( $cache_key, $field_group, 'acf' );
+	
+	
+	// return
+	return $field_group;
 }
+
 
 /*
 *  _acf_get_field_group_by_id
@@ -294,48 +339,62 @@ function acf_get_field_group($selector = false)
 *  @return	$field_group (array)
 */
 
-function _acf_get_field_group_by_id($post_id = 0)
-{
+function _acf_get_field_group_by_id( $post_id = 0 ) {
+	
+	// get post
+	$post = get_post( $post_id );
+	
+	
+	// bail early if no post, or is not a field group
+	if( empty($post) || $post->post_type != 'acf-field-group' ) {
+	
+		return false;
+		
+	}
+	
+	
+	// modify post_status (new field-group starts as auto-draft)
+	if( $post->post_status == 'auto-draft' ) {
+		
+		$post->post_status = 'publish';
+		
+	}
+	
+	
+	// unserialize data
+	$field_group = maybe_unserialize( $post->post_content );
+	
+	
+	// update attributes
+	$field_group['ID'] = $post->ID;
+	$field_group['title'] = $post->post_title;
+	$field_group['key'] = $post->post_name;
+	$field_group['menu_order'] = $post->menu_order;
+	$field_group['active'] = ($post->post_status === 'publish') ? 1 : 0;
+	
+	
+	// is JSON
+	if( acf_is_local_field_group( $field_group['key'] ) ) {
+		
+		// override
+		$field_group = acf_get_local_field_group( $field_group['key'] );
+		
+		
+		// restore ID
+		$field_group['ID'] = $post->ID;
+		
+	}
+	
+		
+	// validate
+	$field_group = acf_get_valid_field_group( $field_group );
 
-    // get post
-    $post = get_post($post_id);
-
-    // bail early if no post, or is not a field group
-    if (empty($post) || $post->post_type != 'acf-field-group') {
-        return false;
-    }
-
-    // modify post_status (new field-group starts as auto-draft)
-    if ($post->post_status == 'auto-draft') {
-        $post->post_status = 'publish';
-    }
-
-    // unserialize data
-    $field_group = maybe_unserialize($post->post_content);
-
-    // update attributes
-    $field_group['ID'] = $post->ID;
-    $field_group['title'] = $post->post_title;
-    $field_group['key'] = $post->post_name;
-    $field_group['menu_order'] = $post->menu_order;
-    $field_group['active'] = ($post->post_status === 'publish') ? 1 : 0;
-
-    // is JSON
-    if (acf_is_local_field_group($field_group['key'])) {
-
-        // override
-        $field_group = acf_get_local_field_group($field_group['key']);
-
-        // restore ID
-        $field_group['ID'] = $post->ID;
-    }
-
-    // validate
-    $field_group = acf_get_valid_field_group($field_group);
-
-    // return
-    return $field_group;
+	
+	// return
+	return $field_group;
+	
 }
+
 
 /*
 *  _acf_get_field_group_by_key
@@ -350,48 +409,59 @@ function _acf_get_field_group_by_id($post_id = 0)
 *  @return	$field_group (array)
 */
 
-function _acf_get_field_group_by_key($key = '')
-{
+function _acf_get_field_group_by_key( $key = '' ) {
+	
+	// vars
+	$field_group = false;
+		
+	
+	// try JSON before DB to save query time
+	if( acf_is_local_field_group( $key ) ) {
+		
+		$field_group = acf_get_local_field_group( $key );
+		
+		// validate
+		$field_group = acf_get_valid_field_group( $field_group );
+	
+		// return
+		return $field_group;
+		
+	}
 
-    // vars
-    $field_group = false;
-
-    // try JSON before DB to save query time
-    if (acf_is_local_field_group($key)) {
-        $field_group = acf_get_local_field_group($key);
-
-        // validate
-        $field_group = acf_get_valid_field_group($field_group);
-
-        // return
-        return $field_group;
-    }
-
-    // vars
-    $args = array(
-        'posts_per_page'       => 1,
-        'post_type'            => 'acf-field-group',
-        'orderby'              => 'menu_order title',
-        'order'                => 'ASC',
-        'suppress_filters'     => false,
-        'post_status'          => array('publish', 'acf-disabled', 'trash'),
-        'acf_group_key'        => $key,
-    );
-
-    // load posts
-    $posts = get_posts($args);
-
-    // validate
-    if (empty($posts[0])) {
-        return $field_group;
-    }
-
-    // load from ID
-    $field_group = _acf_get_field_group_by_id($posts[0]->ID);
-
-    // return
-    return $field_group;
+	
+	// vars
+	$args = array(
+		'posts_per_page'	=> 1,
+		'post_type'			=> 'acf-field-group',
+		'orderby' 			=> 'menu_order title',
+		'order'				=> 'ASC',
+		'suppress_filters'	=> false,
+		'post_status'		=> array('publish', 'acf-disabled', 'trash'),
+		'acf_group_key'		=> $key
+	);
+	
+	
+	// load posts
+	$posts = get_posts( $args );
+	
+	
+	// validate
+	if( empty($posts[0]) ) {
+	
+		return $field_group;
+			
+	}
+	
+	
+	// load from ID
+	$field_group = _acf_get_field_group_by_id( $posts[0]->ID );
+	
+	
+	// return
+	return $field_group;
+	
 }
+
 
 /*
 *  acf_update_field_group
@@ -407,81 +477,101 @@ function _acf_get_field_group_by_key($key = '')
 *  @return	$field_group (array)
 */
 
-function acf_update_field_group($field_group = array())
-{
-
-    // validate
-    $field_group = acf_get_valid_field_group($field_group);
-
-    // may have been posted. Remove slashes
-    $field_group = wp_unslash($field_group);
-
-    // locations may contain 'uniquid' array keys
-    $field_group['location'] = array_values($field_group['location']);
-
-    foreach ($field_group['location'] as $k => $v) {
-        $field_group['location'][$k] = array_values($v);
-    }
-
-    // store origional field group for return
-    $data = $field_group;
-
-    // extract some args
-    $extract = acf_extract_vars($data, array(
-        'ID',
-        'key',
-        'title',
-        'menu_order',
-        'fields',
-        'active',
-    ));
-
-    // vars
-    $data = maybe_serialize($data);
+function acf_update_field_group( $field_group = array() ) {
+	
+	// validate
+	$field_group = acf_get_valid_field_group( $field_group );
+	
+	
+	// may have been posted. Remove slashes
+	$field_group = wp_unslash( $field_group );
+	
+	
+	// locations may contain 'uniquid' array keys
+	$field_group['location'] = array_values( $field_group['location'] );
+	
+	foreach( $field_group['location'] as $k => $v ) {
+		
+		$field_group['location'][ $k ] = array_values( $v );
+		
+	}
+	
+	
+	// store origional field group for return
+	$data = $field_group;
+	
+	
+	// extract some args
+	$extract = acf_extract_vars($data, array(
+		'ID',
+		'key',
+		'title',
+		'menu_order',
+		'fields',
+		'active'
+	));
+	
+	
+	// vars
+	$data = maybe_serialize( $data );
     $post_status = $extract['active'] ? 'publish' : 'acf-disabled';
-
+    
+    
     // save
     $save = array(
-        'ID'               => $extract['ID'],
-        'post_status'      => $post_status,
-        'post_type'        => 'acf-field-group',
-        'post_title'       => $extract['title'],
-        'post_name'        => $extract['key'],
-        'post_excerpt'     => sanitize_title($extract['title']),
-        'post_content'     => $data,
-        'menu_order'       => $extract['menu_order'],
+    	'ID'			=> $extract['ID'],
+    	'post_status'	=> $post_status,
+    	'post_type'		=> 'acf-field-group',
+    	'post_title'	=> $extract['title'],
+    	'post_name'		=> $extract['key'],
+    	'post_excerpt'	=> sanitize_title($extract['title']),
+    	'post_content'	=> $data,
+    	'menu_order'	=> $extract['menu_order'],
     );
-
+    
+    
     // allow field groups to contain the same name
-    add_filter('wp_unique_post_slug', 'acf_update_field_group_wp_unique_post_slug', 100, 6);
-
+	add_filter( 'wp_unique_post_slug', 'acf_update_field_group_wp_unique_post_slug', 100, 6 ); 
+	
+    
     // update the field group and update the ID
-    if ($field_group['ID']) {
-        wp_update_post($save);
+    if( $field_group['ID'] ) {
+	    
+	    wp_update_post( $save );
+	    
     } else {
-        $field_group['ID'] = wp_insert_post($save);
+	    
+	    $field_group['ID'] = wp_insert_post( $save );
+	    
     }
-
-    // action for 3rd party customization
-    do_action('acf/update_field_group', $field_group);
-
-    // clear cache
-    wp_cache_delete("get_field_group/ID={$field_group['ID']}", 'acf');
-    wp_cache_delete("get_field_group/key={$field_group['key']}", 'acf');
-    wp_cache_delete('get_field_groups', 'acf');
-
+	
+	
+	// action for 3rd party customization
+	do_action('acf/update_field_group', $field_group);
+	
+	
+	// clear cache
+	wp_cache_delete("get_field_group/ID={$field_group['ID']}", 'acf');
+	wp_cache_delete("get_field_group/key={$field_group['key']}", 'acf');
+	wp_cache_delete("get_field_groups", 'acf');
+	
+	
     // return
     return $field_group;
+	
 }
 
-function acf_update_field_group_wp_unique_post_slug($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug)
-{
-    if ($post_type == 'acf-field-group') {
-        $slug = $original_slug;
-    }
-
-    return $slug;
+function acf_update_field_group_wp_unique_post_slug( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
+		
+	if( $post_type == 'acf-field-group' ) {
+	
+		$slug = $original_slug;
+	
+	}
+	
+	return $slug;
 }
+
 
 /*
 *  acf_duplicate_field_group
@@ -497,47 +587,62 @@ function acf_update_field_group_wp_unique_post_slug($slug, $post_ID, $post_statu
 *  @return	$field_group (array)
 */
 
-function acf_duplicate_field_group($selector = 0, $new_post_id = 0)
-{
+function acf_duplicate_field_group( $selector = 0, $new_post_id = 0 ) {
+	
+	// disable JSON to avoid conflicts between DB and JSON
+	acf_disable_local();
+	
+	
+	// load the origional field gorup
+	$field_group = acf_get_field_group( $selector );
+	
+	
+	// bail early if field group did not load correctly
+	if( empty($field_group) ) {
+	
+		return false;
+		
+	}
+	
+	
+	// keep backup of field group
+	$orig_field_group = $field_group;
+	
+	
+	// update ID
+	$field_group['ID'] = $new_post_id;
+	$field_group['key'] = uniqid('group_');
+	
+	
+	// add (copy)
+	if( !$new_post_id ) {
+		
+		$field_group['title'] .= ' (' . __("copy", 'acf') . ')';
+		
+	}
+	
+	
+	// save
+	$field_group = acf_update_field_group( $field_group );
+	
+	
+	// get fields
+	$fields = acf_get_fields( $orig_field_group );
+	
+	
+	// duplicate fields
+	acf_duplicate_fields( $fields, $field_group['ID'] );
+	
+	
+	// action for 3rd party customization
+	do_action('acf/duplicate_field_group', $field_group);
+	
+	
+	// return
+	return $field_group;
 
-    // disable JSON to avoid conflicts between DB and JSON
-    acf_disable_local();
-
-    // load the origional field gorup
-    $field_group = acf_get_field_group($selector);
-
-    // bail early if field group did not load correctly
-    if (empty($field_group)) {
-        return false;
-    }
-
-    // keep backup of field group
-    $orig_field_group = $field_group;
-
-    // update ID
-    $field_group['ID'] = $new_post_id;
-    $field_group['key'] = uniqid('group_');
-
-    // add (copy)
-    if (!$new_post_id) {
-        $field_group['title'] .= ' ('.__('copy', 'acf').')';
-    }
-
-    // save
-    $field_group = acf_update_field_group($field_group);
-
-    // get fields
-    $fields = acf_get_fields($orig_field_group);
-
-    // duplicate fields
-    acf_duplicate_fields($fields, $field_group['ID']);
-
-    // action for 3rd party customization
-    do_action('acf/duplicate_field_group', $field_group);
-
-    // return
-    return $field_group;
 }
+
 
 /*
 *  acf_get_field_count
@@ -552,40 +657,46 @@ function acf_duplicate_field_group($selector = 0, $new_post_id = 0)
 *  @return	(int)
 */
 
-function acf_get_field_count($field_group)
-{
-
-    // vars
-    $count = 0;
-
-    // local
-    if (!$field_group['ID']) {
-        $count = acf_count_local_fields($field_group['key']);
-
-    // DB
-    } else {
-
-        // load fields
-        $posts = get_posts(array(
-            'posts_per_page'       => -1,
-            'post_type'            => 'acf-field',
-            'orderby'              => 'menu_order',
-            'order'                => 'ASC',
-            'suppress_filters'     => true, // DO NOT allow WPML to modify the query
-            'post_parent'          => $field_group['ID'],
-            'fields'               => 'ids',
-            'post_status'          => 'publish, trash', // 'any' won't get trashed fields
-        ));
-
-        $count = count($posts);
-    }
-
-    // filter for 3rd party customization
-    $count = apply_filters('acf/get_field_count', $count, $field_group);
-
-    // return
-    return $count;
+function acf_get_field_count( $field_group ) {
+	
+	// vars
+	$count = 0;
+	
+	
+	// local
+	if( !$field_group['ID'] ) {
+		
+		$count = acf_count_local_fields( $field_group['key'] );	
+	
+	// DB	
+	} else {
+		
+		// load fields
+		$posts = get_posts(array(
+			'posts_per_page'	=> -1,
+			'post_type'			=> 'acf-field',
+			'orderby'			=> 'menu_order',
+			'order'				=> 'ASC',
+			'suppress_filters'	=> true, // DO NOT allow WPML to modify the query
+			'post_parent'		=> $field_group['ID'],
+			'fields'			=> 'ids',
+			'post_status'		=> 'publish, trash' // 'any' won't get trashed fields
+		));
+		
+		$count = count($posts);
+		
+	}
+	
+	
+	// filter for 3rd party customization
+	$count = apply_filters('acf/get_field_count', $count, $field_group);
+	
+	
+	// return
+	return $count;
+	
 }
+
 
 /*
 *  acf_delete_field_group
@@ -600,38 +711,47 @@ function acf_get_field_count($field_group)
 *  @return	(boolean)
 */
 
-function acf_delete_field_group($selector = 0)
-{
-
-    // disable JSON to avoid conflicts between DB and JSON
-    acf_disable_local();
-
-    // load the origional field gorup
-    $field_group = acf_get_field_group($selector);
-
-    // bail early if field group did not load correctly
-    if (empty($field_group)) {
-        return false;
-    }
-
-    // get fields
-    $fields = acf_get_fields($field_group);
-
-    if (!empty($fields)) {
-        foreach ($fields as $field) {
-            acf_delete_field($field['ID']);
-        }
-    }
-
-    // delete
-    wp_delete_post($field_group['ID']);
-
-    // action for 3rd party customization
-    do_action('acf/delete_field_group', $field_group);
-
-    // return
-    return true;
+function acf_delete_field_group( $selector = 0 ) {
+	
+	// disable JSON to avoid conflicts between DB and JSON
+	acf_disable_local();
+	
+	
+	// load the origional field gorup
+	$field_group = acf_get_field_group( $selector );
+	
+	
+	// bail early if field group did not load correctly
+	if( empty($field_group) ) return false;
+	
+	
+	// get fields
+	$fields = acf_get_fields($field_group);
+	
+	
+	if( !empty($fields) ) {
+	
+		foreach( $fields as $field ) {
+			
+			acf_delete_field( $field['ID'] );
+		
+		}
+	
+	}
+	
+	
+	// delete
+	wp_delete_post( $field_group['ID'] );
+	
+	
+	// action for 3rd party customization
+	do_action('acf/delete_field_group', $field_group);
+	
+	
+	// return
+	return true;
 }
+
 
 /*
 *  acf_trash_field_group
@@ -646,38 +766,47 @@ function acf_delete_field_group($selector = 0)
 *  @return	(boolean)
 */
 
-function acf_trash_field_group($selector = 0)
-{
-
-    // disable JSON to avoid conflicts between DB and JSON
-    acf_disable_local();
-
-    // load the origional field gorup
-    $field_group = acf_get_field_group($selector);
-
-    // bail early if field group did not load correctly
-    if (empty($field_group)) {
-        return false;
-    }
-
-    // get fields
-    $fields = acf_get_fields($field_group);
-
-    if (!empty($fields)) {
-        foreach ($fields as $field) {
-            acf_trash_field($field['ID']);
-        }
-    }
-
-    // delete
-    wp_trash_post($field_group['ID']);
-
-    // action for 3rd party customization
-    do_action('acf/trash_field_group', $field_group);
-
-    // return
-    return true;
+function acf_trash_field_group( $selector = 0 ) {
+	
+	// disable JSON to avoid conflicts between DB and JSON
+	acf_disable_local();
+	
+	
+	// load the origional field gorup
+	$field_group = acf_get_field_group( $selector );
+	
+	
+	// bail early if field group did not load correctly
+	if( empty($field_group) ) return false;
+	
+	
+	// get fields
+	$fields = acf_get_fields($field_group);
+	
+	
+	if( !empty($fields) ) {
+	
+		foreach( $fields as $field ) {
+			
+			acf_trash_field( $field['ID'] );
+			
+		}
+		
+	}
+	
+	
+	// delete
+	wp_trash_post( $field_group['ID'] );
+	
+	
+	// action for 3rd party customization
+	do_action('acf/trash_field_group', $field_group);
+	
+	
+	// return
+	return true;
 }
+
 
 /*
 *  acf_untrash_field_group
@@ -692,38 +821,48 @@ function acf_trash_field_group($selector = 0)
 *  @return	(boolean)
 */
 
-function acf_untrash_field_group($selector = 0)
-{
-
-    // disable JSON to avoid conflicts between DB and JSON
-    acf_disable_local();
-
-    // load the origional field gorup
-    $field_group = acf_get_field_group($selector);
-
-    // bail early if field group did not load correctly
-    if (empty($field_group)) {
-        return false;
-    }
-
-    // get fields
-    $fields = acf_get_fields($field_group);
-
-    if (!empty($fields)) {
-        foreach ($fields as $field) {
-            acf_untrash_field($field['ID']);
-        }
-    }
-
-    // delete
-    wp_untrash_post($field_group['ID']);
-
-    // action for 3rd party customization
-    do_action('acf/untrash_field_group', $field_group);
-
-    // return
-    return true;
+function acf_untrash_field_group( $selector = 0 ) {
+	
+	// disable JSON to avoid conflicts between DB and JSON
+	acf_disable_local();
+	
+	
+	// load the origional field gorup
+	$field_group = acf_get_field_group( $selector );
+	
+	
+	// bail early if field group did not load correctly
+	if( empty($field_group) ) return false;
+	
+	
+	// get fields
+	$fields = acf_get_fields($field_group);
+	
+	
+	if( !empty($fields) ) {
+	
+		foreach( $fields as $field ) {
+			
+			acf_untrash_field( $field['ID'] );
+		
+		}
+	
+	}
+	
+	
+	// delete
+	wp_untrash_post( $field_group['ID'] );
+	
+	
+	// action for 3rd party customization
+	do_action('acf/untrash_field_group', $field_group);
+	
+	
+	// return
+	return true;
 }
+
+
 
 /*
 *  acf_get_field_group_style
@@ -738,81 +877,100 @@ function acf_untrash_field_group($selector = 0)
 *  @return	n/a
 */
 
-function acf_get_field_group_style($field_group)
-{
+function acf_get_field_group_style( $field_group ) {
+	
+	// vars
+	$e = '';
+	
+	
+	// validate
+	if( !is_array($field_group['hide_on_screen']) )
+	{
+		return $e;
+	}
+	
+	
+	// add style to html
+	if( in_array('permalink',$field_group['hide_on_screen']) )
+	{
+		$e .= '#edit-slug-box {display: none;} ';
+	}
+	
+	if( in_array('the_content',$field_group['hide_on_screen']) )
+	{
+		$e .= '#postdivrich {display: none;} ';
+	}
+	
+	if( in_array('excerpt',$field_group['hide_on_screen']) )
+	{
+		$e .= '#postexcerpt, #screen-meta label[for=postexcerpt-hide] {display: none;} ';
+	}
+	
+	if( in_array('custom_fields',$field_group['hide_on_screen']) )
+	{
+		$e .= '#postcustom, #screen-meta label[for=postcustom-hide] { display: none; } ';
+	}
+	
+	if( in_array('discussion',$field_group['hide_on_screen']) )
+	{
+		$e .= '#commentstatusdiv, #screen-meta label[for=commentstatusdiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('comments',$field_group['hide_on_screen']) )
+	{
+		$e .= '#commentsdiv, #screen-meta label[for=commentsdiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('slug',$field_group['hide_on_screen']) )
+	{
+		$e .= '#slugdiv, #screen-meta label[for=slugdiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('author',$field_group['hide_on_screen']) )
+	{
+		$e .= '#authordiv, #screen-meta label[for=authordiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('format',$field_group['hide_on_screen']) )
+	{
+		$e .= '#formatdiv, #screen-meta label[for=formatdiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('page_attributes',$field_group['hide_on_screen']) )
+	{
+		$e .= '#pageparentdiv {display: none;} ';
+	}
 
-    // vars
-    $e = '';
-
-    // validate
-    if (!is_array($field_group['hide_on_screen'])) {
-        return $e;
-    }
-
-    // add style to html
-    if (in_array('permalink', $field_group['hide_on_screen'])) {
-        $e .= '#edit-slug-box {display: none;} ';
-    }
-
-    if (in_array('the_content', $field_group['hide_on_screen'])) {
-        $e .= '#postdivrich {display: none;} ';
-    }
-
-    if (in_array('excerpt', $field_group['hide_on_screen'])) {
-        $e .= '#postexcerpt, #screen-meta label[for=postexcerpt-hide] {display: none;} ';
-    }
-
-    if (in_array('custom_fields', $field_group['hide_on_screen'])) {
-        $e .= '#postcustom, #screen-meta label[for=postcustom-hide] { display: none; } ';
-    }
-
-    if (in_array('discussion', $field_group['hide_on_screen'])) {
-        $e .= '#commentstatusdiv, #screen-meta label[for=commentstatusdiv-hide] {display: none;} ';
-    }
-
-    if (in_array('comments', $field_group['hide_on_screen'])) {
-        $e .= '#commentsdiv, #screen-meta label[for=commentsdiv-hide] {display: none;} ';
-    }
-
-    if (in_array('slug', $field_group['hide_on_screen'])) {
-        $e .= '#slugdiv, #screen-meta label[for=slugdiv-hide] {display: none;} ';
-    }
-
-    if (in_array('author', $field_group['hide_on_screen'])) {
-        $e .= '#authordiv, #screen-meta label[for=authordiv-hide] {display: none;} ';
-    }
-
-    if (in_array('format', $field_group['hide_on_screen'])) {
-        $e .= '#formatdiv, #screen-meta label[for=formatdiv-hide] {display: none;} ';
-    }
-
-    if (in_array('page_attributes', $field_group['hide_on_screen'])) {
-        $e .= '#pageparentdiv {display: none;} ';
-    }
-
-    if (in_array('featured_image', $field_group['hide_on_screen'])) {
-        $e .= '#postimagediv, #screen-meta label[for=postimagediv-hide] {display: none;} ';
-    }
-
-    if (in_array('revisions', $field_group['hide_on_screen'])) {
-        $e .= '#revisionsdiv, #screen-meta label[for=revisionsdiv-hide] {display: none;} ';
-    }
-
-    if (in_array('categories', $field_group['hide_on_screen'])) {
-        $e .= '#categorydiv, #screen-meta label[for=categorydiv-hide] {display: none;} ';
-    }
-
-    if (in_array('tags', $field_group['hide_on_screen'])) {
-        $e .= '#tagsdiv-post_tag, #screen-meta label[for=tagsdiv-post_tag-hide] {display: none;} ';
-    }
-
-    if (in_array('send-trackbacks', $field_group['hide_on_screen'])) {
-        $e .= '#trackbacksdiv, #screen-meta label[for=trackbacksdiv-hide] {display: none;} ';
-    }
-
-    // return
-    return apply_filters('acf/get_field_group_style', $e, $field_group);
+	if( in_array('featured_image',$field_group['hide_on_screen']) )
+	{
+		$e .= '#postimagediv, #screen-meta label[for=postimagediv-hide] {display: none;} ';
+	}
+	
+	if( in_array('revisions',$field_group['hide_on_screen']) )
+	{
+		$e .= '#revisionsdiv, #screen-meta label[for=revisionsdiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('categories',$field_group['hide_on_screen']) )
+	{
+		$e .= '#categorydiv, #screen-meta label[for=categorydiv-hide] {display: none;} ';
+	}
+	
+	if( in_array('tags',$field_group['hide_on_screen']) )
+	{
+		$e .= '#tagsdiv-post_tag, #screen-meta label[for=tagsdiv-post_tag-hide] {display: none;} ';
+	}
+	
+	if( in_array('send-trackbacks',$field_group['hide_on_screen']) )
+	{
+		$e .= '#trackbacksdiv, #screen-meta label[for=trackbacksdiv-hide] {display: none;} ';
+	}
+	
+	
+	// return	
+	return apply_filters('acf/get_field_group_style', $e, $field_group);
 }
+
 
 /*
 *  acf_import_field_group
@@ -827,92 +985,125 @@ function acf_get_field_group_style($field_group)
 *  @return	$id (int)
 */
 
-function acf_import_field_group($field_group)
-{
-
-    // vars
-    $ref = array();
-    $order = array();
-
-    // extract fields
-    $fields = acf_extract_var($field_group, 'fields');
-
-    // format fields
-    $fields = acf_prepare_fields_for_import($fields);
-
-    // remove old fields
-    if ($field_group['ID']) {
-
-        // disable local - important as to avoid 'acf_get_fields_by_id' returning fields with ID = 0
-        acf_disable_local();
-
-        // load fields
-        $db_fields = acf_get_fields_by_id($field_group['ID']);
-        $db_fields = acf_prepare_fields_for_import($db_fields);
-
-        // get field keys
-        $keys = array();
-        foreach ($fields as $field) {
-            $keys[] = $field['key'];
-        }
-
-        // loop over db fields
-        foreach ($db_fields as $field) {
-
-            // add to ref
-            $ref[$field['key']] = $field['ID'];
-
-            if (!in_array($field['key'], $keys)) {
-                acf_delete_field($field['ID']);
-            }
-        }
-
-        // enable local - important as to allow local to find new fields and save json file
-        acf_enable_local();
-    }
-
-    // save field group
-    $field_group = acf_update_field_group($field_group);
-
-    // add to ref
-    $ref[$field_group['key']] = $field_group['ID'];
-
-    // add to order
-    $order[$field_group['ID']] = 0;
-
-    // add fields
-    foreach ($fields as $field) {
-
-        // add ID
-        if (!$field['ID'] && isset($ref[$field['key']])) {
-            $field['ID'] = $ref[$field['key']];
-        }
-
-        // add parent
-        if (empty($field['parent'])) {
-            $field['parent'] = $field_group['ID'];
-        } elseif (isset($ref[$field['parent']])) {
-            $field['parent'] = $ref[$field['parent']];
-        }
-
-        // add field menu_order
-        if (!isset($order[$field['parent']])) {
-            $order[$field['parent']] = 0;
-        }
-
-        $field['menu_order'] = $order[$field['parent']];
-        $order[$field['parent']]++;
-
-        // save field
-        $field = acf_update_field($field);
-
-        // add to ref
-        $ref[$field['key']] = $field['ID'];
-    }
-
-    // return new field group
-    return $field_group;
+function acf_import_field_group( $field_group ) {
+	
+	// vars
+	$ref = array();
+	$order = array();
+	
+	
+	// extract fields
+	$fields = acf_extract_var($field_group, 'fields');
+	
+	
+	// format fields
+	$fields = acf_prepare_fields_for_import( $fields );
+	
+	
+	// remove old fields
+	if( $field_group['ID'] ) {
+		
+		// disable local - important as to avoid 'acf_get_fields_by_id' returning fields with ID = 0
+		acf_disable_local();
+	
+		
+		// load fields
+		$db_fields = acf_get_fields_by_id( $field_group['ID'] );
+		$db_fields = acf_prepare_fields_for_import( $db_fields );
+		
+		
+		// get field keys
+		$keys = array();
+		foreach( $fields as $field ) {
+			
+			$keys[] = $field['key'];
+			
+		}
+		
+		
+		// loop over db fields
+		foreach( $db_fields as $field ) {
+			
+			// add to ref
+			$ref[ $field['key'] ] = $field['ID'];
+			
+			
+			if( !in_array($field['key'], $keys) ) {
+				
+				acf_delete_field( $field['ID'] );
+				
+			}
+			
+		}
+		
+		
+		// enable local - important as to allow local to find new fields and save json file
+		acf_enable_local();
+		
+	}
+	
+			
+	// save field group
+	$field_group = acf_update_field_group( $field_group );
+	
+	
+	// add to ref
+	$ref[ $field_group['key'] ] = $field_group['ID'];
+	
+	
+	// add to order
+	$order[ $field_group['ID'] ] = 0;
+	
+	
+	// add fields
+	foreach( $fields as $field ) {
+		
+		// add ID
+		if( !$field['ID'] && isset($ref[ $field['key'] ]) ) {
+			
+			$field['ID'] = $ref[ $field['key'] ];	
+			
+		}
+		
+		
+		// add parent
+		if( empty($field['parent']) ) {
+			
+			$field['parent'] = $field_group['ID'];
+			
+		} elseif( isset($ref[ $field['parent'] ]) ) {
+			
+			$field['parent'] = $ref[ $field['parent'] ];
+				
+		}
+		
+		
+		// add field menu_order
+		if( !isset($order[ $field['parent'] ]) ) {
+			
+			$order[ $field['parent'] ] = 0;
+			
+		}
+		
+		$field['menu_order'] = $order[ $field['parent'] ];
+		$order[ $field['parent'] ]++;
+		
+		
+		// save field
+		$field = acf_update_field( $field );
+		
+		
+		// add to ref
+		$ref[ $field['key'] ] = $field['ID'];
+		
+	}
+	
+	
+	// return new field group
+	return $field_group;
+	
 }
+
 
 /*
 *  acf_prepare_field_group_for_export
@@ -927,18 +1118,23 @@ function acf_import_field_group($field_group)
 *  @return	$post_id (int)
 */
 
-function acf_prepare_field_group_for_export($field_group)
-{
-
-    // extract field group ID
-    $id = acf_extract_var($field_group, 'ID');
-
-    // prepare fields
-    $field_group['fields'] = acf_prepare_fields_for_export($field_group['fields']);
-
-    // filter for 3rd party customization
-    $field_group = apply_filters('acf/prepare_field_group_for_export', $field_group);
-
-    // return
-    return $field_group;
+function acf_prepare_field_group_for_export( $field_group ) {
+	
+	// extract field group ID
+	$id = acf_extract_var( $field_group, 'ID' );
+	
+	
+	// prepare fields
+	$field_group['fields'] = acf_prepare_fields_for_export( $field_group['fields'] );
+	
+	
+	// filter for 3rd party customization
+	$field_group = apply_filters('acf/prepare_field_group_for_export', $field_group);
+	
+	
+	// return
+	return $field_group;
 }
+
+
+?>

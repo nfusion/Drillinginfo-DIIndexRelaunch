@@ -2,22 +2,27 @@
 
 // vars
 $field = array(
-    'label'        => __('Select Field Groups', 'acf'),
-    'type'         => 'checkbox',
-    'name'         => 'acf_export_keys',
-    'prefix'       => false,
-    'value'        => false,
-    'toggle'       => true,
-    'choices'      => array(),
+	'label'		=> __('Select Field Groups', 'acf'),
+	'type'		=> 'checkbox',
+	'name'		=> 'acf_export_keys',
+	'prefix'	=> false,
+	'value'		=> false,
+	'toggle'	=> true,
+	'choices'	=> array(),
 );
 
 $field_groups = acf_get_field_groups();
 
+
 // populate choices
-if ($field_groups) {
-    foreach ($field_groups as $field_group) {
-        $field['choices'][$field_group['key']] = $field_group['title'];
-    }
+if( $field_groups ) {
+	
+	foreach( $field_groups as $field_group ) {
+		
+		$field['choices'][ $field_group['key'] ] = $field_group['title'];
+		
+	}
+	
 }
 
 ?>
@@ -34,11 +39,11 @@ if ($field_groups) {
 			
 			<form method="post" action="">
 			<div class="acf-hidden">
-				<input type="hidden" name="_acfnonce" value="<?php echo wp_create_nonce('export'); ?>" />
+				<input type="hidden" name="_acfnonce" value="<?php echo wp_create_nonce( 'export' ); ?>" />
 			</div>
 			<table class="form-table">
                 <tbody>
-	                <?php acf_render_field_wrap($field, 'tr'); ?>
+	                <?php acf_render_field_wrap( $field, 'tr' ); ?>
 					<tr>
 						<th></th>
 						<td>
@@ -63,7 +68,7 @@ if ($field_groups) {
 			
 			<form method="post" action="" enctype="multipart/form-data">
 			<div class="acf-hidden">
-				<input type="hidden" name="_acfnonce" value="<?php echo wp_create_nonce('import'); ?>" />
+				<input type="hidden" name="_acfnonce" value="<?php echo wp_create_nonce( 'import' ); ?>" />
 			</div>
 			<table class="form-table">
                 <tbody>
