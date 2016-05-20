@@ -128,4 +128,27 @@
 		h3,p {margin-bottom:0;}
 		background: $white;
 	}
+
+	/* toggle container */
+	.toggle-container-wrapper .active {
+		color: $primary-color;
+	}
+	.toggle-panel {
+		margin-bottom: rem-calc(25);
+	}
+
+	/* top ten tables */
+	.top-ten {
+		font-size:rem(14);
+		width:100%;
+		
+		@include breakpoint(medium) {
+			display:block;
+			margin: 0 auto;
+		}
+		@include breakpoint(795) {
+			// go back to 100% width here.
+			display:table;
+		}
+	}
 }

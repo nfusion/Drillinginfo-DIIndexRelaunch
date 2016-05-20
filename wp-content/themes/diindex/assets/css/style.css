@@ -4600,24 +4600,6 @@ i[class^="fi-"]::before {
   border: none;
   border-radius: 0 0 5px 5px; }
 
-.toggle-container-wrapper .active {
-  color: #76c000; }
-
-/* top-ten tables */
-.toggle-panel {
-  margin-bottom: 1.5625rem; }
-
-.top-ten {
-  font-size: 0.875rem;
-  width: 100%; }
-  @media screen and (min-width: 40em) {
-    .top-ten {
-      display: block;
-      margin: 0 auto; } }
-  @media screen and (min-width: 49.6875em) {
-    .top-ten {
-      display: table; } }
-
 /*********************
 PLUGIN STYLES
 *********************/
