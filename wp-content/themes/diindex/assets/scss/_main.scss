@@ -81,24 +81,32 @@ HEADER STYLES
 	}
 	.logo {
 		border-right: 1px solid #8a8d8e;
-		background: url(../images/drillinginfo-logo.png) 0 0 no-repeat;
+
+		background: url(../images/drillinginfo-logo.png) 0 50% no-repeat;
 		width: 165px; // add padding
 		height: 50px;
 
 		@include breakpoint(medium) {
-			background: url(../images/drillinginfo-logo-gray.png);
-		width: 170px;
-		height: 56px;
+			border-right-color: #cdcdce;
+			background-image: url(../images/drillinginfo-logo-gray.png);
+			width: 181px;
+			height: 66px;
 		}
 	}
 
 	.section-title {
 		color: $white;
 		text-transform: uppercase;
-		font-size: rem-calc(20);
+		font-size: rem-calc(25);
 		display: block;
 		line-height: 1;
 		padding-top: rem-calc(6);
+
+		@include breakpoint(medium) {
+			color: $medium-gray;
+			font-size: rem-calc(40);
+			padding-top: rem-calc(10);
+		}
 	}
 }
 /*********************
@@ -125,7 +133,7 @@ NAVIGATION STYLES
 	}
 
 	@include breakpoint(medium) {
-		padding-bottom:0;
+		padding: rem-calc(12) 0;
 		background: $white;
 
 		ul {
@@ -154,6 +162,8 @@ NAVIGATION STYLES
 				&::after {
 	    			@include css-triangle(9px, $white, down);
 	    			margin: 0 auto;
+	    			position: relative;
+	    			top: rem-calc(19);
 	    		}
 	    	}
 		}
@@ -165,10 +175,14 @@ NAVIGATION STYLES
 	@include linear-gradient(to right, #2f9bba, #0085ad);
 	.menu .menu-item > a {
 		// offsetting the active state.
-		border-bottom: 4px solid transparent; 
+		border-bottom: rem-calc(6) solid transparent; 
+	}
+	.menu > li > a {
+		padding: .7rem rem-calc(5) rem-calc(5);
+		margin: 0 rem-calc(7);
 	}
 	.menu .active > a { 
-		border-bottom: 4px solid $primary-color;
+		border-bottom: rem-calc(6) solid $primary-color;
 	}
 
 	h3, p {
@@ -179,7 +193,7 @@ NAVIGATION STYLES
 }
 .single-post .site-nav-bar .nav-posts a {
 	border-bottom: 4px solid $primary-color;
-	font-weight: bold;
+	font-family: $bold-font-family;
 }
 
 .off-canvas-list {
@@ -201,8 +215,23 @@ NAVIGATION STYLES
 }
 
 .off-canvas {
-	li.is-submenu-item a {
-		padding-left: 2em; 
+	li.is-submenu-item {
+
+		&> a {
+			padding: 0.7rem 0 0 3.5rem
+		}
+
+		.nav-item-inner {
+			display: inline-block;
+			padding: rem-calc(8) rem-calc(12);
+			position:relative;
+			left: rem-calc(-12);
+		}
+
+		&.active .nav-item-inner {
+			border-left: rem-calc(10) solid $primary-color;
+			left: rem-calc(-22);
+		}
 	}
 }
 
@@ -219,7 +248,7 @@ NAVIGATION STYLES
 }
 .menu .active > a {
 	background:transparent;
-	font-weight:bold;
+	font-family: $bold-font-family;
 }
 
 

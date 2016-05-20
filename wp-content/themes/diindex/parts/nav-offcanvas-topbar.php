@@ -9,6 +9,7 @@
 ?>
 
 <div class="top-bar" id="top-bar-menu">
+<div class="row">
 	<div class="top-bar-left float-left">
 		<ul class="menu">
 			<li>
@@ -32,7 +33,9 @@
 		</ul>
 	</div>
 </div>
+</div>
 <div id="site-nav-menu" class="clearfix site-nav-bar show-for-medium">
+<div class="row">
 	<div class="float-left site-meta">
 		<h3><?php echo get_bloginfo('name'); ?>:</h3>
 		<p><?php echo get_bloginfo('description'); ?></p>
@@ -46,4 +49,5 @@
 
         wp_nav_menu($args);
     ?>
+</div>
 </div>
