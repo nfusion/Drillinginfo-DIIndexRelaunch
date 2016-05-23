@@ -9,6 +9,10 @@ wp-content/plugins/diindex/app/.node_modules-tmp
 wp-content/plugins/diindex/app/.bower_components-tmp
 wp-content/plugins/diindex/app/bower_components
 
+# rig count widget ignore list
+rig-count/bower_components
+rig-count/node_modules
+
 # composer ignore list
 /vendor
 composer.lock

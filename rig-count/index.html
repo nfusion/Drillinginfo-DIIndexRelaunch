@@ -3,34 +3,35 @@
 
 <head>
     <title>Drillinginfo Index: Rig Count</title>
-    <style>
-        body {
-            background: aliceblue;
-        }
-        
-        #rig-count {
-            padding: 5px;
-            font: 16px 'helvetica neue', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="dist/css/styles.css" />
 </head>
 
 <body>
     <div id="rig-count"></div>
 
     <!-- libraries -->
-    <script src="vendor.js"></script>
+    <script src="vendor/handlebars/handlebars.min.js"></script>
+    <script src="vendor/moment/min/moment.min.js"></script>
 
     <!-- handlebars templates and helpers -->
     <script id="rig-count-tpl" type="text/x-handlebars-template">
-        <h1>Rig Count</h1>
-        <ul>
-            <li>count change: {{count_change}}</li>
-            <!--li>date order: {{date_order}}</li-->
-            <li>percent change: {{delta pct_change append="%"}}</li>
-            <li>rig count: {{rig_count}}</li>
-            <li>rig date: {{dateformat rig_date "dddd, MMMM Do YYYY"}}</li>
-        </ul>
+        <div id="rig-count">
+            <div class="overview-wrapper">
+                <div class="data">
+                    <h1>US Rig Count</h1>
+                    <div class="stat">{{rig_count}}</div>
+                    <div class="date">{{dateformat rig_date "dddd, MMMM Do YYYY"}}</div>
+                </div>
+                <div class="delta">
+                    {{delta pct_change append="%"}}
+                    <div class="interval">From Previous Week</div>
+                </div>
+            </div><!-- /.overview-wrapper -->
+            <div class="info-bar">
+                <div class="logo"><img src="dist/images/di-logo.svg" alt="Drillinginfo" /></div>
+                <div class="cta"><a href="http://diindex.drillinginfo.com/" class="button">See Full Report</a></div>
+            </div><!-- /.info-bar -->
+        </div>
     </script>
     <script>
         // positive or negative change?

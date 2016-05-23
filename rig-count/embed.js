@@ -8,5 +8,6 @@
 	frame.height = 200;
 	frame.width = 450;
 	frame.style.border = 0;
+	frame.scrolling = "no";
 	script_self.parentNode.insertBefore(frame, script_self.nextSibling);
 })();

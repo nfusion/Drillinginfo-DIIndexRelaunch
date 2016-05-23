@@ -1,0 +1,178 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: "univers-condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../../fonts/univers-condensed/regular/universltstd-cn.eot?#iefix") format("embedded-opentype"), url("../../fonts/univers-condensed/regular/universltstd-cn.woff") format("woff"), url("../../fonts/univers-condensed/regular/universltstd-cn.ttf") format("truetype"), url("../../fonts/univers-condensed/regular/universltstd-cn.svg#univers-condensed") format("svg"); }
+
+body {
+  font: 16px "univers-condensed", "helvetica neue", helvetica, sans-serif; }
+
+div {
+  box-sizing: border-box; }
+
+#rig-count h1, #rig-count p {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: normal; }
+
+#rig-count .stat {
+  font-size: 4.125rem;
+  line-height: 1;
+  color: #78ba2f; }
+
+#rig-count .overview-wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../images/rig.svg"), linear-gradient(#8b8b8b, #4f4f4f);
+  background-position: 98% bottom, left top;
+  background-repeat: no-repeat, repeat;
+  background-size: 57px 115px, auto;
+  padding: 20px;
+  color: #fff; }
+  #rig-count .overview-wrapper::after {
+    clear: both;
+    content: "";
+    display: table; }
+  #rig-count .overview-wrapper .data {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 57.35098%;
+    text-align: center; }
+    #rig-count .overview-wrapper .data:last-child {
+      margin-right: 0; }
+  #rig-count .overview-wrapper .delta {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    #rig-count .overview-wrapper .delta:last-child {
+      margin-right: 0; }
+
+#rig-count .info-bar {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  vertical-align: middle; }
+  #rig-count .info-bar::after {
+    clear: both;
+    content: "";
+    display: table; }
+  #rig-count .info-bar .logo, #rig-count .info-bar .cta {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    #rig-count .info-bar .logo:last-child, #rig-count .info-bar .cta:last-child {
+      margin-right: 0; }
+  #rig-count .info-bar .logo {
+    padding: 0.625rem 0 0 1.25rem; }
+    #rig-count .info-bar .logo img {
+      width: 65%; }
+  #rig-count .info-bar .cta {
+    padding: 0.9375rem 0.9375rem 0 0;
+    text-align: right; }
+
+#rig-count a.button {
+  text-decoration: none;
+  margin: 0; }
+
+#rig-count .button {
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 0.85em 1em;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  background-color: #78ba2f;
+  color: #fefefe; }
+  #rig-count .button::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset 5px;
+    border-color: transparent transparent transparent #fefefe;
+    border-left-style: solid;
+    border-right-width: 0;
+    display: inline-block;
+    margin-left: 0.375rem; }
+
+#rig-count [data-whatinput='mouse'] .button {
+  outline: 0; }
+
+#rig-count .button:hover, #rig-count .button:focus {
+  background-color: #64a300;
+  color: #fefefe; }
+
+#rig-count .button.tiny {
+  font-size: 0.6rem; }
+
+#rig-count .button.small {
+  font-size: 0.75rem; }
+
+#rig-count .button.large {
+  font-size: 1.25rem; }

@@ -1,8 +1,0 @@
-<!DOCTYPE html> <html> <head> <title>Drillinginfo Index: Rig Count</title> <style>body{background:#f0f8ff}#rig-count{padding:5px;font:16px 'helvetica neue',sans-serif}</style> </head> <body> <div id="rig-count"></div> <script src="vendor.js"></script> <script id="rig-count-tpl" type="text/x-handlebars-template"><h1>Rig Count</h1>
-        <ul>
-            <li>count change: {{count_change}}</li>
-            <!--li>date order: {{date_order}}</li-->
-            <li>percent change: {{delta pct_change append="%"}}</li>
-            <li>rig count: {{rig_count}}</li>
-            <li>rig date: {{dateformat rig_date "dddd, MMMM Do YYYY"}}</li>
-        </ul></script> <script>Handlebars.registerHelper("delta",function(a,e){return a=Math.round(a),a>=0?new Handlebars.SafeString('<span class="inc">'+a+e.hash.append+"</span>"):new Handlebars.SafeString('<span class="dec">'+a+e.hash.append+"</span>")}),Handlebars.registerHelper("dateformat",function(a,e){return moment(a).format(e)})</script> <script>!function(){var e=document.getElementById("rig-count-tpl").innerHTML,n=Handlebars.compile(e),t="/wp-content/plugins/diindex/api-proxy.php",i="url=http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json",o=new XMLHttpRequest;o.onreadystatechange=function(){if(4==o.readyState)if(200==o.status){response_json=JSON.parse(o.responseText);var e=response_json.contents.elements[0];document.getElementById("rig-count").innerHTML=n(e)}else{var t=document.createElement(t);t.textContent="Rig data is not available at this time.",document.getElementById("rig-count").appendChild(t)}},o.open("GET",t+"?"+i,!0),o.send()}()</script> </body> </html>

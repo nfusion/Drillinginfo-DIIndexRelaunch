@@ -1,0 +1,118 @@
+// suboptimal import structure, but my gems aren't installing correctly.
+@import "../vendor/bourbon/app/assets/stylesheets/_bourbon"; 
+@import "../vendor/neat/app/assets/stylesheets/_neat"; 
+@import "mixins";
+@import "reset";
+
+$white: #fefefe;
+$primary-color: #78ba2f;
+$dark-gray: #4f4f4f;
+$medium-gray: #8b8b8b;
+$body-font-family: "univers-condensed", 'helvetica neue', helvetica, sans-serif;
+
+@include font-face("univers-condensed", "../../fonts/univers-condensed/regular/universltstd-cn", $file-formats: eot woff ttf svg);
+
+
+body {
+	font: 16px $body-font-family;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+#rig-count {
+	
+	h1, p {
+		font-size: 1rem; 
+		margin:0;
+		font-weight: normal;
+	}
+	.stat {
+		font-size: rem(66);
+		line-height: 1;
+		color: $primary-color;
+	}
+	.overview-wrapper {
+		@include outer-container;
+		@include background-image(url("../images/rig.svg"), linear-gradient($medium-gray, $dark-gray)); 
+		background-position: 98% bottom, left top;
+		background-repeat: no-repeat, repeat;
+		background-size: 57px 115px, auto;
+		padding: 20px;
+		color: #fff;
+
+		.data {
+			@include span-columns(7);
+			text-align: center;
+		}
+
+		.delta {
+			@include span-columns(4);
+		}
+	}
+
+	.info-bar {
+		@include outer-container;
+		background: #fff;
+		vertical-align: middle;
+
+		.logo, .cta {
+			@include span-columns(6);
+		}
+
+		.logo {
+			padding: rem(10) 0 0 rem(20);
+			img {
+				width: 65%;
+			}
+		}
+
+		.cta {
+			padding: rem(15) rem(15) 0 0;
+			text-align: right;
+		}
+	}	
+
+	// I dont want to import all of foundation's settings just for this.
+	a.button {
+		text-decoration: none;
+		margin:0;
+	}
+	.button {
+		text-decoration: none;
+		text-transform:uppercase;
+	  	display: inline-block;
+	  	text-align: center;
+	  	line-height: 1;
+	  	cursor: pointer;
+	  	-webkit-appearance: none;
+	  	transition: background-color 0.25s ease-out, color 0.25s ease-out;
+	  	vertical-align: middle;
+	  	border: 1px solid transparent;
+	  	border-radius: 5px;
+	  	padding: 0.85em 1em;
+	  	margin: 0 0 1rem 0;
+	  	font-size: 0.9rem;
+	  	background-color: $primary-color;
+	  	color: $white; 
+
+	  	&::after {
+	  		@include css-triangle(5px, $white, right); 
+	  		display:inline-block;
+	  		margin-left: rem(6);
+	  	}
+	}
+
+	  [data-whatinput='mouse'] .button {
+	    outline: 0; }
+	  .button:hover, .button:focus {
+	    background-color: #64a300;
+	    color: #fefefe; }
+	  .button.tiny {
+	    font-size: 0.6rem; }
+	  .button.small {
+	    font-size: 0.75rem; }
+	  .button.large {
+	    font-size: 1.25rem; }
+}
