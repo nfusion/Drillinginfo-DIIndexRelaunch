@@ -147,100 +147,97 @@ a.button {
   #data-error p {
     margin-bottom: 0.625rem; }
 
-#rig-count-widget h1, #rig-count-widget p {
-  font-size: 1rem;
-  margin: 0;
-  font-weight: normal; }
-
-#rig-count-widget .stat {
-  font-size: 4.125rem;
-  line-height: 1;
-  color: #78ba2f;
-  margin-bottom: -0.625rem; }
-
-#rig-count-widget .pct {
-  font-size: 1.8125rem; }
-  #rig-count-widget .pct i {
-    border: 4px solid #e94343;
-    border-radius: 50%;
-    width: 1.5625rem;
-    height: 1.5625rem;
-    font-size: 0.75rem;
-    display: inline-block;
-    text-align: center;
-    padding: 0.125rem;
-    line-height: 1.4;
-    margin-left: 0.625rem;
-    position: relative;
-    top: -0.1875rem; }
-  #rig-count-widget .pct .fi-arrow-down {
-    color: #e94343; }
-  #rig-count-widget .pct .fi-arrow-up {
-    color: #76b72e; }
-
-#rig-count-widget .interval {
-  font-size: 0.6875rem; }
-
-#rig-count-widget .overview-wrapper {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  background-image: url("../images/rig.svg"), linear-gradient(#8b8b8b, #4f4f4f);
-  background-position: 98% bottom, left top;
-  background-repeat: no-repeat, repeat;
-  background-size: 57px 115px, auto;
-  padding: 20px;
-  color: #fff;
-  position: relative; }
-  #rig-count-widget .overview-wrapper::after {
-    clear: both;
-    content: "";
-    display: table; }
-  #rig-count-widget .overview-wrapper .data {
-    float: left;
-    display: block;
-    width: 59.70863%;
-    position: relative;
-    text-align: center;
-    padding-right: 1.25rem; }
-    #rig-count-widget .overview-wrapper .data:last-child {
-      width: 57.35098%; }
-    #rig-count-widget .overview-wrapper .data .vert {
-      width: 1px;
-      position: absolute;
-      background: #fff;
-      top: 0.3125rem;
-      bottom: 0.3125rem;
-      right: 0; }
-  #rig-count-widget .overview-wrapper .delta {
-    float: left;
-    display: block;
-    width: 34.11922%;
-    padding-left: 1.25rem; }
-    #rig-count-widget .overview-wrapper .delta:last-child {
-      width: 31.76157%; }
-
-#rig-count-widget .info-bar {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  background: #fff;
-  vertical-align: middle; }
-  #rig-count-widget .info-bar::after {
-    clear: both;
-    content: "";
-    display: table; }
-  #rig-count-widget .info-bar .logo, #rig-count-widget .info-bar .cta {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    #rig-count-widget .info-bar .logo:last-child, #rig-count-widget .info-bar .cta:last-child {
-      margin-right: 0; }
-  #rig-count-widget .info-bar .logo {
-    padding: 0.625rem 0 0 1.25rem; }
-    #rig-count-widget .info-bar .logo img {
-      width: 65%; }
-  #rig-count-widget .info-bar .cta {
-    padding: 0.9375rem 0.9375rem 0 0;
-    text-align: right; }
+#rig-count-widget {
+  background: #fff; }
+  #rig-count-widget h1, #rig-count-widget p {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: normal; }
+  #rig-count-widget .stat {
+    font-size: 4.125rem;
+    line-height: 1;
+    color: #78ba2f;
+    margin-bottom: -0.625rem; }
+  #rig-count-widget .pct {
+    font-size: 1.8125rem; }
+    #rig-count-widget .pct i {
+      border: 4px solid #e94343;
+      border-radius: 50%;
+      width: 1.5625rem;
+      height: 1.5625rem;
+      font-size: 0.75rem;
+      display: inline-block;
+      text-align: center;
+      padding: 0.125rem;
+      line-height: 1.4;
+      margin-left: 0.625rem;
+      position: relative;
+      top: -0.1875rem; }
+    #rig-count-widget .pct .fi-arrow-down {
+      color: #e94343; }
+    #rig-count-widget .pct .fi-arrow-up {
+      color: #76b72e; }
+  #rig-count-widget .interval {
+    font-size: 0.6875rem; }
+  #rig-count-widget .overview-wrapper {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../images/rig.svg"), linear-gradient(#8b8b8b, #4f4f4f);
+    background-position: 98% bottom, left top;
+    background-repeat: no-repeat, repeat;
+    background-size: 57px 115px, auto;
+    padding: 20px;
+    color: #fff;
+    position: relative; }
+    #rig-count-widget .overview-wrapper::after {
+      clear: both;
+      content: "";
+      display: table; }
+    #rig-count-widget .overview-wrapper .data {
+      float: left;
+      display: block;
+      width: 59.70863%;
+      position: relative;
+      text-align: center;
+      padding-right: 1.25rem; }
+      #rig-count-widget .overview-wrapper .data:last-child {
+        width: 57.35098%; }
+      #rig-count-widget .overview-wrapper .data .vert {
+        width: 1px;
+        position: absolute;
+        background: #fff;
+        top: 0.3125rem;
+        bottom: 0.3125rem;
+        right: 0; }
+    #rig-count-widget .overview-wrapper .delta {
+      float: left;
+      display: block;
+      width: 34.11922%;
+      padding-left: 1.25rem; }
+      #rig-count-widget .overview-wrapper .delta:last-child {
+        width: 31.76157%; }
+  #rig-count-widget .info-bar {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    vertical-align: middle; }
+    #rig-count-widget .info-bar::after {
+      clear: both;
+      content: "";
+      display: table; }
+    #rig-count-widget .info-bar .logo, #rig-count-widget .info-bar .cta {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 48.82117%; }
+      #rig-count-widget .info-bar .logo:last-child, #rig-count-widget .info-bar .cta:last-child {
+        margin-right: 0; }
+    #rig-count-widget .info-bar .logo {
+      padding: 0.625rem 0 0 1.25rem; }
+      #rig-count-widget .info-bar .logo img {
+        width: 65%; }
+    #rig-count-widget .info-bar .cta {
+      padding: 0.9375rem 0.9375rem 0 0;
+      text-align: right; }
