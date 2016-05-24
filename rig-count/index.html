@@ -73,7 +73,8 @@
                     if(xmlhttp.status == 200) {
 	            		// success
 	            		response_json = JSON.parse(xmlhttp.responseText);
-                        if (response_json.status == 200) {
+
+                        if (response_json.status.http_code == 200) {
     	            		current = response_json.contents.elements[0];
     	                    // render template
                             source = document.getElementById("rig-count-tpl").innerHTML;
@@ -97,13 +98,6 @@
 	               		document.getElementById("rig-count").innerHTML = template();
 	                }
             	} 
-                else {
-                    // failure
-                    source = document.getElementById("rig-count-error").innerHTML;
-                    template = Handlebars.compile(source);
-
-                    document.getElementById("rig-count").innerHTML = template();
-                }
             };
             // send request
             xmlhttp.open("GET", request_url + "?" + data_url, true);
