@@ -11,6 +11,7 @@ $down-color: #e94343;
 $up-color: #76b72e;
 $dark-gray: #4f4f4f;
 $medium-gray: #8b8b8b;
+$darker-gray: #393939;
 $body-font-family: "univers-condensed", 'helvetica neue', helvetica, sans-serif;
 
 @include font-face("univers-condensed", "../../fonts/univers-condensed/regular/universltstd-cn", $file-formats: eot woff ttf svg);
@@ -18,14 +19,79 @@ $body-font-family: "univers-condensed", 'helvetica neue', helvetica, sans-serif;
 
 body {
 	font: 16px $body-font-family;
+	background-color: $darker-gray;
+	color: #ccc;
 }
 
 div {
 	box-sizing: border-box;
 }
 
-#rig-count {
-	
+// I dont want to import all of foundation's settings just for this.
+a.button {
+	text-decoration: none;
+	margin:0;
+}
+.button {
+	text-decoration: none;
+	text-transform:uppercase;
+  	display: inline-block;
+  	text-align: center;
+  	line-height: 1;
+  	cursor: pointer;
+  	-webkit-appearance: none;
+  	transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  	vertical-align: middle;
+  	border: 1px solid transparent;
+  	border-radius: 5px;
+  	padding: rem(12) rem(16) rem(8);
+  	margin: 0 0 1rem 0;
+  	font-size: 0.9rem;
+  	background-color: $primary-color;
+  	color: $white; 
+  	box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+
+  	&::after {
+  		@include css-triangle(5px, $white, right); 
+  		display:inline-block;
+  		margin-left: rem(6);
+  	}
+}
+
+  [data-whatinput='mouse'] .button {
+    outline: 0; }
+  .button:hover, .button:focus {
+    background-color: #64a300;
+    color: #fefefe; }
+  .button.tiny {
+    font-size: 0.6rem; }
+  .button.small {
+    font-size: 0.75rem; }
+  .button.large {
+    font-size: 1.25rem; }
+
+#rig-count, #rig-count-widget {
+	height: 200px;
+	width: 450px;
+	overflow: hidden;
+	position: relative;
+}
+.vertical-center {
+	@include vertical-center;
+}
+.absolute-center {
+
+}
+#data-error {
+	text-align: center;
+	width: 100%;
+	@include absolute-center;
+	p {
+		margin-bottom: rem(10);
+	}
+}
+
+#rig-count-widget {
 	h1, p {
 		font-size: rem(16); 
 		margin:0;
@@ -62,9 +128,6 @@ div {
 	}
 	.interval {
 		font-size: rem(11);
-	}
-	.vertical-center {
-		@include vertical-center;
 	}
 	.overview-wrapper {
 		@include outer-container;
@@ -118,47 +181,4 @@ div {
 			text-align: right;
 		}
 	}	
-
-	// I dont want to import all of foundation's settings just for this.
-	a.button {
-		text-decoration: none;
-		margin:0;
-	}
-	.button {
-		text-decoration: none;
-		text-transform:uppercase;
-	  	display: inline-block;
-	  	text-align: center;
-	  	line-height: 1;
-	  	cursor: pointer;
-	  	-webkit-appearance: none;
-	  	transition: background-color 0.25s ease-out, color 0.25s ease-out;
-	  	vertical-align: middle;
-	  	border: 1px solid transparent;
-	  	border-radius: 5px;
-	  	padding: rem(12) rem(16) rem(8);
-	  	margin: 0 0 1rem 0;
-	  	font-size: 0.9rem;
-	  	background-color: $primary-color;
-	  	color: $white; 
-	  	box-shadow: 0 3px 3px rgba(0,0,0,0.3);
-
-	  	&::after {
-	  		@include css-triangle(5px, $white, right); 
-	  		display:inline-block;
-	  		margin-left: rem(6);
-	  	}
-	}
-
-	  [data-whatinput='mouse'] .button {
-	    outline: 0; }
-	  .button:hover, .button:focus {
-	    background-color: #64a300;
-	    color: #fefefe; }
-	  .button.tiny {
-	    font-size: 0.6rem; }
-	  .button.small {
-	    font-size: 0.75rem; }
-	  .button.large {
-	    font-size: 1.25rem; }
 }

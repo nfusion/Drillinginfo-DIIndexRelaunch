@@ -15,7 +15,7 @@
 
     <!-- handlebars templates and helpers -->
     <script id="rig-count-tpl" type="text/x-handlebars-template">
-        <div id="rig-count">
+        <div id="rig-count-widget">
             <div class="overview-wrapper">
                 <div class="data">
                     <h1>US Rig Count</h1>
@@ -34,6 +34,13 @@
                 <div class="logo"><img src="dist/images/di-logo.svg" alt="Drillinginfo" /></div>
                 <div class="cta"><a href="http://diindex.drillinginfo.com/" class="button" target="_blank">See Full Report</a></div>
             </div><!-- /.info-bar -->
+        </div>
+    </script>
+
+    <script id="rig-count-error" type="text/x-handlebars-template">
+        <div id="data-error">
+            <p class="error">Drillinginfo data is currently unavailable.</p>
+            <p><a href="" class="refresh button">Refresh</a></p>
         </div>
     </script>
     <script>
@@ -55,8 +62,6 @@
 
     <script>
         (function() {
-            var source = document.getElementById("rig-count-tpl").innerHTML;
-            var template = Handlebars.compile(source);
 
             var request_url = "/wp-content/plugins/diindex/api-proxy.php";
             var data_url = "url=http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json";
@@ -64,18 +69,22 @@
 
             xmlhttp.onreadystatechange = function() {
             	if(xmlhttp.readyState == 4) {
-            		if(xmlhttp.status == 200) {
+                    if(xmlhttp.status == 200) {
 	            		// success
 	            		response_json = JSON.parse(xmlhttp.responseText);
 	            		var current = response_json.contents.elements[0];
 	                    // render template
+                        var source = document.getElementById("rig-count-tpl").innerHTML;
+                        var template = Handlebars.compile(source);
+
 	                    document.getElementById("rig-count").innerHTML = template(current);
 	                }
 	                else {
 	                	// failure
-	               		var p = document.createElement(p);
-	               		p.textContent = "Drillinginfo data is currently unavailable.";
-	               		document.getElementById("rig-count").appendChild(p);
+                        var source = document.getElementById("rig-count-error").innerHTML;
+                        var template = Handlebars.compile(source);
+
+	               		document.getElementById("rig-count").innerHTML = template();
 	                }
             	} 
             };
