@@ -21,9 +21,10 @@
                     <h1>US Rig Count</h1>
                     <div class="stat">{{rig_count}}</div>
                     <div class="date">{{dateformat rig_date "dddd, MMMM Do YYYY"}}</div>
+                    <div class="vert"></div>
                 </div>
                 <div class="delta">
-                    {{delta pct_change append="%"}}
+                    <div class="pct">{{delta pct_change append="%"}}</div>
                     <div class="interval">From Previous Week</div>
                 </div>
             </div><!-- /.overview-wrapper -->
@@ -38,10 +39,10 @@
         Handlebars.registerHelper('delta', function(delta, context) {
             delta = Math.round(delta);
             if (delta >= 0) {
-                return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '</span>');
+                return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '<i class="fi-arrow-down"></i></span>');
             }
 
-            return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '</span>');
+            return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '<i class="fi-arrow-down"></i></span>');
         });
 
         // date formatting
