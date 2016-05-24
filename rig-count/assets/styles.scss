@@ -19,8 +19,6 @@ $body-font-family: "univers-condensed", 'helvetica neue', helvetica, sans-serif;
 
 body {
 	font: 16px $body-font-family;
-	background-color: $darker-gray;
-	color: #ccc;
 }
 
 div {
@@ -70,7 +68,7 @@ a.button {
   .button.large {
     font-size: 1.25rem; }
 
-#rig-count, #rig-count-widget {
+#rig-count, #rig-count-widget, #data-error {
 	height: 200px;
 	width: 450px;
 	overflow: hidden;
@@ -80,9 +78,11 @@ a.button {
 	@include vertical-center;
 }
 .absolute-center {
-
+	@include absolute-center;
 }
 #data-error {
+	background-color: $darker-gray;
+	color: #ccc;
 	text-align: center;
 	width: 100%;
 	@include absolute-center;
