@@ -162,6 +162,7 @@ a.button {
     margin: 0;
     font-weight: normal; }
   #rig-count-widget .stat {
+    padding-top: 0.3125rem;
     font-size: 4.125rem;
     line-height: 1;
     color: #78ba2f;
@@ -180,7 +181,7 @@ a.button {
       line-height: 1.4;
       margin-left: 0.625rem;
       position: relative;
-      top: -0.1875rem; }
+      top: -0.375rem; }
     #rig-count-widget .pct .fi-arrow-down {
       color: #e94343; }
     #rig-count-widget .pct .fi-arrow-up {

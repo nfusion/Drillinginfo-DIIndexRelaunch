@@ -99,6 +99,7 @@ a.button {
 		font-weight: normal;
 	}
 	.stat {
+		padding-top:rem(5);
 		font-size: rem(66);
 		line-height: 1;
 		color: $primary-color;
@@ -118,7 +119,7 @@ a.button {
 			line-height: 1.4;
 			margin-left:rem(10);
 			position: relative;
-			top: rem(-3);
+			top: rem(-6);
 		}
 		.fi-arrow-down {
 			color: $down-color;
