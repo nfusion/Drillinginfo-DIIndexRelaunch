@@ -117,8 +117,10 @@ if (!empty($_GET['mode']) && $_GET['mode'] == 'native') {
     $data['contents'] = $decoded_json ? $decoded_json : $contents;
 
   // Generate appropriate content-type header.
-  $is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-    header('Content-type: application/'.($is_xhr ? 'json' : 'x-javascript'));
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+      $is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+    }
+    header('Content-type: application/'.(!empty($is_xhr) ? 'json' : 'x-javascript'));
 
   // Get JSONP callback.
   $jsonp_callback = $enable_jsonp && isset($_GET['callback']) ? $_GET['callback'] : null;
