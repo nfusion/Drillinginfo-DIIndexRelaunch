@@ -20,7 +20,7 @@
                 <div class="data">
                     <h1>US Rig Count</h1>
                     <div class="stat">{{rig_count}}</div>
-                    <div class="date">{{dateformat rig_date "dddd, MMMM Do YYYY"}}</div>
+                    <div class="date">{{dateformat rig_date "MMMM D YYYY"}}</div>
                     <div class="vert"></div>
                 </div>
                 <div class="delta">
@@ -68,17 +68,26 @@
             var xmlhttp = new XMLHttpRequest();
 
             xmlhttp.onreadystatechange = function() {
-                var current, source, template;
+                var current, source, template, response_json;
             	if(xmlhttp.readyState == 4) {
                     if(xmlhttp.status == 200) {
 	            		// success
 	            		response_json = JSON.parse(xmlhttp.responseText);
-	            		current = response_json.contents.elements[0];
-	                    // render template
-                        source = document.getElementById("rig-count-tpl").innerHTML;
-                        template = Handlebars.compile(source);
+                        if (response_json.status == 200) {
+    	            		current = response_json.contents.elements[0];
+    	                    // render template
+                            source = document.getElementById("rig-count-tpl").innerHTML;
+                            template = Handlebars.compile(source);
 
-	                    document.getElementById("rig-count").innerHTML = template(current);
+    	                    document.getElementById("rig-count").innerHTML = template(current);
+                        }
+                        else {
+                            // failure
+                            source = document.getElementById("rig-count-error").innerHTML;
+                            template = Handlebars.compile(source);
+
+                            document.getElementById("rig-count").innerHTML = template();
+                        }
 	                }
 	                else {
 	                	// failure
