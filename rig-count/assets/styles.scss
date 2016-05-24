@@ -63,6 +63,9 @@ div {
 	.interval {
 		font-size: rem(11);
 	}
+	.vertical-center {
+		@include vertical-center;
+	}
 	.overview-wrapper {
 		@include outer-container;
 		@include background-image(url("../images/rig.svg"), linear-gradient($medium-gray, $dark-gray)); 
@@ -71,6 +74,7 @@ div {
 		background-size: 57px 115px, auto;
 		padding: 20px;
 		color: #fff;
+		position: relative;
 
 		.data {
 			@include span-columns(7, block-collapse);

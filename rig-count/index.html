@@ -24,8 +24,10 @@
                     <div class="vert"></div>
                 </div>
                 <div class="delta">
-                    <div class="pct">{{delta pct_change append="%"}}</div>
-                    <div class="interval">From Previous Week</div>
+                    <div class="vertical-center">
+                        <div class="pct">{{delta pct_change append="%"}}</div>
+                        <div class="interval">From Previous Week</div>
+                    </div>
                 </div>
             </div><!-- /.overview-wrapper -->
             <div class="info-bar">
@@ -72,7 +74,7 @@
 	                else {
 	                	// failure
 	               		var p = document.createElement(p);
-	               		p.textContent = "Rig data is not available at this time.";
+	               		p.textContent = "Drillinginfo data is currently unavailable.";
 	               		document.getElementById("rig-count").appendChild(p);
 	                }
             	} 
