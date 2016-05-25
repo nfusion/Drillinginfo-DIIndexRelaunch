@@ -77,6 +77,7 @@ a.button {
 #rig-count, #rig-count-widget, #data-error {
 	height: $widget-height;
 	width: $widget-width;
+
 	overflow: hidden;
 	position: relative;
 }
@@ -86,17 +87,17 @@ a.button {
 .absolute-center {
 	@include absolute-center;
 }
+
 #data-error {
 	background-color: $darker-gray;
 	color: #ccc;
 	text-align: center;
-	width: 100%;
-	@include absolute-center;
+	white-space: nowrap;
+
 	p {
 		margin-bottom: rem(10);
 	}
 }
-
 #rig-count-widget {
 	background: #fff;
 	h1, p {
