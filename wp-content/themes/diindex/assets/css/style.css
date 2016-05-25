@@ -4056,13 +4056,15 @@ HEADER STYLES
 
 .header .logo {
   border-right: 1px solid #8a8d8e;
-  background: url(../images/drillinginfo-logo-tiny.png) 0 50% no-repeat;
+  background: url(../images/di-logo-mobile.svg) 0 50% no-repeat;
+  background-size: 115px 38px;
   width: 123px;
   height: 48px; }
   @media screen and (min-width: 40em) {
     .header .logo {
       border-right-color: #cdcdce;
-      background-image: url(../images/drillinginfo-logo-gray.png);
+      background-image: url(../images/di-logo.svg);
+      background-size: 170px 56px;
       width: 181px;
       height: 66px; } }
 
