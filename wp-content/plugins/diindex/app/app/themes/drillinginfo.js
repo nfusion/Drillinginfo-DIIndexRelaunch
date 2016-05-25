@@ -2,6 +2,7 @@
  * Dark blue theme for Highcharts JS
  * @author Torstein Honsi
  */
+import moment from 'moment';
 
 // Load the fonts
 export default Highcharts.extend ({
@@ -83,14 +84,16 @@ export default Highcharts.extend ({
 		}
 	},
 	tooltip: {
-		//pointFormat: '{series.name}: <b>{point.y}</b><br/>',
 		backgroundColor: '#585b5d',
 		borderColor: '#fff',
+		useHTML: true,
+		formatter: function() {
+			return '<small>' + moment(this.x).format('MMMM YYYY') + 
+					'</small><br><b>' + this.series.name + ': ' + this.y.toLocaleString() + '</b>';
+		},
 		style: {
 			color: '#fff',
-			fontSize: '15px',
-			padding: '8px',
-			border: '1px solid red'
+			fontSize: '15px'
 		}
 	},
 	plotOptions: {

@@ -218,8 +218,8 @@ export default Ember.Route.extend({
 					// use the negative daily count index to order data.
 					var ordered_data = _collection.sortBy(data.contents.elements,'date_order');
 				    
-				    // return a max of thirty days of data
-					ordered_data = ordered_data.slice(Math.max(highchart_series.length - 30, 0));
+				    // return a max of sixty days of data
+					ordered_data = ordered_data.slice(Math.max(highchart_series.length - 60, 0));
 
 					$.each(ordered_data, function(){
 						highchart_series.push(this.rig_count);

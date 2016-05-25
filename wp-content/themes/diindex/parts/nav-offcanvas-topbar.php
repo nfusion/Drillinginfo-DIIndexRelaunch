@@ -1,13 +1,6 @@
 <!-- By default, this menu will use off-canvas for small
 	 and a topbar for medium-up -->
 
-<?php 
-    $section = 'Index';
-    if (is_home() || is_singular('post')) {
-        $section = 'Perspectives';
-    }
-?>
-
 <div class="top-bar" id="top-bar-menu">
 	<div class="row">
 		<div class="top-bar-left float-left">
@@ -19,7 +12,7 @@
 
 				</li>
 				<li>
-					<span class="section-title"><?php echo $section ?></span>
+					<span class="section-title">Index</span>
 				</li>
 			</ul>
 		</div>

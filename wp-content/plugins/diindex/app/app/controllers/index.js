@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import defaultTheme from '../themes/drillinginfo';
 import ENV from 'diindex-ember-dev/config/environment';
+import moment from 'moment';
 
 export default Ember.Controller.extend({
 	actions: {
@@ -78,6 +79,12 @@ export default Ember.Controller.extend({
 					style: {
 						color: '#585b5d'
 					}
+				},
+			},
+			tooltip: {
+				formatter: function() {
+					return '<small>' + moment(this.x).format('dddd, MMMM D, YYYY') + 
+							'</small><br><b>' + this.series.name + ': ' + this.y.toLocaleString() + '</b>';
 				},
 			}
 		};

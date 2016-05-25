@@ -212,6 +212,8 @@
 		font-size:rem(14);
 		width:100%;
 
+		th {text-align:center;}
+
 		@include breakpoint(375) {
 			display: table;
 		}
