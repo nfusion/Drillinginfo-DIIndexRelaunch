@@ -17,7 +17,7 @@
 // ############################################################################
 
 // Change these configuration options if needed, see above descriptions for info.
-$enable_jsonp = true; // change to false for prod
+$enable_jsonp = false; // change to false for prod
 $enable_native = false;
 $valid_url_regex = '/.*/';
 
