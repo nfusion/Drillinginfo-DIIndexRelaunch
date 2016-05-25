@@ -5,8 +5,8 @@
 	var frame = document.createElement('iframe');
 	frame.id = 'drillinginfo';
 	frame.src = filepath + "index.html";
-	frame.height = 200;
-	frame.width = 450;
+	frame.height = 250;
+	frame.width = 300;
 	frame.style.border = 0;
 	frame.scrolling = "no";
 	script_self.parentNode.insertBefore(frame, script_self.nextSibling);

@@ -14,6 +14,9 @@ $medium-gray: #8b8b8b;
 $darker-gray: #393939;
 $body-font-family: "univers-condensed", 'helvetica neue', helvetica, sans-serif;
 
+$widget-width: 300px;
+$widget-height: 250px; 
+
 @include font-face("univers-condensed", "../../fonts/univers-condensed/regular/universltstd-cn", $file-formats: eot woff ttf svg);
 @include font-face("foundation-icons", "../../fonts/foundation-icons/foundation-icons", $file-formats: eot woff ttf svg); 
 
@@ -68,9 +71,12 @@ a.button {
   .button.large {
     font-size: 1.25rem; }
 
+#rig-count {
+	//border:1px solid #ccc;
+}
 #rig-count, #rig-count-widget, #data-error {
-	height: 200px;
-	width: 450px;
+	height: $widget-height;
+	width: $widget-width;
 	overflow: hidden;
 	position: relative;
 }
@@ -134,10 +140,10 @@ a.button {
 	.overview-wrapper {
 		@include outer-container;
 		@include background-image(url("../images/rig.svg"), linear-gradient($medium-gray, $dark-gray)); 
-		background-position: 98% bottom, left top;
+		background-position: 2% bottom, left top;
 		background-repeat: no-repeat, repeat;
-		background-size: 57px 115px, auto;
-		padding: 20px;
+		background-size: 77px 155px, auto;
+		padding: 35px 20px;
 		color: #fff;
 		position: relative;
 
@@ -168,18 +174,24 @@ a.button {
 		vertical-align: middle;
 
 		.logo, .cta {
-			@include span-columns(6);
+			//@include span-columns(6);
 		}
 
 		.logo {
-			padding: rem(10) 0 0 rem(20);
+			//display:none;
+			//padding: rem(10) 0 0 rem(20);
+			@include span-columns(5);
+			padding: rem(25) rem(10) rem(10) 0;
 			img {
-				width: 65%;
+				//width: 65%;
+				width: 85%;
 			}
+			text-align:right;
 		}
 
 		.cta {
-			padding: rem(15) rem(15) 0 0;
+			@include span-columns(7);
+			padding: rem(20) rem(15) 0 0;
 			text-align: right;
 		}
 	}	

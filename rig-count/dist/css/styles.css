@@ -121,8 +121,8 @@ a.button {
   font-size: 1.25rem; }
 
 #rig-count, #rig-count-widget, #data-error {
-  height: 200px;
-  width: 450px;
+  height: 250px;
+  width: 300px;
   overflow: hidden;
   position: relative; }
 
@@ -193,10 +193,10 @@ a.button {
     margin-left: auto;
     margin-right: auto;
     background-image: url("../images/rig.svg"), linear-gradient(#8b8b8b, #4f4f4f);
-    background-position: 98% bottom, left top;
+    background-position: 2% bottom, left top;
     background-repeat: no-repeat, repeat;
-    background-size: 57px 115px, auto;
-    padding: 20px;
+    background-size: 77px 155px, auto;
+    padding: 35px 20px;
     color: #fff;
     position: relative; }
     #rig-count-widget .overview-wrapper::after {
@@ -236,17 +236,23 @@ a.button {
       clear: both;
       content: "";
       display: table; }
-    #rig-count-widget .info-bar .logo, #rig-count-widget .info-bar .cta {
+    #rig-count-widget .info-bar .logo {
       float: left;
       display: block;
       margin-right: 2.35765%;
-      width: 48.82117%; }
-      #rig-count-widget .info-bar .logo:last-child, #rig-count-widget .info-bar .cta:last-child {
-        margin-right: 0; }
-    #rig-count-widget .info-bar .logo {
-      padding: 0.625rem 0 0 1.25rem; }
-      #rig-count-widget .info-bar .logo img {
-        width: 65%; }
-    #rig-count-widget .info-bar .cta {
-      padding: 0.9375rem 0.9375rem 0 0;
+      width: 40.29137%;
+      padding: 1.5625rem 0.625rem 0.625rem 0;
       text-align: right; }
+      #rig-count-widget .info-bar .logo:last-child {
+        margin-right: 0; }
+      #rig-count-widget .info-bar .logo img {
+        width: 85%; }
+    #rig-count-widget .info-bar .cta {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 57.35098%;
+      padding: 1.25rem 0.9375rem 0 0;
+      text-align: right; }
+      #rig-count-widget .info-bar .cta:last-child {
+        margin-right: 0; }
