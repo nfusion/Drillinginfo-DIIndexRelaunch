@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 		var settings = {
 			"async": true,
 			"crossDomain": true,
-			"dataType": "jsonp",
+			"dataType": "json",
 			"url": ENV.APP.connectionPath + 'wp-content/plugins/diindex/api-proxy.php',
 			"method": "GET"
 		};
