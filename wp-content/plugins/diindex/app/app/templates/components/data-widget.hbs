@@ -7,7 +7,12 @@
 		</div>
 		<div class="small-4 small-push-2 medium-4 medium-push-2 large-4 large-push-2 columns">
 			<div class="data-header stat-count">
-				<div class="stat">{{count}}</div>
+				<div class="data-header-inner text-center">
+					<div class="stat">{{count}}</div>
+					{{#if widgetOptions.units}}
+					<p>{{widgetOptions.units}}</p>
+					{{/if}}
+				</div>
 			</div>
 		</div>
 		<div class="small-4 small-pull-2 medium-4 medium-pull-2 large-4 large-pull-2 columns text-right">

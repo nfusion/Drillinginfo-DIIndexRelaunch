@@ -60,6 +60,10 @@
 		}
 	}
 
+	.data-header-inner {
+		display: inline-block;
+	}
+
 	.di-module {
 		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
 		border-radius: $global-radius;
