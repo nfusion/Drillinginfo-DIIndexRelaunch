@@ -83,7 +83,7 @@ export default Ember.Controller.extend({
 			},
 			tooltip: {
 				formatter: function() {
-					return '<small>' + moment(this.x).format('dddd, MMMM D, YYYY') + 
+					return '<small>' + moment.utc(this.x).format('dddd, MMMM D, YYYY') + 
 							'</small><br><b>' + this.series.name + ': ' + this.y.toLocaleString() + '</b>';
 				},
 			}

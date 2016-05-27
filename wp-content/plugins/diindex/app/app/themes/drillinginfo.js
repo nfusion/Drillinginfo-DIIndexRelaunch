@@ -88,7 +88,7 @@ export default Highcharts.extend ({
 		borderColor: '#fff',
 		useHTML: true,
 		formatter: function() {
-			return '<small>' + moment(this.x).format('MMMM YYYY') + 
+			return '<small>' + moment.utc(this.x).format("MMMM YYYY") + 
 					'</small><br><b>' + this.series.name + ': ' + this.y.toLocaleString() + '</b>';
 		},
 		style: {

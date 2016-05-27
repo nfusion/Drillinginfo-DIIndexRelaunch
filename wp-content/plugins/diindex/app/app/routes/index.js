@@ -170,6 +170,7 @@ export default Ember.Route.extend({
 					    {
 					    	name: 'MBOE',
 							pointStart: moment(recent_data[0].rundatetime).valueOf(),
+							pointIntervalUnit: 'month',
 					    	data: highchart_series,
 					    	dataLabels: {
 			                    align: 'left',
@@ -181,7 +182,6 @@ export default Ember.Route.extend({
 					    }
 					];
 					prodCapData.usProdCapMboeChart = series_mboe;
-
 
 					// chart series - oil vs gas production
 					var series_oil_v_gas = [
