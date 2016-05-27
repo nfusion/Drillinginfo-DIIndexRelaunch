@@ -1,139 +1,157 @@
 <?php
 
-class Red_Group {
-	private $items = 0;
-	private $name;
-	private $tracking;
-	private $module_id;
-	private $status;
-	private $position;
+class Red_Group
+{
+    private $items = 0;
+    private $name;
+    private $tracking;
+    private $module_id;
+    private $status;
+    private $position;
 
-	public function __construct( $values = ''  ) {
-		if ( is_object( $values ) ) {
-			foreach ( $values AS $key => $value ) {
-			 	$this->$key = $value;
-			}
-		}
-	}
+    public function __construct($values = '')
+    {
+        if (is_object($values)) {
+            foreach ($values as $key => $value) {
+                $this->$key = $value;
+            }
+        }
+    }
 
-	public function get_name() {
-		return $this->name;
-	}
+    public function get_name()
+    {
+        return $this->name;
+    }
 
-	public function get_id() {
-		return $this->id;
-	}
+    public function get_id()
+    {
+        return $this->id;
+    }
 
-	public function is_enabled() {
-		return $this->status === 'enabled' ? true : false;
-	}
+    public function is_enabled()
+    {
+        return $this->status === 'enabled' ? true : false;
+    }
 
-	static function get( $id ) {
-		global $wpdb;
+    public static function get($id)
+    {
+        global $wpdb;
 
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT {$wpdb->prefix}redirection_groups.*,COUNT( {$wpdb->prefix}redirection_items.id ) AS items,SUM( {$wpdb->prefix}redirection_items.last_count ) AS redirects FROM {$wpdb->prefix}redirection_groups LEFT JOIN {$wpdb->prefix}redirection_items ON {$wpdb->prefix}redirection_items.group_id={$wpdb->prefix}redirection_groups.id WHERE {$wpdb->prefix}redirection_groups.id=%d GROUP BY {$wpdb->prefix}redirection_groups.id", $id ) );
-		if ( $row )
-			return new Red_Group( $row );
-		return false;
-	}
+        $row = $wpdb->get_row($wpdb->prepare("SELECT {$wpdb->prefix}redirection_groups.*,COUNT( {$wpdb->prefix}redirection_items.id ) AS items,SUM( {$wpdb->prefix}redirection_items.last_count ) AS redirects FROM {$wpdb->prefix}redirection_groups LEFT JOIN {$wpdb->prefix}redirection_items ON {$wpdb->prefix}redirection_items.group_id={$wpdb->prefix}redirection_groups.id WHERE {$wpdb->prefix}redirection_groups.id=%d GROUP BY {$wpdb->prefix}redirection_groups.id", $id));
+        if ($row) {
+            return new self($row);
+        }
 
-	static function get_for_select() {
-		global $wpdb;
+        return false;
+    }
 
-		$data = array();
-		$rows = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}redirection_groups" );
+    public static function get_for_select()
+    {
+        global $wpdb;
 
-		if ( $rows ) {
-			foreach ( $rows AS $row ) {
-				$module = Red_Module::get( $row->module_id );
-				if ( $module ) {
-					$data[$module->get_name()][$row->id] = $row->name;
-				}
-			}
-		}
+        $data = array();
+        $rows = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}redirection_groups");
 
-		return $data;
-	}
+        if ($rows) {
+            foreach ($rows as $row) {
+                $module = Red_Module::get($row->module_id);
+                if ($module) {
+                    $data[$module->get_name()][$row->id] = $row->name;
+                }
+            }
+        }
 
-	static function create( $name, $module_id ) {
-		global $wpdb;
+        return $data;
+    }
 
-		$name = trim( $name );
+    public static function create($name, $module_id)
+    {
+        global $wpdb;
 
-		if ( $name !== '' && $module_id > 0 ) {
-			$position = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT( * ) FROM {$wpdb->prefix}redirection_groups WHERE module_id=%d", $module_id ) );
+        $name = trim($name);
 
-			$data = array(
-				'name'      => trim( $name ),
-				'module_id' => intval( $module_id ),
-				'position'  => intval( $position )
-			);
+        if ($name !== '' && $module_id > 0) {
+            $position = $wpdb->get_var($wpdb->prepare("SELECT COUNT( * ) FROM {$wpdb->prefix}redirection_groups WHERE module_id=%d", $module_id));
 
-			$wpdb->insert( $wpdb->prefix.'redirection_groups', $data );
+            $data = array(
+                'name'      => trim($name),
+                'module_id' => intval($module_id),
+                'position'  => intval($position),
+            );
 
-			return Red_Group::get( $wpdb->insert_id );
-		}
+            $wpdb->insert($wpdb->prefix.'redirection_groups', $data);
 
-		return false;
-	}
+            return self::get($wpdb->insert_id);
+        }
 
-	public function update( $data ) {
-		global $wpdb;
+        return false;
+    }
 
-		$old_id = $this->module_id;
-		$this->name = trim( wp_kses( stripslashes( $data['name'] ), array() ) );
+    public function update($data)
+    {
+        global $wpdb;
 
-		if ( Red_Module::is_valid_id( intval( $data['module_id'] ) ) )
-			$this->module_id = intval( $data['module_id'] );
+        $old_id = $this->module_id;
+        $this->name = trim(wp_kses(stripslashes($data['name']), array()));
 
-		$wpdb->update( $wpdb->prefix.'redirection_groups', array( 'name' => $this->name, 'module_id' => $this->module_id ), array( 'id' => intval( $this->id ) ) );
+        if (Red_Module::is_valid_id(intval($data['module_id']))) {
+            $this->module_id = intval($data['module_id']);
+        }
 
-		if ( $old_id !== $this->module_id ) {
-			Red_Module::flush_by_module( $old_id );
-			Red_Module::flush_by_module( $this->module_id );
-		}
-	}
+        $wpdb->update($wpdb->prefix.'redirection_groups', array('name' => $this->name, 'module_id' => $this->module_id), array('id' => intval($this->id)));
 
-	public function delete() {
-		global $wpdb;
+        if ($old_id !== $this->module_id) {
+            Red_Module::flush_by_module($old_id);
+            Red_Module::flush_by_module($this->module_id);
+        }
+    }
 
-		// Delete all items in this group
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}redirection_items WHERE group_id=%d", $this->id ) );
+    public function delete()
+    {
+        global $wpdb;
 
- 		Red_Module::flush( $this->id );
+        // Delete all items in this group
+        $wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}redirection_items WHERE group_id=%d", $this->id));
 
-		// Delete the group
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}redirection_groups WHERE id=%d", $this->id ) );
+        Red_Module::flush($this->id);
 
-		if ( $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}redirection_groups" ) == 0 )
-			$wpdb->insert( $wpdb->prefix.'redirection_groups', array( 'name' => __( 'Redirections' ), 'module_id' => 1, 'position' => 0 ) );
-	}
+        // Delete the group
+        $wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}redirection_groups WHERE id=%d", $this->id));
 
-	public function get_total_redirects() {
-		global $wpdb;
+        if ($wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}redirection_groups") == 0) {
+            $wpdb->insert($wpdb->prefix.'redirection_groups', array('name' => __('Redirections'), 'module_id' => 1, 'position' => 0));
+        }
+    }
 
-		return $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}redirection_items WHERE group_id=%d", $this->id ) );
-	}
+    public function get_total_redirects()
+    {
+        global $wpdb;
 
-	public function enable() {
-		global $wpdb;
+        return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}redirection_items WHERE group_id=%d", $this->id));
+    }
 
-		$wpdb->update( $wpdb->prefix.'redirection_groups', array( 'status' => 'enabled' ), array( 'id' => $this->id ) );
-		$wpdb->update( $wpdb->prefix.'redirection_items', array( 'status' => 'enabled' ), array( 'group_id' => $this->id ) );
+    public function enable()
+    {
+        global $wpdb;
 
-		Red_Module::flush( $this->id );
-	}
+        $wpdb->update($wpdb->prefix.'redirection_groups', array('status' => 'enabled'), array('id' => $this->id));
+        $wpdb->update($wpdb->prefix.'redirection_items', array('status' => 'enabled'), array('group_id' => $this->id));
 
-	public function disable() {
-		global $wpdb;
+        Red_Module::flush($this->id);
+    }
 
-		$wpdb->update( $wpdb->prefix.'redirection_groups', array( 'status' => 'disabled' ), array( 'id' => $this->id ) );
-		$wpdb->update( $wpdb->prefix.'redirection_items', array( 'status' => 'disabled' ), array( 'group_id' => $this->id ) );
+    public function disable()
+    {
+        global $wpdb;
 
-		Red_Module::flush( $this->id );
-	}
+        $wpdb->update($wpdb->prefix.'redirection_groups', array('status' => 'disabled'), array('id' => $this->id));
+        $wpdb->update($wpdb->prefix.'redirection_items', array('status' => 'disabled'), array('group_id' => $this->id));
 
-	public function get_module_id() {
-		return $this->module_id;
-	}
+        Red_Module::flush($this->id);
+    }
+
+    public function get_module_id()
+    {
+        return $this->module_id;
+    }
 }

@@ -1,26 +1,31 @@
 <?php
 
-class RE_Database {
-	private function get_charset() {
-		global $wpdb;
+class RE_Database
+{
+    private function get_charset()
+    {
+        global $wpdb;
 
-		$charset_collate = '';
-		if ( ! empty( $wpdb->charset ) )
-			$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+        $charset_collate = '';
+        if (!empty($wpdb->charset)) {
+            $charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+        }
 
-		if ( ! empty( $wpdb->collate ) )
-			$charset_collate .= " COLLATE $wpdb->collate";
+        if (!empty($wpdb->collate)) {
+            $charset_collate .= " COLLATE $wpdb->collate";
+        }
 
-		return $charset_collate;
-	}
+        return $charset_collate;
+    }
 
-	public function install() {
-		global $wpdb;
+    public function install()
+    {
+        global $wpdb;
 
-		$charset_collate = $this->get_charset();
+        $charset_collate = $this->get_charset();
 
-		$create = array(
-			"CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_items`(
+        $create = array(
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_items`(
 				`id` int(11) unsigned NOT NULL auto_increment,
 			  `url` mediumtext NOT NULL,
 			  `regex` int(11) unsigned NOT NULL default '0',
@@ -42,7 +47,7 @@ class RE_Database {
 			  KEY `group` (`group_id`)
 			) $charset_collate",
 
-			"CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_groups`(
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_groups`(
 			  `id` int(11) NOT NULL auto_increment,
 			  `name` varchar(50) NOT NULL,
 			  `tracking` int(11) NOT NULL default '1',
@@ -54,7 +59,7 @@ class RE_Database {
 		  	KEY `status` (`status`)
 			) $charset_collate",
 
-			"CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_logs`(
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_logs`(
 			  `id` int(11) unsigned NOT NULL auto_increment,
 			  `created` datetime NOT NULL,
 			  `url` mediumtext NOT NULL,
@@ -73,7 +78,7 @@ class RE_Database {
 			  KEY `module_id` (`module_id`)
 			) $charset_collate",
 
-			"CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_404` (
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_404` (
 			  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 			  `created` datetime NOT NULL,
 			  `url` varchar(255) NOT NULL DEFAULT '',
@@ -85,75 +90,84 @@ class RE_Database {
 			  KEY `url` (`url`),
 			  KEY `ip` (`ip`),
 			  KEY `referrer` (`referrer`)
-			) $charset_collate;"
-		);
+			) $charset_collate;",
+        );
 
-		foreach ( $create AS $sql ) {
-			if ( $wpdb->query( $sql ) === false )
-				return false;
-		}
+        foreach ($create as $sql) {
+            if ($wpdb->query($sql) === false) {
+                return false;
+            }
+        }
 
-		// Groups
-		if ( $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}redirection_groups" ) == 0 ) {
-			$wpdb->insert( $wpdb->prefix.'redirection_groups', array( 'name' => __( 'Redirections' ), 'module_id' => 1, 'position' => 0 ) );
-			$wpdb->insert( $wpdb->prefix.'redirection_groups', array( 'name' => __( 'Modified Posts' ), 'module_id' => 1, 'position' => 1 ) );
+        // Groups
+        if ($wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}redirection_groups") == 0) {
+            $wpdb->insert($wpdb->prefix.'redirection_groups', array('name' => __('Redirections'), 'module_id' => 1, 'position' => 0));
+            $wpdb->insert($wpdb->prefix.'redirection_groups', array('name' => __('Modified Posts'), 'module_id' => 1, 'position' => 1));
 
-			$options = get_option( 'redirection_options' );
-			$options['monitor_post']     = 2;
-			$options['monitor_category'] = 2;
+            $options = get_option('redirection_options');
+            $options['monitor_post'] = 2;
+            $options['monitor_category'] = 2;
 
-			update_option( 'redirection_options', $options );
-		}
-	}
+            update_option('redirection_options', $options);
+        }
+    }
 
-	public function upgrade( $current, $target ) {
-		global $wpdb;
+    public function upgrade($current, $target)
+    {
+        global $wpdb;
 
-		$wpdb->show_errors();
+        $wpdb->show_errors();
 
-		// No previous version? Install the DB tables
-		if ( $current === false )
-			$success = $this->install();
-		else {
-			// Try and upgrade from a previous version
-			if ( $current == '2.0' )
-				$this->upgrade_from_20();
-			elseif ( $current == '2.0.1' )
-				$this->upgrade_from_21();
-			elseif ( $current == '2.0.2' )
-				$this->upgrade_from_22();
+        // No previous version? Install the DB tables
+        if ($current === false) {
+            $success = $this->install();
+        } else {
+            // Try and upgrade from a previous version
+            if ($current == '2.0') {
+                $this->upgrade_from_20();
+            } elseif ($current == '2.0.1') {
+                $this->upgrade_from_21();
+            } elseif ($current == '2.0.2') {
+                $this->upgrade_from_22();
+            }
 
-			if ( version_compare( $current, '2.1.16' ) == -1 )
-				$this->upgrade_to_216();
+            if (version_compare($current, '2.1.16') == -1) {
+                $this->upgrade_to_216();
+            }
 
-			if ( version_compare( $current, '2.2' ) == -1 )
-				$this->upgrade_to_220();
+            if (version_compare($current, '2.2') == -1) {
+                $this->upgrade_to_220();
+            }
 
-			if ( version_compare( $current, '2.3.1' ) == -1 )
-				$this->upgrade_to_231();
+            if (version_compare($current, '2.3.1') == -1) {
+                $this->upgrade_to_231();
+            }
 
-			if ( version_compare( $current, '2.3.2' ) == -1 )
-				$this->upgrade_to_232();
+            if (version_compare($current, '2.3.2') == -1) {
+                $this->upgrade_to_232();
+            }
 
-			$success = true;
-		}
+            $success = true;
+        }
 
-		// Set our current version
-		update_option( 'redirection_version', $target );
+        // Set our current version
+        update_option('redirection_version', $target);
 
-		$wpdb->hide_errors();
-		return $success;
-	}
+        $wpdb->hide_errors();
 
-	private function upgrade_to_231() {
-		global $wpdb;
+        return $success;
+    }
 
-		$charset_collate = $this->get_charset();
+    private function upgrade_to_231()
+    {
+        global $wpdb;
 
-		$wpdb->query( "DELETE FROM {$wpdb->prefix}redirection_modules WHERE type='404'" );
-		$wpdb->query( "UPDATE {$wpdb->prefix}redirection_groups SET module_id=1 WHERE module_id=3" );
+        $charset_collate = $this->get_charset();
 
-		$wpdb->query( "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_404` (
+        $wpdb->query("DELETE FROM {$wpdb->prefix}redirection_modules WHERE type='404'");
+        $wpdb->query("UPDATE {$wpdb->prefix}redirection_groups SET module_id=1 WHERE module_id=3");
+
+        $wpdb->query("CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}redirection_404` (
 			  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 			  `created` datetime NOT NULL,
 			  `url` varchar(255) NOT NULL DEFAULT '',
@@ -165,77 +179,84 @@ class RE_Database {
 			  KEY `url` (`url`),
   			  KEY `ip` (`ip`,`id`),
 			  KEY `referrer` (`referrer`)
-			) $charset_collate;" );
-	}
+			) $charset_collate;");
+    }
 
-	private function upgrade_to_232() {
-		global $wpdb;
+    private function upgrade_to_232()
+    {
+        global $wpdb;
 
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection_modules;" );
-	}
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection_modules;");
+    }
 
-	private function upgrade_from_20() {
-		global $wpdb;
+    private function upgrade_from_20()
+    {
+        global $wpdb;
 
-		$this->upgrade_from_21();
-		$this->upgrade_from_22();
-	}
+        $this->upgrade_from_21();
+        $this->upgrade_from_22();
+    }
 
-	private function upgrade_from_21() {
-		global $wpdb;
+    private function upgrade_from_21()
+    {
+        global $wpdb;
 
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` ADD `title` varchar(50) NULL" );
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` ADD `title` varchar(50) NULL");
 
-		$this->upgrade_from_22();
-	}
+        $this->upgrade_from_22();
+    }
 
-	private function upgrade_from_22() {
-		global $wpdb;
+    private function upgrade_from_22()
+    {
+        global $wpdb;
 
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` CHANGE `title` `title` varchar(50) NULL" );
-	}
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` CHANGE `title` `title` varchar(50) NULL");
+    }
 
-	private function upgrade_to_216() {
-		global $wpdb;
+    private function upgrade_to_216()
+    {
+        global $wpdb;
 
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_groups` ADD INDEX(module_id)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_groups` ADD INDEX(status)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX(url(200))" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX(status)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX(regex)" );
-	}
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_groups` ADD INDEX(module_id)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_groups` ADD INDEX(status)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX(url(200))");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX(status)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX(regex)");
+    }
 
-	private function upgrade_to_220() {
-		global $wpdb;
+    private function upgrade_to_220()
+    {
+        global $wpdb;
 
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX `group_idpos` (`group_id`,`position`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX `group` (`group_id`)" );
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX `group_idpos` (`group_id`,`position`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_items` ADD INDEX `group` (`group_id`)");
 
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `group` (`group_id`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `redirection_id` (`redirection_id`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `created` (`created`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `ip` (`ip`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `group_id` (`group_id`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `module_id` (`module_id`)" );
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `group` (`group_id`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `redirection_id` (`redirection_id`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `created` (`created`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `ip` (`ip`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `group_id` (`group_id`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_logs` ADD INDEX `module_id` (`module_id`)");
 
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_modules` ADD INDEX `name` (`name`)" );
-		$wpdb->query( "ALTER TABLE `{$wpdb->prefix}redirection_modules` ADD INDEX `type` (`type`)" );
-	}
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_modules` ADD INDEX `name` (`name`)");
+        $wpdb->query("ALTER TABLE `{$wpdb->prefix}redirection_modules` ADD INDEX `type` (`type`)");
+    }
 
-	public function remove( $plugin ) {
-		global $wpdb;
+    public function remove($plugin)
+    {
+        global $wpdb;
 
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection;" );
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection_items;" );
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection_logs;" );
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection_groups;" );
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection_modules;" );
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}redirection_404;" );
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection_items;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection_logs;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection_groups;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection_modules;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}redirection_404;");
 
-		delete_option( 'redirection_lookup' );
-		delete_option( 'redirection_post' );
-		delete_option( 'redirection_root' );
-		delete_option( 'redirection_index' );
-		delete_option( 'redirection_version' );
-	}
+        delete_option('redirection_lookup');
+        delete_option('redirection_post');
+        delete_option('redirection_root');
+        delete_option('redirection_index');
+        delete_option('redirection_version');
+    }
 }

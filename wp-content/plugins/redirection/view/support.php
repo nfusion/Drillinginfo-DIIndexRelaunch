@@ -1,18 +1,20 @@
-<?php if (!defined ('ABSPATH')) die ('No direct access allowed'); ?>
+<?php if (!defined('ABSPATH')) {
+    die('No direct access allowed');
+} ?>
 <div class="wrap supporter">
 	<?php screen_icon(); ?>
 
-	<h2><?php _e ('Redirection Support', 'redirection'); ?></h2>
-	<?php $this->render( 'submenu', array( 'options' => $options ) ); ?>
+	<h2><?php _e('Redirection Support', 'redirection'); ?></h2>
+	<?php $this->render('submenu', array('options' => $options)); ?>
 
 	<p style="clear: both; padding-top: 20px">
-		<?php _e( 'Redirection is free to use - life is wonderful and lovely!  However, it has required a great deal of time and effort to develop and if it has been useful you can help support this development by <strong>making a small donation</strong>.', 'redirection'); ?>
-		<?php _e( 'This will act as an incentive for me to carry on developing. You get some useful software and I get to carry on making it.  Everybody wins.', 'redirection'); ?>		
+		<?php _e('Redirection is free to use - life is wonderful and lovely!  However, it has required a great deal of time and effort to develop and if it has been useful you can help support this development by <strong>making a small donation</strong>.', 'redirection'); ?>
+		<?php _e('This will act as an incentive for me to carry on developing. You get some useful software and I get to carry on making it.  Everybody wins.', 'redirection'); ?>		
 	</p>
 
-	<p><?php _e( 'Please note that a donation is just a donation - it is not a payment for support. I am not a business, this is not a product, and I\'m afraid I cannot provide paid support' ); ?></p>
+	<p><?php _e('Please note that a donation is just a donation - it is not a payment for support. I am not a business, this is not a product, and I\'m afraid I cannot provide paid support'); ?></p>
 
-	<p><?php _e( 'If you are using this plugin in a commercial setup, or feel that it\'s been particularly useful, then you may want to consider a <strong>commercial donation</strong>.', 'redirection' )?>
+	<p><?php _e('If you are using this plugin in a commercial setup, or feel that it\'s been particularly useful, then you may want to consider a <strong>commercial donation</strong>.', 'redirection')?>
 
 	<ul class="donations">
 		<li>
@@ -32,10 +34,10 @@
 				<input type="hidden" name="tax" value="0">
 				<input type="hidden" name="lc" value="US">
 				<input type="hidden" name="bn" value="PP-DonationsBF">
-				<input type="image" style="border: none" src="<?php echo plugins_url( '/images/donate.gif', REDIRECTION_FILE ); ?>" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
+				<input type="image" style="border: none" src="<?php echo plugins_url('/images/donate.gif', REDIRECTION_FILE); ?>" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
 			</form>
 
-			<p><strong>$16</strong><br/><?php _e( 'Individual<br/>Donation', 'redirection' ); ?></p>
+			<p><strong>$16</strong><br/><?php _e('Individual<br/>Donation', 'redirection'); ?></p>
 		</li>
 		<li>
 			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -53,21 +55,21 @@
 				<input type="hidden" name="tax" value="0">
 				<input type="hidden" name="lc" value="US">
 				<input type="hidden" name="bn" value="PP-DonationsBF">
-				<input type="image" style="border: none" src="<?php echo plugins_url( '/images/donate.gif', REDIRECTION_FILE ); ?>" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
+				<input type="image" style="border: none" src="<?php echo plugins_url('/images/donate.gif', REDIRECTION_FILE); ?>" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
 			</form>
-			<p><strong>$$$</strong><br/><?php _e( 'Commercial<br/>Donation', 'redirection' ); ?></p>
+			<p><strong>$$$</strong><br/><?php _e('Commercial<br/>Donation', 'redirection'); ?></p>
 		</li>
 	</ul>
 
-	<h3 style="clear: both"><?php _e( 'Translations', 'redirection' )?></h3>
+	<h3 style="clear: both"><?php _e('Translations', 'redirection')?></h3>
 
-	<p><?php _e( 'If you\'re multi-lingual then you may want to consider donating a translation:', 'redirection' )?>
+	<p><?php _e('If you\'re multi-lingual then you may want to consider donating a translation:', 'redirection')?>
 
 	<ul class="translators">
-		<?php foreach( $this->locales() AS $language ) : ?>
-			<li><?php echo esc_html( $language ); ?></li>
+		<?php foreach ($this->locales() as $language) : ?>
+			<li><?php echo esc_html($language); ?></li>
 		<?php endforeach; ?>
 	</ul>
 
-	<p><?php _e( 'Full details of producing a translation can be found in this <a href="http://urbangiraffe.com/articles/translating-wordpress-themes-and-plugins/">guide to translating WordPress plugins</a>.', 'redirection' )?>
+	<p><?php _e('Full details of producing a translation can be found in this <a href="http://urbangiraffe.com/articles/translating-wordpress-themes-and-plugins/">guide to translating WordPress plugins</a>.', 'redirection')?>
 </div>

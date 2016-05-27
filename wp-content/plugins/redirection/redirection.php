@@ -20,41 +20,46 @@ For full license details see license.txt
 ============================================================================================================
 */
 
-define( 'REDIRECTION_VERSION', '2.3.2' );     // DB schema version. Only change if DB needs changing
-define( 'REDIRECTION_FILE', __FILE__ );
+define('REDIRECTION_VERSION', '2.3.2');     // DB schema version. Only change if DB needs changing
+define('REDIRECTION_FILE', __FILE__);
 
-include dirname( __FILE__ ).'/models/module.php';
-include dirname( __FILE__ ).'/models/log.php';
-include dirname( __FILE__ ).'/models/flusher.php';
-include dirname( __FILE__ ).'/models/match.php';
-include dirname( __FILE__ ).'/models/action.php';
-include dirname( __FILE__ ).'/models/redirect.php';
+include dirname(__FILE__).'/models/module.php';
+include dirname(__FILE__).'/models/log.php';
+include dirname(__FILE__).'/models/flusher.php';
+include dirname(__FILE__).'/models/match.php';
+include dirname(__FILE__).'/models/action.php';
+include dirname(__FILE__).'/models/redirect.php';
 
-function red_get_options() {
-	$options = get_option( 'redirection_options' );
-	if ( $options === false )
-		$options = array();
+function red_get_options()
+{
+    $options = get_option('redirection_options');
+    if ($options === false) {
+        $options = array();
+    }
 
-	$defaults = apply_filters( 'red_default_options', array(
-		'support'         => false,
-		'token'           => md5( uniqid() ),
-		'monitor_post'    => 0,
-		'auto_target'     => '',
-		'expire_redirect' => 7,
-		'expire_404'      => 7,
-		'modules'         => array()
-	) );
+    $defaults = apply_filters('red_default_options', array(
+        'support'         => false,
+        'token'           => md5(uniqid()),
+        'monitor_post'    => 0,
+        'auto_target'     => '',
+        'expire_redirect' => 7,
+        'expire_404'      => 7,
+        'modules'         => array(),
+    ));
 
-	foreach ( $defaults AS $key => $value ) {
-		if ( !isset( $options[$key] ) )
-			$options[$key] = $value;
-	}
+    foreach ($defaults as $key => $value) {
+        if (!isset($options[$key])) {
+            $options[$key] = $value;
+        }
+    }
 
-	$options['lookup'] = apply_filters( 'red_lookup_ip', 'http://urbangiraffe.com/map/?ip=' );
-	return $options;
+    $options['lookup'] = apply_filters('red_lookup_ip', 'http://urbangiraffe.com/map/?ip=');
+
+    return $options;
 }
 
-if ( is_admin() )
-	include dirname( __FILE__ ).'/redirection-admin.php';
-else
-	include dirname( __FILE__ ).'/redirection-front.php';
+if (is_admin()) {
+    include dirname(__FILE__).'/redirection-admin.php';
+} else {
+    include dirname(__FILE__).'/redirection-front.php';
+}
