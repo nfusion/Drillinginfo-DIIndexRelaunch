@@ -1,0 +1,26 @@
+{{#if obj.data}}
+<table class="top-ten scroll">
+	<thead>
+		<tr>
+		{{#each obj.labels as |label|}}
+			<th>{{label}}</th>
+		{{/each}}
+		</tr>
+	</thead>
+<tbody>
+{{#each obj.data as |item|}}
+	<tr>
+	{{#each item as |el|}}
+	{{#if el }}
+	<td>{{el}}</td>
+	{{else}}
+	<td>--</td>
+	{{/if}}
+	{{/each}}
+	</tr>
+{{/each}}
+</tbody>
+</table>
+{{else}}
+<p>Data not available.</p>
+{{/if}}
