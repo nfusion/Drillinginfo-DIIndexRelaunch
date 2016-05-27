@@ -13,6 +13,7 @@
     ],
     "require": {
         "wpackagist-plugin/rest-api": "dev-trunk",
-        "wpackagist-plugin/acf-to-rest-api": "dev-trunk"
+        "wpackagist-plugin/acf-to-rest-api": "dev-trunk",
+        "wpackagist-plugin/redirection": "dev-trunk"
     }
 }
