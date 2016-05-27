@@ -22,7 +22,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_production_capacity?$format=json"
 			}
 		};
 
@@ -33,7 +33,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json"
 			}
 		};
 
@@ -44,7 +44,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_top_gas_county?$format=json"
 			}
 		};
 
@@ -55,7 +55,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_top_oil_county?$format=json"
 			}
 		};
 
@@ -66,7 +66,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_gas_operator?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_top_gas_operator?$format=json"
 			}
 		};
 
@@ -77,7 +77,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_top_oil_operator?$format=json"
 			}
 		};
 
@@ -88,7 +88,7 @@ export default Ember.Route.extend({
 			"url" : settings.url,
 			"method" : settings.method,
 			"data" : {
-				"url" : "http://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
+				"url" : "https://di-api.drillinginfo.com/v1/diindex/media_permit_count?$format=json"
 			}
 		};
 
