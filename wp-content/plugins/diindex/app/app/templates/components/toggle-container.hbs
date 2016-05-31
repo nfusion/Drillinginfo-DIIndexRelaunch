@@ -1,0 +1,27 @@
+<h3>{{{widgetOptions.title}}}</h3>
+<div class="row">
+	<div class="small-5 columns text-right"><span data-toggle-label class="active">{{widgetOptions.switch.offState.title}}</span></div>
+	<div class="small-2 columns text-center">
+		<div class="switch tiny">
+			<input class="switch-input" id="{{widgetOptions.switch.id}}" type="checkbox" name="{{widgetOptions.switch.id}}">
+			<label class="switch-paddle" for="{{widgetOptions.switch.id}}">
+				<span class="show-for-sr">{{widgetOptions.switch.text}}</span>
+			</label>
+		</div>
+	</div>
+	<div class="small-5 columns"><span data-toggle-label>{{widgetOptions.switch.onState.title}}</span></div>
+</div>
+<div class="medium-6 columns text-center">
+	<h3>{{{widgetOptions.group1.title}}}</h3>
+	{{toggle-block 
+		onState=model.topOperatorsGas 
+		offState=model.topOperatorsOil
+	}}
+</div>
+<div class="medium-6 columns text-center">
+	<h3>{{{widgetOptions.group2.title}}}</h3>
+	{{toggle-block 
+		onState=model.topCountiesGas 
+		offState=model.topCountiesOil
+	}}
+</div>

@@ -1,0 +1,636 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-family: "
+			],
+			[
+				"bold",
+				"bold-font-family"
+			],
+			[
+				"border-right",
+				"border-right-color: "
+			],
+			[
+				"border-top",
+				"border-top-left-radius: "
+			],
+			[
+				"border-rad",
+				"border-top-right-radius: "
+			],
+			[
+				"medium",
+				"medium-gray"
+			],
+			[
+				"prim",
+				"primary-color"
+			],
+			[
+				"bol",
+				"bold-font-family"
+			],
+			[
+				"va",
+				"valueOf()	Object"
+			],
+			[
+				"he",
+				"height	Style CSS"
+			],
+			[
+				"app",
+				"appendChild(aChild)	Node"
+			],
+			[
+				"getEl",
+				"getElementById(id)	Element"
+			],
+			[
+				"Drilling",
+				"Drillinginfo_Index_Application"
+			],
+			[
+				"wp_enque",
+				"wp_enqueue_script"
+			],
+			[
+				"default",
+				"defaultTheme"
+			],
+			[
+				"usProd",
+				"usProdCapMboeChart"
+			],
+			[
+				"gener",
+				"generatorId"
+			],
+			[
+				"checkbo",
+				"checkboxRow"
+			],
+			[
+				"chec",
+				"checkboxRow"
+			],
+			[
+				"head",
+				"header	Tag"
+			],
+			[
+				"hereComMap",
+				"hereComMapApp"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"dis",
+				"dismissEventName"
+			],
+			[
+				"is_main",
+				"is_main_query"
+			],
+			[
+				"get_post_ty",
+				"get_post_types"
+			],
+			[
+				"exp",
+				"expm1"
+			],
+			[
+				"setCenter",
+				"setCenterToCookie"
+			],
+			[
+				"geoFound",
+				"geoFoundObjOnly"
+			],
+			[
+				"curren",
+				"currentLocationObj"
+			],
+			[
+				"Bruegg",
+				"Brueggers_Forms"
+			],
+			[
+				"Brue",
+				"Brueggers_Locations"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"field",
+				"field_map"
+			],
+			[
+				"defin",
+				"defined"
+			],
+			[
+				"has",
+				"hasAttribute"
+			],
+			[
+				"is_ar",
+				"is_archive"
+			],
+			[
+				"pre_get",
+				"pre_get_posts"
+			],
+			[
+				"Breu",
+				"Brueggers_Custom"
+			],
+			[
+				"have",
+				"have_posts"
+			],
+			[
+				"WP_Q",
+				"WP_Query"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib3,os;",
+			"import urllib2,os;",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation';",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/index.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/assets/styles.scss",
+		"/private/etc/apache2/httpd.conf",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/demo.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/data-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/styles/app.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/classes/class-drillinginfo-index-application.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/scss/_main.scss",
+		"/Users/kwhite/.ssh/config",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/bower.json",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/single-custom_type.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/search.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/page.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/index.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/sidebar.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/parts/loop-page.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/single.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/index.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/parts/loop-archive-grid.php",
+		"/etc/hosts",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/controllers/index.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/scss/_settings.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/front-page.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/parts/nav-offcanvas-topbar.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/parts/loop-archive.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/parts/loop-single.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/footer.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/functions/enqueue-scripts.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/functions/menu.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/archive.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/styles/_settings.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-config.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/ember-cli-build.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/bower_components/foundation-sites/.bower.json",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/application-loading.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/functions.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/themes/drillinginfo.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/toggle-container.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/top-ten.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/toggle-block.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/wp-maps.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/scss/style.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/js/scripts.min.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/js/scripts.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/bower.json",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/styles/_foundation.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/application-error.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/components/toggle-container.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/components/toggle-block.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/routes/index.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/controllers/.gitkeep",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/parts/nav-topbar.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/assets/css/style.css",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/vendor/foundation-sites/scss/foundation.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/vendor/foundation-sites/scss/components/_button.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex/vendor/foundation-sites/scss/components/_dropdown-menu.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex-clean/front-page.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex-clean/assets/functions/menu.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex-clean/assets/scss/_main.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/breakpoints.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/components/data-widget.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex-clean/assets/functions/enqueue-scripts.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/themes/diindex-clean/page-front.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/styles/foundation.scss",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/config/environment.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/controllers/application-loading.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/diindex.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/helpers/delta-direction.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/dist/index.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/index.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/bower.json",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/us-permit-count-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/node_modules/ember-cli-foundation-6-sass/README.md",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/oil-production-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/components/gas-production-widget.hbs",
+		"/Users/kwhite/Desktop/prod-cap-response.json",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/vendor/oval.svg",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/embed.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/embed.min.js",
+		"/apache/hosts/sandbox/demo.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/api-proxy.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/embed.beautified.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/index.min.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/rig-count/vendor.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/rig-count.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/application-acf.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/app/templates/application.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/wp-content/plugins/diindex/app/diindex-proxy.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/circle.yml",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/.gitignore",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/plugins/diindex/classes/class-drillinginfo-index-application.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/plugins/diindex/app/config/environment.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/plugins/diindex/app/ember-cli-build.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/plugins/diindex/app/app/controllers/index.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/routes/index.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/controllers/index.js",
+		"/Users/kwhite/Downloads/groups/groups.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/router.js",
+		"/apache/hosts/wp-groups-login-redirect/index.php",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/index.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/themes/drillinginfo.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/dist/robots.txt",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/dist/assets/diindex-ember-dev.css.map",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/routes/response.html",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/permit-count-chart.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/components/rig-count-chart.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/charts/area-chart.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/components/us-prod-cap-chart.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/top-ten.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/ember-cli-build.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/tests/integration/components/top-ten-test.js",
+		"/Users/kwhite/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/kwhite/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/top-ten-counties.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/top-ten-operators.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/top-operators-gas-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/top-counties-gas-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/top-counties-oil-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/us-production-capacity-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/components/permit-count-chart.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/application.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/components/us-prod-by-type-chart.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/application-error.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/gas-production-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/components/oil-production-widget.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/templates/us-prod-cap.hbs",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/helpers/delta-direction.js",
+		"/apache/hosts/Drillinginfo-DIIndexRelaunch/app/styles/app.scss"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<project>",
+			"/apache/hosts/brueggers.nfusion.com/webroot/wp-content/plugins/lam",
+			"/apache/hosts/brueggers.nfusion.com/webroot/wp-content/plugins/brueggers-custom",
+			"/apache/hosts/brueggers.nfusion.com/webroot/wp-content/themes/brueggers"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ogs",
+			"main",
+			"content",
+			"data-header",
+			"tabs",
+			"button",
+			"font-weight",
+			"66px",
+			"22. ",
+			"36. ",
+			"h1",
+			"content",
+			"i ",
+			"i:before",
+			"before",
+			"tabs",
+			"dropdown",
+			"maps",
+			"linear",
+			"accordion",
+			"grey",
+			"$medium",
+			"tabs",
+			".stat",
+			"maps",
+			"height",
+			"::",
+			"#fff",
+			".header",
+			"h1",
+			"30. ",
+			"large-12",
+			"count",
+			"primary",
+			"$primary-co",
+			"y",
+			"width",
+			"height",
+			"button",
+			"secondary",
+			"$primary-color",
+			"global-ra",
+			"11.",
+			"button",
+			"11.",
+			"24.",
+			"32",
+			"console",
+			"3",
+			"delta-",
+			"capacity",
+			"console.",
+			"diffdate",
+			"console.",
+			"date",
+			"[",
+			"[]",
+			"[",
+			"'));",
+			"[",
+			"[]",
+			"console",
+			"(),",
+			"linec",
+			"auto",
+			"img/",
+			"url",
+			"name=\"segment\"",
+			"name=\"interest\"",
+			"name=\"coverage\"",
+			"reseller",
+			"name=\"coverage\"",
+			"name=\"interest\"",
+			"name=\"segment\"",
+			"name=\"interest\"",
+			"value",
+			"name=\"coverage\"",
+			"bower_components/foundation/components/",
+			"'foundation",
+			"daypart",
+			"menu",
+			"$menuObj",
+			"menu",
+			"jquery",
+			"enqueue_script",
+			"cookie",
+			"menu",
+			"display_menu_category",
+			"chk_print",
+			"row-ta",
+			"launch",
+			"rewrite",
+			"di_contact_load_assets",
+			"$this->",
+			"persona",
+			"attach",
+			"currentPersona",
+			"persona",
+			"cookie",
+			"personaCookie",
+			"persona",
+			";}",
+			"cdawrap",
+			"    <",
+			">",
+			".on",
+			"type=email",
+			" required>",
+			"email",
+			"*",
+			" dir=\"ltr\"",
+			"btn-primary",
+			"icon",
+			"\n 	",
+			"request_uri",
+			"remote_addr",
+			"allow from",
+			"formID",
+			"init",
+			"$to",
+			"locationInfo",
+			"frontwrapper",
+			"There are no locations within 100 miles of your search.",
+			"console",
+			"currentLocationObj",
+			"console",
+			"getdire",
+			"setZoom(15)"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"small-12",
+			"array()",
+			"name=\"00N40000002jLKG\"",
+			"name=\"00N40000002jLKa\"",
+			"name=\"00N40000002jLKp\"",
+			"name=\"00N40000002jLKa\"",
+			"name=\"00N40000002jLKG\"",
+			"name=\"00N40000002jLKa\"",
+			"name=\"00N40000002jLKp\"",
+			"bower_components/foundation/scss/foundation/components/",
+			"'bower_components/foundation",
+			"/bower_components/foundation",
+			">",
+			"",
+			"btn-default",
+			"setZoom(17)",
+			"setZoom(15)",
+			"toGoLink",
+			"directionsLink",
+			"locationCta",
+			"nfuLocator",
+			"geometry.location.lng",
+			"location.map_location.lng",
+			"location.map_location.lat",
+			"location.post_title",
+			"lng",
+			"lat",
+			"zip",
+			"lng",
+			"lat",
+			"Brueggers_Locations",
+			"shipping",
+			"<div id=\"gc-shipping\">\n		<input type=\"hidden\" name=\"billing_fname\" value=\"<?php echo $_POST['billing_fname']; ?>\" />\n		<input type=\"hidden\" name=\"billing_lname\" value=\"<?php echo $_POST['billing_lname']; ?>\" />\n		<input type=\"hidden\" name=\"billing_address\" value=\"<?php echo $_POST['billing_address']; ?>\" />\n		<input type=\"hidden\" name=\"billing_city\" value=\"<?php echo $_POST['billing_city']; ?>\" />\n		<input type=\"hidden\" name=\"billing_state\" value=\"<?php echo $_POST['billing_state']; ?>\" />\n		<input type=\"hidden\" name=\"billing_zip\"  value=\"<?php echo $_POST['billing_zip']; ?>\" />\n		<input type=\"hidden\" name=\"billing_email\" value=\"<?php echo $_POST['billing_email']; ?>\" />\n		<input type=\"hidden\" name=\"billing_phone\" value=\"<?php echo $_POST['billing_phone']; ?>\" />\n		<input type=\"hidden\" name=\"eclub\" value=\"<?php echo $_POST['eclub']; ?>\" />\n	</div>",
+			"$this->token",
+			"Brueggers_Forms"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "diindex.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 345.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

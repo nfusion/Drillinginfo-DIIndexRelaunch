@@ -1,17 +1,19 @@
 <?php get_header(); ?>
-			
+	
 	<div id="content">
 
-		<div id="inner-content" class="row">
-	FRONT-PAGE
-		    <main id="main" class="large-12 medium-12 columns" role="main">
-		    	
-			   <?php the_content(); ?>
-																								
-		    </main> <!-- end #main -->
-		    
-		    <?php //get_sidebar();?>
+		<div id="inner-content" >
+	
+		    <main id="main" role="main">
+				
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
+			    	<?php get_template_part('parts/loop', 'page'); ?>
+			    
+			    <?php endwhile; endif; ?>							
+			    					
+			</main> <!-- end #main -->
+		    
 		</div> <!-- end #inner-content -->
 
 	</div> <!-- end #content -->

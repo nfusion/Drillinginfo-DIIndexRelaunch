@@ -49,31 +49,40 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #2199e8,
-  secondary: #777,
+  primary: #76c000,
+  secondary: #0d8bb1,
   success: #3adb76,
   warning: #ffae00,
   alert: #ec5840,
 );
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
+$light-gray: #f4f4f4; //e6e6e6
+$medium-gray: #585b5d;
+$dark-gray: #434547;
 $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
-$body-font-color: $black;
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-color: $medium-gray;
+$body-font-family: 'univers-light-condensed','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$bold-font-family: 'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius: 5px; 
 $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;
 
+// Drillinginfo custom colors 
+$bright-green: #78ba2f;
+$light-blue: #006f98;
+$dark-blue: #03465e;
+
 @include add-foundation-colors;
+
+@include font-face("univers-light-condensed", "../fonts/universltstd-cn");
+@include font-face("univers-light-condensed-bold", "../fonts/universltstd-boldcn");
 
 // 2. Breakpoints
 // --------------
@@ -108,20 +117,20 @@ $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
   small: (
-    'h1': 24,
+    'h1': 25,
     'h2': 20,
-    'h3': 19,
+    'h3': 18,
     'h4': 18,
-    'h5': 17,
-    'h6': 16,
+    'h5': 18,
+    'h6': 18,
   ),
   medium: (
-    'h1': 48,
-    'h2': 40,
+    'h1': 32,
+    'h2': 26,
     'h3': 31,
-    'h4': 25,
-    'h5': 20,
-    'h6': 16,
+    'h4': 31,
+    'h5': 31,
+    'h6': 31,
   ),
 );
 $header-color: inherit;
@@ -139,7 +148,7 @@ $code-font-weight: $global-weight-normal;
 $code-background: $light-gray;
 $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
-$anchor-color: $primary-color;
+$anchor-color: $secondary-color; 
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
@@ -206,7 +215,7 @@ $accordion-content-padding: 1rem;
 // 8. Accordion Menu
 // -----------------
 
-$accordionmenu-arrows: true;
+$accordionmenu-arrows: false;
 $accordionmenu-arrow-color: $primary-color;
 
 // 9. Badge
@@ -248,6 +257,8 @@ $button-sizes: (
   large: 1.25rem,
 );
 $button-opacity-disabled: 0.25;
+$button-fill: solid;
+
 
 // 12. Button Group
 // ----------------
@@ -306,7 +317,7 @@ $dropdown-sizes: (
 // 17. Dropdown Menu
 // -----------------
 
-$dropdownmenu-arrows: true;
+$dropdownmenu-arrows: false;
 $dropdownmenu-arrow-color: $anchor-color;
 $dropdownmenu-min-width: 200px;
 $dropdownmenu-background: $white;
@@ -397,7 +408,7 @@ $meter-fill-bad: $alert-color;
 // --------------
 
 $offcanvas-size: 250px;
-$offcanvas-background: $light-gray;
+$offcanvas-background: transparent;
 $offcanvas-zindex: -1;
 $offcanvas-transition-length: 0.5s;
 $offcanvas-transition-timing: ease;
@@ -482,11 +493,11 @@ $switch-height: 2rem;
 $switch-height-tiny: 1.5rem;
 $switch-height-small: 1.75rem;
 $switch-height-large: 2.5rem;
-$switch-radius: $global-radius;
+$switch-radius: rem-calc(12);
 $switch-margin: $global-margin;
 $switch-paddle-background: $white;
 $switch-paddle-offset: 0.25rem;
-$switch-paddle-radius: $global-radius;
+$switch-paddle-radius: 50%;
 $switch-paddle-transition: all 0.25s ease-out;
 
 // 31. Table
@@ -511,7 +522,7 @@ $show-header-for-stacked: false;
 
 $tab-margin: 0;
 $tab-background: $white;
-$tab-background-active: $light-gray;
+$tab-background-active: linear-gradient(180deg, $white 0%, $white 90%, $primary-color 90%, $primary-color 100%);
 $tab-item-font-size: rem-calc(12);
 $tab-item-background-hover: $white;
 $tab-item-padding: 1.25rem 1.5rem;
@@ -558,8 +569,8 @@ $tooltip-radius: $global-radius;
 // 36. Top Bar
 // -----------
 
-$topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
+$topbar-padding: 0;
+$topbar-background: $medium-gray;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;

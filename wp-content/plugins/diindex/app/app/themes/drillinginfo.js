@@ -2,26 +2,22 @@
  * Dark blue theme for Highcharts JS
  * @author Torstein Honsi
  */
+import moment from 'moment';
 
 // Load the fonts
-Highcharts.createElement('link', {
-	href: 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300',
-	rel: 'stylesheet',
-	type: 'text/css'
-}, null, document.getElementsByTagName('head')[0]);
-
 export default Highcharts.extend ({
-	//colors: ["#78be20", "#1d54a0", "#585b5d"],
+	colors: ["#78be20", "#1d54a0", "#585b5d"],
 	chart: {
 		backgroundColor: '#fff',
-		spacing: 20,
+		//height: 215,
 		style: {
-			fontFamily: '"Open Sans Condensed", sans-serif;',
-			color: '#ffffff'
+			fontFamily: "'univers-light-condensed-bold', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif",
+			color: '#333'
 		},
-		plotBorderColor: '#333333'
+		plotBorderColor: 'transparent'
 	},
 	title: {
+		text: '',
 		style: {
 			color: '#585b5d',
 			textTransform: 'uppercase',
@@ -30,145 +26,123 @@ export default Highcharts.extend ({
 	},
 	subtitle: {
 		style: {
-			color: '#000000',
+			color: '#585b5d',
 			textTransform: 'uppercase'
 		}
 	},
 	xAxis: {
 		visible: true,
-		gridLineColor: '#fff',
+		gridLineColor: 'transparent',
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#333'
+				color: '#585b5d',
+				fontWeight: 'bold',
+				fontSize: '.625rem'
 			}
 		},
-		lineColor: '#333',
+		lineColor: '#585b5d',
 		lineWidth: 1,
-		minorGridLineColor: '#333',
+		minorGridLineColor: '#585b5d',
 		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: true,
 			style: {
-				color: '#333',
-				fontSize: "15px",
-				margin: 60
-			}
+				color: '#585b5d',
+				fontStyle: 'italic',
+				fontSize: '0.625rem'
+			},
+			margin: 30
 		}
 	},
 	yAxis: {
 		visible: true,
-		gridLineColor: '#e9e7e4',
+		gridLineColor: 'transparent',
 		gridLineWidth: 1,
 		labels: {
 			style: {
-				color: '#333'
+				"color": '#585b5d',
+				"fontWeight": 'bold'
 			}
 		},
-		lineColor: '#333',
-		lineWidth: 0,
-		minorGridLineColor: '#000000',
+		lineColor: '#585b5d',
+		lineWidth: 1,
+		minorGridLineColor: '#000',
 		minorGridLineWidth: 1,
 		minorTickLength: 0,
 		tickLength: 0,
 		tickWidth: 0,
 		title: {
-			enabled: true,
+			text: '',
 			style: {
-				color: '#333',
-				fontSize: "15px",
-				margin: 60
+				color: '#585b5d',
+				fontStyle: 'italic',
+				fontSize: '0.625rem'
 			}
 		}
 	},
 	tooltip: {
-		pointFormat: '{series.name}: <b>{point.y}</b><br/>',
 		backgroundColor: '#585b5d',
 		borderColor: '#fff',
+		useHTML: true,
+		formatter: function() {
+			return '<small>' + moment.utc(this.x).format("MMMM YYYY") + 
+					'</small><br><b>' + this.series.name + ': ' + this.y.toLocaleString() + '</b>';
+		},
 		style: {
-			color: '#FFF',
-			fontSize: '15px',
-			padding: '8px',
-			border: '1px solid red'
+			color: '#fff',
+			fontSize: '15px'
 		}
 	},
 	plotOptions: {
 		column: {
 			borderWidth: 0,
 			dataLabels: {
-				color: '#ffffff'
-			},
-			color: {
-				linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-			    stops: [
-			        [0, '#78be20'],
-			        [1, '#68a41c']
-			    ]
-			},
-			showInLegend: false,
-	    	pointIntervalUnit: 'month',
-	    	states: {
-				hover: {
-					color: '#b2df8a' 
-				}
+				color: '#fff'
 			}
 		},
-		line: {
-			showInLegend: false,
-	    	pointIntervalUnit: 'month',
-	    	lineWidth: 4,
-	    	marker: {
-	    		enabled: true,
-				radius: 7,
-				symbol: 'circle'
-			},
-			states: {
-				hover: {
-					enabled: true,
-					halo: {
-						attributes: true,
-						size: 20,
-						opacity: 0.25
-					}
-				}
-			}
+		boxplot: {
+			fillColor: '#505053'
 		},
-		areaspline: {
+		candlestick: {
+			lineColor: 'white'
+		},
+		errorbar: {
+			color: 'white'
+		},
+		area: {
 			showInLegend: false,
-			fillColor: {
-				linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-	        	stops: [
-	            	[0, '#7293cb'],
-	            	[1, '#396ab1']
-	        	]
-			},
-			lineColor: "#7293cb",
 			marker: {
-                enabled: true,
+                enabled: false,
                 symbol: 'circle',
-                radius: 1,
-                fillColor: '#7293cb',
+                radius: 2,
                 states: {
                     hover: {
-                        enabled: true,
-                        fillColor: '#eee'
+                        enabled: true
                     }
                 }
-            }
+            },
+		},
+		line: {
+			lineWidth: 0,
+			marker: {
+				lineWidth: 0,
+				symbol: 'circle',
+				radius: 4
+			}
 		}
 	},
 	legend: {
 		itemStyle: {
-			color: '#333'
+			color: '#fff'
 		},
 		itemHoverStyle: {
-			color: 'red'
+			color: '#76c000'
 		},
 		itemHiddenStyle: {
-			color: '#606063'
+			color: '#9b9d9e'
 		}
 	},
 	credits: {
@@ -227,7 +201,7 @@ export default Highcharts.extend ({
 		},
 		inputBoxBorderColor: '#505053',
 		inputStyle: {
-			backgroundColor: '#333',
+			backgroundColor: '#585b5d',
 			color: 'silver'
 		},
 		labelStyle: {

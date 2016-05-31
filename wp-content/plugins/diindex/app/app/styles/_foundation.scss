@@ -1,42 +1,93 @@
-// Foundation by ZURB
-// foundation.zurb.com
-// Licensed under MIT Open Source
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.1.2
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
 
-// Behold, here are all the Foundation components.
-@import 'bower_components/foundation/scss/foundation/components/grid';
-@import 'bower_components/foundation/scss/foundation/components/accordion';
-@import 'bower_components/foundation/scss/foundation/components/alert-boxes';
-@import 'bower_components/foundation/scss/foundation/components/block-grid';
-@import 'bower_components/foundation/scss/foundation/components/breadcrumbs';
-@import 'bower_components/foundation/scss/foundation/components/button-groups';
-@import 'bower_components/foundation/scss/foundation/components/buttons';
-@import 'bower_components/foundation/scss/foundation/components/clearing';
-@import 'bower_components/foundation/scss/foundation/components/dropdown';
-@import 'bower_components/foundation/scss/foundation/components/dropdown-buttons';
-@import 'bower_components/foundation/scss/foundation/components/flex-video';
-@import 'bower_components/foundation/scss/foundation/components/forms';
-@import 'bower_components/foundation/scss/foundation/components/icon-bar';
-@import 'bower_components/foundation/scss/foundation/components/inline-lists';
-@import 'bower_components/foundation/scss/foundation/components/joyride';
-@import 'bower_components/foundation/scss/foundation/components/keystrokes';
-@import 'bower_components/foundation/scss/foundation/components/labels';
-@import 'bower_components/foundation/scss/foundation/components/magellan';
-@import 'bower_components/foundation/scss/foundation/components/orbit';
-@import 'bower_components/foundation/scss/foundation/components/pagination';
-@import 'bower_components/foundation/scss/foundation/components/panels';
-@import 'bower_components/foundation/scss/foundation/components/pricing-tables';
-@import 'bower_components/foundation/scss/foundation/components/progress-bars';
-@import 'bower_components/foundation/scss/foundation/components/range-slider';
-@import 'bower_components/foundation/scss/foundation/components/reveal';
-@import 'bower_components/foundation/scss/foundation/components/side-nav';
-@import 'bower_components/foundation/scss/foundation/components/split-buttons';
-@import 'bower_components/foundation/scss/foundation/components/sub-nav';
-@import 'bower_components/foundation/scss/foundation/components/switches';
-@import 'bower_components/foundation/scss/foundation/components/tables';
-@import 'bower_components/foundation/scss/foundation/components/tabs';
-@import 'bower_components/foundation/scss/foundation/components/thumbs';
-@import 'bower_components/foundation/scss/foundation/components/tooltips';
-@import 'bower_components/foundation/scss/foundation/components/top-bar';
-@import 'bower_components/foundation/scss/foundation/components/type';
-@import 'bower_components/foundation/scss/foundation/components/offcanvas';
-@import 'bower_components/foundation/scss/foundation/components/visibility';
+// Sass utilities
+@import 'util/util';
+
+// Global variables and styles
+/*
+@import 'global';
+
+// Components
+@import 'grid/grid';
+@import 'typography/typography';
+@import 'forms/forms';
+@import 'components/visibility';
+@import 'components/float';
+@import 'components/button';
+@import 'components/button-group';
+@import 'components/accordion-menu';
+@import 'components/accordion';
+@import 'components/badge';
+@import 'components/breadcrumbs';
+@import 'components/callout';
+@import 'components/close-button';
+@import 'components/drilldown';
+@import 'components/dropdown-menu';
+@import 'components/dropdown';
+@import 'components/flex-video';
+@import 'components/label';
+@import 'components/media-object';
+@import 'components/menu';
+@import 'components/off-canvas';
+@import 'components/orbit';
+@import 'components/pagination';
+@import 'components/progress-bar';
+@import 'components/reveal';
+@import 'components/slider';
+@import 'components/sticky';
+@import 'components/switch';
+@import 'components/table';
+@import 'components/tabs';
+@import 'components/title-bar';
+@import 'components/top-bar';
+@import 'components/thumbnail';
+@import 'components/tooltip';
+
+@mixin foundation-everything($flex: false) {
+  @include foundation-global-styles;
+  @if not $flex {
+    @include foundation-grid;
+  }
+  @else {
+    @include foundation-flex-grid;
+  }
+  @include foundation-typography;
+  @include foundation-button;
+  @include foundation-forms;
+  @include foundation-visibility-classes;
+  @include foundation-float-classes;
+  @include foundation-accordion;
+  @include foundation-accordion-menu;
+  @include foundation-badge;
+  @include foundation-breadcrumbs;
+  @include foundation-button-group;
+  @include foundation-callout;
+  @include foundation-close-button;
+  @include foundation-drilldown-menu;
+  @include foundation-dropdown;
+  @include foundation-dropdown-menu;
+  @include foundation-flex-video;
+  @include foundation-label;
+  @include foundation-media-object;
+  @include foundation-menu;
+  @include foundation-off-canvas;
+  @include foundation-orbit;
+  @include foundation-pagination;
+  @include foundation-progress-bar;
+  @include foundation-slider;
+  @include foundation-sticky;
+  @include foundation-reveal;
+  @include foundation-switch;
+  @include foundation-table;
+  @include foundation-tabs;
+  @include foundation-thumbnail;
+  @include foundation-title-bar;
+  @include foundation-tooltip;
+  @include foundation-top-bar;
+}
+*/

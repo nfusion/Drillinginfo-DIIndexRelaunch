@@ -8,6 +8,15 @@ module.exports = function(defaults) {
     storeConfigInMeta: false,
     fingerprint: {
       enabled: false
+    },
+    /*
+    'ember-cli-foundation-6-sass': {
+      'foundationJs': 'all'
+    },
+    */
+    babel: {
+      optional: ['es6.spec.symbols'],
+      includePolyfill: true
     }
   });
 
@@ -23,6 +32,26 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+
+  app.import('vendor/oval.svg');
+  
+  // Bourbon and Foundation 6
+  app.import('bower_components/bourbon/app/assets/stylesheets/_bourbon.scss');
+  app.import({
+    development: 'bower_components/foundation-sites/scss/foundation.scss',
+    test: 'bower_components/foundation-sites/scss/foundation.scss',
+    production: ''
+  });
+  app.import({
+    development: 'bower_components/foundation-sites/scss/util/_util.scss',
+    test: 'bower_components/foundation-sites/scss/util/_util.scss',
+    production: '',
+  });
+  app.import({
+    development: 'bower_components/foundation-sites/dist/foundation.js',
+    test: 'bower_components/foundation-sites/dist/foundation.js',
+    production: ''
+  });
 
   return app.toTree();
 };

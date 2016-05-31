@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Drillinginfo Index: Rig Count</title>
+    <link rel="stylesheet" href="dist/css/styles.css" />
+</head>
+
+<body>
+    <div id="rig-count"></div>
+
+    <!-- libraries -->
+    <script src="vendor/handlebars/handlebars.min.js"></script>
+    <script src="vendor/moment/min/moment.min.js"></script>
+
+    <!-- handlebars templates and helpers -->
+    <script id="rig-count-tpl" type="text/x-handlebars-template">
+        <div id="rig-count-widget">
+            <div class="overview-wrapper">
+                <div class="data">
+                    <h1>US Rig Count</h1>
+                    <div class="stat">{{rig_count}}</div>
+                    <div class="date">{{dateformat rig_date "MMMM D, YYYY"}}</div>
+                    <div class="vert"></div>
+                </div>
+                <div class="delta">
+                    <div class="vertical-center">
+                        <div class="pct">{{delta pct_change append="%"}}</div>
+                        <div class="interval">From Previous Week</div>
+                    </div>
+                </div>
+            </div><!-- /.overview-wrapper -->
+            <div class="info-bar">
+                <div class="logo"><img src="dist/images/di-logo.svg" alt="Drillinginfo" /></div>
+                <div class="cta"><a href="http://diindex.drillinginfo.com/" class="button" target="_blank">See Full Report</a></div>
+            </div><!-- /.info-bar -->
+        </div>
+    </script>
+
+    <script id="rig-count-error" type="text/x-handlebars-template">
+        <div id="data-error">
+            <div class="absolute-center">
+                <p class="error">Drillinginfo data is currently unavailable.</p>
+                <p><a href="" class="refresh button">Refresh</a></p>
+            </div>
+        </div>
+    </script>
+    <script>
+        // positive or negative change?
+        Handlebars.registerHelper('delta', function(delta, context) {
+            delta = Math.round(delta);
+            if (delta >= 0) {
+                return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '<i class="fi-arrow-down"></i></span>');
+            }
+
+            return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '<i class="fi-arrow-down"></i></span>');
+        });
+
+        // date formatting
+        Handlebars.registerHelper('dateformat', function(date, format) {
+            return moment(date).format(format);
+        });
+    </script>
+
+    <script>
+        (function() {
+
+            var request_url = "/wp-content/plugins/diindex/api-proxy.php";
+            var data_url = "url=http://di-api.drillinginfo.com/v1/diindex/media_rig_count?$format=json";
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+                var current, source, template, response_json;
+            	if(xmlhttp.readyState == 4) {
+                    if(xmlhttp.status == 200) {
+	            		// success
+	            		response_json = JSON.parse(xmlhttp.responseText);
+
+                        if (response_json.status.http_code == 200) {
+    	            		current = response_json.contents.elements[0];
+    	                    // render template
+                            source = document.getElementById("rig-count-tpl").innerHTML;
+                            template = Handlebars.compile(source);
+
+    	                    document.getElementById("rig-count").innerHTML = template(current);
+                        }
+                        else {
+                            // failure
+                            source = document.getElementById("rig-count-error").innerHTML;
+                            template = Handlebars.compile(source);
+
+                            document.getElementById("rig-count").innerHTML = template();
+                        }
+	                }
+	                else {
+	                	// failure
+                        source = document.getElementById("rig-count-error").innerHTML;
+                        template = Handlebars.compile(source);
+
+	               		document.getElementById("rig-count").innerHTML = template();
+	                }
+            	} 
+            };
+            // send request
+            xmlhttp.open("GET", request_url + "?" + data_url, true);
+            xmlhttp.send();
+        })();
+    </script>
+</body>
+</html>

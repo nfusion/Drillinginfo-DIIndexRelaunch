@@ -43,12 +43,12 @@ if (!$url) {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
     }
 
-    if ($_GET['send_cookies']) {
+    if (!empty($_GET['send_cookies']) && $_GET['send_cookies']) {
         $cookie = array();
         foreach ($_COOKIE as $key => $value) {
             $cookiearray[] = $key.'='.$value;
         }
-        if ($_GET['send_session']) {
+        if (!empty($_GET['send_session']) && $_GET['send_session']) {
             $cookiearray[] = SID;
         }
         $cookie = implode('; ', $cookie);
@@ -61,7 +61,7 @@ if (!$url) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-api-key: d06a6c14d099e2bb966e821c58210580'));
 
-    curl_setopt($ch, CURLOPT_USERAGENT, $_GET['user_agent'] ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT']);
+    curl_setopt($ch, CURLOPT_USERAGENT, !empty($_GET['user_agent']) ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT']);
 
     list($header, $contents) = preg_split('/([\r\n][\r\n])\\1/', curl_exec($ch), 2);
 
@@ -73,7 +73,7 @@ if (!$url) {
 // Split header text into an array.
 $header_text = preg_split('/[\r\n]+/', $header);
 
-if ($_GET['mode'] == 'native') {
+if (!empty($_GET['mode']) && $_GET['mode'] == 'native') {
     if (!$enable_native) {
         $contents = 'ERROR: invalid mode';
         $status = array('http_code' => 'ERROR');
@@ -93,7 +93,7 @@ if ($_GET['mode'] == 'native') {
   $data = array();
 
   // Propagate all HTTP headers into the JSON data object.
-  if ($_GET['full_headers']) {
+  if (!empty($_GET['full_headers']) && $_GET['full_headers']) {
       $data['headers'] = array();
 
       foreach ($header_text as $header) {
@@ -105,7 +105,7 @@ if ($_GET['mode'] == 'native') {
   }
 
   // Propagate all cURL request / response info to the JSON data object.
-  if ($_GET['full_status']) {
+  if (!empty($_GET['full_status']) && $_GET['full_status']) {
       $data['status'] = $status;
   } else {
       $data['status'] = array();
@@ -117,8 +117,10 @@ if ($_GET['mode'] == 'native') {
     $data['contents'] = $decoded_json ? $decoded_json : $contents;
 
   // Generate appropriate content-type header.
-  $is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-    header('Content-type: application/'.($is_xhr ? 'json' : 'x-javascript'));
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+      $is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+    }
+    header('Content-type: application/'.(!empty($is_xhr) ? 'json' : 'x-javascript'));
 
   // Get JSONP callback.
   $jsonp_callback = $enable_jsonp && isset($_GET['callback']) ? $_GET['callback'] : null;

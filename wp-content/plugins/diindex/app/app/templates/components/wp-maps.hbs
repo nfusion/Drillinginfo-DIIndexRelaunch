@@ -1,0 +1,16 @@
+<div class="medium-6 columns">
+	<h3>New Wells</h3>
+	{{#if model.maps.acf.wells_expanded_version}}
+		<a href="{{model.maps.acf.wells_expanded_version.url}}" target="_blank"><img src="{{model.maps.acf.wells_map_image.url}}" alt="{{model.maps.acf.wells_map_image.title}}" /></a>
+	{{else}}
+		<img src="{{model.maps.acf.wells_map_image.url}}" alt="{{model.maps.acf.wells_map_image.title}}" />
+	{{/if}}
+</div>
+<div class="medium-6 columns">
+	<h3>Rig Movement</h3>
+	{{#if model.maps.acf.rig_expanded_version}}
+		<a href="{{model.maps.acf.rig_expanded_version.url}}" target="_blank"><img src="{{model.maps.acf.rig_map_image.url}}" alt="{{model.maps.acf.rig_map_image.title}}" /></a>
+	{{else}}
+		<img src="{{model.maps.acf.rig_map_image.url}}" alt="{{model.maps.acf.rig_map_image.title}}" />
+	{{/if}}
+</div>

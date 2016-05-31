@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'diindex-ember-dev',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'none', 
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -16,6 +16,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      rootElement: '#diindex-dashboard',
+      connectionPath: 'http://local.diindex.nfusion.com/'
     }
   };
 
@@ -29,8 +31,8 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
-    ENV.locationType = 'none';
+    //ENV.baseURL = '/';
+    //ENV.locationType = 'none';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -40,9 +42,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.rootElement = '#app';
-    ENV.baseURL = '/';
-    ENV.locationType = 'none';
+    ENV.APP.connectionPath = '';
   }
 
   return ENV;
