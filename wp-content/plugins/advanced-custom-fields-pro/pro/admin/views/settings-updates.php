@@ -3,6 +3,7 @@
 // extract
 extract($args);
 
+
 // vars
 $active = $license ? true : false;
 $nonce = $active ? 'deactivate_pro_licence' : 'activate_pro_licence';
@@ -20,10 +21,10 @@ $readonly = $active ? 1 : 0;
 			<h3><?php _e('License Information', 'acf'); ?></h3>
 		</div>
 		<div class="inner">
-			<p><?php _e("To unlock updates, please enter your license key below. If you don't have a licence key, please see", 'acf'); ?> <a href="https://www.advancedcustomfields.com/pro" target="_blank"><?php _e('details & pricing', 'acf'); ?></a></p>
+			<p><?php printf(__('To unlock updates, please enter your license key below. If you don\'t have a licence key, please see <a href="%s" target="_blank">details & pricing</a>.','acf'), esc_url('https://www.advancedcustomfields.com/pro')); ?></p>
 			<form action="" method="post">
 			<div class="acf-hidden">
-				<input type="hidden" name="_acfnonce" value="<?php echo wp_create_nonce($nonce); ?>" />
+				<input type="hidden" name="_acfnonce" value="<?php echo wp_create_nonce( $nonce ); ?>" />
 			</div>
 			<table class="form-table">
                 <tbody>
@@ -33,16 +34,16 @@ $readonly = $active ? 1 : 0;
                     	</th>
 						<td>
 							<?php 
-
-                            // render field
-                            acf_render_field(array(
-                                'type'         => $input,
-                                'name'         => 'acf_pro_licence',
-                                'value'        => str_repeat('*', strlen($license)),
-                                'readonly'     => $readonly,
-                            ));
-
-                            ?>
+							
+							// render field
+							acf_render_field(array(
+								'type'		=> $input,
+								'name'		=> 'acf_pro_licence',
+								'value'		=> str_repeat('*', strlen($license)),
+								'readonly'	=> $readonly
+							));
+							
+							?>
 						</td>
 					</tr>
 					<tr>
@@ -87,11 +88,11 @@ $readonly = $active ? 1 : 0;
                     		<label><?php _e('Update Available', 'acf'); ?></label>
                     	</th>
 						<td>
-							<?php if ($update_available): ?>
+							<?php if( $update_available ): ?>
 								
 								<span style="margin-right: 5px;"><?php _e('Yes', 'acf'); ?></span>
 								
-								<?php if ($active): ?>
+								<?php if( $active ): ?>
 									<a class="button button-primary" href="<?php echo admin_url('plugins.php?s=Advanced+Custom+Fields+Pro'); ?>"><?php _e('Update Plugin', 'acf'); ?></a>
 								<?php else: ?>
 									<a class="button" disabled="disabled" href="#"><?php _e('Please enter your license key above to unlock updates', 'acf'); ?></a>
@@ -104,7 +105,7 @@ $readonly = $active ? 1 : 0;
 							<?php endif; ?>
 						</td>
 					</tr>
-					<?php if ($changelog): ?>
+					<?php if( $changelog ): ?>
 					<tr>
                     	<th>
                     		<label><?php _e('Changelog', 'acf'); ?></label>
@@ -114,7 +115,7 @@ $readonly = $active ? 1 : 0;
 						</td>
 					</tr>
 					<?php endif; ?>
-					<?php if ($upgrade_notice): ?>
+					<?php if( $upgrade_notice ): ?>
 					<tr>
                     	<th>
                     		<label><?php _e('Upgrade Notice', 'acf'); ?></label>

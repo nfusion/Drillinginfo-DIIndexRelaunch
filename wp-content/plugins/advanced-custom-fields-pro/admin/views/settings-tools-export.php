@@ -1,19 +1,20 @@
 <?php 
 
 // vars
-$field_groups = acf_extract_var($args, 'field_groups');
+$field_groups = acf_extract_var( $args, 'field_groups');
+
 
 // replace
 $str_replace = array(
-    '  '      => "\t",
-    "!!\'"    => "'",
-    "'!!"     => '',
-    "!!'"     => '',
+	"  "	=> "\t",
+	"!!\'"	=> "'",
+	"'!!"	=> "",
+	"!!'"	=> ""
 );
 
 $preg_replace = array(
-    '/([\t\r\n]+?)array/'      => 'array',
-    '/[0-9]+ => array/'        => 'array',
+	'/([\t\r\n]+?)array/'	=> 'array',
+	'/[0-9]+ => array/'		=> 'array'
 );
 
 ?>
@@ -30,30 +31,35 @@ $preg_replace = array(
 			<p><?php _e("The following code can be used to register a local version of the selected field group(s). A local field group can provide many benefits such as faster load times, version control & dynamic fields/settings. Simply copy and paste the following code to your theme's functions.php file or include it within an external file.", 'acf'); ?></p>
 			
 			<textarea class="pre" readonly="true"><?php
-
-            echo "if( function_exists('acf_add_local_field_group') ):"."\r\n"."\r\n";
-
-            foreach ($field_groups as $field_group) {
-
-                // code
-                $code = var_export($field_group, true);
-
-                // change double spaces to tabs
-                $code = str_replace(array_keys($str_replace), array_values($str_replace), $code);
-
-                // correctly formats "=> array("
-                $code = preg_replace(array_keys($preg_replace), array_values($preg_replace), $code);
-
-                // esc_textarea
-                $code = esc_textarea($code);
-
-                // echo
-                echo "acf_add_local_field_group({$code});"."\r\n"."\r\n";
-            }
-
-            echo 'endif;';
-
-            ?></textarea>
+			
+			echo "if( function_exists('acf_add_local_field_group') ):" . "\r\n" . "\r\n";
+			
+			foreach( $field_groups as $field_group ) {
+						
+				// code
+				$code = var_export($field_group, true);
+				
+				
+				// change double spaces to tabs
+				$code = str_replace( array_keys($str_replace), array_values($str_replace), $code );
+				
+				
+				// correctly formats "=> array("
+				$code = preg_replace( array_keys($preg_replace), array_values($preg_replace), $code );
+				
+				
+				// esc_textarea
+				$code = esc_textarea( $code );
+				
+				
+				// echo
+				echo "acf_add_local_field_group({$code});" . "\r\n" . "\r\n";
+			
+			}
+			
+			echo "endif;";
+			
+			?></textarea>
             
 		</div>
 		
