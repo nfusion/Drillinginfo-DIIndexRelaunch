@@ -12,6 +12,7 @@ wp-content/plugins/diindex/app/bower_components
 # rig count widget ignore list
 rig-count/bower_components
 rig-count/node_modules
+rig-count/.sass-cache
 
 # composer ignore list
 /vendor
