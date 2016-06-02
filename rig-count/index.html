@@ -50,7 +50,7 @@
         Handlebars.registerHelper('delta', function(delta, context) {
             delta = Math.round(delta);
             if (delta >= 0) {
-                return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '<i class="fi-arrow-down"></i></span>');
+                return new Handlebars.SafeString('<span class="inc">' + delta + context.hash.append + '<i class="fi-arrow-up"></i></span>');
             }
 
             return new Handlebars.SafeString('<span class="dec">' + delta + context.hash.append + '<i class="fi-arrow-down"></i></span>');
